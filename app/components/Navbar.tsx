@@ -9,7 +9,7 @@ const navLinks = [
     { label: 'Features', href: '#features' },
     { label: 'How It Works', href: '#workflow' },
     { label: 'Why Elaris', href: '#why-elaris' },
-    { label: 'Examples', href: '#examples' },
+    { label: 'Showcase', href: '#Showcase' },
 ];
 
 export function Navbar() {

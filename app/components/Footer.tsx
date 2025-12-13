@@ -9,7 +9,7 @@ const links = {
     { label: 'Features', href: '#features' },
     { label: 'How it works', href: '#workflow' },
     { label: 'Why Elaris', href: '#why-elaris' },
-    { label: 'Examples', href: '#examples' },
+    { label: 'Showcase', href: '#Showcase' },
   ],
   Company: [
     { label: 'About', href: '#top' },
@@ -17,7 +17,7 @@ const links = {
     { label: 'Contact', href: '#top' },
   ],
   Resources: [
-    { label: 'Sample campaigns', href: '#examples' },
+    { label: 'Sample campaigns', href: '#Showcase' },
     { label: 'Security', href: '#top' },
     { label: 'Docs', href: '#top' },
   ],
@@ -82,7 +82,7 @@ export function Footer() {
                 variant="outline"
                 className="h-auto rounded-full px-7 py-6 text-base border-white/15 bg-transparent hover:bg-white/[0.06]"
               >
-                View Examples
+                Showcase
               </Button>
             </div>
           </div>
@@ -134,4 +134,5 @@ export function Footer() {
     </footer>
   );
 }
+
 

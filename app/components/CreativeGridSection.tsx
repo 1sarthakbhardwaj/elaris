@@ -104,7 +104,7 @@ export function CreativeGridSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="examples" ref={ref} className="relative py-32 pb-40 overflow-hidden">
+    <section id="Showcase" ref={ref} className="relative py-32 pb-40 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-950/10 to-background"></div>
@@ -178,9 +178,7 @@ export function CreativeGridSection() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center mt-14"
         >
-          <p className="text-gray-400 text-sm">
-            A living collage of AI-generated campaign creatives.
-          </p>
+
         </motion.div>
       </div>
 
