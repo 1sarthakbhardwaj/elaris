@@ -37,9 +37,14 @@ export function AgentSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="relative py-32 overflow-hidden">
+    <section id="features" ref={ref} className="relative py-32 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-950/10 to-background"></div>
+      <div
+        data-lenis-parallax
+        style={{ ['--lenis-speed' as any]: 0.03 }}
+        className="absolute -top-24 right-10 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl"
+      />
       
       <div className="relative z-10 container mx-auto px-6">
         {/* Section Label */}

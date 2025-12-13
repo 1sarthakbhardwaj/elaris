@@ -22,10 +22,15 @@ export function WorkflowSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="relative py-32 overflow-hidden">
+    <section id="workflow" ref={ref} className="relative py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-pink-950/10 to-background"></div>
+        <div
+          data-lenis-parallax
+          style={{ ['--lenis-speed' as any]: 0.02 }}
+          className="absolute top-20 left-10 w-72 h-72 bg-pink-600/10 rounded-full blur-3xl"
+        />
       </div>
 
       <div className="relative z-10 container mx-auto px-6">

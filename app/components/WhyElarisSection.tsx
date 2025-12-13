@@ -38,11 +38,15 @@ export function WhyElarisSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="relative py-32 overflow-hidden">
+    <section id="why-elaris" ref={ref} className="relative py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-blue-950/10 to-background"></div>
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div
+          data-lenis-parallax
+          style={{ ['--lenis-speed' as any]: 0.025 }}
+          className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"
+        ></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6">

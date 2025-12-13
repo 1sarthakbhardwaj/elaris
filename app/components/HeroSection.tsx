@@ -6,12 +6,18 @@ import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="top" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated background gradient blobs */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-blob"></div>
-        <div className="absolute top-1/3 -right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-1/4 left-1/2 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+        <div data-lenis-parallax style={{ ['--lenis-speed' as any]: -0.06 }} className="absolute top-1/4 -left-1/4">
+          <div className="w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-blob"></div>
+        </div>
+        <div data-lenis-parallax style={{ ['--lenis-speed' as any]: -0.04 }} className="absolute top-1/3 -right-1/4">
+          <div className="w-96 h-96 bg-pink-600/20 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+        <div data-lenis-parallax style={{ ['--lenis-speed' as any]: -0.03 }} className="absolute -bottom-1/4 left-1/2">
+          <div className="w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
+        </div>
       </div>
 
       {/* Grid pattern overlay */}
@@ -52,7 +58,11 @@ export function HeroSection() {
       />
 
       {/* Orbiting dots */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none">
+      <div
+        data-lenis-parallax
+        style={{ ['--lenis-speed' as any]: 0.02 }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
+      >
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -137,7 +147,6 @@ export function HeroSection() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <div className="flex flex-col items-center gap-2 text-gray-600">
-            <span className="text-xs uppercase tracking-widest">Explore</span>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
