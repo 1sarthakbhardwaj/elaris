@@ -1,6 +1,6 @@
-# Elaris AI - Landing Page
+# Elaris Labs - Landing Page
 
-This is the marketing website for Elaris AI. It showcases the features and agents of the Elaris AI Creative Suite.
+This is the marketing website for Elaris Labs. It showcases the features and agents of the Elaris Labs Creative Suite.
 
 ## Getting Started
 

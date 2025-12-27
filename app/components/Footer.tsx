@@ -61,7 +61,7 @@ export function Footer() {
               </div>
               <h3 className="mt-5 text-3xl md:text-4xl font-bold tracking-tight">
                 <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                  Put Elaris AI to work
+                  Put Elaris Labs to work
                 </span>
               </h3>
               <p className="mt-3 text-white/65 leading-relaxed">
@@ -95,7 +95,7 @@ export function Footer() {
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500">
                 <Sparkles className="h-5 w-5 text-white" />
               </span>
-              <span className="text-lg font-semibold text-white">Elaris AI</span>
+              <span className="text-lg font-semibold text-white">Elaris Labs</span>
             </a>
             <p className="mt-3 text-sm text-white/60 leading-relaxed">
               Agentic creative performance platform built to generate, evaluate, and optimize ads across channels.
@@ -124,7 +124,7 @@ export function Footer() {
         {/* bottom bar */}
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/45">
-            © {new Date().getFullYear()} Elaris AI. All rights reserved.
+            © {new Date().getFullYear()} Elaris Labs. All rights reserved.
           </p>
           <div className="text-xs text-white/45">
             Built with agentic workflows · Smooth scrolling by Lenis

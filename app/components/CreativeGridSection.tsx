@@ -5,95 +5,103 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 
-// Real creative data with images
+// Real creative data with images - optimized for better grid layout
 const creatives = [
   { 
     id: 1, 
     src: '/images/1.png',
-    width: 578,
-    height: 714,
+    width: 600,
+    height: 700,
+    span: 'row-span-2',
   },
   { 
     id: 2, 
     src: '/images/2.png',
-    width: 578,
-    height: 584,
+    width: 600,
+    height: 600,
+    span: 'row-span-2',
   },
   { 
     id: 3, 
     src: '/images/3.png',
-    width: 450,
-    height: 742,
+    width: 600,
+    height: 800,
+    span: 'row-span-3',
   },
   { 
     id: 4, 
     src: '/images/4.png',
-    width: 632,
-    height: 634,
+    width: 600,
+    height: 600,
+    span: 'row-span-2',
   },
   { 
     id: 5, 
     src: '/images/5.png',
-    width: 516,
-    height: 506,
+    width: 600,
+    height: 500,
+    span: 'row-span-2',
   },
   { 
     id: 6, 
     src: '/images/6.png',
     width: 800,
-    height: 436,
+    height: 450,
+    span: 'row-span-2',
   },
   { 
     id: 7, 
     src: '/images/7.png',
-    width: 280,
-    height: 488,
+    width: 600,
+    height: 800,
+    span: 'row-span-3',
   },
 ];
 
 function Frame({
   children,
   index,
+  span,
 }: {
   children: React.ReactNode;
   index: number;
+  span?: string;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18, scale: 0.98 }}
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-120px' }}
+      viewport={{ once: true, margin: '-100px' }}
       transition={{
-        duration: 0.6,
+        duration: 0.5,
         ease: [0.21, 0.47, 0.32, 0.98],
-        delay: index * 0.06,
+        delay: index * 0.08,
       }}
-      whileHover={{ y: -6 }}
-      className="group relative mb-4 break-inside-avoid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-2 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] hover:border-white/20 hover:bg-white/[0.06] hover:shadow-[0_18px_60px_-30px_rgba(168,85,247,0.55)] transition-colors"
+      className={`group relative overflow-hidden rounded-xl border border-white/10 transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.4)] ${span || ''}`}
     >
-      {/* outer glow */}
-      <div className="pointer-events-none absolute -inset-12 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_30%_20%,rgba(168,85,247,0.25),transparent_55%),radial-gradient(circle_at_70%_80%,rgba(236,72,153,0.18),transparent_55%)]" />
+      {/* Glow effect on hover */}
+      <div className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-purple-500/20 blur-xl" />
 
-      {/* inner frame */}
-      <div className="relative overflow-hidden rounded-xl bg-black/30">
+      {/* Content wrapper - full size */}
+      <div className="relative h-full w-full overflow-hidden">
         {children}
 
-        {/* subtle gradient for depth */}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-black/45 via-black/0 to-black/0" />
+        {/* Overlay gradient on hover */}
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-purple-900/30 via-transparent to-transparent" />
 
-        {/* shine */}
+        {/* Shine effect */}
         <motion.div
-          className="pointer-events-none absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-          initial={{ x: '-180%' }}
-          whileHover={{ x: '180%' }}
-          transition={{ duration: 0.9, ease: 'easeInOut' }}
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.15] to-transparent"
+          initial={{ x: '-100%', skewX: -12 }}
+          whileHover={{ x: '200%' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         />
       </div>
 
-      {/* tiny caption (keeps it premium, not busy) */}
-      <div className="mt-2 flex items-center gap-2 px-1 pb-1">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/90" />
-        <span className="text-[12px] text-white/70">AI Generated</span>
+      {/* AI Badge */}
+      <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-3 py-1.5 border border-white/10">
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="text-[11px] font-medium text-white/90">AI Generated</span>
       </div>
     </motion.div>
   );
@@ -147,25 +155,19 @@ export function CreativeGridSection() {
           See what's possible when AI agents collaborate to create platform-optimized advertising content.
         </motion.p>
 
-        {/* Creative Grid - Masonry columns (respects real image sizes) */}
-        <div className="mx-auto max-w-7xl">
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
+        {/* Creative Grid - Bento-style layout */}
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 auto-rows-[240px]">
             {creatives.map((creative, index) => (
-              <Frame key={creative.id} index={index}>
-                <motion.div
-                  className="relative"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.35, ease: 'easeOut' }}
-                >
-                  <Image
-                    src={creative.src}
-                    alt={`Creative ${creative.id}`}
-                    width={creative.width}
-                    height={creative.height}
-                    className="h-auto w-full select-none"
-                    priority={creative.id <= 2}
-                  />
-                </motion.div>
+              <Frame key={creative.id} index={index} span={creative.span}>
+                <Image
+                  src={creative.src}
+                  alt={`AI Generated Creative ${creative.id}`}
+                  width={creative.width}
+                  height={creative.height}
+                  className="h-full w-full object-cover select-none transition-transform duration-500 hover:scale-105"
+                  priority={creative.id <= 3}
+                />
               </Frame>
             ))}
           </div>
