@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elaris Labs - Landing Page",
+  title: "ElarisLabs - Landing Page",
   description: "New Generation AI Creative Suite",
 };
 

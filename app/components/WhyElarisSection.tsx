@@ -60,7 +60,7 @@ export function WhyElarisSection() {
             {/* Section Label */}
             <div className="mb-6">
               <span className="text-sm font-semibold tracking-wider text-blue-400 uppercase">
-                Why Elaris Labs
+                Why ElarisLabs
               </span>
             </div>
 
@@ -77,7 +77,7 @@ export function WhyElarisSection() {
 
             {/* Body Copy */}
             <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-              Stop guessing what will convert. Elaris Labs connects creative, data, and media so every campaign is built to drive measurable growth.
+              Stop guessing what will convert. ElarisLabs connects creative, data, and media so every campaign is built to drive measurable growth.
             </p>
 
             {/* CTA Button */}

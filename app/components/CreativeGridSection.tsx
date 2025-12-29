@@ -5,67 +5,70 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 
-// Real creative data with images - optimized for better grid layout
+// Real creative data with images - natural aspect ratios preserved
 const creatives = [
   { 
     id: 1, 
     src: '/images/1.png',
     width: 600,
     height: 700,
-    span: 'row-span-2',
   },
   { 
     id: 2, 
     src: '/images/2.png',
     width: 600,
     height: 600,
-    span: 'row-span-2',
   },
   { 
     id: 3, 
     src: '/images/3.png',
-    width: 600,
-    height: 800,
-    span: 'row-span-3',
+    width: 450,
+    height: 742,
   },
   { 
     id: 4, 
     src: '/images/4.png',
-    width: 600,
-    height: 600,
-    span: 'row-span-2',
+    width: 632,
+    height: 634,
   },
   { 
     id: 5, 
     src: '/images/5.png',
-    width: 600,
-    height: 500,
-    span: 'row-span-2',
+    width: 516,
+    height: 506,
   },
   { 
     id: 6, 
     src: '/images/6.png',
     width: 800,
-    height: 450,
-    span: 'row-span-2',
+    height: 436,
   },
   { 
     id: 7, 
     src: '/images/7.png',
-    width: 600,
+    width: 800,
     height: 800,
-    span: 'row-span-3',
+  },
+  { 
+    id: 8, 
+    src: '/images/8.png',
+    width: 1456,
+    height: 816,
+  },
+  { 
+    id: 9, 
+    src: '/images/9.png',
+    width: 1456,
+    height: 816,
   },
 ];
 
 function Frame({
   children,
   index,
-  span,
 }: {
   children: React.ReactNode;
   index: number;
-  span?: string;
 }) {
   return (
     <motion.div
@@ -75,33 +78,33 @@ function Frame({
       transition={{
         duration: 0.5,
         ease: [0.21, 0.47, 0.32, 0.98],
-        delay: index * 0.08,
+        delay: index * 0.05,
       }}
-      className={`group relative overflow-hidden rounded-xl border border-white/10 transition-all duration-300 hover:border-purple-500/30 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.4)] ${span || ''}`}
+      className="group relative break-inside-avoid overflow-hidden rounded-lg border border-white/10 bg-white/[0.02] transition-all duration-300 hover:border-purple-500/40 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.5)] hover:-translate-y-1"
     >
       {/* Glow effect on hover */}
-      <div className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-purple-500/20 blur-xl" />
+      <div className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-purple-500/30 blur-xl" />
 
-      {/* Content wrapper - full size */}
-      <div className="relative h-full w-full overflow-hidden">
+      {/* Content wrapper */}
+      <div className="relative overflow-hidden rounded-lg">
         {children}
 
         {/* Overlay gradient on hover */}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-purple-900/30 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
         {/* Shine effect */}
         <motion.div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.15] to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.12] to-transparent"
           initial={{ x: '-100%', skewX: -12 }}
           whileHover={{ x: '200%' }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         />
       </div>
 
       {/* AI Badge */}
-      <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-3 py-1.5 border border-white/10">
+      <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5 rounded-full bg-black/70 backdrop-blur-md px-2.5 py-1 border border-white/10 shadow-lg">
         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="text-[11px] font-medium text-white/90">AI Generated</span>
+        <span className="text-[10px] font-semibold text-white/95 tracking-wide">AI GENERATED</span>
       </div>
     </motion.div>
   );
@@ -155,17 +158,17 @@ export function CreativeGridSection() {
           See what's possible when AI agents collaborate to create platform-optimized advertising content.
         </motion.p>
 
-        {/* Creative Grid - Bento-style layout */}
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 auto-rows-[240px]">
+        {/* Creative Grid - Structured Masonry Layout */}
+        <div className="mx-auto max-w-[1400px] px-4">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
             {creatives.map((creative, index) => (
-              <Frame key={creative.id} index={index} span={creative.span}>
+              <Frame key={creative.id} index={index}>
                 <Image
                   src={creative.src}
                   alt={`AI Generated Creative ${creative.id}`}
                   width={creative.width}
                   height={creative.height}
-                  className="h-full w-full object-cover select-none transition-transform duration-500 hover:scale-105"
+                  className="w-full h-auto select-none"
                   priority={creative.id <= 3}
                 />
               </Frame>

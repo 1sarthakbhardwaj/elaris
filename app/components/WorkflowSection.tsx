@@ -69,7 +69,7 @@ export function WorkflowSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-gray-400 text-center mb-20 max-w-3xl mx-auto"
         >
-          See how Elaris Labs turns your brand, audience, and performance data into launch ready ads.
+          See how ElarisLabs turns your brand, audience, and performance data into launch ready ads.
         </motion.p>
 
         {/* Workflow Diagram */}
