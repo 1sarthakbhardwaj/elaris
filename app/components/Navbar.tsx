@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
@@ -25,15 +25,13 @@ export function Navbar() {
             <div className="mx-auto px-6 py-4">
                 <div className="flex items-center justify-between glass rounded-full px-6 py-3 border border-white/10 backdrop-blur-md">
                     {/* Logo */}
-                    <a href="#" className="flex items-center gap-2 group">
+                    <a href="#" className="flex items-center gap-2.5 group">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg blur-sm opacity-50 group-hover:opacity-75 transition-opacity" />
-                            <div className="relative p-1.5 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500">
-                                <Sparkles className="w-5 h-5 text-white" />
-                            </div>
+                            <div className="absolute inset-0 bg-purple-500 rounded-md blur-sm opacity-40 group-hover:opacity-60 transition-opacity" />
+                            <div className="relative w-7 h-7 rounded-md bg-purple-600" />
                         </div>
                         <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                            ElarisLabs
+                            Elaris Labs
                         </span>
                     </a>
 
