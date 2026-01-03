@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const links = {
@@ -12,14 +12,7 @@ const links = {
     { label: 'Showcase', href: '#Showcase' },
   ],
   Company: [
-    { label: 'About', href: '#top' },
-    { label: 'Careers', href: '#top' },
     { label: 'Contact', href: '#top' },
-  ],
-  Resources: [
-    { label: 'Sample campaigns', href: '#Showcase' },
-    { label: 'Security', href: '#top' },
-    { label: 'Docs', href: '#top' },
   ],
   Legal: [
     { label: 'Privacy', href: '#top' },
@@ -55,17 +48,13 @@ export function Footer() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(168,85,247,0.22),transparent_55%),radial-gradient(circle_at_80%_90%,rgba(236,72,153,0.16),transparent_55%)]" />
           <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-2 text-sm text-white/80">
-                <Sparkles className="h-4 w-4 text-purple-300" />
-                <span>Ready to ship better creatives?</span>
-              </div>
-              <h3 className="mt-5 text-3xl md:text-4xl font-bold tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
                 <span className="bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
-                  Put ElarisLabs to work
+                  Ready to optimize your ad creative?
                 </span>
               </h3>
-              <p className="mt-3 text-white/65 leading-relaxed">
-                Get a walkthrough of the agentic workflow and see how we rank creatives before you spend.
+              <p className="mt-4 text-white/65 leading-relaxed">
+                Get a walkthrough of our AI agents and see how we optimize creatives for measurable performance.
               </p>
             </div>
 
@@ -89,16 +78,17 @@ export function Footer() {
         </motion.div>
 
         {/* link columns */}
-        <div className="mt-14 grid grid-cols-2 gap-10 md:grid-cols-5">
+        <div className="mt-14 grid grid-cols-2 gap-10 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <a href="#top" className="inline-flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500">
-                <Sparkles className="h-5 w-5 text-white" />
-              </span>
-              <span className="text-lg font-semibold text-white">ElarisLabs</span>
+            <a href="#top" className="inline-flex items-center gap-2.5">
+              <div className="relative">
+                <div className="absolute inset-0 bg-purple-500 rounded-md blur-sm opacity-40" />
+                <div className="relative w-8 h-8 rounded-md bg-purple-600" />
+              </div>
+              <span className="text-lg font-semibold text-white">Elaris Labs</span>
             </a>
-            <p className="mt-3 text-sm text-white/60 leading-relaxed">
-              Agentic creative performance platform built to generate, evaluate, and optimize ads across channels.
+            <p className="mt-4 text-sm text-white/60 leading-relaxed">
+              AI agents that generate, test & refine ad creatives for measurable performance.
             </p>
           </div>
 
@@ -124,11 +114,8 @@ export function Footer() {
         {/* bottom bar */}
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-white/45">
-            © {new Date().getFullYear()} ElarisLabs. All rights reserved.
+            © {new Date().getFullYear()} Elaris Labs. All rights reserved.
           </p>
-          <div className="text-xs text-white/45">
-            Built with agentic workflows · Smooth scrolling by Lenis
-          </div>
         </div>
       </div>
     </footer>

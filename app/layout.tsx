@@ -14,8 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ElarisLabs - Landing Page",
-  description: "New Generation AI Creative Suite",
+  title: "Elaris Labs - AI Agents that Optimize Ad Creative",
+  description: "Generate, test & refine ad creatives for measurable performance.",
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
