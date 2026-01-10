@@ -61,6 +61,12 @@ const creatives = [
     width: 1456,
     height: 816,
   },
+  { 
+    id: 10, 
+    src: '/images/10.png',
+    width: 1456,
+    height: 816,
+  },
 ];
 
 function Frame({
