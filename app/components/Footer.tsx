@@ -15,8 +15,8 @@ const links = {
     { label: 'Contact', href: '#top' },
   ],
   Legal: [
-    { label: 'Privacy', href: '#top' },
-    { label: 'Terms', href: '#top' },
+    { label: 'Privacy', href: '/privacy-policy' },
+    { label: 'Terms', href: '/terms' },
   ],
 } as const;
 
