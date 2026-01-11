@@ -61,7 +61,7 @@ export function Footer() {
             <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
               <Button
                 size="lg"
-                className="h-auto rounded-full px-7 py-6 text-base bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/25"
+                className="h-auto rounded-full px-7 py-6 text-base bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/25 text-white"
               >
                 Request a Demo
                 <ArrowRight className="h-5 w-5" />

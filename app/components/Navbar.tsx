@@ -53,7 +53,7 @@ export function Navbar() {
                     <div className="hidden md:block">
                         <Button
                             size="sm"
-                            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-sm px-5"
+                            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-sm px-5 text-white"
                         >
                             Get Started
                         </Button>

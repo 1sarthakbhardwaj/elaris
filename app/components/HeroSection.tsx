@@ -131,7 +131,7 @@ export function HeroSection() {
         >
           <Button
             size="lg"
-            className="group text-base px-8 py-6 h-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all"
+            className="group text-base px-8 py-6 h-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all text-white"
           >
             Request a Demo
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
