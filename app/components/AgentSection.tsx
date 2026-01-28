@@ -37,13 +37,12 @@ export function AgentSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="features" ref={ref} className="relative py-32 overflow-hidden">
+    <section id="features" ref={ref} className="relative py-32 overflow-hidden bg-gradient-to-b from-white via-purple-50/30 to-white">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-950/10 to-background"></div>
       <div
         data-lenis-parallax
         style={{ ['--lenis-speed' as any]: 0.03 }}
-        className="absolute -top-24 right-10 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl"
+        className="absolute -top-24 right-10 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl"
       />
       
       <div className="relative z-10 container mx-auto px-6">
@@ -54,7 +53,7 @@ export function AgentSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase">
+          <span className="text-sm font-semibold tracking-wider text-purple-600 uppercase">
             Your AI Workforce
           </span>
         </motion.div>
@@ -66,11 +65,11 @@ export function AgentSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-20"
         >
-          <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
             Specialized agents built for
           </span>
           <br />
-          <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
             modern advertising.
           </span>
         </motion.h2>
@@ -91,24 +90,24 @@ export function AgentSection() {
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-xl -z-10" 
                      style={{ backgroundImage: `linear-gradient(to right, var(--tw-gradient-stops))` }}></div>
                 
-                <div className="relative p-8 rounded-2xl glass border border-white/10 hover:border-white/20 transition-all duration-300 h-full backdrop-blur-sm bg-white/5">
+                <div className="relative p-8 rounded-2xl glass border border-black/8 hover:border-purple-200 transition-all duration-300 h-full backdrop-blur-sm bg-white shadow-sm hover:shadow-xl">
                   {/* Icon with gradient background */}
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${agent.color} mb-6`}>
+                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${agent.color} mb-6 shadow-lg`}>
                     <Icon className="w-6 h-6 text-white" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-white group-hover:to-gray-300 transition-all">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-gray-900 group-hover:to-gray-700 transition-all">
                     {agent.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
                     {agent.description}
                   </p>
 
                   {/* Decorative corner accent */}
-                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${agent.color} opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300 rounded-full -z-10`}></div>
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${agent.color} opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300 rounded-full -z-10`}></div>
                 </div>
               </motion.div>
             );

@@ -22,14 +22,13 @@ export function WorkflowSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="workflow" ref={ref} className="relative py-32 overflow-hidden">
+    <section id="workflow" ref={ref} className="relative py-32 overflow-hidden bg-gradient-to-b from-white via-pink-50/20 to-white">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-pink-950/10 to-background"></div>
         <div
           data-lenis-parallax
           style={{ ['--lenis-speed' as any]: 0.02 }}
-          className="absolute top-20 left-10 w-72 h-72 bg-pink-600/10 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-72 h-72 bg-pink-500/8 rounded-full blur-3xl"
         />
       </div>
 
@@ -41,7 +40,7 @@ export function WorkflowSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <span className="text-sm font-semibold tracking-wider text-pink-400 uppercase">
+          <span className="text-sm font-semibold tracking-wider text-pink-600 uppercase">
             How It Works
           </span>
         </motion.div>
@@ -53,11 +52,11 @@ export function WorkflowSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6"
         >
-          <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
             From Signals to
           </span>
           <br />
-          <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
             Live Campaigns
           </span>
         </motion.h2>
@@ -67,7 +66,7 @@ export function WorkflowSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-gray-400 text-center mb-20 max-w-3xl mx-auto"
+          className="text-lg md:text-xl text-gray-600 text-center mb-20 max-w-3xl mx-auto"
         >
           See how ElarisLabs turns your brand, audience, and performance data into launch ready ads.
         </motion.p>
@@ -94,11 +93,11 @@ export function WorkflowSection() {
                     whileHover={{ scale: 1.05, x: 10 }}
                     className="group cursor-pointer"
                   >
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl glass border border-white/10 hover:border-white/20 transition-all backdrop-blur-sm">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${input.color}`}>
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl glass border border-black/8 hover:border-purple-200 transition-all backdrop-blur-sm shadow-sm hover:shadow-md">
+                      <div className={`p-2 rounded-lg bg-gradient-to-r ${input.color} shadow-md`}>
                         <Icon className="w-4 h-4 text-white" />
                       </div>
-                      <span className="text-white font-medium">{input.label}</span>
+                      <span className="text-gray-900 font-medium">{input.label}</span>
                     </div>
                   </motion.div>
                 );
@@ -228,11 +227,11 @@ export function WorkflowSection() {
                     whileHover={{ scale: 1.05, x: -10 }}
                     className="group cursor-pointer"
                   >
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl glass border border-white/10 hover:border-white/20 transition-all backdrop-blur-sm">
-                      <div className={`p-2 rounded-lg bg-gradient-to-r ${output.color}`}>
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-xl glass border border-black/8 hover:border-purple-200 transition-all backdrop-blur-sm shadow-sm hover:shadow-md">
+                      <div className={`p-2 rounded-lg bg-gradient-to-r ${output.color} shadow-md`}>
                         <Icon className="w-4 h-4 text-white" />
                       </div>
-                      <span className="text-white font-medium">{output.label}</span>
+                      <span className="text-gray-900 font-medium">{output.label}</span>
                     </div>
                   </motion.div>
                 );

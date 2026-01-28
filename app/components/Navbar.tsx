@@ -23,14 +23,14 @@ export function Navbar() {
             className="fixed top-0 left-0 right-0 z-50"
         >
             <div className="mx-auto px-6 py-4">
-                <div className="flex items-center justify-between glass rounded-full px-6 py-3 border border-white/10 backdrop-blur-md">
+                <div className="flex items-center justify-between glass rounded-full px-6 py-3 border border-black/8 backdrop-blur-md">
                     {/* Logo */}
                     <a href="#" className="flex items-center gap-2.5 group">
                         <div className="relative">
                             <div className="absolute inset-0 bg-purple-500 rounded-md blur-sm opacity-40 group-hover:opacity-60 transition-opacity" />
-                            <div className="relative w-7 h-7 rounded-md bg-purple-600" />
+                            <div className="relative w-7 h-7 rounded-md bg-gradient-to-br from-purple-600 to-purple-700" />
                         </div>
-                        <span className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
                             Elaris Labs
                         </span>
                     </a>
@@ -41,10 +41,10 @@ export function Navbar() {
                             <a
                                 key={link.label}
                                 href={link.href}
-                                className="text-sm text-gray-400 hover:text-white transition-colors relative group"
+                                className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium"
                             >
                                 {link.label}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300" />
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
                             </a>
                         ))}
                     </div>
@@ -53,15 +53,18 @@ export function Navbar() {
                     <div className="hidden md:block">
                         <Button
                             size="sm"
-                            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-sm px-5 text-white"
+                            asChild
+                            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-sm px-5 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all"
                         >
-                            Get Started
+                            <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
+                                Schedule a Call
+                            </a>
                         </Button>
                     </div>
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden text-white p-2"
+                        className="md:hidden text-gray-900 p-2"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     >
                         {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -73,14 +76,14 @@ export function Navbar() {
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="md:hidden mt-2 glass rounded-2xl border border-white/10 backdrop-blur-md p-4"
+                        className="md:hidden mt-2 glass rounded-2xl border border-black/8 backdrop-blur-md p-4"
                     >
                         <div className="flex flex-col gap-4">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.label}
                                     href={link.href}
-                                    className="text-gray-400 hover:text-white transition-colors py-2"
+                                    className="text-gray-600 hover:text-gray-900 transition-colors py-2 font-medium"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     {link.label}
@@ -88,9 +91,12 @@ export function Navbar() {
                             ))}
                             <Button
                                 size="sm"
-                                className="w-full rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                                asChild
+                                className="w-full rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg"
                             >
-                                Get Started
+                                <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
+                                    Schedule a Call
+                                </a>
                             </Button>
                         </div>
                     </motion.div>

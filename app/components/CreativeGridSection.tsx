@@ -86,21 +86,21 @@ function Frame({
         ease: [0.21, 0.47, 0.32, 0.98],
         delay: index * 0.05,
       }}
-      className="group relative break-inside-avoid overflow-hidden rounded-lg border border-white/10 bg-white/[0.02] transition-all duration-300 hover:border-purple-500/40 hover:shadow-[0_20px_60px_-15px_rgba(168,85,247,0.5)] hover:-translate-y-1"
+      className="group relative break-inside-avoid overflow-hidden rounded-lg border border-black/8 bg-white transition-all duration-300 hover:border-purple-300 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1"
     >
       {/* Glow effect on hover */}
-      <div className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-purple-500/30 blur-xl" />
+      <div className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/15 via-pink-500/10 to-purple-500/15 blur-xl" />
 
       {/* Content wrapper */}
       <div className="relative overflow-hidden rounded-lg">
         {children}
 
         {/* Overlay gradient on hover */}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
 
         {/* Shine effect */}
         <motion.div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.12] to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.4] to-transparent"
           initial={{ x: '-100%', skewX: -12 }}
           whileHover={{ x: '200%' }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -108,9 +108,9 @@ function Frame({
       </div>
 
       {/* AI Badge */}
-      <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5 rounded-full bg-black/70 backdrop-blur-md px-2.5 py-1 border border-white/10 shadow-lg">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="text-[10px] font-semibold text-white/95 tracking-wide">AI GENERATED</span>
+      <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-2.5 py-1 border border-black/10 shadow-lg">
+        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="text-[10px] font-semibold text-gray-900 tracking-wide">EL GENERATED</span>
       </div>
     </motion.div>
   );
@@ -121,10 +121,9 @@ export function CreativeGridSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="Showcase" ref={ref} className="relative py-32 pb-40 overflow-hidden">
+    <section id="Showcase" ref={ref} className="relative py-32 pb-40 overflow-hidden bg-gradient-to-b from-white via-purple-50/20 to-white">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-purple-950/10 to-background"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-6">
@@ -135,7 +134,7 @@ export function CreativeGridSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-6"
         >
-          <span className="text-sm font-semibold tracking-wider text-purple-400 uppercase">
+          <span className="text-sm font-semibold tracking-wider text-purple-600 uppercase">
             Creative Excellence
           </span>
         </motion.div>
@@ -146,11 +145,11 @@ export function CreativeGridSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-6"
         >
-          <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
             AI Generated
           </span>
           <br />
-          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent">
             Campaign Assets
           </span>
         </motion.h2>
@@ -159,7 +158,7 @@ export function CreativeGridSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg text-gray-400 text-center mb-16 max-w-2xl mx-auto"
+          className="text-lg text-gray-600 text-center mb-16 max-w-2xl mx-auto"
         >
           See what's possible when AI agents collaborate to create platform-optimized advertising content.
         </motion.p>
@@ -194,7 +193,7 @@ export function CreativeGridSection() {
       </div>
 
       {/* Footer decoration */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent"></div>
     </section>
   );
 }
