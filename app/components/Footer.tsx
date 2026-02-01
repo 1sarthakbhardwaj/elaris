@@ -3,15 +3,25 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Badge } from '@/components/ui/badge';
 
 const links = {
-  Product: [
-    { label: 'Features', href: '#features' },
-    { label: 'How it works', href: '#workflow' },
-    { label: 'Why Elaris', href: '#why-elaris' },
-    { label: 'Showcase', href: '#Showcase' },
+  Platform: [
+    { label: 'Static Studio', href: '#platform-static' },
+    { label: 'Motion Studio', href: '#platform-motion' },
+    { label: 'Creator Mode', href: '#platform-creator' },
+    { label: 'Audio Intelligence', href: '#platform-audio' },
+    { label: 'Compliance Engine', href: '#platform-compliance' },
+  ],
+  Research: [
+    { label: 'Elaris Health', href: '#research-health' },
+    { label: 'Elaris Climate', href: '#research-climate' },
+    { label: 'Elaris Robotics', href: '#research-robotics' },
   ],
   Company: [
+    { label: 'Why Elaris', href: '#why-elaris' },
+    { label: 'Showcase', href: '#Showcase' },
     { label: 'Contact', href: '#top' },
   ],
   Legal: [
@@ -54,7 +64,7 @@ export function Footer() {
                 </span>
               </h3>
               <p className="mt-4 text-gray-600 leading-relaxed">
-                Get a walkthrough of our AI agents and see how we optimize creatives for measurable performance.
+                See the platform in action and discover how our AI agents transform brand guidelines into high-performing creatives.
               </p>
             </div>
 
@@ -65,7 +75,7 @@ export function Footer() {
                 className="h-auto rounded-full px-7 py-6 text-base bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 text-white"
               >
                 <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
-                  Schedule a Call
+                  Book a Demo
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
@@ -81,7 +91,7 @@ export function Footer() {
         </motion.div>
 
         {/* link columns */}
-        <div className="mt-14 grid grid-cols-2 gap-10 md:grid-cols-4">
+        <div className="mt-14 grid grid-cols-2 gap-10 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <a href="#top" className="inline-flex items-center gap-2.5">
               <div className="relative">
@@ -114,8 +124,37 @@ export function Footer() {
           ))}
         </div>
 
+        {/* Separator */}
+        <div className="mt-14">
+          <Separator />
+        </div>
+
+        {/* From Creative to Critical Infrastructure Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-10"
+        >
+          <div className="text-center max-w-3xl mx-auto">
+            <Badge variant="secondary" className="mb-4">
+              Our Vision
+            </Badge>
+            <h4 className="text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">
+              From Creative to Critical Infrastructure
+            </h4>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              What began as AI agents optimizing ad creative is evolving into foundational infrastructure for decision-making across industries. From healthcare compliance to climate communication and robotics training, Elaris is building the next generation of intelligent systems that transform complex data into actionable insights.
+            </p>
+          </div>
+        </motion.div>
+
         {/* bottom bar */}
-        <div className="mt-14 flex flex-col gap-4 border-t border-black/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10">
+          <Separator />
+        </div>
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Elaris Labs. All rights reserved.
           </p>

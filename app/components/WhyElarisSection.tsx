@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { ExternalLink } from 'lucide-react';
 
 const features = [
@@ -109,24 +112,28 @@ export function WhyElarisSection() {
                 whileHover={{ x: 10 }}
                 className="group relative"
               >
-                <div className="flex gap-6 p-6 rounded-2xl glass border border-black/8 hover:border-blue-200 transition-all backdrop-blur-sm hover:bg-white shadow-sm hover:shadow-xl">
-                  {/* Number with gradient */}
-                  <div className="flex-shrink-0">
-                    <div className={`text-4xl font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
-                      {feature.number}
+                <Card className="border-black/8 hover:border-blue-200 transition-all hover:shadow-xl">
+                  <CardContent className="flex gap-6 p-6">
+                    {/* Number with gradient */}
+                    <div className="flex-shrink-0">
+                      <Badge variant="outline" className="w-12 h-12 rounded-xl flex items-center justify-center border-2 p-0">
+                        <span className={`text-xl font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent`}>
+                          {feature.number}
+                        </span>
+                      </Badge>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-gray-900 group-hover:to-gray-700 transition-all">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-gray-900 group-hover:to-gray-700 transition-all">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-600 group-hover:text-gray-700 transition-colors">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
 
                 {/* Hover gradient effect */}
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-3 blur-xl rounded-2xl transition-opacity duration-300 -z-10`}></div>

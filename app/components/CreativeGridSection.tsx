@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 // Real creative data with images - natural aspect ratios preserved
 const creatives = [
@@ -86,32 +88,38 @@ function Frame({
         ease: [0.21, 0.47, 0.32, 0.98],
         delay: index * 0.05,
       }}
-      className="group relative break-inside-avoid overflow-hidden rounded-lg border border-black/8 bg-white transition-all duration-300 hover:border-purple-300 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1"
+      className="group relative break-inside-avoid"
     >
-      {/* Glow effect on hover */}
-      <div className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/15 via-pink-500/10 to-purple-500/15 blur-xl" />
+      <Card className="overflow-hidden border-black/8 hover:border-purple-300 transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.25)] hover:-translate-y-1">
+        <CardContent className="p-0 relative">
+          {/* Glow effect on hover */}
+          <div className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-gradient-to-br from-purple-500/15 via-pink-500/10 to-purple-500/15 blur-xl" />
 
-      {/* Content wrapper */}
-      <div className="relative overflow-hidden rounded-lg">
-        {children}
+          {/* Content wrapper */}
+          <div className="relative overflow-hidden">
+            {children}
 
-        {/* Overlay gradient on hover */}
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
+            {/* Overlay gradient on hover */}
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
 
-        {/* Shine effect */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.4] to-transparent"
-          initial={{ x: '-100%', skewX: -12 }}
-          whileHover={{ x: '200%' }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-        />
-      </div>
+            {/* Shine effect */}
+            <motion.div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.4] to-transparent"
+              initial={{ x: '-100%', skewX: -12 }}
+              whileHover={{ x: '200%' }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+            />
+          </div>
 
-      {/* AI Badge */}
-      <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-2.5 py-1 border border-black/10 shadow-lg">
-        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-        <span className="text-[10px] font-semibold text-gray-900 tracking-wide">EL GENERATED</span>
-      </div>
+          {/* AI Badge */}
+          <div className="absolute top-2.5 right-2.5 z-10">
+            <Badge className="bg-white/95 text-gray-900 hover:bg-white text-[10px] gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              EL Generated
+            </Badge>
+          </div>
+        </CardContent>
+      </Card>
     </motion.div>
   );
 }

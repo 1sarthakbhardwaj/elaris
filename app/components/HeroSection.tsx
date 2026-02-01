@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 export function HeroSection() {
   return (
@@ -88,12 +89,12 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-black/8 backdrop-blur-sm">
+          <Badge variant="secondary" className="px-4 py-2 text-sm font-semibold gap-2">
             <Sparkles className="w-4 h-4 text-purple-600" />
-            <span className="text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Agentic Creative Platform
+            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              AI-Powered Creative Platform
             </span>
-          </div>
+          </Badge>
         </motion.div>
 
         {/* Main Headline */}
@@ -135,11 +136,11 @@ export function HeroSection() {
             className="group text-base px-8 py-6 h-auto rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all text-white"
           >
             <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
-              Schedule a Call
+              Book a Demo
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </Button>
-          <span className="text-sm text-gray-500 font-medium">Book a 30-minute consultation</span>
+          <span className="text-sm text-gray-500 font-medium">See the platform in action</span>
         </motion.div>
 
         {/* Platform Logos */}

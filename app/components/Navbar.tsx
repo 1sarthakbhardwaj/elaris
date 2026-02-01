@@ -1,19 +1,34 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { useState } from 'react';
 
+const platformItems = [
+    { label: 'Static Studio', description: 'High-fidelity image generation & variations', href: '#platform-static' },
+    { label: 'Motion Studio', description: 'Video generation, animation, & resize', href: '#platform-motion' },
+    { label: 'Creator Mode (UGC)', description: 'AI-generated avatars & user-style content', href: '#platform-creator', badge: 'BETA' },
+    { label: 'Audio Intelligence', description: 'Text-to-speech & multi-lingual dubbing', href: '#platform-audio', badge: 'COMING SOON' },
+    { label: 'The Compliance Engine', description: 'Automated brand safety & guardrails', href: '#platform-compliance', badge: 'COMING SOON' },
+];
+
+const researchItems = [
+    { label: 'Elaris Health', description: 'AI agents for medical compliance & pharma visualization', href: '#research-health', badge: 'COMING SOON' },
+    { label: 'Elaris Climate', description: 'Visualizing complex climate data for mass communication', href: '#research-climate', badge: 'COMING SOON' },
+    { label: 'Elaris Robotics', description: 'Synthetic data generation for robot training', href: '#research-robotics', badge: 'COMING SOON' },
+];
+
 const navLinks = [
-    { label: 'Features', href: '#features' },
-    { label: 'How It Works', href: '#workflow' },
     { label: 'Why Elaris', href: '#why-elaris' },
     { label: 'Showcase', href: '#Showcase' },
 ];
 
 export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [platformDropdownOpen, setPlatformDropdownOpen] = useState(false);
+    const [researchDropdownOpen, setResearchDropdownOpen] = useState(false);
 
     return (
         <motion.nav
@@ -37,6 +52,105 @@ export function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center gap-8">
+                        {/* Platform Dropdown */}
+                        <div 
+                            className="relative"
+                            onMouseEnter={() => setPlatformDropdownOpen(true)}
+                            onMouseLeave={() => setPlatformDropdownOpen(false)}
+                        >
+                            <button className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium flex items-center gap-1">
+                                Platform
+                                <ChevronDown className="w-4 h-4" />
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
+                            </button>
+                            
+                            <AnimatePresence>
+                                {platformDropdownOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl border border-black/8 p-2 shadow-xl"
+                                    >
+                                        {platformItems.map((item) => (
+                                            <a
+                                                key={item.label}
+                                                href={item.href}
+                                                className="block p-3 rounded-xl hover:bg-purple-50/50 transition-colors group"
+                                            >
+                                                <div className="flex items-start justify-between gap-2">
+                                                    <div>
+                                                        <div className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                                                            {item.label}
+                                                        </div>
+                                                        <div className="text-xs text-gray-600 mt-0.5">
+                                                            {item.description}
+                                                        </div>
+                                                    </div>
+                                                    {item.badge && (
+                                                        <Badge variant={item.badge === 'BETA' ? 'default' : 'secondary'} className="text-[10px] whitespace-nowrap">
+                                                            {item.badge}
+                                                        </Badge>
+                                                    )}
+                                                </div>
+                                            </a>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Elaris Research Dropdown */}
+                        <div 
+                            className="relative"
+                            onMouseEnter={() => setResearchDropdownOpen(true)}
+                            onMouseLeave={() => setResearchDropdownOpen(false)}
+                        >
+                            <button className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium flex items-center gap-1">
+                                Elaris Research
+                                <ChevronDown className="w-4 h-4" />
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
+                            </button>
+                            
+                            <AnimatePresence>
+                                {researchDropdownOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl border border-black/8 p-2 shadow-xl"
+                                    >
+                                        {researchItems.map((item) => (
+                                            <a
+                                                key={item.label}
+                                                href={item.href}
+                                                className="block p-3 rounded-xl hover:bg-purple-50/50 transition-colors group"
+                                            >
+                                                <div className="flex items-start justify-between gap-2">
+                                                    <div>
+                                                        <div className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+                                                            {item.label}
+                                                        </div>
+                                                        <div className="text-xs text-gray-600 mt-0.5">
+                                                            {item.description}
+                                                        </div>
+                                                    </div>
+                                                    {item.badge && (
+                                                        <Badge variant="secondary" className="text-[10px] whitespace-nowrap">
+                                                            {item.badge}
+                                                        </Badge>
+                                                    )}
+                                                </div>
+                                            </a>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* Regular Nav Links */}
                         {navLinks.map((link) => (
                             <a
                                 key={link.label}
@@ -57,7 +171,7 @@ export function Navbar() {
                             className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-sm px-5 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all"
                         >
                             <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
-                                Schedule a Call
+                                Book a Demo
                             </a>
                         </Button>
                     </div>
@@ -79,6 +193,49 @@ export function Navbar() {
                         className="md:hidden mt-2 glass rounded-2xl border border-black/8 backdrop-blur-md p-4"
                     >
                         <div className="flex flex-col gap-4">
+                            {/* Platform Section */}
+                            <div>
+                                <div className="text-sm font-semibold text-gray-900 mb-2">Platform</div>
+                                {platformItems.map((item) => (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        className="block py-2 pl-3 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <span>{item.label}</span>
+                                            {item.badge && (
+                                                <Badge variant={item.badge === 'BETA' ? 'default' : 'secondary'} className="text-[9px]">
+                                                    {item.badge}
+                                                </Badge>
+                                            )}
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+
+                            {/* Research Section */}
+                            <div>
+                                <div className="text-sm font-semibold text-gray-900 mb-2">Elaris Research</div>
+                                {researchItems.map((item) => (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        className="block py-2 pl-3 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <span>{item.label}</span>
+                                            <Badge variant="secondary" className="text-[9px]">
+                                                {item.badge}
+                                            </Badge>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+
+                            {/* Regular Links */}
                             {navLinks.map((link) => (
                                 <a
                                     key={link.label}
@@ -89,13 +246,14 @@ export function Navbar() {
                                     {link.label}
                                 </a>
                             ))}
+                            
                             <Button
                                 size="sm"
                                 asChild
                                 className="w-full rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg"
                             >
                                 <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
-                                    Schedule a Call
+                                    Book a Demo
                                 </a>
                             </Button>
                         </div>

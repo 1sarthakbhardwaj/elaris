@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Brain, Database, Workflow, TrendingUp } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 const agents = [
   {
@@ -78,6 +80,7 @@ export function AgentSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {agents.map((agent, index) => {
             const Icon = agent.icon;
+            const isBrandMemory = agent.title === 'Shared Brand Memory';
             return (
               <motion.div
                 key={index}
@@ -90,25 +93,34 @@ export function AgentSection() {
                 <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-xl -z-10" 
                      style={{ backgroundImage: `linear-gradient(to right, var(--tw-gradient-stops))` }}></div>
                 
-                <div className="relative p-8 rounded-2xl glass border border-black/8 hover:border-purple-200 transition-all duration-300 h-full backdrop-blur-sm bg-white shadow-sm hover:shadow-xl">
-                  {/* Icon with gradient background */}
-                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${agent.color} mb-6 shadow-lg`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
+                <Card className={`h-full border ${isBrandMemory ? 'border-purple-300 bg-gradient-to-br from-purple-50/50 to-pink-50/50' : 'border-black/8'} hover:border-purple-200 transition-all duration-300 hover:shadow-xl`}>
+                  <CardContent className="p-8">
+                    {/* Icon with gradient background */}
+                    <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${agent.color} mb-6 shadow-lg`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-gray-900 group-hover:to-gray-700 transition-all">
-                    {agent.title}
-                  </h3>
+                    {/* Title with Badge for Brand Memory */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <h3 className="text-2xl font-bold text-gray-900 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-gray-900 group-hover:to-gray-700 transition-all">
+                        {agent.title}
+                      </h3>
+                      {isBrandMemory && (
+                        <Badge variant="secondary" className="text-xs">
+                          Core Feature
+                        </Badge>
+                      )}
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
-                    {agent.description}
-                  </p>
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
+                      {agent.description}
+                    </p>
 
-                  {/* Decorative corner accent */}
-                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${agent.color} opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300 rounded-full -z-10`}></div>
-                </div>
+                    {/* Decorative corner accent */}
+                    <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${agent.color} opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-300 rounded-full -z-10`}></div>
+                  </CardContent>
+                </Card>
               </motion.div>
             );
           })}
