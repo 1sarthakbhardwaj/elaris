@@ -7,13 +7,15 @@ import { Badge } from '@/components/ui/badge';
 import { useState } from 'react';
 
 const platformItems = [
-    { label: 'Elaris Creative', description: 'Agentic infrastructure for brand-safe advertising at scale.', href: 'http://studio.elarislabs.ai/', badge: 'LIVE' },
+    { label: 'Static Studio', description: 'High-fidelity image generation & variations', href: '#platform-static' },
+    { label: 'Motion Studio', description: 'Video generation, animation, & resize', href: '#platform-motion' },
     { label: 'Creator Mode (UGC)', description: 'AI-generated avatars & user-style content', href: '#platform-creator', badge: 'BETA' },
     { label: 'Audio Intelligence', description: 'Text-to-speech & multi-lingual dubbing', href: '#platform-audio', badge: 'COMING SOON' },
     { label: 'The Compliance Engine', description: 'Automated brand safety & guardrails', href: '#platform-compliance', badge: 'COMING SOON' },
 ];
 
 const researchItems = [
+    { label: 'Elaris Creative', description: 'Agentic infrastructure for brand-safe advertising at scale.', href: 'http://studio.elarislabs.ai/', badge: 'LIVE' },
     { label: 'Elaris Health', description: 'AI agents for medical compliance & pharma visualization', href: '#research-health', badge: 'COMING SOON' },
     { label: 'Elaris Climate', description: 'Visualizing complex climate data for mass communication', href: '#research-climate', badge: 'COMING SOON' },
     { label: 'Elaris Robotics', description: 'Synthetic data generation for robot training', href: '#research-robotics', badge: 'COMING SOON' },
@@ -144,7 +146,14 @@ export function Navbar() {
                                                         </div>
                                                     </div>
                                                     {item.badge && (
-                                                        <Badge variant="secondary" className="text-[10px] whitespace-nowrap">
+                                                        <Badge 
+                                                            variant={item.badge === 'LIVE' ? 'default' : 'secondary'} 
+                                                            className={`text-[10px] whitespace-nowrap ${
+                                                                item.badge === 'LIVE' 
+                                                                    ? 'bg-emerald-500 hover:bg-emerald-600 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
+                                                                    : ''
+                                                            }`}
+                                                        >
                                                             {item.badge}
                                                         </Badge>
                                                     )}
@@ -240,7 +249,14 @@ export function Navbar() {
                                     >
                                         <div className="flex items-center justify-between">
                                             <span>{item.label}</span>
-                                            <Badge variant="secondary" className="text-[9px]">
+                                            <Badge 
+                                                variant={item.badge === 'LIVE' ? 'default' : 'secondary'} 
+                                                className={`text-[9px] ${
+                                                    item.badge === 'LIVE' 
+                                                        ? 'bg-emerald-500 hover:bg-emerald-600 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
+                                                        : ''
+                                                }`}
+                                            >
                                                 {item.badge}
                                             </Badge>
                                         </div>
