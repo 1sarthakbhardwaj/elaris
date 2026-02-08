@@ -7,18 +7,10 @@ import { Badge } from '@/components/ui/badge';
 import { useState } from 'react';
 
 const platformItems = [
-    { label: 'Static Studio', description: 'High-fidelity image generation & variations', href: '#platform-static' },
-    { label: 'Motion Studio', description: 'Video generation, animation, & resize', href: '#platform-motion' },
+    { label: 'Elaris Creative', description: 'Agentic infrastructure for brand-safe advertising at scale.', href: 'http://studio.elarislabs.ai/', badge: 'LIVE' },
     { label: 'Creator Mode (UGC)', description: 'AI-generated avatars & user-style content', href: '#platform-creator', badge: 'BETA' },
     { label: 'Audio Intelligence', description: 'Text-to-speech & multi-lingual dubbing', href: '#platform-audio', badge: 'COMING SOON' },
     { label: 'The Compliance Engine', description: 'Automated brand safety & guardrails', href: '#platform-compliance', badge: 'COMING SOON' },
-];
-
-const researchItems = [
-    { label: 'Elaris Creative', description: 'Agentic infrastructure for brand-safe advertising at scale.', href: 'http://studio.elarislabs.ai/', badge: 'LIVE' },
-    { label: 'Elaris Health', description: 'AI agents for medical compliance & pharma visualization', href: '#research-health', badge: 'COMING SOON' },
-    { label: 'Elaris Climate', description: 'Visualizing complex climate data for mass communication', href: '#research-climate', badge: 'COMING SOON' },
-    { label: 'Elaris Robotics', description: 'Synthetic data generation for robot training', href: '#research-robotics', badge: 'COMING SOON' },
 ];
 
 const navLinks = [
@@ -29,7 +21,7 @@ const navLinks = [
 export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [platformDropdownOpen, setPlatformDropdownOpen] = useState(false);
-    const [researchDropdownOpen, setResearchDropdownOpen] = useState(false);
+    // const [researchDropdownOpen, setResearchDropdownOpen] = useState(false);
 
     return (
         <motion.nav
@@ -60,7 +52,7 @@ export function Navbar() {
                             onMouseLeave={() => setPlatformDropdownOpen(false)}
                         >
                             <button className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium flex items-center gap-1">
-                                Platform
+                                Products
                                 <ChevronDown className="w-4 h-4" />
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
                             </button>
@@ -110,7 +102,7 @@ export function Navbar() {
                         </div>
 
                         {/* Elaris Research Dropdown */}
-                        <div 
+                        {/* <div 
                             className="relative"
                             onMouseEnter={() => setResearchDropdownOpen(true)}
                             onMouseLeave={() => setResearchDropdownOpen(false)}
@@ -163,7 +155,7 @@ export function Navbar() {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </div>
+                        </div> */}
 
                         {/* Regular Nav Links */}
                         {navLinks.map((link) => (
@@ -238,7 +230,7 @@ export function Navbar() {
                             </div>
 
                             {/* Research Section */}
-                            <div>
+                            {/* <div>
                                 <div className="text-sm font-semibold text-gray-900 mb-2">Elaris Research</div>
                                 {researchItems.map((item) => (
                                     <a
@@ -262,7 +254,7 @@ export function Navbar() {
                                         </div>
                                     </a>
                                 ))}
-                            </div>
+                            </div> */}
 
                             {/* Regular Links */}
                             {navLinks.map((link) => (

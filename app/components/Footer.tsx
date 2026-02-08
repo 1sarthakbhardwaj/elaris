@@ -7,18 +7,18 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 
 const links = {
-  Platform: [
+  Products: [
     { label: 'Static Studio', href: '#platform-static' },
     { label: 'Motion Studio', href: '#platform-motion' },
     { label: 'Creator Mode', href: '#platform-creator' },
     { label: 'Audio Intelligence', href: '#platform-audio' },
     { label: 'Compliance Engine', href: '#platform-compliance' },
   ],
-  Research: [
-    { label: 'Elaris Health', href: '#research-health' },
-    { label: 'Elaris Climate', href: '#research-climate' },
-    { label: 'Elaris Robotics', href: '#research-robotics' },
-  ],
+  // Research: [
+  //   { label: 'Elaris Health', href: '#research-health' },
+  //   { label: 'Elaris Climate', href: '#research-climate' },
+  //   { label: 'Elaris Robotics', href: '#research-robotics' },
+  // ],
   Company: [
     { label: 'Why Elaris', href: '#why-elaris' },
     { label: 'Showcase', href: '#Showcase' },
