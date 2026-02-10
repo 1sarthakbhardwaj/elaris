@@ -1,286 +1,156 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const platformItems = [
     { label: 'Elaris Creative', description: 'Agentic infrastructure for brand-safe advertising at scale.', href: 'http://studio.elarislabs.ai/', badge: 'LIVE' },
-    { label: 'Creator Mode (UGC)', description: 'AI-generated avatars & user-style content', href: '#platform-creator', badge: 'BETA' },
-    { label: 'Audio Intelligence', description: 'Text-to-speech & multi-lingual dubbing', href: '#platform-audio', badge: 'COMING SOON' },
-    { label: 'The Compliance Engine', description: 'Automated brand safety & guardrails', href: '#platform-compliance', badge: 'COMING SOON' },
+    { label: 'Creator Mode (UGC)', description: 'AI-generated avatars & user-style content', href: '#', badge: 'BETA' },
+    { label: 'Audio Intelligence', description: 'Text-to-speech & multi-lingual dubbing', href: '#', badge: 'COMING SOON' },
+    { label: 'The Compliance Engine', description: 'Automated brand safety & guardrails', href: '#', badge: 'COMING SOON' },
 ];
 
 const navLinks = [
-    { label: 'Why Elaris', href: '#why-elaris' },
-    { label: 'Showcase', href: '#Showcase' },
+    { label: 'Features', href: '#features' },
+    { label: 'Showcase', href: '#showcase' },
 ];
 
 export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [platformDropdownOpen, setPlatformDropdownOpen] = useState(false);
-    // const [researchDropdownOpen, setResearchDropdownOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    const openDropdown = useCallback(() => {
+        if (closeTimeout.current) { clearTimeout(closeTimeout.current); closeTimeout.current = null; }
+        setPlatformDropdownOpen(true);
+    }, []);
+
+    const closeDropdown = useCallback(() => {
+        closeTimeout.current = setTimeout(() => setPlatformDropdownOpen(false), 150);
+    }, []);
 
     return (
-        <motion.nav
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+        <motion.nav 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="fixed top-0 left-0 right-0 z-50"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass' : 'bg-transparent'}`}
         >
-            <div className="mx-auto px-6 py-4">
-                <div className="flex items-center justify-between glass rounded-full px-6 py-3 border border-black/8 backdrop-blur-md">
-                    {/* Logo */}
-                    <a href="#" className="flex items-center gap-2.5 group">
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-purple-500 rounded-md blur-sm opacity-40 group-hover:opacity-60 transition-opacity" />
-                            <div className="relative w-7 h-7 rounded-md bg-gradient-to-br from-purple-600 to-purple-700" />
+            <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+                <a href="#" className="flex items-center gap-2 group">
+                    <div className="relative w-8 h-8">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-lg opacity-80 blur-[2px] group-hover:blur-[4px] transition-all duration-300"></div>
+                        <div className="relative w-full h-full bg-black rounded-lg flex items-center justify-center border border-white/10">
+                            <span className="text-white text-[10px] font-bold bg-gradient-to-tr from-purple-400 to-pink-400 bg-clip-text text-transparent">EL</span>
                         </div>
-                        <span className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                            Elaris Labs
-                        </span>
-                    </a>
+                    </div>
+                    <span className="text-[16px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">Elaris Labs</span>
+                </a>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8">
-                        {/* Platform Dropdown */}
-                        <div 
-                            className="relative"
-                            onMouseEnter={() => setPlatformDropdownOpen(true)}
-                            onMouseLeave={() => setPlatformDropdownOpen(false)}
-                        >
-                            <button className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium flex items-center gap-1">
-                                Products
-                                <ChevronDown className="w-4 h-4" />
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
-                            </button>
-                            
-                            <AnimatePresence>
-                                {platformDropdownOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl border border-black/8 p-2 shadow-xl"
-                                    >
+                <div className="hidden md:flex items-center gap-8">
+                    <div className="relative" onMouseEnter={openDropdown} onMouseLeave={closeDropdown}>
+                        <button className="text-[14px] text-gray-600 hover:text-gray-900 transition-colors font-medium flex items-center gap-1 group">
+                            Products 
+                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${platformDropdownOpen ? 'rotate-180 text-purple-600' : 'text-gray-400 group-hover:text-purple-600'}`} />
+                        </button>
+                        <AnimatePresence>
+                            {platformDropdownOpen && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="absolute top-full left-0 pt-4 w-80 z-50"
+                                >
+                                    <div className="bg-white/90 backdrop-blur-xl rounded-xl border border-white/20 shadow-2xl shadow-purple-500/10 p-2 overflow-hidden ring-1 ring-black/5">
                                         {platformItems.map((item) => (
-                                            <a
-                                                key={item.label}
-                                                href={item.href}
-                                                className="block p-3 rounded-xl hover:bg-purple-50/50 transition-colors group"
+                                            <a 
+                                                key={item.label} 
+                                                href={item.href} 
+                                                target={item.href.startsWith('http') ? '_blank' : undefined} 
+                                                rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined} 
+                                                onClick={() => setPlatformDropdownOpen(false)} 
+                                                className="block px-3 py-3 rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-white transition-all group"
                                             >
                                                 <div className="flex items-start justify-between gap-2">
                                                     <div>
-                                                        <div className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
-                                                            {item.label}
-                                                        </div>
-                                                        <div className="text-xs text-gray-600 mt-0.5">
-                                                            {item.description}
-                                                        </div>
+                                                        <div className="text-[13px] font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">{item.label}</div>
+                                                        <div className="text-[11px] text-gray-500 mt-0.5">{item.description}</div>
                                                     </div>
                                                     {item.badge && (
-                                                        <Badge 
-                                                            variant={item.badge === 'BETA' ? 'default' : item.badge === 'LIVE' ? 'default' : 'secondary'} 
-                                                            className={`text-[10px] whitespace-nowrap ${
-                                                                item.badge === 'LIVE' 
-                                                                    ? 'bg-emerald-500 hover:bg-emerald-600 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
-                                                                    : ''
-                                                            }`}
-                                                        >
+                                                        <Badge variant="secondary" className={`text-[9px] px-1.5 py-0 h-5 shrink-0 ${
+                                                            item.badge === 'LIVE' 
+                                                                ? 'bg-emerald-100 text-emerald-700 border-emerald-200 shadow-[0_0_8px_rgba(16,185,129,0.3)]' 
+                                                                : 'bg-gray-100 text-gray-500 border-gray-200'
+                                                        }`}>
                                                             {item.badge}
                                                         </Badge>
                                                     )}
                                                 </div>
                                             </a>
                                         ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-                        {/* Elaris Research Dropdown */}
-                        {/* <div 
-                            className="relative"
-                            onMouseEnter={() => setResearchDropdownOpen(true)}
-                            onMouseLeave={() => setResearchDropdownOpen(false)}
-                        >
-                            <button className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium flex items-center gap-1">
-                                Elaris Research
-                                <ChevronDown className="w-4 h-4" />
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
-                            </button>
-                            
-                            <AnimatePresence>
-                                {researchDropdownOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 10 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="absolute top-full left-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl border border-black/8 p-2 shadow-xl"
-                                    >
-                                        {researchItems.map((item) => (
-                                            <a
-                                                key={item.label}
-                                                href={item.href}
-                                                className="block p-3 rounded-xl hover:bg-purple-50/50 transition-colors group"
-                                            >
-                                                <div className="flex items-start justify-between gap-2">
-                                                    <div>
-                                                        <div className="text-sm font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
-                                                            {item.label}
-                                                        </div>
-                                                        <div className="text-xs text-gray-600 mt-0.5">
-                                                            {item.description}
-                                                        </div>
-                                                    </div>
-                                                    {item.badge && (
-                                                        <Badge 
-                                                            variant={item.badge === 'LIVE' ? 'default' : 'secondary'} 
-                                                            className={`text-[10px] whitespace-nowrap ${
-                                                                item.badge === 'LIVE' 
-                                                                    ? 'bg-emerald-500 hover:bg-emerald-600 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
-                                                                    : ''
-                                                            }`}
-                                                        >
-                                                            {item.badge}
-                                                        </Badge>
-                                                    )}
-                                                </div>
-                                            </a>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div> */}
-
-                        {/* Regular Nav Links */}
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.label}
-                                href={link.href}
-                                className="text-sm text-gray-600 hover:text-gray-900 transition-colors relative group font-medium"
-                            >
-                                {link.label}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300" />
-                            </a>
-                        ))}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
-
-                    {/* CTA Button */}
-                    <div className="hidden md:block">
-                        <Button
-                            size="sm"
-                            asChild
-                            className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-sm px-5 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all"
-                        >
-                            <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
-                                Book a Demo
-                            </a>
-                        </Button>
-                    </div>
-
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden text-gray-900 p-2"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                    </button>
+                    {navLinks.map((link) => (
+                        <a key={link.label} href={link.href} className="text-[14px] text-gray-600 hover:text-gray-900 transition-colors font-medium relative group">
+                            {link.label}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-600 to-pink-600 group-hover:w-full transition-all duration-300 ease-out" />
+                        </a>
+                    ))}
                 </div>
 
-                {/* Mobile Menu */}
+                <div className="hidden md:block">
+                    <Button size="sm" asChild className="h-9 rounded-full bg-gray-900 hover:bg-black text-white text-[13px] px-5 shadow-lg shadow-gray-900/20 hover:shadow-purple-500/20 transition-all duration-300 border border-white/10">
+                        <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">Book a Demo</a>
+                    </Button>
+                </div>
+
+                <button className="md:hidden text-gray-900 p-1.5" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+            </div>
+
+            <AnimatePresence>
                 {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="md:hidden mt-2 glass rounded-2xl border border-black/8 backdrop-blur-md p-4"
+                    <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="md:hidden bg-white/95 backdrop-blur-xl border-b border-gray-200 overflow-hidden"
                     >
-                        <div className="flex flex-col gap-4">
-                            {/* Platform Section */}
-                            <div>
-                                <div className="text-sm font-semibold text-gray-900 mb-2">Platform</div>
-                                {platformItems.map((item) => (
-                                    <a
-                                        key={item.label}
-                                        href={item.href}
-                                        className="block py-2 pl-3 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span>{item.label}</span>
-                                            {item.badge && (
-                                                <Badge 
-                                                    variant={item.badge === 'BETA' ? 'default' : item.badge === 'LIVE' ? 'default' : 'secondary'} 
-                                                    className={`text-[9px] ${
-                                                        item.badge === 'LIVE' 
-                                                            ? 'bg-emerald-500 hover:bg-emerald-600 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
-                                                            : ''
-                                                    }`}
-                                                >
-                                                    {item.badge}
-                                                </Badge>
-                                            )}
-                                        </div>
-                                    </a>
-                                ))}
-                            </div>
-
-                            {/* Research Section */}
-                            {/* <div>
-                                <div className="text-sm font-semibold text-gray-900 mb-2">Elaris Research</div>
-                                {researchItems.map((item) => (
-                                    <a
-                                        key={item.label}
-                                        href={item.href}
-                                        className="block py-2 pl-3 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                    >
-                                        <div className="flex items-center justify-between">
-                                            <span>{item.label}</span>
-                                            <Badge 
-                                                variant={item.badge === 'LIVE' ? 'default' : 'secondary'} 
-                                                className={`text-[9px] ${
-                                                    item.badge === 'LIVE' 
-                                                        ? 'bg-emerald-500 hover:bg-emerald-600 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]' 
-                                                        : ''
-                                                }`}
-                                            >
-                                                {item.badge}
-                                            </Badge>
-                                        </div>
-                                    </a>
-                                ))}
-                            </div> */}
-
-                            {/* Regular Links */}
-                            {navLinks.map((link) => (
-                                <a
-                                    key={link.label}
-                                    href={link.href}
-                                    className="text-gray-600 hover:text-gray-900 transition-colors py-2 font-medium"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {link.label}
+                        <div className="px-6 py-6 flex flex-col gap-4">
+                            <div className="text-[11px] font-bold text-purple-600 uppercase tracking-wider">Products</div>
+                            {platformItems.map((item) => (
+                                <a key={item.label} href={item.href} className="flex items-center justify-between text-[14px] text-gray-700 hover:text-purple-600 py-1" onClick={() => setIsMobileMenuOpen(false)}>
+                                    {item.label}
+                                    {item.badge && <Badge variant="outline" className="text-[9px] h-4 px-1">{item.badge}</Badge>}
                                 </a>
                             ))}
-                            
-                            <Button
-                                size="sm"
-                                asChild
-                                className="w-full rounded-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg"
-                            >
-                                <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
-                                    Book a Demo
-                                </a>
+                            <div className="border-t border-gray-100 pt-2 mt-1">
+                                {navLinks.map((link) => (
+                                    <a key={link.label} href={link.href} className="block text-[14px] text-gray-700 hover:text-gray-900 py-2 font-medium" onClick={() => setIsMobileMenuOpen(false)}>{link.label}</a>
+                                ))}
+                            </div>
+                            <Button size="lg" asChild className="w-full rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 text-white mt-2 shadow-xl">
+                                <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">Book a Demo</a>
                             </Button>
                         </div>
                     </motion.div>
                 )}
-            </div>
+            </AnimatePresence>
         </motion.nav>
     );
 }
