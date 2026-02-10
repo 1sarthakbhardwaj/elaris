@@ -25,7 +25,7 @@ export function HeroSection() {
                 >
                     <Badge variant="outline" className="bg-white/50 backdrop-blur-sm border-purple-100 px-4 py-1.5 rounded-full text-sm text-gray-600 gap-2 shadow-sm hover:border-purple-200 transition-colors">
                         <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">Generative AI for Performance Marketing</span>
+                        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-semibold">Autonomous Creative Engine</span>
                     </Badge>
                 </motion.div>
 

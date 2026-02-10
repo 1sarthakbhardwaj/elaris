@@ -2,6 +2,7 @@
 
 import { Navbar } from '@/app/components/Navbar';
 import { HeroSection } from '@/app/components/HeroSection';
+import { PlatformMarquee } from '@/app/components/PlatformMarquee';
 import { CreativeGridSection } from '@/app/components/CreativeGridSection';
 import { AgentSection } from '@/app/components/AgentSection';
 import { AdFormatsSection } from '@/app/components/AdFormatsSection';
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="min-h-screen bg-white overflow-x-hidden">
       <Navbar />
       <HeroSection />
+      <PlatformMarquee />
       <CreativeGridSection />
       <AgentSection />
       <AdFormatsSection />
