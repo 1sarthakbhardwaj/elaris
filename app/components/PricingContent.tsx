@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -15,52 +15,62 @@ const plans = [
     {
         id: 'free',
         name: 'Free',
-        price: '$0',
-        period: '/mo',
+        monthlyPrice: 0,
         credits: '200 Credits',
         output: '20 Images or 4 Videos',
         cta: 'Get Started Free',
-        ctaHref: 'http://studio.elarislabs.ai/',
         featured: false,
         dark: false,
     },
     {
         id: 'growth',
         name: 'Growth',
-        price: '$49',
-        period: '/mo',
+        monthlyPrice: 49,
         credits: '500 Credits',
         output: '50 Images or 10 Videos',
         cta: 'Start Growth',
-        ctaHref: 'http://studio.elarislabs.ai/',
         featured: false,
         dark: false,
     },
     {
         id: 'scale',
         name: 'Scale',
-        price: '$399',
-        period: '/mo',
+        monthlyPrice: 399,
         credits: '5,000 Credits',
         output: '500 Images or 100 Videos',
         cta: 'Start Scaling',
-        ctaHref: 'http://studio.elarislabs.ai/',
         featured: true,
         dark: true,
     },
     {
         id: 'enterprise',
         name: 'Enterprise',
-        price: 'Custom',
-        period: '',
+        monthlyPrice: -1,
         credits: '25,000+ Credits',
         output: '2,500+ Images or 500+ Videos',
         cta: 'Talk to Sales',
-        ctaHref: 'https://calendly.com/kk-sharma-elarislabs/30min',
         featured: false,
         dark: false,
     },
 ] as const;
+
+function getDisplayPrice(monthlyPrice: number, annual: boolean) {
+    if (monthlyPrice === -1) return 'Custom';
+    if (monthlyPrice === 0) return '$0';
+    const price = annual ? Math.round(monthlyPrice * 0.8) : monthlyPrice;
+    return `$${price}`;
+}
+
+function getPeriod(monthlyPrice: number) {
+    if (monthlyPrice === -1) return '';
+    return '/mo';
+}
+
+function getCheckoutHref(planId: string, annual: boolean) {
+    if (planId === 'free') return 'http://studio.elarislabs.ai/';
+    if (planId === 'enterprise') return '/pricing/checkout?plan=enterprise';
+    return `/pricing/checkout?plan=${planId}&billing=${annual ? 'annual' : 'monthly'}`;
+}
 
 type PlanId = (typeof plans)[number]['id'];
 
@@ -155,6 +165,7 @@ export function PricingContent() {
     const tableInView = useInView(tableRef, { once: true, margin: '-60px' });
 
     const [openCategory, setOpenCategory] = useState<string | null>(null);
+    const [annual, setAnnual] = useState(false);
 
     const { scrollY } = useScroll();
     const heroOrbY1 = useTransform(scrollY, [0, 600], [0, -80]);
@@ -206,13 +217,54 @@ export function PricingContent() {
                     >
                         Start free. Pay only for what you generate. Every plan includes brand memory, smart resizing, and watermark-free exports.
                     </motion.p>
+
+                    {/* Billing Toggle */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="flex items-center justify-center gap-4 mt-10"
+                    >
+                        <span className={`text-sm font-medium transition-colors ${!annual ? 'text-gray-900' : 'text-gray-400'}`}>Monthly</span>
+                        <button
+                            onClick={() => setAnnual(!annual)}
+                            className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 ${annual ? 'bg-purple-600' : 'bg-gray-200'}`}
+                            aria-label="Toggle annual billing"
+                        >
+                            <motion.div
+                                layout
+                                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                                className="absolute top-0.5 w-6 h-6 rounded-full bg-white shadow-md"
+                                style={{ left: annual ? 'calc(100% - 1.625rem)' : '0.125rem' }}
+                            />
+                        </button>
+                        <span className={`text-sm font-medium transition-colors ${annual ? 'text-gray-900' : 'text-gray-400'}`}>Annual</span>
+                        <AnimatePresence>
+                            {annual && (
+                                <motion.span
+                                    initial={{ opacity: 0, scale: 0.8, x: -8 }}
+                                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                                    exit={{ opacity: 0, scale: 0.8, x: -8 }}
+                                    className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg shadow-emerald-500/25"
+                                >
+                                    Save 20%
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
                 </motion.div>
             </section>
 
             {/* ── Pricing Cards ────────────────────────────────────── */}
             <section ref={cardsRef} className="px-6 pb-24">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-5">
-                    {plans.map((plan, i) => (
+                    {plans.map((plan, i) => {
+                        const displayPrice = getDisplayPrice(plan.monthlyPrice, annual);
+                        const period = getPeriod(plan.monthlyPrice);
+                        const href = getCheckoutHref(plan.id, annual);
+                        const isExternal = plan.id === 'free';
+
+                        return (
                         <motion.div
                             key={plan.id}
                             initial={{ opacity: 0, y: 30 }}
@@ -226,7 +278,6 @@ export function PricingContent() {
                                     ? 'bg-gray-950 border-white/10 shadow-2xl shadow-purple-500/15'
                                     : 'bg-white border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl'
                             }`}>
-                                {/* Animated gradient border glow on hover */}
                                 {plan.featured && (
                                     <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 opacity-20 group-hover:opacity-30 transition-opacity -z-10 blur-sm" />
                                 )}
@@ -248,9 +299,30 @@ export function PricingContent() {
                                     {/* Price */}
                                     <div className="mb-6">
                                         <div className="flex items-baseline gap-1">
-                                            <span className={`text-5xl font-bold tracking-tight ${plan.dark ? 'text-white' : 'text-gray-900'}`}>{plan.price}</span>
-                                            {plan.period && <span className={`text-base ${plan.dark ? 'text-gray-400' : 'text-gray-500'}`}>{plan.period}</span>}
+                                            <AnimatePresence mode="wait">
+                                                <motion.span
+                                                    key={displayPrice}
+                                                    initial={{ opacity: 0, y: -10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    transition={{ duration: 0.2 }}
+                                                    className={`text-5xl font-bold tracking-tight ${plan.dark ? 'text-white' : 'text-gray-900'}`}
+                                                >
+                                                    {displayPrice}
+                                                </motion.span>
+                                            </AnimatePresence>
+                                            {period && <span className={`text-base ${plan.dark ? 'text-gray-400' : 'text-gray-500'}`}>{period}</span>}
                                         </div>
+                                        {annual && plan.monthlyPrice > 0 && (
+                                            <motion.p
+                                                initial={{ opacity: 0, height: 0 }}
+                                                animate={{ opacity: 1, height: 'auto' }}
+                                                className={`text-xs mt-1.5 ${plan.dark ? 'text-gray-500' : 'text-gray-400'}`}
+                                            >
+                                                <span className="line-through">${plan.monthlyPrice}/mo</span>
+                                                <span className="ml-1.5 text-emerald-500 font-semibold">billed annually</span>
+                                            </motion.p>
+                                        )}
                                     </div>
 
                                     {/* Credits & Output */}
@@ -272,21 +344,27 @@ export function PricingContent() {
                                             className={`w-full rounded-xl h-12 text-sm font-semibold transition-all duration-300 ${
                                                 plan.featured
                                                     ? 'bg-white text-gray-900 hover:bg-gray-100 shadow-xl'
-                                                    : plan.id === 'enterprise'
-                                                        ? 'bg-gray-900 text-white hover:bg-black shadow-lg'
-                                                        : 'bg-gray-900 text-white hover:bg-black shadow-lg'
+                                                    : 'bg-gray-900 text-white hover:bg-black shadow-lg'
                                             }`}
                                         >
-                                            <a href={plan.ctaHref} target="_blank" rel="noopener noreferrer">
-                                                {plan.cta}
-                                                <ArrowRight className="w-4 h-4 ml-2" />
-                                            </a>
+                                            {isExternal ? (
+                                                <a href={href} target="_blank" rel="noopener noreferrer">
+                                                    {plan.cta}
+                                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                                </a>
+                                            ) : (
+                                                <Link href={href}>
+                                                    {plan.cta}
+                                                    <ArrowRight className="w-4 h-4 ml-2" />
+                                                </Link>
+                                            )}
                                         </Button>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
-                    ))}
+                        );
+                    })}
                 </div>
             </section>
 
