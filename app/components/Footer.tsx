@@ -11,8 +11,9 @@ const links = {
         { label: 'Compliance Engine', href: '#' },
     ],
     Company: [
-        { label: 'Features', href: '#features' },
-        { label: 'Showcase', href: '#showcase' },
+        { label: 'Features', href: '/#features' },
+        { label: 'Showcase', href: '/#showcase' },
+        { label: 'Pricing', href: '/pricing' },
         { label: 'Contact', href: 'mailto:hello@elarislabs.ai' },
     ],
     Legal: [

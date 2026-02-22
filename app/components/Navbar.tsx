@@ -14,8 +14,9 @@ const platformItems = [
 ];
 
 const navLinks = [
-    { label: 'Features', href: '#features' },
-    { label: 'Showcase', href: '#showcase' },
+    { label: 'Features', href: '/#features' },
+    { label: 'Showcase', href: '/#showcase' },
+    { label: 'Pricing', href: '/pricing' },
 ];
 
 export function Navbar() {
