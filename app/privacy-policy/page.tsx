@@ -82,7 +82,7 @@ export default function PrivacyPolicyPage() {
                 'Leads and marketing contacts',
                 'Business partners and vendors',
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-600">
+                <li key={i} className="flex items-start gap-3 text-base text-gray-600">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                   {item}
                 </li>
@@ -185,7 +185,7 @@ export default function PrivacyPolicyPage() {
                     'Analytics and marketing platforms (campaign attribution)',
                     'Public sources or enrichment tools (for business contact data, where permitted)',
                   ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-600">
+                    <li key={i} className="flex items-start gap-3 text-base text-gray-600">
                       <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                       {item}
                     </li>
@@ -308,7 +308,7 @@ export default function PrivacyPolicyPage() {
                 'Equivalent legal transfer mechanisms',
                 'Additional security measures (as appropriate)',
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-600">
+                <li key={i} className="flex items-start gap-3 text-base text-gray-600">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                   {item}
                 </li>
@@ -356,7 +356,7 @@ export default function PrivacyPolicyPage() {
                 'Monitoring, rate limiting, and anomaly detection',
                 'Secure development practices and vulnerability management',
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-600">
+                <li key={i} className="flex items-start gap-3 text-base text-gray-600">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                   {item}
                 </li>
@@ -382,7 +382,7 @@ export default function PrivacyPolicyPage() {
                 'Withdraw consent (where processing is based on consent)',
                 'Appeal certain automated decisions, where applicable',
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-600">
+                <li key={i} className="flex items-start gap-3 text-base text-gray-600">
                   <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                   {item}
                 </li>
@@ -407,7 +407,7 @@ export default function PrivacyPolicyPage() {
                   'If we "share" data for cross-context behavioral advertising (if enabled), you can opt out via our cookie preferences center.',
                   'You may designate an authorized agent to submit requests.',
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray-600">
+                  <li key={i} className="flex items-start gap-3 text-base text-gray-600">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                     {item}
                   </li>

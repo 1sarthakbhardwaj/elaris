@@ -193,12 +193,6 @@ export function PricingContent() {
                 </div>
 
                 <motion.div style={{ y: smoothHeroTextY, opacity: heroOpacity }} className="max-w-4xl mx-auto text-center relative z-10">
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={heroInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
-                        <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-gray-600 transition-colors mb-8 text-sm group">
-                            <span className="group-hover:-translate-x-0.5 transition-transform">&larr;</span> Back to Home
-                        </Link>
-                    </motion.div>
-
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -239,18 +233,21 @@ export function PricingContent() {
                             />
                         </button>
                         <span className={`text-sm font-medium transition-colors ${annual ? 'text-gray-900' : 'text-gray-400'}`}>Annual</span>
-                        <AnimatePresence>
-                            {annual && (
-                                <motion.span
-                                    initial={{ opacity: 0, scale: 0.8, x: -8 }}
-                                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                                    exit={{ opacity: 0, scale: 0.8, x: -8 }}
-                                    className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg shadow-emerald-500/25"
-                                >
-                                    Save 20%
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
+                        <div className="w-20">
+                            <AnimatePresence mode="popLayout">
+                                {annual && (
+                                    <motion.span
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.8 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-lg shadow-emerald-500/25"
+                                    >
+                                        Save 20%
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     </motion.div>
                 </motion.div>
             </section>
