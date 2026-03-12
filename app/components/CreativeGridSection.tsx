@@ -11,7 +11,6 @@ const images = [
     { src: '/images/5.png', alt: 'Ad creative 5' },
     { src: '/images/6.png', alt: 'Ad creative 6' },
     { src: '/images/7.png', alt: 'Ad creative 7' },
-    { src: '/images/8.png', alt: 'Ad creative 8' },
     { src: '/images/9.png', alt: 'Ad creative 9' },
     { src: '/images/10.png', alt: 'Ad creative 10' },
 ];
