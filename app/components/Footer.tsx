@@ -14,7 +14,10 @@ const links = {
         { label: 'Features', href: '/#features' },
         { label: 'Showcase', href: '/#showcase' },
         { label: 'Pricing', href: '/pricing' },
-        { label: 'Contact', href: 'mailto:hello@elarislabs.ai' },
+    ],
+    Contact: [
+        { label: 'support@elarislabs.ai', href: 'mailto:support@elarislabs.ai' },
+        { label: '+971 5576 33614', href: 'tel:+971557633614' },
     ],
     Legal: [
         { label: 'Privacy', href: '/privacy-policy' },
@@ -51,7 +54,7 @@ export function Footer() {
 
             {/* Links */}
             <div className="max-w-7xl mx-auto px-6 py-16">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-12">
                     <div className="col-span-2 md:col-span-1">
                         <a href="#" className="flex items-center gap-2 mb-4">
                             <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center border border-white/20">
