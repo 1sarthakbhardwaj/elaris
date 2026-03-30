@@ -3,12 +3,15 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
-const links = {
+const STUDIO_URL = 'http://studio.elarislabs.ai/';
+
+type FooterLink = { label: string; href: string };
+
+const links: Record<string, FooterLink[]> = {
     Products: [
-        { label: 'Elaris Creative', href: 'http://studio.elarislabs.ai/' },
-        { label: 'Creator Mode', href: '#' },
-        { label: 'Audio Intelligence', href: '#' },
-        { label: 'Compliance Engine', href: '#' },
+        { label: 'Elaris Creative', href: STUDIO_URL },
+        { label: 'Creator Mode (UGC)', href: STUDIO_URL },
+        { label: 'Audio Intelligence', href: STUDIO_URL },
     ],
     Company: [
         { label: 'Features', href: '/#features' },
@@ -28,7 +31,7 @@ const links = {
 export function Footer() {
     return (
         <footer className="border-t border-gray-100 bg-white relative overflow-hidden">
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-r from-purple-100/40 via-pink-100/40 to-blue-100/40 blur-[80px] -z-10" />
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-`gradient-to-r from-purple-100/40 via-pink-100/40 to-blue-100/40 blur-[80px] -z-10" />
             
             {/* CTA */}
             <div className="max-w-7xl mx-auto px-6 py-24">
@@ -44,7 +47,7 @@ export function Footer() {
                             </a>
                         </Button>
                         <Button size="lg" variant="outline" asChild className="rounded-full border-gray-200 text-gray-600 hover:bg-white hover:text-purple-600 px-8 h-12 text-sm font-medium hover:border-purple-200 hover:shadow-md transition-all">
-                            <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">Talk to Sales</a>
+                            <a href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min" target="_blank" rel="noopener noreferrer">Talk to Sales</a>
                         </Button>
                     </div>
                 </div>
@@ -72,7 +75,14 @@ export function Footer() {
                             <ul className="space-y-3">
                                 {items.map((link) => (
                                     <li key={link.label}>
-                                        <a href={link.href} className="text-sm text-gray-500 hover:text-purple-600 transition-colors">{link.label}</a>
+                                        <a
+                                            href={link.href}
+                                            target={link.href.startsWith('http') ? '_blank' : undefined}
+                                            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                            className="text-sm text-gray-500 hover:text-purple-600 transition-colors"
+                                        >
+                                            {link.label}
+                                        </a>
                                     </li>
                                 ))}
                             </ul>

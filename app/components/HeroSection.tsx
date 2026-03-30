@@ -62,7 +62,7 @@ export function HeroSection() {
                         </a>
                     </Button>
                     <Button size="lg" variant="outline" asChild className="rounded-full border-gray-200 bg-white/50 backdrop-blur-sm text-gray-700 hover:bg-white hover:text-purple-600 px-8 h-14 text-base font-medium shadow-sm hover:shadow-md transition-all duration-300 hover:border-purple-200">
-                        <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
+                        <a href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min" target="_blank" rel="noopener noreferrer">
                             Book a Demo
                         </a>
                     </Button>

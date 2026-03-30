@@ -185,7 +185,7 @@ function CheckoutInner() {
                                         asChild
                                         className="w-full rounded-xl h-13 text-base font-semibold bg-gray-900 text-white hover:bg-black shadow-xl hover:shadow-2xl transition-all hover:scale-[1.02]"
                                     >
-                                        <a href="https://calendly.com/kk-sharma-elarislabs/30min" target="_blank" rel="noopener noreferrer">
+                                        <a href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min" target="_blank" rel="noopener noreferrer">
                                             Schedule a Call
                                             <ArrowRight className="w-5 h-5 ml-2" />
                                         </a>
