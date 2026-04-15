@@ -11,10 +11,10 @@ const planDetails: Record<string, { name: string; monthlyPrice: number; credits:
     growth: {
         name: 'Growth',
         monthlyPrice: 49,
-        credits: '500 Credits / mo',
+        credits: '5,000 Credits / mo',
         features: [
-            '500 Credits per month',
-            '~50 Images or 10 Videos',
+            '5,000 Credits per month',
+            '~500 Images or 20 Videos',
             '1 Brand Identity',
             'Standard rendering speed',
             'Up to 3 team seats',
@@ -24,10 +24,10 @@ const planDetails: Record<string, { name: string; monthlyPrice: number; credits:
     scale: {
         name: 'Scale',
         monthlyPrice: 399,
-        credits: '5,000 Credits / mo',
+        credits: '50,000 Credits / mo',
         features: [
-            '5,000 Credits per month',
-            '~500 Images or 100 Videos',
+            '50,000 Credits per month',
+            '~5,000 Images or 200 Videos',
             'Up to 5 Brand Identities',
             'Priority rendering speed',
             'Automated A/B testing',
@@ -40,9 +40,9 @@ const planDetails: Record<string, { name: string; monthlyPrice: number; credits:
     enterprise: {
         name: 'Enterprise',
         monthlyPrice: -1,
-        credits: '25,000+ Credits / mo',
+        credits: '250,000+ Credits / mo',
         features: [
-            '25,000+ Credits per month',
+            '250,000+ Credits per month',
             'Unlimited Brand Identities',
             'Highest priority rendering',
             'Predictive scoring (pre-live)',

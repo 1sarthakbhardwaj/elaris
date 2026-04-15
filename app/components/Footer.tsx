@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
@@ -14,7 +15,6 @@ const links: Record<string, FooterLink[]> = {
         { label: 'Audio Intelligence', href: STUDIO_URL },
     ],
     Company: [
-        { label: 'Features', href: '/#features' },
         { label: 'Showcase', href: '/#showcase' },
         { label: 'Pricing', href: '/pricing' },
     ],
@@ -31,7 +31,7 @@ const links: Record<string, FooterLink[]> = {
 export function Footer() {
     return (
         <footer className="border-t border-gray-100 bg-white relative overflow-hidden">
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-`gradient-to-r from-purple-100/40 via-pink-100/40 to-blue-100/40 blur-[80px] -z-10" />
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-r from-purple-100/40 via-pink-100/40 to-blue-100/40 blur-[80px] -z-10" />
             
             {/* CTA */}
             <div className="max-w-7xl mx-auto px-6 py-24">
@@ -59,12 +59,12 @@ export function Footer() {
             <div className="max-w-7xl mx-auto px-6 py-16">
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-12">
                     <div className="col-span-2 md:col-span-1">
-                        <a href="#" className="flex items-center gap-2 mb-4">
+                        <Link href="/" className="flex items-center gap-2 mb-4 w-fit">
                             <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center border border-white/20">
                                 <span className="text-white text-[10px] font-bold bg-gradient-to-tr from-purple-400 to-pink-400 bg-clip-text text-transparent">EL</span>
                             </div>
                             <span className="text-lg font-bold text-gray-900">Elaris Labs</span>
-                        </a>
+                        </Link>
                         <p className="text-sm text-gray-500 max-w-xs leading-relaxed">
                             AI agents that optimize ad creative for performance at scale. Built for modern growth teams.
                         </p>

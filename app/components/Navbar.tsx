@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -18,7 +19,6 @@ const platformItems = [
 ];
 
 const navLinks = [
-    { label: 'Features', href: '/#features' },
     { label: 'Showcase', href: '/#showcase' },
     { label: 'Pricing', href: '/pricing' },
 ];
@@ -52,7 +52,7 @@ export function Navbar() {
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass' : 'bg-transparent'}`}
         >
             <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-                <a href="#" className="flex items-center gap-2 group">
+                <Link href="/" className="flex items-center gap-2 group" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="relative w-8 h-8">
                         <div className="absolute inset-0 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-lg opacity-80 blur-[2px] group-hover:blur-[4px] transition-all duration-300"></div>
                         <div className="relative w-full h-full bg-black rounded-lg flex items-center justify-center border border-white/10">
@@ -60,7 +60,7 @@ export function Navbar() {
                         </div>
                     </div>
                     <span className="text-[16px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">Elaris Labs</span>
-                </a>
+                </Link>
 
                 <div className="hidden md:flex items-center gap-8">
                     <div className="relative" onMouseEnter={openDropdown} onMouseLeave={closeDropdown}>
