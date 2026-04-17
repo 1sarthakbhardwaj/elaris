@@ -8,10 +8,10 @@ import Footer from "@/components/Footer";
  * Pricing page
  * ==========================================================================
  *
- * Three tiers (Starter / Studio [Most Popular] / Scale) on a unified dark
- * surface plus a "Custom subscription" row beneath for arbitrary credit
- * amounts. Monthly / Annual toggle — Annual knocks 20% off the monthly
- * effective rate and inlines the discount on the label itself.
+ * Three tiers (Free / Growth / Scale [Most Popular]) on a unified dark
+ * surface plus an "Enterprise" row beneath for teams operating at
+ * agency-or-global scale. Monthly / Annual toggle — Annual knocks 20% off
+ * the monthly effective rate and inlines the discount on the label itself.
  */
 
 type Billing = "monthly" | "annual";
@@ -363,26 +363,80 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
   );
 }
 
-/* ——— Custom subscription row ——————————————————— */
+/* ——— Enterprise row ————————————————————————————— */
 
-function CustomRow() {
+const ENTERPRISE_FEATURES: string[] = [
+  "SSO & SAML",
+  "Dedicated CSM",
+  "99.9% Uptime SLA",
+  "Custom contracts",
+  "Volume pricing",
+  "On-prem deployment",
+];
+
+function EnterpriseRow() {
   return (
-    <div className="mt-6 rounded-[20px] bg-[#0B0B10]/80 border border-white/[0.06] backdrop-blur-sm px-7 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-      <div>
-        <h3 className="text-bone font-semibold text-base">Custom subscription</h3>
-        <p className="mt-0.5 text-sm text-chrome">
-          Choose the credit amount that fits your creative needs.
-        </p>
+    <div className="relative mt-6 rounded-[24px] bg-[#0B0B10]/85 border border-white/[0.08] backdrop-blur-sm px-7 md:px-9 py-7 overflow-hidden">
+      {/* Warm brass glow to signal premium tier, distinct from the */}
+      {/* plasma-halo on the Scale card. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 rounded-[24px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 85% 10%, rgba(201,176,135,0.12) 0%, transparent 45%), radial-gradient(ellipse at 15% 90%, rgba(109,166,217,0.08) 0%, transparent 45%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-8 right-8 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(232,217,184,0.55), rgba(168,205,239,0.45), transparent)",
+        }}
+      />
+
+      <div className="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+        <div className="max-w-xl">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-pearl">
+              Enterprise
+            </span>
+            <span className="h-px w-8 bg-gradient-to-r from-pearl/60 to-transparent" />
+          </div>
+          <h3 className="mt-2 text-display text-[clamp(1.35rem,2.4vw,1.75rem)] font-semibold tracking-tight text-bone leading-tight">
+            Built for teams operating at global scale.
+          </h3>
+          <p className="mt-2 text-sm text-chrome leading-relaxed">
+            Unlimited credits, white-glove onboarding, and a dedicated team to
+            help your org ship at agency-level velocity — with the security,
+            control, and procurement your legal team expects.
+          </p>
+
+          {/* Feature chips */}
+          <ul className="mt-4 flex flex-wrap gap-1.5">
+            {ENTERPRISE_FEATURES.map((f) => (
+              <li
+                key={f}
+                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium bg-white/[0.04] border border-white/10 text-bone/90"
+              >
+                <Check className="w-3 h-3 text-pearl shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <a
+          href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl text-sm font-semibold bg-gradient-to-b from-pearl to-brass text-coal shadow-[0_10px_40px_-10px_rgba(201,176,135,0.55)] hover:shadow-[0_14px_44px_-10px_rgba(201,176,135,0.75)] transition-all duration-300 whitespace-nowrap self-start lg:self-auto shrink-0"
+        >
+          Talk to Sales
+          <ArrowRight />
+        </a>
       </div>
-      <a
-        href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-bone hover:bg-white/10 transition-all duration-300 whitespace-nowrap self-start md:self-auto"
-      >
-        Get custom plan
-        <ArrowRight />
-      </a>
     </div>
   );
 }
@@ -433,9 +487,9 @@ export default function PricingPage() {
             ))}
           </div>
 
-          {/* Custom subscription */}
+          {/* Enterprise */}
           <div className="anim-fade-up d-4">
-            <CustomRow />
+            <EnterpriseRow />
           </div>
 
           {/* Foot note */}
