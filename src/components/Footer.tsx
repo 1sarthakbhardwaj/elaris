@@ -107,13 +107,17 @@ export default function Footer() {
                     <circle cx="16" cy="16" r="2" fill="#A8CDEF" stroke="none" />
                   </g>
                 </svg>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-display text-xl text-bone">Elaris</span>
-                  <span className="text-display text-xl shine-plasma">Labs</span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] text-bone uppercase">
+                    ElarisLabs
+                  </span>
+                  <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] shine-plasma uppercase">
+                    AI
+                  </span>
                 </div>
               </a>
               <p className="text-chrome text-sm max-w-xs leading-relaxed mb-5">
-                Full-stack AI creative ops for modern ad teams. Build, iterate, scale.
+                Unified AI creative OS for global enterprises. Generate, composite, scale.
               </p>
               <div className="inline-flex items-center gap-2 glass-plasma rounded-full px-3 py-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-halo anim-breathe" />

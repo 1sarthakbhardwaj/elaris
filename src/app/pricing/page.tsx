@@ -8,12 +8,10 @@ import Footer from "@/components/Footer";
  * Pricing page
  * ==========================================================================
  *
- * Four tiers (Free, Growth, Scale [Most Popular], Enterprise) with a
- * Monthly / Annual toggle. Annual pricing is 20% off and displays the
- * original monthly price struck through + "billed annually" caption.
- * The Scale card is visually inverted (dark + plasma halo) to call out the
- * popular plan, the rest are light. A 4-stat plasma strip sits between
- * the subhead and the toggle as a social-proof beat.
+ * Three tiers (Starter / Studio [Most Popular] / Scale) on a unified dark
+ * surface plus a "Custom subscription" row beneath for arbitrary credit
+ * amounts. Monthly / Annual toggle — Annual knocks 20% off the monthly
+ * effective rate and inlines the discount on the label itself.
  */
 
 type Billing = "monthly" | "annual";
@@ -21,13 +19,15 @@ type Billing = "monthly" | "annual";
 interface Plan {
   id: string;
   name: string;
+  description: string;
   tagline?: "Most Popular";
-  /** Monthly rate in USD. Null for Enterprise (contact sales). */
-  monthly: number | null;
-  credits: string;
-  volume: string;
+  /** Monthly rate in USD. */
+  monthly: number;
+  /** Raw monthly credit allotment (formatted with locale separators). */
+  credits: number;
+  breakdown: { images: number; videos: number; texts: number };
+  seats: string;
   cta: string;
-  /** Inverted dark card with plasma halo. */
   highlight?: boolean;
 }
 
@@ -35,36 +35,37 @@ const PLANS: Plan[] = [
   {
     id: "free",
     name: "Free",
+    description:
+      "For individuals getting started — ideal for testing and early experimentation.",
     monthly: 0,
-    credits: "2,000 Credits",
-    volume: "~200 Images or 8 Videos",
+    credits: 200,
+    breakdown: { images: 20, videos: 1, texts: 200 },
+    seats: "Unlimited seats",
     cta: "Get Started Free",
   },
   {
     id: "growth",
     name: "Growth",
+    description:
+      "For small creative teams developing ideas and producing focused deliverables.",
     monthly: 49,
-    credits: "5,000 Credits",
-    volume: "~500 Images or 20 Videos",
+    credits: 500,
+    breakdown: { images: 50, videos: 2, texts: 500 },
+    seats: "Unlimited seats",
     cta: "Start Growth",
   },
   {
     id: "scale",
     name: "Scale",
+    description:
+      "For creative teams producing high-volume final assets with full control over every detail.",
     tagline: "Most Popular",
     monthly: 399,
-    credits: "50,000 Credits",
-    volume: "~5,000 Images or 200 Videos",
+    credits: 5000,
+    breakdown: { images: 500, videos: 20, texts: 5000 },
+    seats: "Unlimited seats",
     cta: "Start Scaling",
     highlight: true,
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    monthly: null,
-    credits: "250,000+ Credits",
-    volume: "~25,000+ Images or 1,000+ Videos",
-    cta: "Talk to Sales",
   },
 ];
 
@@ -95,7 +96,7 @@ function BillingToggle({
 
   return (
     <div className="flex items-center justify-center gap-3">
-      {/* Monthly label — clickable */}
+      {/* Monthly label */}
       <button
         type="button"
         onClick={() => onChange("monthly")}
@@ -105,7 +106,7 @@ function BillingToggle({
         Monthly
       </button>
 
-      {/* Track */}
+      {/* Switch track */}
       <button
         type="button"
         role="switch"
@@ -126,51 +127,65 @@ function BillingToggle({
         />
       </button>
 
-      {/* Annual label — clickable */}
+      {/* Annual label — inline discount chip mirrors the reference */}
       <button
         type="button"
         onClick={() => onChange("annual")}
         aria-pressed={isAnnual}
-        className={`${labelBase} ${isAnnual ? "text-bone" : "text-chrome hover:text-bone"}`}
+        className={`${labelBase} inline-flex items-center gap-1.5 ${
+          isAnnual ? "text-bone" : "text-chrome hover:text-bone"
+        }`}
       >
         Annual
-      </button>
-
-      {/* Save 20% chip — only on annual */}
-      {isAnnual && (
         <span
-          className="ml-1 inline-flex items-center rounded-full text-[11px] font-semibold px-2.5 py-1 text-[#0E3B1E]"
-          style={{
-            background:
-              "linear-gradient(180deg, #D9F5DF 0%, #B9EBC6 100%)",
-            boxShadow:
-              "0 0 18px -4px rgba(100, 220, 140, 0.45), inset 0 1px 0 rgba(255,255,255,0.45)",
-            animation: "chip-in 0.35s cubic-bezier(0.34,1.26,0.64,1) backwards",
-          }}
+          className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full border transition-colors ${
+            isAnnual
+              ? "border-halo/40 text-halo bg-halo/10"
+              : "border-white/10 text-chrome"
+          }`}
         >
-          Save 20%
+          20% off
         </span>
-      )}
+      </button>
     </div>
   );
 }
 
-/* ——— Icons (inline to avoid new deps) ——————————————— */
+/* ——— Icons ————————————————————————————— */
 
-function Sparkle({ className }: { className?: string }) {
+function Check({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.75"
+      strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
       aria-hidden
     >
-      <path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" />
-      <circle cx="12" cy="12" r="2.5" />
+      <path d="M5 13l4 4L19 7" />
+    </svg>
+  );
+}
+
+function Grid3({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect x="4" y="4" width="6" height="6" rx="1" />
+      <rect x="14" y="4" width="6" height="6" rx="1" />
+      <rect x="4" y="14" width="6" height="6" rx="1" />
+      <rect x="14" y="14" width="6" height="6" rx="1" />
     </svg>
   );
 }
@@ -194,172 +209,180 @@ function ArrowRight({ className }: { className?: string }) {
   );
 }
 
-/* ——— Price display ————————————————————————————— */
-
-function PriceDisplay({
-  plan,
-  billing,
-  highlight,
-}: {
-  plan: Plan;
-  billing: Billing;
-  highlight: boolean;
-}) {
-  if (plan.monthly === null) {
-    return (
-      <div className="mt-2">
-        <span
-          className="text-display font-semibold tracking-tight leading-[0.95] block"
-          style={{ fontSize: "clamp(3rem, 5.5vw, 4.25rem)" }}
-        >
-          Custom
-        </span>
-      </div>
-    );
-  }
-
-  const isAnnual = billing === "annual";
-  const monthly = plan.monthly;
-  const effective = isAnnual ? annualMonthly(monthly) : monthly;
-  const showSubline = isAnnual && monthly > 0;
-
-  const strikeColor = highlight ? "text-chrome/70" : "text-[#6b6d75]";
-  const billedColor = highlight ? "text-[#5BDC8A]" : "text-[#1F7A3F]";
-
-  return (
-    <div className="mt-2">
-      <div className="flex items-baseline gap-1">
-        <span
-          className={`text-display font-semibold tracking-tight leading-[0.95] ${
-            highlight ? "text-bone" : "text-[#111113]"
-          }`}
-          style={{ fontSize: "clamp(3rem, 6vw, 4.25rem)" }}
-        >
-          <span className="align-top text-[0.55em] mr-0.5 font-semibold">$</span>
-          {effective.toLocaleString("en-US")}
-        </span>
-        <span
-          className={`text-sm ${
-            highlight ? "text-chrome" : "text-[#6b6d75]"
-          }`}
-        >
-          /mo
-        </span>
-      </div>
-
-      {showSubline && (
-        <div
-          className={`mt-2 pt-2 flex items-baseline gap-2 text-xs ${
-            highlight ? "border-t border-white/10" : "border-t border-black/5"
-          }`}
-        >
-          <span className={`line-through ${strikeColor}`}>
-            {formatUSD(monthly)}/mo
-          </span>
-          <span className={`font-medium ${billedColor}`}>billed annually</span>
-        </div>
-      )}
-    </div>
-  );
-}
-
 /* ——— Plan card ————————————————————————————— */
 
 function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
   const highlight = plan.highlight === true;
+  const isFree = plan.monthly === 0;
 
-  const shell = highlight
-    ? "relative bg-[#0B0B10] text-bone ring-1 ring-inset ring-white/10 shadow-[0_30px_70px_-20px_rgba(168,205,239,0.35)]"
-    : "relative bg-[#F5F5F7] text-[#111113] border border-black/[0.06] shadow-[0_20px_40px_-20px_rgba(0,0,0,0.45)]";
+  const effectiveMonthly =
+    billing === "annual" ? annualMonthly(plan.monthly) : plan.monthly;
+  // Strikethrough only appears on Annual for paid plans, to show the
+  // monthly-plan rate being discounted. Monthly view shows a clean rate.
+  const showStrike = billing === "annual" && !isFree;
+  const billedLabel = isFree
+    ? "forever free"
+    : billing === "annual"
+      ? "billed annually"
+      : "billed monthly";
 
-  const creditBox = highlight
-    ? "bg-white/[0.04] border border-white/10"
-    : "bg-white border border-black/[0.05]";
+  // Unit price per 100 credits, tracks the billing toggle.
+  const unitPerHundred = !isFree
+    ? `$${((effectiveMonthly / plan.credits) * 100).toFixed(2)}`
+    : null;
 
-  const creditIconTile = highlight
-    ? "bg-halo/15 text-halo ring-1 ring-halo/30"
-    : "bg-[#F2ECFC] text-[#8E5AC6] ring-1 ring-[#8E5AC6]/20";
+  const shellClass = highlight
+    ? "relative bg-[#0B0B10]/90 ring-1 ring-inset ring-halo/30 shadow-[0_30px_80px_-20px_rgba(109,166,217,0.35)]"
+    : "relative bg-[#0B0B10]/80 border border-white/[0.06]";
 
-  const cta = highlight
-    ? "bg-bone text-[#0B0B10] hover:bg-white hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.4)]"
-    : "bg-[#0B0B10] text-bone hover:bg-black hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)]";
-
-  const volumeText = highlight ? "text-chrome/85" : "text-[#6b6d75]";
-
-  const planNameClass = `text-[11px] font-mono uppercase tracking-[0.22em] ${
-    highlight ? "text-chrome" : "text-[#6b6d75]"
-  }`;
+  const ctaClass = highlight
+    ? "bg-gradient-to-b from-plasma to-[#4F8CC9] text-bone shadow-[0_10px_40px_-10px_rgba(109,166,217,0.55)] hover:shadow-[0_14px_44px_-10px_rgba(109,166,217,0.75)]"
+    : "bg-white/5 border border-white/10 text-bone hover:bg-white/10";
 
   return (
     <div
-      className={`${shell} rounded-[28px] p-8 flex flex-col transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 overflow-hidden`}
-      style={{ minHeight: 460 }}
+      className={`${shellClass} rounded-[24px] p-7 flex flex-col transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 overflow-hidden backdrop-blur-sm`}
     >
-      {/* Inner plasma wash on the Scale card */}
+      {/* Plasma wash + top accent line on the Studio card */}
       {highlight && (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-[28px]"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% -10%, rgba(168,205,239,0.22) 0%, transparent 55%)",
-          }}
-        />
+        <>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-[24px]"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% -10%, rgba(168,205,239,0.16) 0%, transparent 55%)",
+            }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-0 left-8 right-8 h-px"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(168,205,239,0.65), transparent)",
+            }}
+          />
+        </>
       )}
 
       <div className="relative flex flex-col flex-1">
-        {/* Header row */}
-        <div className="flex items-center justify-between">
-          <span className={planNameClass}>{plan.name}</span>
+        {/* Header: name + Most Popular pill */}
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-display text-[28px] font-semibold tracking-tight text-bone">
+            {plan.name}
+          </h3>
           {plan.tagline && (
-            <span
-              className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] ${
-                highlight
-                  ? "bg-white/10 text-bone border border-white/15 backdrop-blur"
-                  : "bg-[#111113] text-bone"
-              }`}
-            >
+            <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] bg-halo/15 text-halo border border-halo/30 backdrop-blur">
               {plan.tagline}
             </span>
           )}
         </div>
 
-        {/* Price */}
-        <PriceDisplay plan={plan} billing={billing} highlight={highlight} />
+        {/* Description */}
+        <p className="mt-3 text-sm text-chrome leading-relaxed min-h-[42px]">
+          {plan.description}
+        </p>
 
-        {/* Credits chip */}
-        <div className={`mt-7 rounded-2xl px-4 py-3.5 ${creditBox}`}>
-          <div className="flex items-center gap-2.5">
-            <span
-              className={`inline-flex items-center justify-center w-[22px] h-[22px] rounded-md ${creditIconTile}`}
-            >
-              <Sparkle className="w-3 h-3" />
+        <div className="mt-5 border-t border-white/[0.06]" />
+
+        {/* Credits + breakdown + seats */}
+        <div className="mt-5">
+          <div className="flex items-baseline gap-2">
+            <span className="text-mono text-xl font-semibold text-bone">
+              {plan.credits.toLocaleString("en-US")}
             </span>
-            <span
-              className={`text-sm font-semibold ${
-                highlight ? "text-bone" : "text-[#111113]"
-              }`}
-            >
-              {plan.credits}
-            </span>
+            <span className="text-xs text-chrome">credits/mo</span>
           </div>
-          <p className={`mt-1.5 text-[11px] ${volumeText}`}>{plan.volume}</p>
+
+          <ul className="mt-3 space-y-2 text-xs text-chrome">
+            <li className="flex items-center gap-2">
+              <Check className="w-3.5 h-3.5 text-halo shrink-0" />
+              <span className="flex items-center gap-2 flex-wrap">
+                <span>{plan.breakdown.images.toLocaleString("en-US")} images</span>
+                <span className="text-white/15">|</span>
+                <span>{plan.breakdown.videos.toLocaleString("en-US")} videos</span>
+                <span className="text-white/15">|</span>
+                <span>{plan.breakdown.texts.toLocaleString("en-US")} texts</span>
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-3.5 h-3.5 text-halo shrink-0" />
+              <span>{plan.seats}</span>
+            </li>
+          </ul>
         </div>
 
+        <div className="mt-6 border-t border-white/[0.06]" />
+
+        {/* Price block */}
+        <div className="mt-5 flex items-baseline gap-2.5 flex-wrap">
+          <span
+            className="text-display font-semibold tracking-tight leading-none text-bone"
+            style={{ fontSize: "clamp(2.5rem, 4.2vw, 3.25rem)" }}
+          >
+            <span className="align-top text-[0.55em] mr-0.5 font-semibold">$</span>
+            {effectiveMonthly.toLocaleString("en-US")}
+          </span>
+          {showStrike && (
+            <span className="text-sm line-through text-chrome/60">
+              {formatUSD(plan.monthly)}
+            </span>
+          )}
+          <span className="text-xs text-chrome">{billedLabel}</span>
+        </div>
+
+        {/* Plasma pills — paid tiers only */}
+        {unitPerHundred && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium bg-plasma/10 border border-plasma/25 text-halo">
+              <Grid3 className="w-3 h-3" />
+              100 credits = {unitPerHundred}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium bg-plasma/10 border border-plasma/25 text-halo">
+              <Check className="w-3 h-3" />
+              Volume Discount
+            </span>
+          </div>
+        )}
+
         {/* Spacer */}
-        <div className="flex-1" />
+        <div className="flex-1 min-h-[20px]" />
 
         {/* CTA */}
         <a
           href="https://studio.elarislabs.ai"
           target="_blank"
           rel="noopener noreferrer"
-          className={`mt-7 h-11 inline-flex items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition-all duration-300 ${cta}`}
+          className={`mt-6 h-11 inline-flex items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition-all duration-300 ${ctaClass}`}
         >
           {plan.cta}
           <ArrowRight />
         </a>
       </div>
+    </div>
+  );
+}
+
+/* ——— Custom subscription row ——————————————————— */
+
+function CustomRow() {
+  return (
+    <div className="mt-6 rounded-[20px] bg-[#0B0B10]/80 border border-white/[0.06] backdrop-blur-sm px-7 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h3 className="text-bone font-semibold text-base">Custom subscription</h3>
+        <p className="mt-0.5 text-sm text-chrome">
+          Choose the credit amount that fits your creative needs.
+        </p>
+      </div>
+      <a
+        href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center justify-center gap-2 h-10 px-5 rounded-xl text-sm font-semibold bg-white/5 border border-white/10 text-bone hover:bg-white/10 transition-all duration-300 whitespace-nowrap self-start md:self-auto"
+      >
+        Get custom plan
+        <ArrowRight />
+      </a>
     </div>
   );
 }
@@ -374,17 +397,17 @@ export default function PricingPage() {
       <Navbar />
 
       <section className="relative pt-32 md:pt-40 pb-20 px-6 md:px-10 overflow-hidden">
-        {/* Ambient grid & plasma glow — same treatment as Hero */}
+        {/* Ambient grid + plasma + warm top-right glow */}
         <div className="absolute inset-0 canvas-grid opacity-60 pointer-events-none" />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at 50% 0%, rgba(109,166,217,0.12) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(201,176,135,0.05) 0%, transparent 45%)",
+              "radial-gradient(ellipse at 50% 0%, rgba(109,166,217,0.12) 0%, transparent 55%), radial-gradient(ellipse at 85% 10%, rgba(201,176,135,0.10) 0%, transparent 45%), radial-gradient(ellipse at 15% 80%, rgba(109,166,217,0.05) 0%, transparent 45%)",
           }}
         />
 
-        <div className="relative max-w-[1280px] mx-auto">
+        <div className="relative max-w-[1200px] mx-auto">
           {/* Heading */}
           <div className="text-center max-w-3xl mx-auto anim-fade-up d-1">
             <h1 className="text-display text-[clamp(2.2rem,5vw,4.5rem)] font-semibold leading-[1.05] tracking-tight">
@@ -404,10 +427,15 @@ export default function PricingPage() {
           </div>
 
           {/* Cards */}
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 anim-fade-up d-3">
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 anim-fade-up d-3">
             {PLANS.map((p) => (
               <PlanCard key={p.id} plan={p} billing={billing} />
             ))}
+          </div>
+
+          {/* Custom subscription */}
+          <div className="anim-fade-up d-4">
+            <CustomRow />
           </div>
 
           {/* Foot note */}
