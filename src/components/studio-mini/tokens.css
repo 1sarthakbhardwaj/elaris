@@ -1,0 +1,259 @@
+/* ==========================================================================
+ * Studio Mini — scoped tokens, keyframes, and React Flow overrides.
+ * Everything under .studio-mini so nothing leaks into the rest of the site
+ * (including the hero FlowCanvas, which keeps its plasma-glass aesthetic).
+ * ========================================================================== */
+
+.studio-mini {
+  /* Core studio tokens (dark mode values from ELARIS-AI/app/globals.css) */
+  --studio-node-bg: #161616;
+  --studio-node-border: rgba(255, 255, 255, 0.08);
+  --studio-node-shadow: 0 2px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  --studio-panel-bg: #161616;
+  --studio-panel-border: rgba(255, 255, 255, 0.08);
+  --studio-text-primary: rgba(255, 255, 255, 0.95);
+  --studio-text-secondary: rgba(255, 255, 255, 0.75);
+  --studio-text-tertiary: rgba(255, 255, 255, 0.40);
+
+  /* Per-node-type accents (from StudioCanvas.tsx NODE_COLORS_DARK) */
+  --studio-prompt-accent: #a855f7;
+  --studio-image-accent: #ffffff;
+  --studio-brand-accent: #f59e0b;
+  --studio-video-accent: #f43f5e;
+  --studio-audio-accent: #a855f7;
+  --studio-output-accent: #22c55e;
+
+  /* Canvas chrome */
+  background: #0d0d10;
+}
+
+/* ==========================================================================
+ * Namespaced keyframes (prefix sm- to avoid collisions with globals.css)
+ * ========================================================================== */
+
+@keyframes sm-caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes sm-waveform-bounce {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes sm-ratio-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes sm-node-pop {
+  from { opacity: 0; transform: scale(0.94) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes sm-node-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.98); }
+}
+
+@keyframes sm-cursor-ripple {
+  0% { transform: scale(0); opacity: 0.75; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes sm-swatch-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sm-chip-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sm-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(168, 205, 239, 0.55); }
+  100% { box-shadow: 0 0 0 8px rgba(168, 205, 239, 0); }
+}
+
+@keyframes sm-check-pop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes sm-edited-flash {
+  0%   { box-shadow: inset 0 0 0 0 rgba(245, 158, 11, 0);   opacity: 0; }
+  40%  { box-shadow: inset 0 0 0 2px rgba(245, 158, 11, 0.7); opacity: 1; }
+  100% { box-shadow: inset 0 0 0 0 rgba(245, 158, 11, 0);   opacity: 0; }
+}
+
+@keyframes sm-plus-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(168, 205, 239, 0.45);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(168, 205, 239, 0);
+    transform: scale(1.08);
+  }
+}
+
+/* ==========================================================================
+ * Utility classes (applied via className on mini components)
+ * ========================================================================== */
+
+.studio-mini .sm-caret {
+  animation: sm-caret-blink 1s step-end infinite;
+}
+
+.studio-mini .sm-pop {
+  animation: sm-node-pop 320ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.studio-mini .sm-fade-out {
+  animation: sm-node-fade-out 420ms ease-out forwards;
+}
+
+.studio-mini .sm-ripple {
+  animation: sm-cursor-ripple 520ms ease-out forwards;
+}
+
+.studio-mini .sm-swatch-in {
+  animation: sm-swatch-in 260ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.studio-mini .sm-chip-in {
+  animation: sm-chip-in 280ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.studio-mini .sm-pulse-ring {
+  animation: sm-pulse-ring 1.6s ease-out infinite;
+}
+
+.studio-mini .sm-check-pop {
+  animation: sm-check-pop 420ms cubic-bezier(0.2, 1.2, 0.3, 1) both;
+}
+
+.studio-mini .sm-edited-flash {
+  animation: sm-edited-flash 900ms ease-out both;
+  pointer-events: none;
+}
+
+.studio-mini .sm-plus-pulse {
+  animation: sm-plus-pulse 1.4s ease-out infinite;
+  color: rgba(168, 205, 239, 0.95);
+  border-color: rgba(168, 205, 239, 0.55) !important;
+}
+
+/* Waveform bar — compose with inline delay for stagger */
+.studio-mini .sm-wave-bar {
+  transform-origin: 50% 100%;
+  animation: sm-waveform-bounce 0.9s ease-in-out infinite;
+}
+
+/* ==========================================================================
+ * React Flow overrides — override global plasma styling ONLY inside .studio-mini.
+ * Uses !important because globals.css sets several edge/handle rules !important.
+ * ========================================================================== */
+
+.studio-mini .react-flow__renderer,
+.studio-mini .react-flow__pane {
+  background: transparent !important;
+}
+
+.studio-mini .react-flow__edge-path {
+  stroke: rgba(255, 255, 255, 0.12) !important;
+  stroke-width: 1.5 !important;
+}
+
+.studio-mini .react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 5 3 !important;
+}
+
+.studio-mini .react-flow__handle {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+.studio-mini .react-flow__attribution {
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.28) !important;
+  font-size: 9px !important;
+}
+
+.studio-mini .react-flow__attribution a {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Node wrapper — kill the default padding/border React Flow applies */
+.studio-mini .react-flow__node {
+  font-family: var(--font-sans);
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* ==========================================================================
+ * Checkerboard background (used by Image/Video/Ratio nodes during generating)
+ * ========================================================================== */
+
+.studio-mini .sm-checkerboard {
+  background-color: #1a1a1a;
+  background-image:
+    linear-gradient(45deg, #222 25%, transparent 25%),
+    linear-gradient(-45deg, #222 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #222 75%),
+    linear-gradient(-45deg, transparent 75%, #222 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+/* ==========================================================================
+ * Themed gradient frames for "generated" image/ratio bodies
+ * ========================================================================== */
+
+.studio-mini .sm-gradient-warm {
+  background:
+    radial-gradient(circle at 30% 40%, #c9b087 0%, #2d4a6b 60%, #0c0d10 100%);
+}
+
+.studio-mini .sm-gradient-cool {
+  background:
+    radial-gradient(circle at 40% 50%, #a8cdef 0%, #2d4a6b 55%, #0c0d10 100%);
+}
+
+.studio-mini .sm-gradient-sunset {
+  background:
+    radial-gradient(circle at 70% 55%, #e8d9b8 0%, #c9b087 35%, #2d4a6b 80%, #0c0d10 100%);
+}
+
+.studio-mini .sm-gradient-violet {
+  background:
+    radial-gradient(circle at 45% 50%, #a855f7 0%, #4c1d95 45%, #0c0d10 95%);
+}
+
+.studio-mini .sm-gradient-video {
+  background:
+    radial-gradient(ellipse at 50% 45%, #1f2937 0%, #0c0d10 75%);
+}
+
+/* Subtle grain overlay for "photo" realism inside gradient frames */
+.studio-mini .sm-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0, rgba(0, 0, 0, 0.04) 1px, transparent 1px, transparent 3px);
+}
