@@ -55,12 +55,22 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <button className="hidden sm:block text-sm text-chrome hover:text-bone transition-colors">
+          <a
+            href="https://studio.elarislabs.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:block text-sm text-chrome hover:text-bone transition-colors"
+          >
             Sign in
-          </button>
-          <button className="bg-gradient-to-br from-lume to-halo text-coal text-sm font-semibold px-5 py-2 rounded-full border border-white/20 shadow-[0_0_25px_-5px_rgba(168,205,239,0.55)] hover:shadow-[0_0_45px_-5px_rgba(168,205,239,0.85)] hover:brightness-110 transition-all">
+          </a>
+          <a
+            href="https://studio.elarislabs.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-br from-lume to-halo text-coal text-sm font-semibold px-5 py-2 rounded-full border border-white/20 shadow-[0_0_25px_-5px_rgba(168,205,239,0.55)] hover:shadow-[0_0_45px_-5px_rgba(168,205,239,0.85)] hover:brightness-110 transition-all"
+          >
             Start free
-          </button>
+          </a>
         </div>
       </div>
     </header>

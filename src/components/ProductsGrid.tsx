@@ -90,7 +90,12 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       </div>
 
       {/* Body zone — the only clickable region that navigates */}
-      <a href={product.route} className="block p-6">
+      <a
+        href="https://studio.elarislabs.ai"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block p-6"
+      >
         <div className="flex items-baseline justify-between mb-3">
           <span className="text-display text-2xl text-chrome/40">{product.num}</span>
           <span className="text-[10px] text-mono text-halo uppercase tracking-[0.2em]">

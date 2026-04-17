@@ -61,15 +61,25 @@ export default function Footer() {
             Every ad.
           </h2>
           <div className={`flex items-center justify-center gap-3 flex-wrap ${ctaShown ? "anim-fade-up d-3" : "opacity-0"}`}>
-            <button className="group bg-gradient-to-br from-lume to-halo text-coal text-base font-semibold px-8 py-4 rounded-full flex items-center gap-2 shadow-[0_0_40px_-8px_rgba(168,205,239,0.6)] hover:shadow-[0_0_60px_-8px_rgba(168,205,239,0.9)] hover:brightness-110 transition-all">
+            <a
+              href="https://studio.elarislabs.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-br from-lume to-halo text-coal text-base font-semibold px-8 py-4 rounded-full flex items-center gap-2 shadow-[0_0_40px_-8px_rgba(168,205,239,0.6)] hover:shadow-[0_0_60px_-8px_rgba(168,205,239,0.9)] hover:brightness-110 transition-all"
+            >
               Start free
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform group-hover:translate-x-0.5">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
-            </button>
-            <button className="glass text-base font-medium px-8 py-4 rounded-full text-bone hover:bg-white/5 hover:border-halo/30 transition-colors">
+            </a>
+            <a
+              href="https://studio.elarislabs.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass text-base font-medium px-8 py-4 rounded-full text-bone hover:bg-white/5 hover:border-halo/30 transition-colors"
+            >
               Book a demo →
-            </button>
+            </a>
           </div>
           <p className={`text-xs text-mono text-chrome mt-8 ${ctaShown ? "anim-fade-up d-4" : "opacity-0"}`}>
             No credit card · unlimited seats on trial · go live in minutes
@@ -109,7 +119,16 @@ export default function Footer() {
               <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Products</h4>
               <ul className="space-y-3 text-sm">
                 {["Creative Studio", "AI Video Studio", "Campaign Wizard", "URL-to-Video", "Product Staging"].map((l) => (
-                  <li key={l}><a href="#" className="text-bone hover:text-halo transition-colors">{l}</a></li>
+                  <li key={l}>
+                    <a
+                      href="https://studio.elarislabs.ai"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-bone hover:text-halo transition-colors"
+                    >
+                      {l}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>

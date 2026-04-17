@@ -350,13 +350,15 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
         <div className="flex-1" />
 
         {/* CTA */}
-        <button
-          type="button"
+        <a
+          href="https://studio.elarislabs.ai"
+          target="_blank"
+          rel="noopener noreferrer"
           className={`mt-7 h-11 inline-flex items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold transition-all duration-300 ${cta}`}
         >
           {plan.cta}
           <ArrowRight />
-        </button>
+        </a>
       </div>
     </div>
   );
