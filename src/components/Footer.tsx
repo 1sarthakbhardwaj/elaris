@@ -2,9 +2,9 @@
 
 import { useReveal } from "./useReveal";
 
-const STATS = [
-  { num: "500+", label: "AI models" },
-  { num: "12×", label: "faster turnaround" },
+const STATS: { num: string; label: string }[] = [
+  { num: "100%", label: "brand IP compliance" },
+  { num: "Weeks→Min", label: "production velocity" },
   { num: "∞", label: "formats per creative" },
   { num: "1", label: "source of truth" },
 ];
@@ -23,16 +23,22 @@ export default function Footer() {
             background: "radial-gradient(ellipse at 50% 50%, rgba(109,166,217,0.06) 0%, transparent 60%)",
           }}
         />
-        <div className="relative max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+        <div className="relative max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
             {STATS.map((s, i) => (
               <div
                 key={s.label}
-                className={`text-center md:text-left ${statsShown ? "anim-fade-up" : "opacity-0"}`}
-                style={{ animationDelay: `${i * 0.15}s` }}
+                className={`text-center flex flex-col items-center gap-3 ${statsShown ? "anim-fade-up" : "opacity-0"}`}
+                style={{ animationDelay: `${i * 0.1}s` }}
               >
-                <div className={`text-display text-6xl md:text-8xl mb-2 ${i % 2 === 0 ? "shine-plasma" : "shine"}`}>{s.num}</div>
-                <div className="text-xs text-mono text-chrome uppercase tracking-[0.2em]">{s.label}</div>
+                <div
+                  className={`text-display text-4xl md:text-5xl lg:text-[3.75rem] tracking-tight leading-none whitespace-nowrap ${i % 2 === 0 ? "shine-plasma" : "shine"}`}
+                >
+                  {s.num}
+                </div>
+                <div className="text-[10px] md:text-[11px] text-mono text-chrome uppercase tracking-[0.25em]">
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
@@ -40,7 +46,7 @@ export default function Footer() {
       </section>
 
       {/* Big CTA */}
-      <section ref={ctaRef} className="relative py-32 md:py-40 px-6 md:px-10 overflow-hidden border-t border-white/[0.06]">
+      <section ref={ctaRef} className="relative py-28 md:py-36 px-6 md:px-10 overflow-hidden border-t border-white/[0.06]">
         <div className="absolute inset-0 canvas-grid opacity-60 pointer-events-none" />
         <div
           className="absolute inset-0 pointer-events-none"
@@ -50,15 +56,15 @@ export default function Footer() {
           }}
         />
 
-        <div className="relative max-w-[1400px] mx-auto text-center">
-          <p className={`text-xs text-mono text-halo uppercase tracking-[0.3em] mb-8 ${ctaShown ? "anim-fade-up" : "opacity-0"}`}>
-            ◉ Stop opening 14 tabs
+        <div className="relative max-w-[1200px] mx-auto text-center">
+          <p className={`text-xs text-mono text-halo uppercase tracking-[0.3em] mb-7 ${ctaShown ? "anim-fade-up" : "opacity-0"}`}>
+            ◉ Scale without the headcount
           </p>
-          <h2 className={`text-display text-[clamp(3.5rem,11vw,11rem)] mb-3 text-bone ${ctaShown ? "anim-fade-up d-1" : "opacity-0"}`}>
+          <h2 className={`text-display text-[clamp(2.5rem,7.5vw,6.5rem)] leading-[1.02] tracking-tight mb-1 text-bone ${ctaShown ? "anim-fade-up d-1" : "opacity-0"}`}>
             One canvas.
           </h2>
-          <h2 className={`text-display italic shine-plasma glow-plasma text-[clamp(3.5rem,11vw,11rem)] mb-12 ${ctaShown ? "anim-fade-up d-2" : "opacity-0"}`}>
-            Every ad.
+          <h2 className={`text-display italic shine-plasma glow-plasma text-[clamp(2.5rem,7.5vw,6.5rem)] leading-[1.02] tracking-tight mb-10 ${ctaShown ? "anim-fade-up d-2" : "opacity-0"}`}>
+            Infinite assets.
           </h2>
           <div className={`flex items-center justify-center gap-3 flex-wrap ${ctaShown ? "anim-fade-up d-3" : "opacity-0"}`}>
             <a
@@ -90,7 +96,7 @@ export default function Footer() {
       {/* Footer */}
       <footer className="border-t border-white/[0.05] px-6 md:px-10 pt-20 pb-10 bg-coal">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
             <div className="col-span-2">
               <a href="/" className="flex items-center gap-2.5 mb-5">
                 <svg width="26" height="26" viewBox="0 0 32 32">
@@ -118,7 +124,7 @@ export default function Footer() {
             <div>
               <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Products</h4>
               <ul className="space-y-3 text-sm">
-                {["Creative Studio", "AI Video Studio", "Campaign Wizard", "URL-to-Video", "Product Staging"].map((l) => (
+                {["Creative Studio", "AI Video Studio", "Launch Orchestrator", "URL-to-Video", "Product Staging"].map((l) => (
                   <li key={l}>
                     <a
                       href="https://studio.elarislabs.ai"
@@ -134,27 +140,25 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Company</h4>
+              <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Legal</h4>
               <ul className="space-y-3 text-sm">
-                {["About", "Blog", "Careers", "Manifesto"].map((l) => (
-                  <li key={l}><a href="#" className="text-bone hover:text-halo transition-colors">{l}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Resources</h4>
-              <ul className="space-y-3 text-sm">
-                {["Docs", "Changelog", "Support", "Brand", "Terms", "Privacy"].map((l) => (
-                  <li key={l}><a href="#" className="text-bone hover:text-halo transition-colors">{l}</a></li>
+                {[
+                  { label: "Terms", href: "/terms" },
+                  { label: "Privacy", href: "/privacy-policy" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="text-bone hover:text-halo transition-colors">
+                      {l.label}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Giant wordmark */}
-          <div className="overflow-hidden mb-8">
-            <div className="text-display text-[clamp(5rem,22vw,22rem)] leading-[0.85] tracking-tighter select-none bg-gradient-to-b from-steel to-transparent bg-clip-text text-transparent">
+          {/* Giant wordmark — sized so the full word always fits within the container */}
+          <div className="mb-8 overflow-hidden">
+            <div className="text-display text-[clamp(3rem,15.5vw,13.5rem)] leading-[0.85] tracking-tighter select-none whitespace-nowrap bg-gradient-to-b from-steel to-transparent bg-clip-text text-transparent">
               ElarisLabs
             </div>
           </div>

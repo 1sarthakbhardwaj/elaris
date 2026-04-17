@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import PlatformLogos from "./PlatformLogos";
 
 /** Rotating tail — types in, pauses, erases, then advances. */
 const DYNAMIC_PHRASES = [
@@ -93,6 +94,11 @@ export default function Hero() {
           </span>
         </h1>
 
+        {/* Sub-headline — bridges the jump from headline to prompt UI */}
+        <p className="max-w-2xl mx-auto -mt-2 mb-8 text-center text-chrome/75 text-[15px] md:text-base leading-relaxed anim-fade-up d-2">
+          The Full Stack Agentic OS. Generate, composite, and scale omnichannel assets instantly with deterministic brand memory.
+        </p>
+
         {/* ——— UPPER HALF: Prompt box — roomier ——— */}
         <div className="max-w-3xl mx-auto mb-6 anim-fade-up d-3">
           <div
@@ -155,6 +161,9 @@ export default function Hero() {
               </button>
             ))}
           </div>
+
+          {/* Platform logo strip — shows distribution surfaces */}
+          <PlatformLogos />
         </div>
 
       </div>

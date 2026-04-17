@@ -37,9 +37,9 @@ const PRODUCTS: Product[] = [
   },
   {
     num: "03",
-    title: "Campaign Wizard",
-    tagline: "On-brand at scale",
-    body: "Moodboard, direction, variants, copy. Guided pipeline that turns a brief into a campaign.",
+    title: "Launch Orchestrator",
+    tagline: "Omnichannel pipeline",
+    body: "Moodboard, direction, variants, copy. A guided, multi-agent pipeline that turns a brief into hundreds of localized assets.",
     route: "/campaigns/new",
     preview: "campaign",
   },
@@ -47,7 +47,7 @@ const PRODUCTS: Product[] = [
     num: "04",
     title: "URL-to-Video",
     tagline: "One link, one ad",
-    body: "Paste a product URL — we scrape, script, voice, and render a 30-second ad with optional lipsync overlay.",
+    body: "Ingest SKU data or URLs — we scrape, script, voice, and render a 30-second ad with optional lipsync overlay.",
     route: "/url-video",
     preview: "url",
   },
@@ -55,7 +55,7 @@ const PRODUCTS: Product[] = [
     num: "05",
     title: "Product Staging",
     tagline: "Infinite environments",
-    body: "Upload a product shot. Get lifestyle stages, seasonal variants, and on-brand environments in seconds.",
+    body: "Lock in your hero product. Get lifestyle stages, seasonal variants, and on-brand environments in seconds.",
     route: "/product-staging",
     preview: "staging",
   },
@@ -146,11 +146,11 @@ export default function ProductsGrid() {
               className="text-display text-bone whitespace-nowrap leading-[1.05] tracking-tight"
               style={{ fontSize: "clamp(1.35rem, 5.2vw, 4.25rem)" }}
             >
-              The full stack, <span className="italic shine-plasma">one login.</span>
+              Your multi-agent <span className="italic shine-plasma">creative OS.</span>
             </h2>
           </div>
           <p className="text-chrome text-sm text-mono max-w-xs">
-            Every surface shares the same canvas, the same brand pack, and the same team.
+            Say goodbye to fragmented tools. Copy, visual generation, layout, and compliance are orchestrated by specialized AI agents on a single, deterministic node canvas.
           </p>
         </div>
 
