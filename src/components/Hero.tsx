@@ -28,6 +28,47 @@ export default function Hero() {
   const [promptValue, setPromptValue] = useState(DEFAULT_PROMPT);
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
 
+  const [brandFiles, setBrandFiles] = useState<File[]>([]);
+  const [productUrls, setProductUrls] = useState<string[]>([]);
+  const [urlDraft, setUrlDraft] = useState("");
+  const [urlOpen, setUrlOpen] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const urlInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleBrandFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files ?? []);
+    if (files.length === 0) return;
+    setBrandFiles((prev) => [...prev, ...files]);
+    e.target.value = "";
+  };
+
+  const removeBrandFile = (idx: number) => {
+    setBrandFiles((prev) => prev.filter((_, i) => i !== idx));
+  };
+
+  const addUrl = () => {
+    const trimmed = urlDraft.trim();
+    if (!trimmed) return;
+    setProductUrls((prev) => (prev.includes(trimmed) ? prev : [...prev, trimmed]));
+    setUrlDraft("");
+  };
+
+  const removeUrl = (idx: number) => {
+    setProductUrls((prev) => prev.filter((_, i) => i !== idx));
+  };
+
+  const handleGenerate = () => {
+    const params = new URLSearchParams();
+    if (promptValue.trim()) params.set("prompt", promptValue.trim());
+    productUrls.forEach((u) => params.append("productUrl", u));
+    if (brandFiles.length > 0) {
+      params.set("brandFiles", brandFiles.map((f) => f.name).join(","));
+    }
+    const qs = params.toString();
+    const url = `https://studio.elarislabs.ai${qs ? `?${qs}` : ""}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   useEffect(() => {
     const full = DYNAMIC_PHRASES[phraseIdx];
 
@@ -118,34 +159,178 @@ export default function Hero() {
               className="w-full bg-transparent resize-none outline-none border-0 px-3 pt-2 pb-5 min-h-[130px] text-[17px] md:text-[18px] leading-relaxed text-bone placeholder:text-chrome/60 caret-halo selection:bg-halo/25 selection:text-bone"
             />
 
+            {/* Attached items row — chips for brand files and product URLs */}
+            {(brandFiles.length > 0 || productUrls.length > 0) && (
+              <div
+                className="flex flex-wrap gap-1.5 px-3 pb-3"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {brandFiles.map((f, i) => (
+                  <span
+                    key={`bf-${i}-${f.name}`}
+                    className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-halo/10 border border-halo/25 text-halo max-w-[240px]"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                    </svg>
+                    <span className="truncate">{f.name}</span>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${f.name}`}
+                      onClick={() => removeBrandFile(i)}
+                      className="text-halo/70 hover:text-halo transition-colors"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </span>
+                ))}
+                {productUrls.map((u, i) => (
+                  <span
+                    key={`pu-${i}-${u}`}
+                    className="inline-flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/15 text-bone/90 max-w-[260px]"
+                  >
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                    </svg>
+                    <span className="truncate">{u}</span>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${u}`}
+                      onClick={() => removeUrl(i)}
+                      className="text-chrome hover:text-bone transition-colors"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* URL input popover — opens under the action bar */}
+            {urlOpen && (
+              <div
+                className="mb-3 mx-1 flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-2 py-1.5"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" className="text-chrome ml-1 shrink-0">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                <input
+                  ref={urlInputRef}
+                  type="url"
+                  inputMode="url"
+                  placeholder="https://your-product-page.com"
+                  value={urlDraft}
+                  onChange={(e) => setUrlDraft(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      addUrl();
+                    } else if (e.key === "Escape") {
+                      setUrlOpen(false);
+                    }
+                  }}
+                  className="flex-1 bg-transparent outline-none border-0 text-sm text-bone placeholder:text-chrome/50 py-1"
+                />
+                <button
+                  type="button"
+                  onClick={addUrl}
+                  className="text-[11px] font-medium px-2.5 py-1 rounded-md bg-halo/15 border border-halo/30 text-halo hover:bg-halo/20 transition-colors"
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  aria-label="Close"
+                  onClick={() => setUrlOpen(false)}
+                  className="text-chrome hover:text-bone p-1 transition-colors"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            )}
+
             {/* Bottom action bar */}
             <div className="flex items-center justify-between pt-4 border-t border-white/[0.08] gap-3">
               <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-hide">
-                <button className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/[0.10] text-chrome hover:text-bone hover:border-white/25 hover:bg-white/5 transition-all whitespace-nowrap">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  multiple
+                  accept="image/*,.pdf,.zip,.ai,.psd,.svg"
+                  onChange={handleBrandFiles}
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    fileInputRef.current?.click();
+                  }}
+                  className={`flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border transition-all whitespace-nowrap ${
+                    brandFiles.length > 0
+                      ? "border-halo/35 bg-halo/10 text-halo"
+                      : "border-white/[0.10] text-chrome hover:text-bone hover:border-white/25 hover:bg-white/5"
+                  }`}
+                >
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 5v14M5 12h14" />
                   </svg>
                   Attach Brand Kit
+                  {brandFiles.length > 0 && (
+                    <span className="text-[10px] font-semibold">({brandFiles.length})</span>
+                  )}
                 </button>
-                <button className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border border-white/[0.10] text-chrome hover:text-bone hover:border-white/25 hover:bg-white/5 transition-all whitespace-nowrap">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setUrlOpen((v) => {
+                      const next = !v;
+                      if (next) {
+                        setTimeout(() => urlInputRef.current?.focus(), 0);
+                      }
+                      return next;
+                    });
+                  }}
+                  aria-expanded={urlOpen}
+                  className={`flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg border transition-all whitespace-nowrap ${
+                    productUrls.length > 0 || urlOpen
+                      ? "border-halo/35 bg-halo/10 text-halo"
+                      : "border-white/[0.10] text-chrome hover:text-bone hover:border-white/25 hover:bg-white/5"
+                  }`}
+                >
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 5v14M5 12h14" />
                   </svg>
                   Attach Product URLs
+                  {productUrls.length > 0 && (
+                    <span className="text-[10px] font-semibold">({productUrls.length})</span>
+                  )}
                 </button>
               </div>
 
-              <a
-                href="https://studio.elarislabs.ai"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleGenerate();
+                }}
                 className="group bg-gradient-to-br from-lume to-halo text-coal text-sm font-semibold px-5 py-2.5 rounded-lg flex items-center gap-1.5 shrink-0 shadow-[0_0_30px_-5px_rgba(168,205,239,0.6)] hover:shadow-[0_0_50px_-5px_rgba(168,205,239,0.85)] hover:brightness-110 transition-all"
               >
                 Generate
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform group-hover:translate-x-0.5">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
 

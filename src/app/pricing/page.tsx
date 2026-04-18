@@ -27,6 +27,8 @@ interface Plan {
   credits: number;
   breakdown: { images: number; videos: number; texts: number };
   seats: string;
+  /** Additional feature rows rendered beneath seats. */
+  features: string[];
   cta: string;
   highlight?: boolean;
 }
@@ -41,6 +43,7 @@ const PLANS: Plan[] = [
     credits: 200,
     breakdown: { images: 20, videos: 1, texts: 200 },
     seats: "Unlimited seats",
+    features: ["Team workspace"],
     cta: "Get Started Free",
   },
   {
@@ -48,10 +51,11 @@ const PLANS: Plan[] = [
     name: "Growth",
     description:
       "For small creative teams developing ideas and producing focused deliverables.",
-    monthly: 49,
+    monthly: 29,
     credits: 500,
     breakdown: { images: 50, videos: 2, texts: 500 },
     seats: "Unlimited seats",
+    features: ["Team workspace"],
     cta: "Start Growth",
   },
   {
@@ -60,10 +64,11 @@ const PLANS: Plan[] = [
     description:
       "For creative teams producing high-volume final assets with full control over every detail.",
     tagline: "Most Popular",
-    monthly: 399,
+    monthly: 199,
     credits: 5000,
     breakdown: { images: 500, videos: 20, texts: 5000 },
     seats: "Unlimited seats",
+    features: ["Team workspace"],
     cta: "Start Scaling",
     highlight: true,
   },
@@ -309,6 +314,12 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
               <Check className="w-3.5 h-3.5 text-halo shrink-0" />
               <span>{plan.seats}</span>
             </li>
+            {plan.features.map((f) => (
+              <li key={f} className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-halo shrink-0" />
+                <span>{f}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
