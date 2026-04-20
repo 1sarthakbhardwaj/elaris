@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ElarisLabs AI — Logo previews</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600&display=swap"
+    />
+    <style>
+      :root {
+        --coal: #07070a;
+        --bone: #eef0f3;
+        --lume: #f7f8fa;
+        --chrome: #8a8f9c;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Geist", system-ui, -apple-system, sans-serif;
+        background: #111;
+        color: var(--bone);
+        padding: 48px;
+        display: grid;
+        gap: 32px;
+      }
+      h1 {
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 22px;
+        margin: 0 0 8px;
+        letter-spacing: -0.01em;
+      }
+      .label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--chrome);
+        margin-bottom: 14px;
+      }
+      .tile {
+        border-radius: 18px;
+        padding: 56px 48px;
+        display: grid;
+        gap: 28px;
+        place-items: start;
+      }
+      .tile.dark  { background: var(--coal); border: 1px solid rgba(255,255,255,0.06); }
+      .tile.light { background: var(--lume); border: 1px solid rgba(0,0,0,0.06); color: var(--coal); }
+      .tile img { display: block; height: auto; }
+      .size-row { display: grid; gap: 20px; }
+      .size-row img + img { margin-top: 4px; }
+      .note { font-size: 13px; color: var(--chrome); max-width: 70ch; line-height: 1.6; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>ElarisLabs AI — Logo previews</h1>
+      <p class="note">
+        Icon concept: an <strong>ad canvas</strong> (rounded frame, the universal container for any ad)
+        with a <strong>play triangle</strong> inside — reads as "creative &amp; video in motion."
+        The short bar below hints at a campaign timeline / CTA rail. Simple geometry, memorable at 16×16.
+      </p>
+    </header>
+
+    <div class="grid">
+      <div class="tile dark">
+        <div class="label">Dark mode · logo.svg</div>
+        <div class="size-row">
+          <img src="/logo.svg" alt="ElarisLabs AI logo dark" height="56" />
+          <img src="/logo.svg" alt="" height="36" />
+          <img src="/logo.svg" alt="" height="22" />
+        </div>
+      </div>
+
+      <div class="tile light">
+        <div class="label">Light mode · logo-light.svg</div>
+        <div class="size-row">
+          <img src="/logo-light.svg" alt="ElarisLabs AI logo light" height="56" />
+          <img src="/logo-light.svg" alt="" height="36" />
+          <img src="/logo-light.svg" alt="" height="22" />
+        </div>
+      </div>
+    </div>
+
+    <p class="note">
+      Open this file while <code>npm run dev</code> is running — the SVGs load via the Next.js public
+      folder at <code>/logo.svg</code> and <code>/logo-light.svg</code>. Each variant is shown at three
+      sizes (56 / 36 / 22 px) to verify legibility.
+    </p>
+  </body>
+</html>

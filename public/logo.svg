@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 64" role="img" aria-label="ElarisLabs AI">
+  <title>ElarisLabs AI</title>
+  <defs>
+    <linearGradient id="plasma" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F2FB"/>
+      <stop offset="50%" stop-color="#A8CDEF"/>
+      <stop offset="100%" stop-color="#6DA6D9"/>
+    </linearGradient>
+    <style>
+      .wordmark {
+        font-family: "Bricolage Grotesque", "Geist", system-ui, -apple-system, Segoe UI, sans-serif;
+        font-weight: 600;
+        font-size: 26px;
+        letter-spacing: 3.64px;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(16 16)">
+    <g fill="none" stroke="#EEF0F3" stroke-width="1.5">
+      <circle cx="16" cy="16" r="14" opacity="0.25"/>
+      <circle cx="16" cy="16" r="10" opacity="0.5"/>
+      <circle cx="16" cy="16" r="6"/>
+    </g>
+    <circle cx="16" cy="16" r="2" fill="#A8CDEF"/>
+  </g>
+
+  <g class="wordmark" dominant-baseline="middle">
+    <text x="60" y="34" fill="#EEF0F3">ELARISLABS</text>
+    <text x="265" y="34" fill="url(#plasma)">AI</text>
+  </g>
+</svg>

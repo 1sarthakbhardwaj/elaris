@@ -79,7 +79,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://studio.elarislabs.ai"
+              href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="glass text-base font-medium px-8 py-4 rounded-full text-bone hover:bg-white/5 hover:border-halo/30 transition-colors"
