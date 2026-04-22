@@ -1,0 +1,13 @@
+# robots.txt for https://elarislabs.ai
+#
+# Spec:    https://www.rfc-editor.org/rfc/rfc9309
+# Google:  https://developers.google.com/search/docs/crawling-indexing/robots/intro
+#
+# The entire site is open to crawling. To keep a specific page out of
+# search results, use a `noindex` meta tag or password protection instead
+# of a Disallow rule (robots.txt controls crawling, not indexing).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://elarislabs.ai/sitemap.xml
