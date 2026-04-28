@@ -1,9 +1,10 @@
 "use client";
 
+import { STUDIO_APP_URL } from "@/lib/site";
 import { useReveal } from "./useReveal";
 import StudioMiniCanvas from "./StudioMiniCanvas";
 import VideoStudioMini from "./previews/VideoStudioMini";
-import CampaignWizardMini from "./previews/CampaignWizardMini";
+import TrackLaunchMini from "./previews/TrackLaunchMini";
 import UrlToVideoMini from "./previews/UrlToVideoMini";
 import ProductStagingMini from "./previews/ProductStagingMini";
 
@@ -13,7 +14,7 @@ type Product = {
   tagline: string;
   body: string;
   route: string;
-  preview: "studio" | "video" | "campaign" | "url" | "staging";
+  preview: "studio" | "video" | "track" | "url" | "staging";
   featured?: boolean;
 };
 
@@ -37,11 +38,12 @@ const PRODUCTS: Product[] = [
   },
   {
     num: "03",
-    title: "Launch Orchestrator",
-    tagline: "Omnichannel pipeline",
-    body: "Moodboard, direction, variants, copy. A guided, multi-agent pipeline that turns a brief into hundreds of localized assets.",
-    route: "/campaigns/new",
-    preview: "campaign",
+    title: "Launch & Track Performance",
+    tagline: "Schedule · Publish · Measure",
+    body:
+      "Schedule creatives to every major ad surface from one pipeline, then watch spend, ROAS, CPA, and CVR roll up in real time — so media and creative finally share one scoreboard.",
+    route: "/campaigns/track",
+    preview: "track",
   },
   {
     num: "04",
@@ -64,7 +66,7 @@ const PRODUCTS: Product[] = [
 function MiniPreview({ type }: { type: Product["preview"] }) {
   if (type === "studio") return <StudioMiniCanvas />;
   if (type === "video") return <VideoStudioMini />;
-  if (type === "campaign") return <CampaignWizardMini />;
+  if (type === "track") return <TrackLaunchMini />;
   if (type === "url") return <UrlToVideoMini />;
   return <ProductStagingMini />;
 }
@@ -91,7 +93,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
       {/* Body zone — the only clickable region that navigates */}
       <a
-        href="https://studio.elarislabs.ai"
+        href={STUDIO_APP_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="block p-6"

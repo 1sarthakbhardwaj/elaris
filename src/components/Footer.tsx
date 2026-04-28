@@ -1,5 +1,6 @@
 "use client";
 
+import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
 import { useReveal } from "./useReveal";
 
 const STATS: { num: string; label: string }[] = [
@@ -68,23 +69,23 @@ export default function Footer() {
           </h2>
           <div className={`flex items-center justify-center gap-3 flex-wrap ${ctaShown ? "anim-fade-up d-3" : "opacity-0"}`}>
             <a
-              href="https://studio.elarislabs.ai"
+              href={CALENDLY_BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-gradient-to-br from-lume to-halo text-coal text-base font-semibold px-8 py-4 rounded-full flex items-center gap-2 shadow-[0_0_40px_-8px_rgba(168,205,239,0.6)] hover:shadow-[0_0_60px_-8px_rgba(168,205,239,0.9)] hover:brightness-110 transition-all"
             >
-              Start free
+              Book a demo
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform group-hover:translate-x-0.5">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </a>
             <a
-              href="https://calendly.com/sarthak-bhardwaj-elarislabs/30min"
+              href={STUDIO_APP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="glass text-base font-medium px-8 py-4 rounded-full text-bone hover:bg-white/5 hover:border-halo/30 transition-colors"
             >
-              Book a demo →
+              Start free
             </a>
           </div>
           <p className={`text-xs text-mono text-chrome mt-8 ${ctaShown ? "anim-fade-up d-4" : "opacity-0"}`}>
@@ -128,10 +129,16 @@ export default function Footer() {
             <div>
               <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Products</h4>
               <ul className="space-y-3 text-sm">
-                {["Creative Studio", "AI Video Studio", "Launch Orchestrator", "URL-to-Video", "Product Staging"].map((l) => (
+                {[
+                  "Creative Studio",
+                  "AI Video Studio",
+                  "Launch & Track Performance",
+                  "URL-to-Video",
+                  "Product Staging",
+                ].map((l) => (
                   <li key={l}>
                     <a
-                      href="https://studio.elarislabs.ai"
+                      href={STUDIO_APP_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-bone hover:text-halo transition-colors"

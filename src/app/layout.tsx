@@ -59,10 +59,57 @@ export const viewport: Viewport = {
   themeColor: "#07070A",
 };
 
+/**
+ * JSON-LD structured data — helps Google surface ElarisLabs in
+ * knowledge-panel and rich-result formats. Validate changes at
+ * https://search.google.com/test/rich-results.
+ */
+const STRUCTURED_DATA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ElarisLabs",
+    legalName: "Elaris Labs AI",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.svg`,
+    description: SITE_DESCRIPTION,
+    sameAs: [
+      "https://www.linkedin.com/company/elarislabs",
+      "https://x.com/elarislabs",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "ElarisLabs",
+    applicationCategory: "DesignApplication",
+    operatingSystem: "Web",
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ElarisLabs",
+      url: SITE_URL,
+    },
+  },
+];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="noise">{children}</body>
+      <body className="noise">
+        {children}
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
+        />
+      </body>
     </html>
   );
 }

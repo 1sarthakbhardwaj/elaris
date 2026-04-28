@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -56,7 +57,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://studio.elarislabs.ai"
+            href={STUDIO_APP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:block text-sm text-chrome hover:text-bone transition-colors"
@@ -64,12 +65,12 @@ export default function Navbar() {
             Sign in
           </a>
           <a
-            href="https://studio.elarislabs.ai"
+            href={CALENDLY_BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gradient-to-br from-lume to-halo text-coal text-sm font-semibold px-5 py-2 rounded-full border border-white/20 shadow-[0_0_25px_-5px_rgba(168,205,239,0.55)] hover:shadow-[0_0_45px_-5px_rgba(168,205,239,0.85)] hover:brightness-110 transition-all"
           >
-            Start free
+            Book a demo
           </a>
         </div>
       </div>

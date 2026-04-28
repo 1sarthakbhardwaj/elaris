@@ -11,8 +11,11 @@ import {
 } from "@/components/legal/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions — ElarisLabs",
-  description: "Terms and Conditions for ElarisLabs.",
+  title: "Terms and Conditions | ElarisLabs",
+  description:
+    "The Terms and Conditions governing your access to and use of elarislabs.ai and the ElarisLabs Services.",
+  alternates: { canonical: "/terms" },
+  robots: { index: true, follow: true },
 };
 
 export default function TermsPage() {

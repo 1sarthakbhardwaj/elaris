@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { STUDIO_APP_URL } from "@/lib/site";
 import PlatformLogos from "./PlatformLogos";
 
 /** Rotating tail — types in, pauses, erases, then advances. */
@@ -23,8 +24,11 @@ const DEFAULT_PROMPT =
 
 export default function Hero() {
   const [phraseIdx, setPhraseIdx] = useState(0);
-  const [typed, setTyped] = useState("");
-  const [phase, setPhase] = useState<"typing" | "pausing" | "erasing">("typing");
+  // Seed the rotating word with the first full phrase so the SSR snapshot
+  // emits a complete <h1> to crawlers (important for SEO — Googlebot's first
+  // pass reads the server HTML, not the post-hydration animated state).
+  const [typed, setTyped] = useState(DYNAMIC_PHRASES[0]);
+  const [phase, setPhase] = useState<"typing" | "pausing" | "erasing">("pausing");
   const [promptValue, setPromptValue] = useState(DEFAULT_PROMPT);
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -65,7 +69,7 @@ export default function Hero() {
       params.set("brandFiles", brandFiles.map((f) => f.name).join(","));
     }
     const qs = params.toString();
-    const url = `https://studio.elarislabs.ai${qs ? `?${qs}` : ""}`;
+    const url = `${STUDIO_APP_URL}${qs ? `?${qs}` : ""}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
