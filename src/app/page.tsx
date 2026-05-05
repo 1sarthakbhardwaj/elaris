@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProductsGrid from "@/components/ProductsGrid";
+import VideoResources from "@/components/VideoResources";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 
@@ -10,6 +11,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <ProductsGrid />
+      <VideoResources />
       <Faq />
       <Footer />
     </main>
