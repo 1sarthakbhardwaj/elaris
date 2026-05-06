@@ -12,6 +12,14 @@ const DYNAMIC_PHRASES = [
   "trust with your brand.",
 ];
 
+/** The longest phrase reserves a fixed slot for the rotating tail so the
+ *  static lead ("AI design & creative you can") never shifts horizontally
+ *  while the tail types in or erases. */
+const LONGEST_PHRASE = DYNAMIC_PHRASES.reduce(
+  (a, b) => (b.length > a.length ? b : a),
+  "",
+);
+
 const EXAMPLE_PILLS = [
   "Omnichannel Launch",
   "Localization",
@@ -114,27 +122,39 @@ export default function Hero() {
       />
 
       <div className="relative max-w-[1480px] mx-auto pt-8">
-        {/* Single-line headline — static lead is pinned to the right edge of
-            its own slot, rotating tail grows/shrinks to its left edge. The
-            group as a whole is centered, but the split around the gap acts
-            like a stable rail so the lead's right edge never shifts. */}
+        {/* Single-line headline — the static lead is pinned in place; only
+            the rotating tail animates. The tail's slot reserves the width of
+            the longest phrase via a hidden ghost layer (CSS grid overlay), so
+            the headline's total width is constant through the typing cycle
+            and the lead never shifts as letters type in or erase. */}
         <h1
           className="text-display text-[clamp(1.15rem,2.8vw,2.85rem)] mb-8 anim-fade-up d-1 leading-tight whitespace-nowrap flex justify-center"
           aria-live="polite"
         >
           <span className="inline-flex items-baseline whitespace-nowrap">
-            {/* Lead — right-aligned in its slot → right edge is the anchor */}
-            <span className="text-bone text-right">
+            <span className="text-bone">
               AI design &amp; creative you can
             </span>
-            {/* Rotating tail — left-aligned so it grows to the right only */}
-            <span className="inline-flex items-baseline whitespace-nowrap pl-[0.3em] text-left">
-              <span className="italic shine-plasma glow-plasma">{typed}</span>
+            <span className="grid pl-[0.3em] text-left items-baseline">
+              {/* Ghost: reserves the width of the longest phrase so the
+                  headline's total width never changes during the type/erase
+                  cycle. Hidden from accessibility. */}
               <span
-                className="inline-block align-middle ml-0.5 anim-blink bg-halo"
-                style={{ width: "0.06em", height: "0.7em" }}
                 aria-hidden
-              />
+                className="italic invisible whitespace-nowrap [grid-area:1/1]"
+              >
+                {LONGEST_PHRASE}
+              </span>
+              {/* Visible rotating tail — overlays the ghost in the same grid
+                  cell, left-aligned, with a baseline that matches the lead. */}
+              <span className="inline-flex items-baseline whitespace-nowrap [grid-area:1/1]">
+                <span className="italic shine-plasma glow-plasma">{typed}</span>
+                <span
+                  className="inline-block align-middle ml-0.5 anim-blink bg-halo"
+                  style={{ width: "0.06em", height: "0.7em" }}
+                  aria-hidden
+                />
+              </span>
             </span>
           </span>
         </h1>
