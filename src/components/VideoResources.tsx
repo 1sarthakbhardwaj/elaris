@@ -9,14 +9,21 @@ type Video = {
   channel: string;
   start?: number;
   featured?: boolean;
+  badge?: string;
 };
 
 const VIDEOS: Video[] = [
   {
+    id: "PXcPa8zT5_s",
+    title: "ElarisLabs — newest drop",
+    channel: "ElarisLabs",
+    featured: true,
+    badge: "Newly Launched",
+  },
+  {
     id: "rMB7b3Qn7V4",
     title: "Inside ElarisLabs — the multi-agent creative OS",
     channel: "ElarisLabs",
-    featured: true,
   },
   {
     id: "F-CnNnzzOQM",
@@ -145,6 +152,15 @@ function VideoCard({ video, index }: { video: Video; index: number }) {
               <span className="h-1.5 w-1.5 rounded-full bg-plasma shadow-[0_0_8px_rgba(168,205,239,0.8)]" />
               YouTube
             </span>
+            {video.badge && (
+              <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full glass-plasma text-[10px] text-mono uppercase tracking-[0.2em] text-bone shadow-[0_0_24px_rgba(168,205,239,0.25)]">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inset-0 rounded-full bg-halo animate-ping opacity-75" />
+                  <span className="relative h-1.5 w-1.5 rounded-full bg-halo shadow-[0_0_8px_rgba(168,205,239,0.9)]" />
+                </span>
+                {video.badge}
+              </span>
+            )}
             <PlayBadge />
             <span
               aria-hidden
