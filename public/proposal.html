@@ -353,6 +353,120 @@
     .logo-item { animation: none; opacity: 1; transform: none; }
   }
 
+  /* ---------- Showcase marquee ---------- */
+  .showcase {
+    padding: clamp(72px, 9vw, 120px) 0 clamp(60px, 7vw, 100px);
+    position: relative;
+    overflow: hidden;
+  }
+  .showcase-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto clamp(40px, 5vw, 64px);
+    padding: 0 28px;
+  }
+  .showcase-head .eyebrow { margin-bottom: 18px; }
+  .showcase-head h2 { margin-top: 12px; }
+  .showcase-head p {
+    margin-top: 18px;
+    color: var(--text-dim);
+    font-size: clamp(15px, 1.3vw, 18px);
+  }
+
+  /* Marquee track */
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 22px;
+    width: max-content;
+    animation: marqueeScroll 60s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track.reverse { animation-direction: reverse; animation-duration: 75s; }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee + .marquee { margin-top: 22px; }
+
+  .show-card {
+    position: relative;
+    flex: 0 0 auto;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0d0b1f;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+      0 24px 60px -24px rgba(0,0,0,0.6),
+      0 0 0 1px rgba(255,255,255,0.03) inset;
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+  }
+  .show-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(168,85,247,0.45);
+    box-shadow:
+      0 30px 70px -20px rgba(168,85,247,0.4),
+      0 0 0 1px rgba(168,85,247,0.25) inset;
+  }
+  .show-card video,
+  .show-card img {
+    width: auto;
+    height: clamp(220px, 26vw, 340px);
+    max-width: none;
+    object-fit: contain;
+    display: block;
+    background: #0d0b1f;
+  }
+  .show-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 70%, rgba(7,6,17,0.55) 100%);
+    pointer-events: none;
+  }
+  .show-card .show-tag {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(13,11,31,0.7);
+    border: 1px solid rgba(168,85,247,0.42);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+  .show-card .show-tag::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--violet);
+    box-shadow: 0 0 8px var(--violet);
+  }
+
+  @media (max-width: 720px) {
+    .show-card video,
+    .show-card img { height: 180px; }
+    .marquee-track { gap: 14px; }
+    .marquee + .marquee { margin-top: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
   /* ---------- Value band ---------- */
   .valueband {
     padding: clamp(40px, 5vw, 64px) 0;
@@ -1042,6 +1156,157 @@
           </div>
           <div class="logo-item n5" title="Dodla Paneer">
             <img src="/landing/images/dodla.png" alt="Dodla" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= SHOWCASE MARQUEE ============= -->
+    <section class="showcase" id="showcase" aria-label="Generated with ElarisLabs">
+      <div class="showcase-head reveal">
+        <span class="eyebrow"><span class="dot"></span>Made with ElarisLabs</span>
+        <h2>Real campaigns, <span class="serif grad-text">made agentic.</span></h2>
+        <p>A collage of product, food, beauty, pharma, and brand creatives generated inside the ElarisLabs studio.</p>
+      </div>
+
+      <!-- Row 1: scrolls left -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="show-card">
+            <video src="/landing/videos/qatarpharma_10s_novo1998_1998x1080_final_audio.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Pharma · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/kitkat.png" alt="KitKat generated ad creative" loading="lazy" />
+            <span class="show-tag">Snack · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/crystal_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Beverage · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/mcdonalds%20arabic.png" alt="McDonald's Arabic generated ad creative" loading="lazy" />
+            <span class="show-tag">Food · Arabic</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/p%26g.png" alt="P&amp;G generated brand creative" loading="lazy" />
+            <span class="show-tag">CPG · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/elite_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Beauty · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/pepsico.png" alt="PepsiCo generated product creative" loading="lazy" />
+            <span class="show-tag">Beverage · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/chocolate.png" alt="Chocolate generated ad creative" loading="lazy" />
+            <span class="show-tag">Confectionery · Image</span>
+          </div>
+
+          <div class="show-card">
+            <video src="/landing/videos/qatarpharma_10s_novo1998_1998x1080_final_audio.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Pharma · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/kitkat.png" alt="KitKat generated ad creative" loading="lazy" />
+            <span class="show-tag">Snack · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/crystal_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Beverage · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/mcdonalds%20arabic.png" alt="McDonald's Arabic generated ad creative" loading="lazy" />
+            <span class="show-tag">Food · Arabic</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/p%26g.png" alt="P&amp;G generated brand creative" loading="lazy" />
+            <span class="show-tag">CPG · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/elite_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Beauty · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/pepsico.png" alt="PepsiCo generated product creative" loading="lazy" />
+            <span class="show-tag">Beverage · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/chocolate.png" alt="Chocolate generated ad creative" loading="lazy" />
+            <span class="show-tag">Confectionery · Image</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: scrolls right (reverse) -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track reverse">
+          <div class="show-card">
+            <img src="/landing/videos/himalyan.png" alt="Himalayan generated product creative" loading="lazy" />
+            <span class="show-tag">Wellness · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/studio-node-9-1778832091706.png" alt="Streetwear" loading="lazy" />
+            <span class="show-tag">Streetwear · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/chocolate.png" alt="Chocolate generated ad creative" loading="lazy" />
+            <span class="show-tag">Chocolate · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/crystal_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Product · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/studio-node-4-1778831633978.png" alt="Studio look" loading="lazy" />
+            <span class="show-tag">Studio · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/mcdonalds%20arabic.png" alt="McDonald's Arabic generated ad creative" loading="lazy" />
+            <span class="show-tag">QSR · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/elite_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Campaign · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/studio-node-6-1778831880977.png" alt="Editorial" loading="lazy" />
+            <span class="show-tag">Editorial · Image</span>
+          </div>
+
+          <div class="show-card">
+            <img src="/landing/videos/himalyan.png" alt="Himalayan generated product creative" loading="lazy" />
+            <span class="show-tag">Wellness · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/studio-node-9-1778832091706.png" alt="Streetwear" loading="lazy" />
+            <span class="show-tag">Streetwear · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/chocolate.png" alt="Chocolate generated ad creative" loading="lazy" />
+            <span class="show-tag">Chocolate · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/crystal_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Product · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/studio-node-4-1778831633978.png" alt="Studio look" loading="lazy" />
+            <span class="show-tag">Studio · Image</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/mcdonalds%20arabic.png" alt="McDonald's Arabic generated ad creative" loading="lazy" />
+            <span class="show-tag">QSR · Image</span>
+          </div>
+          <div class="show-card">
+            <video src="/landing/videos/elite_10s_novo_1998x1080_final.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <span class="show-tag">Campaign · Video</span>
+          </div>
+          <div class="show-card">
+            <img src="/landing/videos/studio-node-6-1778831880977.png" alt="Editorial" loading="lazy" />
+            <span class="show-tag">Editorial · Image</span>
           </div>
         </div>
       </div>
