@@ -1644,20 +1644,20 @@
 
     // ----- Particles: swirling galaxy in 3D -----
     // Each particle has spherical coords (theta, phi) + radius around the orb.
-    var PARTICLES = 320;
+    var PARTICLES = 180;
     var particles = [];
     for (var i = 0; i < PARTICLES; i++) {
       var theta = Math.random() * Math.PI * 2;
       var phi = Math.acos(2 * Math.random() - 1);
-      var r = 0.65 + Math.random() * 0.55; // 0.65..1.20 (relative to scale)
-      var bandTilt = (Math.random() - 0.5) * 0.4; // little spread off the disk
+      var r = 0.78 + Math.random() * 0.48; // 0.78..1.26 (relative to scale)
+      var bandTilt = (Math.random() - 0.5) * 0.22; // restrained spread off the disk
       particles.push({
         theta: theta,
         phi: phi,
         r: r,
         bandTilt: bandTilt,
-        speed: 0.0008 + Math.random() * 0.0018,
-        size: 0.6 + Math.pow(Math.random(), 2) * 2.6,
+        speed: 0.0005 + Math.random() * 0.0011,
+        size: 0.45 + Math.pow(Math.random(), 2) * 1.8,
         hue: Math.random(),
         twinkle: Math.random() * Math.PI * 2
       });
@@ -1721,9 +1721,9 @@
       mouse.x += (mouse.tx - mouse.x) * 0.04;
       mouse.y += (mouse.ty - mouse.y) * 0.04;
 
-      var scale = Math.min(W, H) * 0.55; // overall sphere scale
-      var cx = c.cx + mouse.x * 18;
-      var cy = c.cy + mouse.y * 14;
+      var scale = Math.min(W, H) * 0.58; // overall sphere scale
+      var cx = c.cx + mouse.x * 16;
+      var cy = c.cy + mouse.y * 12;
 
       // Hard clear (no trails, crisp)
       ctx.fillStyle = '#070611';
@@ -1784,8 +1784,8 @@
 
       // ----- Particle galaxy (swirling sphere of particles around the orb) -----
       // We rotate by t to give the whole sphere a slow spin.
-      var spin = t * 0.18;
-      var tilt = 0.45 + 0.06 * Math.sin(t * 0.3); // tilt of the orbital disk
+      var spin = t * 0.12;
+      var tilt = 0.38 + 0.04 * Math.sin(t * 0.3); // tilt of the orbital disk
 
       // sort by depth approximation: draw back→front per frame
       var rendered = [];
@@ -1809,7 +1809,7 @@
       rendered.forEach(function (rp) {
         var depth = (rp.z + 1) / 2; // 0..1 (1 = front)
         var size = rp.p.size * (0.5 + depth * 1.1);
-        var alphaCore = 0.55 + depth * 0.45 + 0.18 * Math.sin(t * 2 + rp.p.twinkle);
+        var alphaCore = 0.28 + depth * 0.48 + 0.12 * Math.sin(t * 2 + rp.p.twinkle);
         // Color shift: front particles whiter/violet, back ones pink/violet
         var col = rp.p.hue < 0.5
           ? '168, 85, 247'
@@ -1830,93 +1830,143 @@
         ctx.fill();
       });
 
-      // ----- The big glowing orb (anchor of the composition) -----
-      var orbR = scale * 0.42 * (1 + 0.02 * Math.sin(t * 1.4));
+      // ----- Sophisticated glass globe (anchor of the composition) -----
+      var orbR = scale * 0.38 * (1 + 0.01 * Math.sin(t * 1.1));
+      var globeSpin = t * 0.18;
 
-      // Outer corona, large soft halo
-      var corona = ctx.createRadialGradient(cx, cy, orbR * 0.3, cx, cy, orbR * 3);
-      corona.addColorStop(0, 'rgba(217, 70, 239, 0.45)');
-      corona.addColorStop(0.35, 'rgba(168, 85, 247, 0.30)');
-      corona.addColorStop(0.7, 'rgba(124, 58, 237, 0.10)');
+      // Deep halo with a cleaner, more premium falloff.
+      var corona = ctx.createRadialGradient(cx, cy, orbR * 0.25, cx, cy, orbR * 3.35);
+      corona.addColorStop(0, 'rgba(236, 214, 255, 0.34)');
+      corona.addColorStop(0.22, 'rgba(168, 85, 247, 0.30)');
+      corona.addColorStop(0.52, 'rgba(91, 33, 182, 0.16)');
       corona.addColorStop(1, 'rgba(7, 6, 17, 0)');
       ctx.fillStyle = corona;
-      ctx.fillRect(cx - orbR * 3, cy - orbR * 3, orbR * 6, orbR * 6);
+      ctx.fillRect(cx - orbR * 3.35, cy - orbR * 3.35, orbR * 6.7, orbR * 6.7);
 
-      // Orb body: deep violet sphere with white-hot core highlight, offset-lit
-      var lightX = cx - orbR * 0.35 + Math.sin(t * 0.3) * orbR * 0.05;
-      var lightY = cy - orbR * 0.45;
-      var body = ctx.createRadialGradient(lightX, lightY, orbR * 0.05, cx, cy, orbR);
-      body.addColorStop(0, 'rgba(255, 255, 255, 1)');
-      body.addColorStop(0.18, 'rgba(245, 220, 255, 0.98)');
-      body.addColorStop(0.5, 'rgba(168, 85, 247, 0.96)');
-      body.addColorStop(0.85, 'rgba(96, 36, 180, 0.95)');
-      body.addColorStop(1, 'rgba(45, 14, 100, 1)');
+      // Back orbital planes sit behind the globe.
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(-0.18 + mouse.x * 0.03);
+      for (var ring = 0; ring < 3; ring++) {
+        ctx.beginPath();
+        ctx.ellipse(0, 0, orbR * (1.25 + ring * 0.22), orbR * (0.35 + ring * 0.06), 0, Math.PI, Math.PI * 2);
+        ctx.lineWidth = ring === 0 ? 1.4 : 0.8;
+        ctx.strokeStyle = ring === 0 ? 'rgba(236, 214, 255, 0.30)' : 'rgba(168, 85, 247, 0.18)';
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Glass body: cooler highlight, deeper violet limb.
+      var lightX = cx - orbR * 0.38 + Math.sin(t * 0.22) * orbR * 0.04;
+      var lightY = cy - orbR * 0.46;
+      var body = ctx.createRadialGradient(lightX, lightY, orbR * 0.04, cx, cy, orbR * 1.08);
+      body.addColorStop(0, 'rgba(255, 255, 255, 0.98)');
+      body.addColorStop(0.12, 'rgba(245, 231, 255, 0.96)');
+      body.addColorStop(0.36, 'rgba(191, 149, 255, 0.93)');
+      body.addColorStop(0.64, 'rgba(109, 40, 217, 0.96)');
+      body.addColorStop(0.88, 'rgba(49, 18, 112, 0.98)');
+      body.addColorStop(1, 'rgba(18, 10, 48, 1)');
       ctx.beginPath();
       ctx.arc(cx, cy, orbR, 0, Math.PI * 2);
       ctx.fillStyle = body;
       ctx.fill();
 
-      // Subsurface scattering shimmer on the dark side
+      // Subtle inner globe grid clipped to the sphere.
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, orbR * 0.985, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.translate(cx, cy);
+      ctx.rotate(globeSpin * 0.2);
+      ctx.lineWidth = 0.85;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
+      for (var lat = -3; lat <= 3; lat++) {
+        var ly = (lat / 4) * orbR;
+        var latScale = Math.cos((lat / 4) * Math.PI * 0.5);
+        ctx.beginPath();
+        ctx.ellipse(0, ly, orbR * latScale, orbR * 0.16 * latScale, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      for (var lon = 0; lon < 6; lon++) {
+        ctx.save();
+        ctx.rotate(globeSpin + lon * Math.PI / 6);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, orbR * 0.22, orbR, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+      ctx.restore();
+
+      // Terminator and rim lighting add dimensionality without clutter.
       ctx.save();
       ctx.beginPath();
       ctx.arc(cx, cy, orbR, 0, Math.PI * 2);
       ctx.clip();
-      var rim = ctx.createRadialGradient(cx + orbR * 0.4, cy + orbR * 0.4, 0, cx + orbR * 0.4, cy + orbR * 0.4, orbR * 1.1);
+      var terminator = ctx.createLinearGradient(cx - orbR, cy - orbR, cx + orbR, cy + orbR);
+      terminator.addColorStop(0, 'rgba(255,255,255,0.16)');
+      terminator.addColorStop(0.48, 'rgba(255,255,255,0)');
+      terminator.addColorStop(1, 'rgba(5,3,18,0.62)');
+      ctx.fillStyle = terminator;
+      ctx.fillRect(cx - orbR, cy - orbR, orbR * 2, orbR * 2);
+
+      var rim = ctx.createRadialGradient(cx + orbR * 0.45, cy + orbR * 0.45, 0, cx + orbR * 0.45, cy + orbR * 0.45, orbR * 1.16);
       rim.addColorStop(0, 'rgba(217, 70, 239, 0)');
-      rim.addColorStop(0.7, 'rgba(217, 70, 239, 0.18)');
-      rim.addColorStop(1, 'rgba(217, 70, 239, 0.55)');
+      rim.addColorStop(0.68, 'rgba(217, 70, 239, 0.16)');
+      rim.addColorStop(1, 'rgba(103, 232, 249, 0.34)');
       ctx.fillStyle = rim;
       ctx.fillRect(cx - orbR, cy - orbR, orbR * 2, orbR * 2);
       ctx.restore();
 
-      // Rotating highlight arc (sweep)
+      // Crisp outer lens edge.
+      ctx.beginPath();
+      ctx.arc(cx, cy, orbR * 1.005, 0, Math.PI * 2);
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = 'rgba(255,255,255,0.42)';
+      ctx.stroke();
+
+      // Front orbital planes and rotating trace.
       ctx.save();
       ctx.translate(cx, cy);
-      ctx.rotate(t * 0.4);
+      ctx.rotate(-0.18 + mouse.x * 0.03);
+      ctx.globalCompositeOperation = 'lighter';
+      for (var frontRing = 0; frontRing < 3; frontRing++) {
+        ctx.beginPath();
+        ctx.ellipse(0, 0, orbR * (1.25 + frontRing * 0.22), orbR * (0.35 + frontRing * 0.06), 0, 0, Math.PI);
+        ctx.lineWidth = frontRing === 0 ? 1.6 : 0.9;
+        ctx.strokeStyle = frontRing === 0 ? 'rgba(255,255,255,0.38)' : 'rgba(103,232,249,0.18)';
+        ctx.stroke();
+      }
+      ctx.setLineDash([10, 18]);
+      ctx.lineDashOffset = -t * 26;
       ctx.beginPath();
-      ctx.arc(0, 0, orbR * 1.04, -0.5, 0.5);
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = 'rgba(255,255,255,0.55)';
-      ctx.shadowColor = 'rgba(255,255,255,0.8)';
+      ctx.ellipse(0, 0, orbR * 1.72, orbR * 0.53, 0, 0, Math.PI * 2);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(168,85,247,0.34)';
+      ctx.stroke();
+      ctx.restore();
+
+      // Specular arc and a restrained flare.
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(t * 0.22);
+      ctx.beginPath();
+      ctx.arc(0, 0, orbR * 1.035, -0.72, 0.28);
+      ctx.lineWidth = 2.2;
+      ctx.strokeStyle = 'rgba(255,255,255,0.48)';
+      ctx.shadowColor = 'rgba(236,214,255,0.75)';
       ctx.shadowBlur = 18;
       ctx.stroke();
       ctx.restore();
 
-      // Outer thin ring
-      ctx.beginPath();
-      ctx.arc(cx, cy, orbR * 1.18, 0, Math.PI * 2);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255,255,255,' + (0.18 + 0.12 * Math.sin(t * 1.2)).toFixed(3) + ')';
-      ctx.stroke();
-
-      // Even fainter outermost ring with dashes
-      ctx.save();
-      ctx.beginPath();
-      ctx.setLineDash([6, 14]);
-      ctx.lineDashOffset = -t * 18;
-      ctx.arc(cx, cy, orbR * 1.42, 0, Math.PI * 2);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.35)';
-      ctx.stroke();
-      ctx.restore();
-
-      // Emit occasional bright flares from the orb surface
-      for (var f = 0; f < 3; f++) {
-        var fPhase = (t * 0.6 + f / 3) % 1;
-        if (fPhase < 0.5) {
-          var a = 1 - fPhase * 2; // 1→0
-          var ang = f * 2.094 + t * 0.3;
-          var fx = cx + Math.cos(ang) * orbR * (1 + fPhase * 0.6);
-          var fy = cy + Math.sin(ang) * orbR * (1 + fPhase * 0.6);
-          var fr = 40 * a;
-          var fg = ctx.createRadialGradient(fx, fy, 0, fx, fy, fr);
-          fg.addColorStop(0, 'rgba(255, 240, 255,' + (a * 0.7).toFixed(3) + ')');
-          fg.addColorStop(0.5, 'rgba(217, 70, 239,' + (a * 0.3).toFixed(3) + ')');
-          fg.addColorStop(1, 'rgba(168, 85, 247, 0)');
-          ctx.fillStyle = fg;
-          ctx.fillRect(fx - fr, fy - fr, fr * 2, fr * 2);
-        }
-      }
+      var flareA = 0.52 + 0.22 * Math.sin(t * 1.4);
+      var flareX = cx - orbR * 0.34;
+      var flareY = cy - orbR * 0.43;
+      var flare = ctx.createRadialGradient(flareX, flareY, 0, flareX, flareY, orbR * 0.32);
+      flare.addColorStop(0, 'rgba(255,255,255,' + flareA.toFixed(3) + ')');
+      flare.addColorStop(0.35, 'rgba(236,214,255,0.22)');
+      flare.addColorStop(1, 'rgba(168,85,247,0)');
+      ctx.fillStyle = flare;
+      ctx.fillRect(flareX - orbR * 0.32, flareY - orbR * 0.32, orbR * 0.64, orbR * 0.64);
 
       rafId = requestAnimationFrame(frame);
     }
