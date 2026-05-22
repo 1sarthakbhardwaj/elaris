@@ -142,14 +142,11 @@
   .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
   .brand-logo {
-    width: 28px; height: 28px; border-radius: 7px;
-    background: linear-gradient(135deg, #a855f7, #7c3aed);
-    box-shadow: 0 0 24px rgba(168,85,247,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
-    position: relative;
-  }
-  .brand-logo::after {
-    content: ''; position: absolute; inset: 4px; border-radius: 4px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent 50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: block;
+    flex-shrink: 0;
   }
   .nav-links { display: flex; align-items: center; gap: 6px; }
   .nav-links a { padding: 8px 14px; color: var(--text-dim); font-size: 14px; border-radius: 999px; transition: color 0.2s, background 0.2s; }
@@ -998,9 +995,9 @@
     }
     .print-header .brand { color: #f5f1ff !important; font-weight: 600; font-size: 12pt; }
     .print-header .brand-logo {
-      width: 18pt; height: 18pt; border-radius: 5pt;
-      background: linear-gradient(135deg, #a855f7, #7c3aed) !important;
-      box-shadow: 0 0 12pt rgba(168,85,247,0.6) !important;
+      width: 18pt;
+      height: 18pt;
+      border-radius: 5pt;
     }
     .print-tagline { font-size: 8pt; color: #a097c4 !important; letter-spacing: 0.06em; }
   }
@@ -1041,7 +1038,7 @@
     <!-- Print-only header (PDF export) -->
     <div class="print-header">
       <div class="brand">
-        <span class="brand-logo" aria-hidden="true"></span>
+        <img src="/logo.svg" alt="" class="brand-logo" width="28" height="28" />
         <span>ElarisLabs</span>
       </div>
       <div class="print-tagline">The agentic creative studio · elarislabs.ai</div>
@@ -1051,7 +1048,7 @@
     <nav class="nav" id="nav">
       <div class="container nav-inner">
         <a class="brand" href="#top" aria-label="ElarisLabs home">
-          <span class="brand-logo" aria-hidden="true"></span>
+          <img src="/logo.svg" alt="" class="brand-logo" width="28" height="28" />
           <span>ElarisLabs</span>
         </a>
         <div class="nav-links">
@@ -1493,7 +1490,7 @@
     <footer>
       <div class="container foot">
         <div class="brand">
-          <span class="brand-logo" aria-hidden="true"></span>
+          <img src="/logo.svg" alt="" class="brand-logo" width="28" height="28" />
           <span>© 2026 ElarisLabs. All rights reserved.</span>
         </div>
         <div class="foot-links">

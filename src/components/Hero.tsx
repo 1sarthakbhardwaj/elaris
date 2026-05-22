@@ -20,15 +20,30 @@ const LONGEST_PHRASE = DYNAMIC_PHRASES.reduce(
   "",
 );
 
-const EXAMPLE_PILLS = [
-  "Omnichannel Launch",
-  "Localization",
-  "500+ A/B Variants",
-  "TikTok Resizing",
-];
+const PROMPT_TEMPLATES = [
+  {
+    label: "Omnichannel Launch",
+    prompt:
+      "Build an omnichannel launch for [brand name] having [brand colors]. Create feed, story, and short-form assets for Meta, Instagram, TikTok, YouTube, and Snap, all on-brand.",
+  },
+  {
+    label: "Localization",
+    prompt:
+      "Localize campaign assets for [brand name] having [brand colors]. Adapt the master creative for [languages] with on-brand copy, layout, and cultural cues while keeping logos and product framing locked.",
+  },
+  {
+    label: "500+ A/B Variants",
+    prompt:
+      "Generate 500+ A/B variants for [brand name] having [brand colors]. Use the approved master and swap headlines, CTAs, backgrounds, and product angles across export-ready aspect ratios.",
+  },
+  {
+    label: "TikTok Resizing",
+    prompt:
+      "Resize this campaign for TikTok for [brand name] having [brand colors]. Deliver 9:16 vertical cuts with safe zones for UI overlays, a strong hook in the first 2 seconds, and caption-friendly framing without cropping the product.",
+  },
+] as const;
 
-const DEFAULT_PROMPT =
-  "Take this summer moodboard and build launch assets for Meta, TikTok, and Snap…";
+const DEFAULT_PROMPT = PROMPT_TEMPLATES[0].prompt;
 
 export default function Hero() {
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -38,7 +53,19 @@ export default function Hero() {
   const [typed, setTyped] = useState(DYNAMIC_PHRASES[0]);
   const [phase, setPhase] = useState<"typing" | "pausing" | "erasing">("pausing");
   const [promptValue, setPromptValue] = useState(DEFAULT_PROMPT);
+  const [activePill, setActivePill] = useState<string>(PROMPT_TEMPLATES[0].label);
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const applyTemplate = (label: string, prompt: string) => {
+    setActivePill(label);
+    setPromptValue(prompt);
+    requestAnimationFrame(() => {
+      const el = promptRef.current;
+      if (!el) return;
+      el.focus();
+      el.setSelectionRange(prompt.length, prompt.length);
+    });
+  };
 
   const [brandFiles, setBrandFiles] = useState<File[]>([]);
   const [productUrls, setProductUrls] = useState<string[]>([]);
@@ -175,7 +202,10 @@ export default function Hero() {
             <textarea
               ref={promptRef}
               value={promptValue}
-              onChange={(e) => setPromptValue(e.target.value)}
+              onChange={(e) => {
+                setPromptValue(e.target.value);
+                setActivePill("");
+              }}
               spellCheck={false}
               rows={3}
               aria-label="Prompt"
@@ -358,17 +388,27 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Example pills */}
+          {/* Example pills — each fills the prompt bar with a workflow template */}
           <div className="flex items-center gap-2 flex-wrap justify-center mt-5">
-            {EXAMPLE_PILLS.map((pill, i) => (
-              <button
-                key={pill}
-                className="glass text-xs px-3 py-1.5 rounded-full text-chrome hover:text-bone hover:border-white/20 transition-all whitespace-nowrap"
-                style={{ animation: `chip-in 0.6s ${0.6 + i * 0.08}s backwards` }}
-              >
-                {pill}
-              </button>
-            ))}
+            {PROMPT_TEMPLATES.map((template, i) => {
+              const isActive = activePill === template.label;
+              return (
+                <button
+                  key={template.label}
+                  type="button"
+                  onClick={() => applyTemplate(template.label, template.prompt)}
+                  aria-pressed={isActive}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-all whitespace-nowrap ${
+                    isActive
+                      ? "border-halo/40 bg-halo/15 text-bone shadow-[0_0_20px_-8px_rgba(168,205,239,0.5)]"
+                      : "glass text-chrome hover:text-bone hover:border-white/20"
+                  }`}
+                  style={{ animation: `chip-in 0.6s ${0.6 + i * 0.08}s backwards` }}
+                >
+                  {template.label}
+                </button>
+              );
+            })}
           </div>
 
           {/* Platform logo strip — shows distribution surfaces */}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,14 +20,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1480px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
         <a href="/" className="flex items-center gap-2.5 group">
-          <svg width="26" height="26" viewBox="0 0 32 32" className="transition-transform group-hover:rotate-90 duration-700">
-            <g fill="none" stroke="currentColor" strokeWidth="1.5">
-              <circle cx="16" cy="16" r="14" opacity="0.25" />
-              <circle cx="16" cy="16" r="10" opacity="0.5" />
-              <circle cx="16" cy="16" r="6" />
-              <circle cx="16" cy="16" r="2" fill="var(--halo)" stroke="none" />
-            </g>
-          </svg>
+          <Logo size={26} className="transition-transform group-hover:rotate-90 duration-700" />
           <div className="flex items-baseline gap-1.5">
             <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] text-bone uppercase">
               ElarisLabs

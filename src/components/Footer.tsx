@@ -1,6 +1,7 @@
 "use client";
 
 import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
+import Logo from "./Logo";
 import { useReveal } from "./useReveal";
 
 const STATS: { num: string; label: string }[] = [
@@ -100,14 +101,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
             <div className="col-span-2">
               <a href="/" className="flex items-center gap-2.5 mb-5">
-                <svg width="26" height="26" viewBox="0 0 32 32">
-                  <g fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="16" cy="16" r="14" opacity="0.25" />
-                    <circle cx="16" cy="16" r="10" opacity="0.5" />
-                    <circle cx="16" cy="16" r="6" />
-                    <circle cx="16" cy="16" r="2" fill="#A8CDEF" stroke="none" />
-                  </g>
-                </svg>
+                <Logo size={26} />
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] text-bone uppercase">
                     ElarisLabs
