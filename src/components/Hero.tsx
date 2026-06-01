@@ -52,7 +52,7 @@ export default function Hero() {
   // pass reads the server HTML, not the post-hydration animated state).
   const [typed, setTyped] = useState(DYNAMIC_PHRASES[0]);
   const [phase, setPhase] = useState<"typing" | "pausing" | "erasing">("pausing");
-  const [promptValue, setPromptValue] = useState(DEFAULT_PROMPT);
+  const [promptValue, setPromptValue] = useState<string>(DEFAULT_PROMPT);
   const [activePill, setActivePill] = useState<string>(PROMPT_TEMPLATES[0].label);
   const promptRef = useRef<HTMLTextAreaElement | null>(null);
 
