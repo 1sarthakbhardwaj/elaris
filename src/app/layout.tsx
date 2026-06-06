@@ -102,7 +102,7 @@ const STRUCTURED_DATA = [
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="noise">
+      <body className="noise" suppressHydrationWarning>
         {children}
         <script
           type="application/ld+json"

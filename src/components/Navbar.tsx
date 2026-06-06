@@ -48,6 +48,12 @@ export default function Navbar() {
             Resources
           </a>
           <a
+            href="/blogs"
+            className="px-4 py-1.5 rounded-full text-chrome hover:text-bone hover:bg-white/5 transition-all"
+          >
+            Blogs
+          </a>
+          <a
             href="/pricing"
             className="px-4 py-1.5 rounded-full text-chrome hover:text-bone hover:bg-white/5 transition-all"
           >

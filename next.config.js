@@ -7,6 +7,10 @@ module.exports = {
         source: "/use-cases",
         destination: "/use-cases/index.html",
       },
+      {
+        source: "/blogs/elaris-scrapegraph",
+        destination: "/blogs/elaris-scrapegraph/index.html",
+      },
     ];
   },
 };
