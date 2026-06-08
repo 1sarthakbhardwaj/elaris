@@ -9,7 +9,7 @@ module.exports = {
       },
       {
         source: "/blogs/elaris-scrapegraph",
-        destination: "/blogs/elaris-scrapegraph/index.html",
+        destination: "/blogs/elaris-scrapegraph/elaris-scrapegraph-blog.html",
       },
     ];
   },
