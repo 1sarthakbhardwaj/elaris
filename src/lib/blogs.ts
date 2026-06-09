@@ -11,6 +11,18 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "elarislabs-marketing-journey",
+    title: "Your whole marketing journey, in one place.",
+    excerpt:
+      "ElarisLabs is the AI-native creative OS for brands — onboard from a URL, build on an infinite canvas, generate at scale, edit video, publish, and learn. One continuous loop.",
+    category: "Inside ElarisLabs",
+    readTime: "12 min read",
+    href: "/blogs/elarislabs-marketing-journey",
+    image: "/blogs/elarislabs-marketing-journey/what-is-elarislabs.png",
+    imageAlt:
+      "ElarisLabs marketing journey: smarter creative, stronger brands — generate, publish, and learn in one loop",
+  },
+  {
     slug: "elaris-scrapegraph",
     title: "One URL in. A whole brand out.",
     excerpt:
