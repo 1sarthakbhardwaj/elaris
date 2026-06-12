@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ElarisLabs MCP — Setup &amp; Integration Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-2: #0c0c12;
+      --panel: rgba(255, 255, 255, 0.035);
+      --panel-2: rgba(255, 255, 255, 0.05);
+      --panel-border: rgba(255, 255, 255, 0.08);
+      --panel-border-strong: rgba(255, 255, 255, 0.14);
+      --text: #ececf1;
+      --heading: #ffffff;
+      --muted: #9aa0ac;
+      --faint: #6f7480;
+      --accent: #8b7cf6;
+      --accent2: #5ec8ff;
+      --green: #3ddc84;
+      --amber: #ffcf6b;
+      --code-bg: #07070c;
+      --radius: 14px;
+      --content-w: 760px;
+      --mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1000px 500px at 85% -8%, rgba(139,124,246,0.14), transparent),
+        radial-gradient(800px 460px at -8% 4%, rgba(94,200,255,0.10), transparent),
+        var(--bg);
+      color: var(--text);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    /* ── Top bar ─────────────────────────────────── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: saturate(180%) blur(16px);
+      background: rgba(10, 10, 15, 0.78);
+      border-bottom: 1px solid var(--panel-border);
+    }
+    .site-nav-inner {
+      max-width: 1100px; margin: 0 auto; height: 60px; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .site-nav .brand {
+      font-weight: 600; color: var(--heading); font-size: 15px;
+      letter-spacing: 0.02em; text-decoration: none; display: inline-flex; align-items: center; gap: 9px;
+    }
+    .site-nav .brand .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+    .site-nav .links { display: flex; gap: 22px; font-size: 14px; }
+    .site-nav .links a { color: var(--muted); text-decoration: none; transition: color .15s; }
+    .site-nav .links a:hover { color: var(--text); }
+    @media (max-width: 600px) { .site-nav .links a:not(.cta) { display: none; } }
+
+    /* ── Layout ──────────────────────────────────── */
+    .wrap { max-width: var(--content-w); margin: 0 auto; padding: 56px 28px 120px; }
+
+    .breadcrumb {
+      font-size: 13px; color: var(--faint); margin-bottom: 20px;
+      font-family: var(--mono); letter-spacing: .02em;
+    }
+    .breadcrumb a { color: var(--faint); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--muted); }
+    .breadcrumb .sep { margin: 0 8px; opacity: .5; }
+
+    .eyebrow {
+      display: inline-block; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 14px; font-weight: 600; font-family: var(--mono);
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 46px); line-height: 1.08; margin: 0 0 16px;
+      letter-spacing: -0.02em; color: var(--heading); font-weight: 700;
+    }
+    .lead { font-size: 19px; line-height: 1.6; color: var(--muted); margin: 0 0 8px; }
+
+    .doc-divider { height: 1px; background: var(--panel-border); border: 0; margin: 40px 0; }
+
+    /* Headings with anchor links */
+    h2 {
+      font-size: 27px; line-height: 1.2; margin: 56px 0 16px; scroll-margin-top: 84px;
+      letter-spacing: -0.015em; color: var(--heading); font-weight: 700;
+      padding-bottom: 12px; border-bottom: 1px solid var(--panel-border);
+    }
+    h3 { font-size: 19px; margin: 34px 0 10px; scroll-margin-top: 84px; color: var(--heading); font-weight: 600; letter-spacing: -0.01em; }
+    h4 { font-size: 15px; margin: 20px 0 6px; color: var(--text); font-weight: 600; }
+    .anchor {
+      color: var(--faint); text-decoration: none; margin-left: 10px; opacity: 0;
+      font-size: .7em; transition: opacity .15s; font-weight: 400;
+    }
+    h2:hover .anchor, h3:hover .anchor { opacity: 1; }
+    .anchor:hover { color: var(--accent2); }
+
+    p { color: var(--text); margin: 0 0 16px; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { color: var(--heading); font-weight: 600; }
+    em { color: var(--muted); }
+    ul, ol { color: var(--text); padding-left: 1.3rem; margin: 0 0 16px; }
+    ul li, ol li { margin: 7px 0; }
+    ul li::marker { color: var(--accent); }
+
+    /* ── Cards grid ──────────────────────────────── */
+    .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 22px 0; }
+    .card {
+      background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius);
+      padding: 18px 20px; transition: border-color .15s, background .15s;
+    }
+    .card:hover { border-color: var(--panel-border-strong); background: var(--panel-2); }
+    .card h3 { margin: 0 0 6px; font-size: 15px; }
+    .card p { margin: 0; font-size: 14px; color: var(--muted); }
+    .muted { color: var(--muted); }
+
+    /* ── Steps ───────────────────────────────────── */
+    .steps { counter-reset: step; margin: 22px 0; }
+    .step {
+      display: flex; gap: 16px; padding: 0 0 22px 0; position: relative;
+    }
+    .step:not(:last-child)::before {
+      content: ""; position: absolute; left: 15px; top: 34px; bottom: 0;
+      width: 1px; background: var(--panel-border);
+    }
+    .step .n {
+      flex: 0 0 31px; height: 31px; width: 31px; border-radius: 50%;
+      display: grid; place-items: center; font-size: 13px; font-weight: 700;
+      background: var(--panel-2); border: 1px solid var(--panel-border-strong);
+      color: var(--accent2); z-index: 1;
+    }
+    .step .step-body { padding-top: 3px; min-width: 0; flex: 1; }
+    .step .step-body > :last-child { margin-bottom: 0; }
+
+    /* ── Code ────────────────────────────────────── */
+    .codeblock { position: relative; margin: 18px 0; }
+    .codeblock .code-head {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #0a0a11; border: 1px solid var(--panel-border); border-bottom: 0;
+      border-radius: var(--radius) var(--radius) 0 0; padding: 9px 14px;
+      font-family: var(--mono); font-size: 12px; color: var(--faint);
+    }
+    .codeblock .code-head + pre { border-radius: 0 0 var(--radius) var(--radius); border-top: 0; }
+    pre {
+      background: var(--code-bg); border: 1px solid var(--panel-border); border-radius: var(--radius);
+      padding: 16px 18px; overflow-x: auto; font-size: 13px; margin: 0;
+      font-family: var(--mono); color: #d7d7e6; line-height: 1.65; tab-size: 2;
+    }
+    code.inline {
+      background: var(--panel-2); border: 1px solid var(--panel-border); border-radius: 6px;
+      padding: 1.5px 6px; font-size: 13.5px; font-family: var(--mono); color: #cdbfff;
+    }
+    .copy {
+      font-size: 12px; cursor: pointer; font-family: var(--mono);
+      background: transparent; border: 1px solid var(--panel-border); color: var(--muted);
+      border-radius: 7px; padding: 4px 10px; transition: all .15s;
+    }
+    .copy:hover { border-color: var(--accent); color: var(--text); }
+    .copy.done { color: var(--green); border-color: var(--green); }
+
+    /* ── Tables ──────────────────────────────────── */
+    .table-wrap {
+      margin: 18px 0; border: 1px solid var(--panel-border); border-radius: var(--radius); overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--panel-border); vertical-align: top; }
+    thead th {
+      color: var(--muted); font-weight: 600; font-size: 11.5px; text-transform: uppercase;
+      letter-spacing: .06em; background: var(--panel); border-bottom: 1px solid var(--panel-border-strong);
+    }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td { background: rgba(255,255,255,0.015); }
+
+    /* ── Callouts ────────────────────────────────── */
+    .note, .warn, .tip {
+      display: flex; gap: 12px; align-items: flex-start;
+      border: 1px solid var(--panel-border); border-left: 3px solid var(--accent);
+      background: rgba(139,124,246,0.06); padding: 14px 16px;
+      border-radius: 0 var(--radius) var(--radius) 0; margin: 18px 0; color: var(--muted); font-size: 14.5px;
+    }
+    .note > .ico, .warn > .ico, .tip > .ico { flex: 0 0 auto; font-weight: 700; line-height: 1.5; }
+    .note > div:last-child > :last-child,
+    .warn > div:last-child > :last-child,
+    .tip > div:last-child > :last-child { margin-bottom: 0; }
+    .note strong, .warn strong, .tip strong { color: var(--text); }
+    .note { border-left-color: var(--accent2); background: rgba(94,200,255,0.06); }
+    .note > .ico { color: var(--accent2); }
+    .warn { border-left-color: var(--amber); background: rgba(255,207,107,0.06); }
+    .warn > .ico { color: var(--amber); }
+    .tip { border-left-color: var(--green); background: rgba(61,220,132,0.06); }
+    .tip > .ico { color: var(--green); }
+
+    /* ── Pills ───────────────────────────────────── */
+    .pill { display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:999px; border:1px solid var(--panel-border); color:var(--muted); font-family: var(--mono); }
+    .pill.soon { color:var(--amber); border-color:rgba(255,207,107,.3); }
+    .pill.free { color:var(--green); border-color:rgba(61,220,132,.3); background: rgba(61,220,132,0.06); }
+    .pill.paid { color:var(--accent2); border-color:rgba(94,200,255,.25); background: rgba(94,200,255,0.06); }
+
+    /* ── Flow diagram ────────────────────────────── */
+    .flow {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; margin: 22px 0;
+      font-size: 14px; color: var(--muted);
+    }
+    .flow .box {
+      background: var(--panel); border: 1px solid var(--panel-border); border-radius: 10px;
+      padding: 10px 16px; color: var(--text); display: flex; flex-direction: column; justify-content: center;
+    }
+    .flow .arrow { color: var(--accent); font-weight: 700; display: flex; align-items: center; }
+
+    /* ── Prompt cards ────────────────────────────── */
+    .prompt-card {
+      background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius);
+      padding: 14px 18px; margin: 12px 0; transition: border-color .15s;
+    }
+    .prompt-card:hover { border-color: var(--panel-border-strong); }
+    .prompt-card .label { font-size: 11.5px; color: var(--accent2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; font-family: var(--mono); }
+    .prompt-card p { margin: 0; font-size: 14.5px; color: var(--text); font-style: italic; }
+
+    /* ── Client tags ─────────────────────────────── */
+    .client-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .client-tabs span {
+      font-size: 13px; padding: 5px 13px; border-radius: 999px;
+      background: var(--panel); border: 1px solid var(--panel-border); color: var(--muted);
+    }
+
+    /* ── Details / FAQ ───────────────────────────── */
+    details {
+      background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--radius);
+      padding: 0; margin: 10px 0; overflow: hidden; transition: border-color .15s;
+    }
+    details:hover { border-color: var(--panel-border-strong); }
+    details[open] { background: var(--panel-2); }
+    details summary {
+      cursor: pointer; font-weight: 600; color: var(--text); padding: 14px 18px;
+      list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: "+"; color: var(--accent2); font-size: 18px; font-weight: 400; transition: transform .2s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    details > *:not(summary) { padding: 0 18px 16px; }
+    details p { margin: 0 0 8px; font-size: 14.5px; color: var(--muted); }
+    details .codeblock { margin: 8px 0 0; }
+
+    /* ── Footer + page nav ───────────────────────── */
+    .page-nav {
+      display: flex; gap: 14px; margin-top: 56px; flex-wrap: wrap;
+    }
+    .page-nav a {
+      flex: 1; min-width: 200px; background: var(--panel); border: 1px solid var(--panel-border);
+      border-radius: var(--radius); padding: 16px 18px; text-decoration: none; transition: border-color .15s;
+    }
+    .page-nav a:hover { border-color: var(--accent); text-decoration: none; }
+    .page-nav .dir { font-size: 12px; color: var(--faint); font-family: var(--mono); }
+    .page-nav .ttl { font-size: 15px; color: var(--text); margin-top: 4px; }
+
+    footer {
+      margin-top: 48px; color: var(--faint); font-size: 13px;
+      border-top: 1px solid var(--panel-border); padding-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Site">
+    <div class="site-nav-inner">
+      <a class="brand" href="/"><span class="dot"></span>ElarisLabs</a>
+      <div class="links">
+        <a href="/docs">Docs</a>
+        <a href="/blogs">Blogs</a>
+        <a href="/pricing">Pricing</a>
+        <a class="cta" href="https://studio.elarislabs.ai" target="_blank" rel="noopener noreferrer">Studio ↗</a>
+      </div>
+    </div>
+  </nav>
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="/docs">Docs</a><span class="sep">/</span><span>Integrations</span><span class="sep">/</span><span>MCP</span>
+    </div>
+    <header>
+      <span class="eyebrow">Model Context Protocol</span>
+      <h1>MCP setup &amp; integration guide</h1>
+      <p class="lead">
+        Connect ElarisLabs Creative Studio to Claude, Cursor, and other MCP clients.
+        Generate images, video, audio, brand packs, and composer edits from any agent
+        that speaks MCP — credits bill to the brand your API key is bound to.
+      </p>
+    </header>
+    <hr class="doc-divider" />
+
+    <!-- ── What is MCP ─────────────────────────────────────────── -->
+    <section>
+      <h2 id="what-is-mcp">What is MCP?<a class="anchor" href="#what-is-mcp">#</a></h2>
+      <p>
+        The <strong>Model Context Protocol (MCP)</strong> is an open standard for connecting AI
+        assistants to external tools and data. Instead of copy-pasting API docs into a chat,
+        the client discovers callable <em>tools</em> from a server and the model invokes them
+        when your prompt needs real actions — generate an image, list projects, resize a brand pack, etc.
+      </p>
+      <div class="flow">
+        <span class="box">You (prompt)</span>
+        <span class="arrow">→</span>
+        <span class="box">MCP client<br><small class="muted">Claude, Cursor, …</small></span>
+        <span class="arrow">→</span>
+        <span class="box">ElarisLabs MCP<br><small class="muted">/api/mcp</small></span>
+        <span class="arrow">→</span>
+        <span class="box">Creative Studio<br><small class="muted">models + credits</small></span>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Tools, not chat plugins</h3>
+          <p class="muted">The agent sees structured tools with schemas. It picks the right one and passes arguments — no manual API calls.</p>
+        </div>
+        <div class="card">
+          <h3>Remote HTTP</h3>
+          <p class="muted">ElarisLabs runs a hosted MCP endpoint. No local install required — just paste a JSON config and your API key.</p>
+        </div>
+        <div class="card">
+          <h3>Brand-scoped billing</h3>
+          <p class="muted">Every key is bound to one brand. Generation tools deduct credits from that brand's balance; discovery tools are free.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Quick start ─────────────────────────────────────────── -->
+    <section>
+      <h2 id="quickstart">Quick start<a class="anchor" href="#quickstart">#</a></h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div class="step-body">
+          <strong>Create an API key</strong> in <a href="https://studio.elarislabs.ai/en/profile">your profile</a> →
+          <em>API keys / MCP</em>. Pick a brand, set expiry and spend cap, copy the key
+          (<code class="inline">elx_live_…</code>) — shown once.
+        </div></div>
+        <div class="step"><div class="n">2</div><div class="step-body">
+          <strong>Add the server</strong> to your MCP client config (Claude or Cursor examples below).
+          Use your key in the <code class="inline">Authorization: Bearer …</code> header.
+        </div></div>
+        <div class="step"><div class="n">3</div><div class="step-body">
+          <strong>Restart the client</strong>, enable the server in settings, then ask naturally:
+          <em>"List available image models, then generate a product shot with flux-2-flash."</em>
+        </div></div>
+      </div>
+      <div class="tip">
+        <span class="ico">✦</span>
+        <div><strong>Tip:</strong> Start with free tools (<code class="inline">list_models</code>,
+        <code class="inline">list_brands</code>) to confirm the connection before running paid generation.</div>
+      </div>
+    </section>
+
+    <!-- ── API key ─────────────────────────────────────────────── -->
+    <section>
+      <h2 id="key">Create &amp; manage an API key<a class="anchor" href="#key">#</a></h2>
+      <p>
+        Keys are created in your ElarisLabs profile under <strong>API keys / MCP</strong>.
+        Open <a href="https://studio.elarislabs.ai/en/profile">your profile</a>, choose a brand, set an expiry (max 24 weeks)
+        and a spend cap (max 2000 credits), then copy the key — it is shown only once.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Bound to a brand</h3>
+          <p class="muted">The key acts on one brand. All spend is billed to that brand's credit balance.</p>
+        </div>
+        <div class="card">
+          <h3>Expiry &amp; spend cap</h3>
+          <p class="muted">Required expiry up to 24 weeks. Per-key spend cap up to 2000 credits, editable anytime.</p>
+        </div>
+        <div class="card">
+          <h3>Revoke / rotate</h3>
+          <p class="muted">Rotate to replace a key, or revoke to disable it instantly. Manage all keys from settings.</p>
+        </div>
+        <div class="card">
+          <h3>Scopes</h3>
+          <p class="muted">Keys ship with <code class="inline">studio:read</code> and <code class="inline">studio:generate</code> — enough to list projects and run generation tools.</p>
+        </div>
+      </div>
+      <div class="note">
+        <span class="ico">◉</span>
+        <div><strong>Endpoint:</strong> your MCP URL is
+        <code class="inline" id="mcp-url">https://studio.elarislabs.ai/api/mcp</code>.
+        Authenticate with <code class="inline">Authorization: Bearer elx_live_…</code>.
+        The server uses Streamable HTTP (stateless) — compatible with Claude Desktop, Cursor, and
+        <code class="inline">mcp-remote</code> for older clients.</div>
+      </div>
+      <div class="warn">
+        <span class="ico">⚠</span>
+        <div><strong>Security:</strong> Treat <code class="inline">elx_live_…</code> like a password.
+        Never commit it to git, paste it in public channels, or share it in screenshots.
+        Use per-developer keys with low spend caps when possible.</div>
+      </div>
+    </section>
+
+    <!-- ── How it works ────────────────────────────────────────── -->
+    <section>
+      <h2 id="how-it-works">How the server works<a class="anchor" href="#how-it-works">#</a></h2>
+      <p>
+        When an MCP client connects, it calls <code class="inline">tools/list</code> to discover
+        available tools, then <code class="inline">tools/call</code> when the model decides to act.
+        ElarisLabs validates your bearer token, resolves the bound brand, and runs the tool —
+        either a free read (list projects) or a billed generation (image, video, brand pack).
+      </p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Aspect</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>Protocol</td><td>MCP over Streamable HTTP at <code class="inline">/api/mcp</code></td></tr>
+          <tr><td>Auth</td><td><code class="inline">Authorization: Bearer elx_live_…</code> header on every request</td></tr>
+          <tr><td>Session</td><td>Stateless — no persistent connection to manage</td></tr>
+          <tr><td>Timeouts</td><td>Video and brand-pack jobs may take 30–90s; clients should allow long tool calls</td></tr>
+          <tr><td>Errors</td><td>Invalid, expired, or revoked keys return auth errors; insufficient credits return a billing error</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- ── Claude ──────────────────────────────────────────────── -->
+    <section>
+      <h2 id="claude">Claude Desktop<a class="anchor" href="#claude">#</a></h2>
+      <p class="muted">Works with Claude Desktop on macOS and Windows. Requires a recent version with remote MCP (URL) support.</p>
+
+      <h3 id="claude-url">Option A — Remote URL (recommended)<a class="anchor" href="#claude-url">#</a></h3>
+      <div class="steps">
+      <div class="step"><div class="n">1</div><div class="step-body">Open Claude Desktop → <strong>Settings → Developer → Edit Config</strong>. This opens <code class="inline">claude_desktop_config.json</code>.</div></div>
+      <div class="step"><div class="n">2</div><div class="step-body">
+        Config file locations:
+        <ul>
+          <li>macOS: <code class="inline">~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+          <li>Windows: <code class="inline">%APPDATA%\Claude\claude_desktop_config.json</code></li>
+          <li>Linux: <code class="inline">~/.config/Claude/claude_desktop_config.json</code></li>
+        </ul>
+      </div></div>
+      <div class="step"><div class="n">3</div><div class="step-body">Add the ElarisLabs server (replace the token with your key):</div></div>
+      </div>
+      <div class="codeblock">
+        <div class="code-head"><span>claude_desktop_config.json</span><button class="copy" data-copy="cfg-claude">Copy</button></div>
+        <pre id="cfg-claude">{
+  "mcpServers": {
+    "elarislabs": {
+      "url": "https://studio.elarislabs.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer elx_live_YOUR_KEY_HERE"
+      }
+    }
+  }
+}</pre>
+      </div>
+      <div class="steps"><div class="step"><div class="n">4</div><div class="step-body">Save and <strong>fully quit and restart</strong> Claude Desktop (not just close the window). Open a new chat — ElarisLabs tools appear in the tools panel.</div></div></div>
+
+      <h3 id="claude-stdio">Option B — stdio bridge (older Claude builds)<a class="anchor" href="#claude-stdio">#</a></h3>
+      <p class="muted">If your Claude version does not support remote <code class="inline">url</code> servers, use the <code class="inline">mcp-remote</code> npm package as a local bridge:</p>
+      <div class="codeblock">
+        <div class="code-head"><span>claude_desktop_config.json</span><button class="copy" data-copy="cfg-claude-stdio">Copy</button></div>
+        <pre id="cfg-claude-stdio">{
+  "mcpServers": {
+    "elarislabs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://studio.elarislabs.ai/api/mcp",
+        "--header",
+        "Authorization: Bearer elx_live_YOUR_KEY_HERE"
+      ]
+    }
+  }
+}</pre>
+      </div>
+      <div class="note"><span class="ico">◉</span><div>Requires Node.js 18+ installed. The bridge forwards stdio ↔ HTTP so Claude can talk to the remote server.</div></div>
+    </section>
+
+    <!-- ── Cursor ──────────────────────────────────────────────── -->
+    <section>
+      <h2 id="cursor">Cursor<a class="anchor" href="#cursor">#</a></h2>
+      <p class="muted">Cursor has first-class MCP support. Use Agent mode so the model can call tools autonomously.</p>
+
+      <h3 id="cursor-scope">Global vs project config<a class="anchor" href="#cursor-scope">#</a></h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scope</th><th>File</th><th>When to use</th></tr></thead>
+        <tbody>
+          <tr><td>Global</td><td><code class="inline">~/.cursor/mcp.json</code></td><td>Available in every project on your machine</td></tr>
+          <tr><td>Project</td><td><code class="inline">.cursor/mcp.json</code> in repo root</td><td>Share with teammates via git (use env vars for secrets — see below)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="steps">
+      <div class="step"><div class="n">1</div><div class="step-body">Create or edit your MCP config file.</div></div>
+      <div class="step"><div class="n">2</div><div class="step-body">Add the server:</div></div>
+      </div>
+      <div class="codeblock">
+        <div class="code-head"><span>.cursor/mcp.json</span><button class="copy" data-copy="cfg-cursor">Copy</button></div>
+        <pre id="cfg-cursor">{
+  "mcpServers": {
+    "elarislabs": {
+      "url": "https://studio.elarislabs.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer elx_live_YOUR_KEY_HERE"
+      }
+    }
+  }
+}</pre>
+      </div>
+      <div class="steps">
+      <div class="step"><div class="n">3</div><div class="step-body">Open <strong>Cursor Settings → MCP</strong>. Confirm <em>elarislabs</em> is listed and the toggle is <strong>on</strong> (green). A red dot means the server failed to connect — see <a href="#troubleshooting">Troubleshooting</a>.</div></div>
+      <div class="step"><div class="n">4</div><div class="step-body">Open <strong>Agent</strong> mode (not Ask) and prompt naturally. The agent discovers tools automatically — you do not need to @-mention the server unless you want to force it.</div></div>
+      <div class="step"><div class="n">5</div><div class="step-body">Try: <em>"Use list_models to show image models, then generate_image with flux-2-flash — a neon city skyline at dusk."</em></div></div>
+      </div>
+
+      <details>
+        <summary>Keep secrets out of git (project-level config)</summary>
+        <p>
+          Cursor supports environment variable interpolation in <code class="inline">mcp.json</code>.
+          Set <code class="inline">ELARIS_MCP_KEY</code> in your shell or <code class="inline">.env</code>, then reference it:
+        </p>
+        <div class="codeblock">
+          <div class="code-head"><span>.cursor/mcp.json</span><button class="copy" data-copy="cfg-cursor-env">Copy</button></div>
+          <pre id="cfg-cursor-env">{
+  "mcpServers": {
+    "elarislabs": {
+      "url": "https://studio.elarislabs.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:ELARIS_MCP_KEY}"
+      }
+    }
+  }
+}</pre>
+        </div>
+      </details>
+    </section>
+
+    <!-- ── Other clients ───────────────────────────────────────── -->
+    <section>
+      <h2 id="other-clients">Other MCP clients<a class="anchor" href="#other-clients">#</a></h2>
+      <p>
+        Any client that supports remote MCP (URL + headers) can use the same config block.
+        The JSON shape is always <code class="inline">mcpServers → { name → { url, headers } }</code>.
+      </p>
+      <div class="client-tabs">
+        <span>Claude Code</span>
+        <span>Windsurf</span>
+        <span>VS Code + Copilot</span>
+        <span>Zed</span>
+        <span>Cline</span>
+      </div>
+
+      <h3>Claude Code (CLI)</h3>
+      <p class="muted">Add to <code class="inline">~/.claude/settings.json</code> or project <code class="inline">.mcp.json</code> — same structure as Claude Desktop. Run <code class="inline">claude mcp list</code> to verify.</p>
+
+      <h3>Windsurf</h3>
+      <p class="muted">Open <strong>Windsurf Settings → Cascade → MCP</strong> and add a custom server, or edit <code class="inline">~/.codeium/windsurf/mcp_config.json</code> with the same JSON block.</p>
+
+      <h3>VS Code (GitHub Copilot agent mode)</h3>
+      <p class="muted">In VS Code 1.99+, add MCP servers via <strong>Command Palette → "MCP: Add Server"</strong> or edit <code class="inline">.vscode/mcp.json</code> in your workspace. Use the URL transport with the Authorization header.</p>
+
+      <h3>Generic stdio fallback</h3>
+      <p class="muted">Clients that only support local stdio processes can use the <code class="inline">mcp-remote</code> bridge (same as Claude Option B above).</p>
+      <div class="codeblock">
+        <div class="code-head"><span>Terminal</span><button class="copy" data-copy="cfg-stdio-generic">Copy</button></div>
+        <pre id="cfg-stdio-generic">npx -y mcp-remote https://studio.elarislabs.ai/api/mcp \
+  --header "Authorization: Bearer elx_live_YOUR_KEY_HERE"</pre>
+      </div>
+    </section>
+
+    <!-- ── Multiple servers ────────────────────────────────────── -->
+    <section>
+      <h2 id="multiple-servers">Using multiple MCP servers<a class="anchor" href="#multiple-servers">#</a></h2>
+      <p>
+        MCP clients can connect to <strong>many servers at once</strong>. ElarisLabs handles
+        creative generation; other servers handle their own domains (databases, docs, Google Workspace, etc.).
+        Add each server as a separate entry under <code class="inline">mcpServers</code>.
+      </p>
+      <div class="codeblock">
+        <div class="code-head"><span>mcp.json</span><button class="copy" data-copy="cfg-multi">Copy</button></div>
+        <pre id="cfg-multi">{
+  "mcpServers": {
+    "elarislabs": {
+      "url": "https://studio.elarislabs.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer elx_live_YOUR_KEY_HERE"
+      }
+    },
+    "another-server": {
+      "command": "npx",
+      "args": ["-y", "@example/some-mcp-server"],
+      "env": {
+        "API_KEY": "your-other-key"
+      }
+    }
+  }
+}</pre>
+      </div>
+
+      <h3>What ElarisLabs MCP does (and doesn't)</h3>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Capability</th><th>ElarisLabs MCP</th><th>Needs a different server</th></tr></thead>
+        <tbody>
+          <tr><td>Image / video / audio generation</td><td>Yes</td><td>—</td></tr>
+          <tr><td>Brand pack resize &amp; composer edits</td><td>Yes</td><td>—</td></tr>
+          <tr><td>Studio projects &amp; templates</td><td>Yes</td><td>—</td></tr>
+          <tr><td>Google Slides / Docs / Sheets</td><td>—</td><td>Yes — use a Google Workspace MCP server (community or official) alongside ElarisLabs</td></tr>
+          <tr><td>GitHub, Linear, Notion, etc.</td><td>—</td><td>Yes — each has its own MCP server</td></tr>
+          <tr><td>Database queries (Supabase, Postgres)</td><td>—</td><td>Yes — use the provider's MCP server</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="tip">
+        <span class="ico">✦</span>
+        <div><strong>Combining servers:</strong> With ElarisLabs + a Google Slides MCP connected, you can ask:
+        <em>"Generate a hero image with flux-2-flash, then add it to slide 2 of this deck"</em> —
+        the agent picks the right tool from each server. You still need to install and authenticate
+        the Google server separately; ElarisLabs does not proxy third-party MCPs.</div>
+      </div>
+      <p class="muted">
+        Browse community servers at
+        <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">modelcontextprotocol/servers</a>
+        or your client's MCP directory (Cursor Settings → MCP → Add).
+      </p>
+    </section>
+
+    <!-- ── Example prompts ─────────────────────────────────────── -->
+    <section>
+      <h2 id="examples">Example prompts<a class="anchor" href="#examples">#</a></h2>
+      <p class="muted">Once connected, talk naturally. The agent maps your intent to tools.</p>
+
+      <div class="prompt-card">
+        <div class="label">Discovery (free)</div>
+        <p>"What brands and image models can this key access? List the top 5 image models."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="label">Image generation</div>
+        <p>"Generate a square product shot of a matte black sneaker on white marble using flux-2-flash. 2K resolution."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="label">Image-to-video</div>
+        <p>"Take the image you just generated and make a 6-second vertical video — slow camera push-in, cinematic lighting."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="label">Brand pack</div>
+        <p>"List brand-pack sizes, then resize that hero image into Instagram feed, story, and 300×250 display. Return the zip."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="label">Composer edit</div>
+        <p>"Add the text 'SUMMER DROP' in white at the bottom of the image, then remove the background."</p>
+      </div>
+      <div class="prompt-card">
+        <div class="label">Multi-step workflow</div>
+        <p>"Generate 3 lifestyle variants of our product, stitch them into a hyperlapse at 24fps, then generate a voiceover saying 'Built for the city.'"</p>
+      </div>
+    </section>
+
+    <!-- ── Slack ───────────────────────────────────────────────── -->
+    <section>
+      <h2 id="slack">Slack <span class="pill">autonomous worker</span><a class="anchor" href="#slack">#</a></h2>
+      <p>
+        Slack is not an MCP client. Instead, the ElarisLabs Slack app runs the same tools in the
+        background and delivers finished creative back to the thread. It can ask a clarifying
+        question and resume when you reply.
+      </p>
+      <div class="steps">
+      <div class="step"><div class="n">1</div><div class="step-body">Have an admin install the <strong>ElarisLabs</strong> Slack app to your workspace and invite the bot to a channel (or DM it).</div></div>
+      <div class="step"><div class="n">2</div><div class="step-body">Link your Slack identity to your ElarisLabs brand the first time. Mention the bot and it will reply with a one-time link; complete linking in the browser. Until linked, the bot cannot spend credits.</div></div>
+      <div class="step"><div class="n">3</div><div class="step-body">
+        Task it in plain language:
+        <div class="codeblock">
+          <div class="code-head"><span>Slack</span><button class="copy" data-copy="slack-ex">Copy</button></div>
+          <pre id="slack-ex">@ElarisLabs make a square product shot of our new sneaker on a marble pedestal,
+then build a brand pack for Instagram feed and story sizes.</pre>
+        </div>
+      </div></div>
+      <div class="step"><div class="n">4</div><div class="step-body">The worker runs in the background. If it needs a detail (e.g. which sizes), it asks in-thread and waits for your reply, then delivers the assets and a short summary.</div></div>
+      </div>
+      <div class="note">
+        <span class="ico">◉</span>
+        <div><strong>Self-hosting the Slack app:</strong> Use the manifest at
+        <code class="inline">docs/slack-app-manifest.yaml</code> in the ElarisLabs repo, then set
+        <code class="inline">SLACK_BOT_TOKEN</code> and <code class="inline">SLACK_SIGNING_SECRET</code>
+        and point the event subscription URL at <code class="inline">/api/webhooks/slack/events</code>.</div>
+      </div>
+    </section>
+
+    <!-- ── Tools ─────────────────────────────────────────────────── -->
+    <section>
+      <h2 id="tools">Available tools<a class="anchor" href="#tools">#</a></h2>
+      <p class="muted">Discovery tools are free; generation and editing tools consume credits from the key's brand.</p>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>What it does</th><th>Key parameters</th><th></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code class="inline">list_brands</code></td>
+            <td>Brand this key is bound to</td>
+            <td>—</td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">list_workspaces</code></td>
+            <td>Workspace for this key</td>
+            <td>—</td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">list_projects</code></td>
+            <td>Creative Studio projects</td>
+            <td>—</td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">get_project</code></td>
+            <td>Single project + flow graph</td>
+            <td><code class="inline">projectId</code></td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">list_models</code></td>
+            <td>Image, video, audio models</td>
+            <td><code class="inline">kind</code> (optional filter)</td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">list_templates</code></td>
+            <td>Published Studio templates</td>
+            <td>—</td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">generate_image</code></td>
+            <td>Text-to-image or edit with references</td>
+            <td><code class="inline">prompt</code>, <code class="inline">model</code>, <code class="inline">referenceImages</code>, <code class="inline">resolution</code></td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">generate_audio</code></td>
+            <td>Text-to-speech (ElevenLabs / Gemini)</td>
+            <td><code class="inline">text</code>, <code class="inline">model</code>, <code class="inline">voice</code>, <code class="inline">language</code></td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">generate_video</code></td>
+            <td>Text-to-video or image-to-video</td>
+            <td><code class="inline">prompt</code>, <code class="inline">imageUrl</code>, <code class="inline">durationSeconds</code></td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">regenerate_video</code></td>
+            <td>Re-run video with optional variation</td>
+            <td><code class="inline">prompt</code>, <code class="inline">variationHint</code></td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">create_hyperlapse</code></td>
+            <td>Stitch images into a timelapse (ffmpeg)</td>
+            <td><code class="inline">images[]</code>, <code class="inline">fps</code>, <code class="inline">width</code>, <code class="inline">height</code></td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">composer_edit</code></td>
+            <td>add_text / inpaint / erase / remove_background</td>
+            <td><code class="inline">operation</code>, <code class="inline">imageUrl</code>, …</td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">brand_pack_list_sizes</code></td>
+            <td>Available output sizes</td>
+            <td>—</td>
+            <td><span class="pill free">Free</span></td>
+          </tr>
+          <tr>
+            <td><code class="inline">brand_pack_resize</code></td>
+            <td>Resize into sizes, returns a zip</td>
+            <td><code class="inline">sourceImage</code>, <code class="inline">sizeKeys</code></td>
+            <td><span class="pill paid">Credits</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="tip">
+        <span class="ico">✦</span>
+        <div><strong>Model tip:</strong> Pass <code class="inline">model: "auto"</code> (default) to let the router pick,
+        or a specific id from <code class="inline">list_models</code> — e.g. <code class="inline">"flux-2-flash"</code> for fast images.</div>
+      </div>
+    </section>
+
+    <!-- ── Troubleshooting ───────────────────────────────────────── -->
+    <section>
+      <h2 id="troubleshooting">Troubleshooting<a class="anchor" href="#troubleshooting">#</a></h2>
+
+      <details>
+        <summary>Server shows red / "failed to connect" in Cursor</summary>
+        <p>
+          Check that your JSON is valid (no trailing commas). Confirm the URL ends in
+          <code class="inline">/api/mcp</code> with no extra slash. Verify the bearer token starts with
+          <code class="inline">elx_live_</code> and has not been revoked. Restart Cursor after editing
+          <code class="inline">mcp.json</code>.
+        </p>
+      </details>
+      <details>
+        <summary>Tools don't appear in Claude after restart</summary>
+        <p>
+          Make sure you fully quit Claude (macOS: Cmd+Q, not just close the window). If using the
+          URL transport and it still fails, switch to the <code class="inline">mcp-remote</code> stdio bridge.
+          Check Claude's developer logs for connection errors.
+        </p>
+      </details>
+      <details>
+        <summary>"Invalid key" / "Key expired" / "Key revoked"</summary>
+        <p>
+          Create a new key in <a href="https://studio.elarislabs.ai/en/profile">your profile</a> and update the config.
+          Keys have a required expiry (max 24 weeks). Revoked keys stop working immediately.
+        </p>
+      </details>
+      <details>
+        <summary>"Insufficient credits" or spend cap hit</summary>
+        <p>
+          Top up the brand's credit balance in Studio, or raise the per-key spend cap in profile settings
+          (max 2000 credits per key). Free tools like <code class="inline">list_models</code> still work.
+        </p>
+      </details>
+      <details>
+        <summary>Agent doesn't call tools (just describes what it would do)</summary>
+        <p>
+          In Cursor, switch to <strong>Agent</strong> mode (not Ask). Explicitly ask it to use a tool:
+          <em>"Call generate_image with flux-2-flash …"</em>. Confirm the MCP server toggle is on in Settings → MCP.
+        </p>
+      </details>
+      <details>
+        <summary>Video or brand-pack tool times out</summary>
+        <p>
+          These jobs can take 30–90 seconds. If your client has a short tool timeout, retry or ask for
+          a shorter <code class="inline">durationSeconds</code> on video. Brand packs with many sizes take longer.
+        </p>
+      </details>
+      <details>
+        <summary>Can I create Google Slides from a link via ElarisLabs MCP?</summary>
+        <p>
+          Not directly — ElarisLabs MCP is for creative generation (images, video, audio, brand packs).
+          To edit Google Slides, install a separate Google Workspace MCP server and connect both.
+          Then ask the agent to generate assets with ElarisLabs and place them with the Google server.
+        </p>
+      </details>
+      <details>
+        <summary>Testing the endpoint manually</summary>
+        <p>With a valid key, the MCP initialize handshake should return a 200:</p>
+        <div class="codeblock">
+          <div class="code-head"><span>Terminal</span><button class="copy" data-copy="curl-test">Copy</button></div>
+          <pre id="curl-test">curl -s -X POST "https://studio.elarislabs.ai/api/mcp" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer elx_live_YOUR_KEY_HERE" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}'</pre>
+        </div>
+      </details>
+    </section>
+
+    <div class="page-nav">
+      <a href="/docs">
+        <div class="dir">← Back</div>
+        <div class="ttl">All docs</div>
+      </a>
+      <a href="https://studio.elarislabs.ai/en/profile" style="text-align:right">
+        <div class="dir">Next →</div>
+        <div class="ttl">Create an API key</div>
+      </a>
+    </div>
+
+    <footer>
+      ElarisLabs — Creative Studio MCP. Keep your API key secret; treat it like a password.
+      Manage or revoke keys anytime from <a href="https://studio.elarislabs.ai/en/profile">your profile</a>.
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var origin = window.location.origin;
+      var url = origin + '/api/mcp';
+      var prodUrl = 'https://studio.elarislabs.ai/api/mcp';
+
+      var urlEl = document.getElementById('mcp-url');
+      if (urlEl) urlEl.textContent = url;
+
+      var replaceIds = [
+        'cfg-claude', 'cfg-claude-stdio', 'cfg-cursor', 'cfg-cursor-env',
+        'cfg-stdio-generic', 'cfg-multi', 'curl-test'
+      ];
+      replaceIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = el.textContent.replace(prodUrl, url);
+      });
+    })();
+
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = document.getElementById(btn.getAttribute('data-copy'));
+        if (!target) return;
+        navigator.clipboard.writeText(target.textContent).then(function () {
+          var old = btn.textContent;
+          btn.textContent = 'Copied';
+          btn.classList.add('done');
+          setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1500);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

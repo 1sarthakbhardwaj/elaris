@@ -98,8 +98,8 @@ export default function Footer() {
       {/* Footer */}
       <footer className="border-t border-white/[0.05] px-6 md:px-10 pt-20 pb-10 bg-coal">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
-            <div className="col-span-2">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+            <div className="col-span-2 lg:col-span-2">
               <a href="/" className="flex items-center gap-2.5 mb-5">
                 <Logo size={26} />
                 <div className="flex items-baseline gap-1.5">
@@ -138,6 +138,23 @@ export default function Footer() {
                       className="text-bone hover:text-halo transition-colors"
                     >
                       {l}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Resources</h4>
+              <ul className="space-y-3 text-sm">
+                {[
+                  { label: "Docs", href: "/docs" },
+                  { label: "Blogs", href: "/blogs" },
+                  { label: "Pricing", href: "/pricing" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="text-bone hover:text-halo transition-colors">
+                      {l.label}
                     </a>
                   </li>
                 ))}

@@ -21,6 +21,14 @@ module.exports = {
         destination:
           "/blogs/elarislabs-marketing-journey/elarislabs-marketing-journey.html",
       },
+      {
+        source: "/docs/mcp",
+        destination: "/docs/mcp.html",
+      },
+      {
+        source: "/blogs/mcp-docs",
+        destination: "/docs/mcp.html",
+      },
     ];
   },
 };
