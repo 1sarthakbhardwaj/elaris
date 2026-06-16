@@ -18,7 +18,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Case Study",
     readTime: "7 min read",
     href: "/blogs/mcdonalds-qatar-live-dooh",
-    image: "/blogs/mcdonalds-qatar-live-dooh/cover.svg",
+    image: "/blogs/mcdonalds-qatar-live-dooh/cover.jpg",
     imageAlt:
       "Live weather-reactive DOOH for McDonald's Qatar: temperature-driven Sprite billboard in Doha",
   },
