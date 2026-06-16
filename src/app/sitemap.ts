@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${SITE_URL}/blogs/mcdonalds-qatar-live-dooh`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.68,
+    },
+    {
       url: `${SITE_URL}/blogs/elarislabs-marketing-journey`,
       lastModified,
       changeFrequency: "monthly",

@@ -22,6 +22,11 @@ module.exports = {
           "/blogs/elarislabs-marketing-journey/elarislabs-marketing-journey.html",
       },
       {
+        source: "/blogs/mcdonalds-qatar-live-dooh",
+        destination:
+          "/blogs/mcdonalds-qatar-live-dooh/mcdonalds-qatar-live-dooh.html",
+      },
+      {
         source: "/docs/mcp",
         destination: "/docs/mcp.html",
       },

@@ -11,6 +11,18 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "mcdonalds-qatar-live-dooh",
+    title: "The Billboard That Knew How Hot It Was",
+    excerpt:
+      "How ElarisLabs turned a single PSD into a live, weather-reactive DOOH campaign for McDonald's Qatar — Taste the Mixperience, running across Doha.",
+    category: "Case Study",
+    readTime: "7 min read",
+    href: "/blogs/mcdonalds-qatar-live-dooh",
+    image: "/blogs/mcdonalds-qatar-live-dooh/cover.svg",
+    imageAlt:
+      "Live weather-reactive DOOH for McDonald's Qatar: temperature-driven Sprite billboard in Doha",
+  },
+  {
     slug: "elarislabs-marketing-journey",
     title: "Your whole marketing journey, in one place.",
     excerpt:
