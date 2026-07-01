@@ -1,7 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import TrustedBy from "@/components/TrustedBy";
 import ProductsGrid from "@/components/ProductsGrid";
 import VideoResources from "@/components/VideoResources";
+import PressFeature from "@/components/PressFeature";
 import Docs from "@/components/Docs";
 import Blogs from "@/components/Blogs";
 import Faq from "@/components/Faq";
@@ -12,8 +14,10 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <Hero />
+      <TrustedBy />
       <ProductsGrid />
       <VideoResources />
+      <PressFeature />
       <Docs />
       <Blogs />
       <Faq />
