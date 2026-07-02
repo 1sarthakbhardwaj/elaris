@@ -5,6 +5,7 @@ export type PressStat = {
 
 export type PressFeature = {
   outlet: string;
+  logoSrc: string;
   date: string;
   headline: string;
   quote: string;
@@ -16,6 +17,7 @@ export type PressFeature = {
 
 export const PRESS_FEATURE: PressFeature = {
   outlet: "Campaign Middle East",
+  logoSrc: "/logos/Campaign-Logo-July2019.webp",
   date: "July 2026",
   headline:
     "McDonald's Qatar turns Doha's heat into a real-time campaign",

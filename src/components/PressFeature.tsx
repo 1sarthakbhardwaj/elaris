@@ -6,7 +6,7 @@ import { useReveal } from "./useReveal";
 
 export default function PressFeature() {
   const [ref, shown] = useReveal<HTMLDivElement>(0.18);
-  const { outlet, date, headline, quote, href, caseStudyHref, stats } =
+  const { outlet, logoSrc, date, headline, quote, href, caseStudyHref, stats } =
     PRESS_FEATURE;
 
   return (
@@ -48,18 +48,24 @@ export default function PressFeature() {
             }}
           />
 
+          <div className="mb-8 flex items-center justify-between gap-6 border-b border-white/[0.06] pb-7">
+            <div className="flex h-16 items-center rounded-xl border border-white/[0.06] bg-white px-6 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.4)] md:h-[4.5rem] md:px-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={logoSrc}
+                alt={outlet}
+                className="h-10 w-auto max-w-[260px] object-contain md:h-12 md:max-w-[300px]"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <span className="shrink-0 text-mono text-xs uppercase tracking-[0.14em] text-chrome/70">
+              {date}
+            </span>
+          </div>
+
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-12">
             <div className="min-w-0 flex-1">
-              <div className="mb-5 flex flex-wrap items-center gap-3">
-                <span className="text-mono text-sm font-semibold uppercase tracking-[0.14em] text-bone">
-                  {outlet}
-                </span>
-                <span className="h-1 w-1 rounded-full bg-chrome/50" aria-hidden />
-                <span className="text-mono text-xs uppercase tracking-[0.14em] text-chrome/70">
-                  {date}
-                </span>
-              </div>
-
               <p className="text-lg font-medium leading-snug text-bone md:text-xl">
                 &ldquo;{headline}&rdquo;
               </p>
