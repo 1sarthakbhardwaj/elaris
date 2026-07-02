@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrustedBy from "@/components/TrustedBy";
 import ProductsGrid from "@/components/ProductsGrid";
 import VideoResources from "@/components/VideoResources";
 import PressFeature from "@/components/PressFeature";
@@ -14,7 +13,6 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <Hero />
-      <TrustedBy />
       <ProductsGrid />
       <VideoResources />
       <PressFeature />
