@@ -1,0 +1,70 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "ElarisLabs",
+  "colors": {
+    "primary": "#6DA6D9",
+    "light": "#A8CDEF",
+    "dark": "#6DA6D9"
+  },
+  "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://www.elarislabs.ai"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
+  "fonts": {
+    "family": "Inter"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "background": {
+    "decoration": "grid",
+    "color": {
+      "dark": "#07070A"
+    }
+  },
+  "styling": {
+    "codeblocks": "dark"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get started",
+        "pages": ["index", "quickstart"]
+      },
+      {
+        "group": "Integrations",
+        "pages": ["integrations/mcp"]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Blog",
+        "href": "https://www.elarislabs.ai/blogs"
+      },
+      {
+        "label": "Pricing",
+        "href": "https://www.elarislabs.ai/pricing"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Open Studio",
+      "href": "https://studio.elarislabs.ai"
+    }
+  },
+  "footer": {
+    "socials": {
+      "website": "https://www.elarislabs.ai",
+      "linkedin": "https://www.linkedin.com/company/elarislabs"
+    }
+  }
+}

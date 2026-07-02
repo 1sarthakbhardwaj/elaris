@@ -1,0 +1,10 @@
+<svg width="150" height="32" viewBox="0 0 150 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A8CDEF"/>
+      <stop offset="100%" stop-color="#6DA6D9"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="4" width="24" height="24" rx="6" fill="url(#mark)"/>
+  <text x="34" y="21" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#EEF0F3" letter-spacing="-0.01em">ElarisLabs</text>
+</svg>

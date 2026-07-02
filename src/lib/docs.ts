@@ -32,8 +32,8 @@ export const DOC_PAGES: DocPage[] = [
       "Connect Creative Studio to Claude, Cursor, and other MCP clients. API keys, config snippets, multi-server setups, example prompts, and troubleshooting.",
     sectionId: "integrations",
     readTime: "10 min read",
-    href: "/docs/mcp",
-    image: "/docs/mcp-cover.svg",
+    href: "/docs/integrations/mcp",
+    image: "/img/mcp-cover.svg",
     imageAlt: "ElarisLabs MCP server — connect Claude, Cursor, and your creative stack",
     topics: [
       "What is MCP?",
