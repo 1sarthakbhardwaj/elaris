@@ -1,0 +1,58 @@
+---
+title: "Slack integration"
+description: "How to install the ElarisLabs Slack app, link your brand, and generate images, brand packs, and captions by messaging the bot in any channel or DM."
+icon: "hash"
+---
+
+Slack is not an MCP client. Instead, the ElarisLabs Slack app runs the same Creative Studio tools in the background and delivers finished assets back to the thread. It can ask a clarifying question and resume when you reply.
+
+<CardGroup cols={2}>
+  <Card title="No config files" icon="message-square">
+    Type a plain-language request in Slack — no JSON configs or API calls required.
+  </Card>
+  <Card title="Same tools as MCP" icon="wrench">
+    The Slack worker uses the same generation and editing tools as MCP. See the [tool reference](/connect/tools).
+  </Card>
+  <Card title="In-thread delivery" icon="inbox">
+    Finished assets are posted back to the originating thread with a short summary.
+  </Card>
+  <Card title="Brand-scoped credits" icon="credit-card">
+    Paid actions bill to the brand linked to your Slack identity, the same as MCP keys.
+  </Card>
+</CardGroup>
+
+## How do I set up the Slack integration?
+
+<Steps>
+  <Step title="Install the app">
+    Have an admin install the ElarisLabs Slack app to your workspace. Then invite
+    the bot to a channel, or DM it. You can also start from **Connect** or
+    `/slack/link` in the app.
+  </Step>
+  <Step title="Link your identity">
+    Link your Slack identity to your ElarisLabs brand the first time. Mention the
+    bot and it replies with a one-time link. Complete linking in the browser.
+    Until linked, the bot cannot spend credits.
+  </Step>
+  <Step title="Task it in plain language">
+    ```text Slack
+    @ElarisLabs make a square product shot of our new sneaker on a marble pedestal,
+    then build a brand pack for Instagram feed and story sizes.
+    ```
+  </Step>
+  <Step title="Get results in-thread">
+    The worker runs in the background. If it needs a detail, like which sizes, it
+    asks in-thread and waits for your reply. Then it delivers the assets and a
+    short summary.
+  </Step>
+</Steps>
+
+<Note>
+  **Self-hosting the Slack app:** use the manifest at
+  `docs/slack-app-manifest.yaml` in the ElarisLabs repo. Then set
+  `SLACK_BOT_TOKEN` and `SLACK_SIGNING_SECRET`, and point the event subscription
+  URL at `/api/webhooks/slack/events`.
+</Note>
+
+Paid actions consume brand credits the same way MCP generation tools do. See the
+[tool reference](/connect/tools) for what is available.

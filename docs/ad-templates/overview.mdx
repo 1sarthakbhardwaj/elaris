@@ -1,0 +1,65 @@
+---
+title: Ad Templates & Magic Layers
+description: Browse, clone, and customize ad templates — or use ad-template campaign mode to produce layout-driven ads with consistent frames and swappable content at scale.
+---
+
+Ad Templates give you a library of structured ad layouts you can clone into Studio, customize with your brand, and reuse across campaigns. **Magic Layers** takes this further — decomposing and rebuilding ad layouts with AI template blocks so you can maintain consistent frame structures while swapping product imagery, copy, and brand elements at scale.
+
+## How do I browse and use ad templates?
+
+<Steps>
+  <Step title="Open the template browser">
+    Navigate to `/templates` to browse the full template library. Filter by format, platform, or style to find the right layout.
+  </Step>
+  <Step title="Preview a template">
+    Click any template to open its detail page. Review the layout structure, layer breakdown, and format specifications.
+  </Step>
+  <Step title="Clone into Studio or a campaign">
+    Clone the template into **Creative Studio** for freeform customization, or select **ad-template** as your campaign mode to use it directly in the campaign wizard.
+  </Step>
+</Steps>
+
+## What is the ad-template campaign mode?
+
+In the campaign wizard, choosing **ad-template** mode gives you structured, layout-driven ad production rather than freeform generation alone. The Creative Director and Prompt Engineer agents work within the template's layout constraints — ensuring outputs stay consistent while still being brand-specific and idea-driven.
+
+<Tip>
+Ad-template mode is especially powerful when you need to produce the same ad in multiple sizes or across a product line — keep the layout consistent, swap the product and copy.
+</Tip>
+
+## What are Magic Layers?
+
+Magic Layers decompose an ad layout into AI-editable template blocks. Each block can independently receive new product imagery, copy, or visual style — without disrupting the rest of the layout.
+
+<AccordionGroup>
+  <Accordion title="When should I use Magic Layers?">
+    Use Magic Layers when you need **consistent frame structures** across a set of ads — for example, a product line where every ad uses the same layout but features a different product. Magic Layers let you swap content at the block level without redesigning each ad from scratch.
+  </Accordion>
+  <Accordion title="How do Magic Layers relate to ad-template campaign mode?">
+    Ad-template campaign mode uses Magic Layers under the hood. When you run a campaign in ad-template mode, the outputs are Magic Layers-powered layouts that you can continue editing in Studio.
+  </Accordion>
+  <Accordion title="Can I build my own Magic Layers template?">
+    You can clone any existing template into Studio and customize it. For custom Magic Layers templates, start from an existing layout and modify the layer structure in the Studio editor.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+This page covers the user-facing workflow. Engineering internals of the Magic Layers system are intentionally omitted.
+</Note>
+
+## What's next?
+
+<CardGroup cols={2}>
+  <Card title="Campaign wizard" icon="wand-2" href="/campaigns/wizard">
+    Run the campaign wizard in ad-template mode.
+  </Card>
+  <Card title="Campaign modes" icon="sliders-horizontal" href="/campaigns/modes">
+    Compare all campaign modes before you start.
+  </Card>
+  <Card title="Studio overview" icon="layers" href="/studio/overview">
+    Customize cloned templates in the freeform editor.
+  </Card>
+  <Card title="Brand pack" icon="package" href="/studio/brand-pack">
+    Apply your brand's colors, fonts, and assets to any template.
+  </Card>
+</CardGroup>

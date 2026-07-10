@@ -1,0 +1,88 @@
+---
+title: "MCP tool reference"
+description: "Complete reference for every ElarisLabs MCP tool — which ones are free discovery tools, which consume credits for generation, and how to schedule posts."
+icon: "wrench"
+---
+
+Discovery tools are free. Generation and editing tools consume credits from the
+key's brand. Scheduler tools queue posts without consuming generation credits.
+
+<Tip>
+  **Model tip:** pass `model: "auto"` (the default) to let the router pick. Or
+  pass a specific id from `list_models`, such as `"flux-2-flash"` for fast images.
+</Tip>
+
+<Tabs>
+  <Tab title="Discovery (free)">
+    All tools in this group are free — they never consume credits. Use them to
+    confirm connectivity, inspect your brand, and plan generation calls.
+
+    | Tool | What it does | Key parameters |
+    | --- | --- | --- |
+    | `list_brands` | Brand this key is bound to | none |
+    | `list_workspaces` | Workspace for this key | none |
+    | `list_projects` | Creative Studio projects | none |
+    | `get_project` | Single project plus flow graph | `projectId` |
+    | `list_models` | Image, video, audio models | `kind` (optional filter) |
+    | `list_templates` | Published Studio templates | none |
+    | `get_credits` | Balances and spend limit | none |
+    | `get_generation_history` | Recent runs / usage | none |
+    | `brand_pack_list_sizes` | Available brand-pack output sizes | none |
+    | `list_scheduler_integrations` | Connected publish accounts | none |
+    | `list_scheduled_posts` | Queued and published posts | none |
+  </Tab>
+  <Tab title="Generation (credits)">
+    These tools consume credits from the brand balance associated with the key.
+    Call `get_credits` first to confirm available balance.
+
+    | Tool | What it does | Key parameters |
+    | --- | --- | --- |
+    | `generate_image` | Text-to-image or edit with references | `prompt`, `model`, `referenceImages`, `resolution` |
+    | `generate_video` | Text-to-video or image-to-video | `prompt`, `imageUrl`, `durationSeconds` |
+    | `regenerate_video` | Re-run video with optional variation | `prompt`, `variationHint` |
+    | `generate_audio` | Text-to-speech (ElevenLabs, Gemini) | `text`, `model`, `voice`, `language` |
+    | `create_hyperlapse` | Stitch images into a timelapse | `images[]`, `fps`, `width`, `height` |
+    | `composer_edit` | add_text, inpaint, erase, remove_background | `operation`, `imageUrl` |
+    | `generate_caption` | Platform captions | platform + creative context |
+    | `generate_text` | Marketing copy | brief / tone |
+    | `score_creative` | Predictive ad scoring | creative asset |
+    | `brand_pack_resize` | Resize into sizes, returns a zip | `sourceImage`, `sizeKeys` |
+
+    <Note>
+      Video and brand-pack tools may take 30–90 seconds. If your MCP client has a short tool timeout, retry or request a shorter `durationSeconds` for video.
+    </Note>
+  </Tab>
+  <Tab title="Scheduler">
+    Scheduler tools queue posts to connected social accounts. No generation
+    credits are consumed — only the scheduling action itself.
+
+    | Tool | What it does | Notes |
+    | --- | --- | --- |
+    | `schedule_post` | Queue a post to a connected account | Requires `list_scheduler_integrations` to confirm connected accounts first |
+
+    <Tip>
+      Call `list_scheduler_integrations` before `schedule_post` to confirm the target platform is connected and get the correct integration ID.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Example prompts
+
+<AccordionGroup>
+  <Accordion title="Discovery (free)" icon="search">
+    "What brands and image models can this key access? List the top 5 image
+    models."
+  </Accordion>
+  <Accordion title="Image generation" icon="image">
+    "Generate a square product shot of a matte black sneaker on white marble using
+    flux-2-flash. 2K resolution."
+  </Accordion>
+  <Accordion title="Brand pack" icon="package">
+    "List brand-pack sizes, then resize that hero image into Instagram feed,
+    story, and 300x250 display. Return the zip."
+  </Accordion>
+  <Accordion title="Multi-step workflow" icon="workflow">
+    "Generate 3 lifestyle variants of our product, stitch them into a hyperlapse
+    at 24fps, then generate a voiceover saying 'Built for the city.'"
+  </Accordion>
+</AccordionGroup>

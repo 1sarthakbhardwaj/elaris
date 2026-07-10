@@ -1,0 +1,52 @@
+---
+title: Pricing FAQ
+description: Answers to the most common questions about Elaris credits, plan tiers, rollover rules, refunds, and MCP billing — so you can predict your costs before generating.
+---
+
+<AccordionGroup>
+  <Accordion title="Do unused credits roll over?">
+    **Plan-included credits** follow your plan's rollover rules, which are displayed on **Workspace → Plan tier**.
+
+    **Purchased credit packs** typically remain in your balance until used — they do not expire with your plan cycle. Confirm the exact expiry terms on your workspace credits page (maximum expiry: 24 weeks from purchase date).
+  </Accordion>
+
+  <Accordion title="Why did a video cost more than an image?">
+    Video is priced **per second of output duration**, not per file. Longer clips and premium model tiers (e.g. Veo 3.1 vs. LTX 2.3) carry higher per-second rates. Resolution and audio-inclusion multipliers also apply on top.
+
+    Studio shows the estimated credit cost before you confirm a generation — switch models or reduce duration to control spend.
+  </Accordion>
+
+  <Accordion title="Are MCP tools billed differently?">
+    **Discovery tools** (`list_brands`, `list_models`, `get_credits`, etc.) are completely **free** — no credits deducted.
+
+    **Generation tools** use the same credit economy as Studio, subject to the spend limit configured on the API key's associated brand. Once the brand spend cap is reached, further MCP generation calls are blocked until the cap is raised or the balance is topped up.
+  </Accordion>
+
+  <Accordion title="Can I get a refund on a failed generation?">
+    Generations that fail before producing billable output are generally **not charged**. If you believe you were charged incorrectly for a failed run, contact support with the **run ID and timestamp** — both are visible in your generation history.
+  </Accordion>
+
+  <Accordion title="What is the difference between seats and credits?">
+    - **Seats (plan)** — determine *who* can access the workspace. You need a plan seat to log in and use the product.
+    - **Credits** — meter *how much* AI you generate. You need both a seat and a sufficient credit balance to run generations.
+
+    Adding credits does not add seats, and adding seats does not add generation credits beyond plan-included amounts.
+  </Accordion>
+
+  <Accordion title="Can I set a spending cap?">
+    Yes. For MCP API key usage, you can configure a **brand spend limit** (up to 2,000 credits) per API key. This caps how many credits an automated workflow can consume before requiring manual intervention. Spend limits are managed in **Workspace → Connect → API Keys**.
+  </Accordion>
+
+  <Accordion title="How do I get Enterprise pricing?">
+    Enterprise plans include custom credit volumes, SSO/SAML, SLA, and dedicated support. Reach out to [sales@elarislabs.com](mailto:sales@elarislabs.com) or use the contact form on the pricing page.
+  </Accordion>
+</AccordionGroup>
+
+<CardGroup cols={2}>
+  <Card title="How pricing works" icon="calculator" href="/pricing/how-pricing-works">
+    Full credit math for images, video, audio, and campaign batches.
+  </Card>
+  <Card title="Credits" icon="zap" href="/workspaces/credits">
+    Credit hierarchy, deduction order, and top-up guide.
+  </Card>
+</CardGroup>

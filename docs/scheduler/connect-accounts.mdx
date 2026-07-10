@@ -1,0 +1,104 @@
+---
+title: Connect accounts
+description: Link your Facebook, Instagram, TikTok, YouTube, X, LinkedIn, and Snapchat accounts to Elaris Scheduler so you can publish and track performance without leaving the platform.
+---
+
+Before you can schedule or publish, you need at least one connected social account. Elaris uses OAuth for every platform — no passwords are stored.
+
+## How do I connect a social account?
+
+Open **Scheduler → Connections** and follow these steps:
+
+<Steps>
+  <Step title="Choose a platform">
+    Select from Instagram, Facebook, TikTok, YouTube, X, LinkedIn, or Snapchat.
+  </Step>
+  <Step title="Complete OAuth authorization">
+    You'll be redirected to the platform's login and consent screens. Grant the permissions requested — these typically include **publish**, **media read**, and **analytics** access.
+  </Step>
+  <Step title="Select your account or page">
+    Some platforms ask you to choose which page or profile to connect after OAuth completes. This applies to LinkedIn Company Pages, Facebook Pages, and Snapchat Business profiles.
+  </Step>
+  <Step title="Verify the connection">
+    Return to **Connections** and confirm the account shows as **Active**. You're ready to schedule.
+  </Step>
+</Steps>
+
+<Warning>
+If a scheduled post fails to publish, reconnect the account first. Platform tokens expire, and app permission updates can silently revoke access.
+</Warning>
+
+## What permissions does each platform require?
+
+<Tabs>
+  <Tab title="Instagram & Facebook">
+    Both platforms use the Meta OAuth flow. You'll need to authorize:
+    - **Content publishing** — post images, videos, and Reels
+    - **Pages read engagement** — fetch performance metrics
+    - **Instagram Basic Display** — profile access (Instagram only)
+
+    <Tip>
+    Connect a Facebook Page first if you want both Facebook and Instagram in a single OAuth session.
+    </Tip>
+  </Tab>
+  <Tab title="TikTok">
+    TikTok requires:
+    - **Video upload** — direct post and draft creation
+    - **User info** — verify the linked account identity
+
+    <Note>
+    TikTok's review policy means some accounts may have limited direct-post access. Elaris will surface any restrictions on the connection card.
+    </Note>
+  </Tab>
+  <Tab title="YouTube">
+    YouTube (Google OAuth) requires:
+    - **YouTube upload** — publish videos to your channel
+    - **YouTube read** — fetch video metadata and analytics
+
+    After OAuth, select the YouTube channel you want to publish to if the Google account has multiple channels.
+  </Tab>
+  <Tab title="X (Twitter)">
+    X uses OAuth 2.0 and requires:
+    - **Tweet read/write** — create posts with media
+    - **Offline access** — maintain the connection between sessions
+  </Tab>
+  <Tab title="LinkedIn">
+    LinkedIn requires:
+    - **Share on LinkedIn** — post to profiles and pages
+    - **r_organization_social** — manage Company Page posts
+
+    After OAuth, choose the Company Page or personal profile you want to connect.
+  </Tab>
+  <Tab title="Snapchat">
+    Snapchat Business requires:
+    - **snapchat-marketing-api** — publish Stories and ads
+    - **snapchat-profile** — identity verification
+
+    Select your Snapchat Business profile after the OAuth redirect.
+  </Tab>
+</Tabs>
+
+## How do I fix a broken connection?
+
+<AccordionGroup>
+  <Accordion title="The account shows as 'Disconnected' or 'Error'">
+    Click **Reconnect** on the connection card and re-authorize via OAuth. This refreshes the token without losing any scheduled posts in the queue.
+  </Accordion>
+  <Accordion title="Posts are failing even though the connection looks active">
+    The token may have silently expired. Disconnect the account, then reconnect it fresh. Check that all required permissions are re-granted on the platform's consent screen.
+  </Accordion>
+  <Accordion title="I can't find my Page or Business profile after OAuth">
+    Make sure you're logged into the correct account on the platform before authorizing. For Facebook, the authorizing user must have **Admin** or **Editor** role on the Page.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Compose & schedule" icon="pencil" href="/scheduler/compose-and-schedule">
+    Create your first scheduled post
+  </Card>
+  <Card title="Calendar & drafts" icon="calendar" href="/scheduler/calendar-and-drafts">
+    Manage your content pipeline
+  </Card>
+</CardGroup>

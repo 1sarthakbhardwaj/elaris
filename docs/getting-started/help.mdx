@@ -1,0 +1,48 @@
+---
+title: Help & Support
+description: Contact support@elarislabs.ai, troubleshoot credits and MCP, and report bugs or feature requests with the right context.
+icon: life-buoy
+---
+
+Get help for account, billing, product, MCP, or docs issues.
+
+## How do I contact support?
+
+Email **support@elarislabs.ai**. Include your workspace name, brand (if relevant), and steps to reproduce.
+
+## What should I check in-product first?
+
+<CardGroup cols={2}>
+  <Card title="Getting-started checklist" icon="list-checks" href="/getting-started/quickstart">
+    Confirm workspace, brand, and first Studio generation.
+  </Card>
+  <Card title="Credits" icon="coins" href="/workspaces/credits">
+    Fix insufficient-balance failures and understand spend.
+  </Card>
+  <Card title="MCP setup" icon="plug" href="/connect/setup">
+    Fix Claude, Cursor, or Slack connection issues.
+  </Card>
+  <Card title="API keys" icon="key" href="/connect/api-keys">
+    Rotate, revoke, or raise spend caps on brand-bound keys.
+  </Card>
+</CardGroup>
+
+## How do I report a bug or request a feature?
+
+Describe what you expected vs what happened, and attach screenshots or project links when possible.
+
+<AccordionGroup>
+  <Accordion title="What should I include for MCP issues?" icon="bot">
+    Include the client (Claude Desktop, Cursor, etc.), whether discovery tools like `list_models` work, and a redacted tool error. Never paste a full `elx_live_...` key.
+  </Accordion>
+  <Accordion title="What should I include for generation failures?" icon="triangle-alert">
+    Brand name, model id (or `auto`), approximate time, and whether credits were deducted. A Studio project link helps.
+  </Accordion>
+  <Accordion title="How do I give docs feedback?" icon="book-open">
+    Tell us which URL was wrong or missing and what you were trying to do — we treat docs as part of the product.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  For urgent billing or access issues, put **workspace name** and **brand** in the subject line so support can find you faster.
+</Tip>

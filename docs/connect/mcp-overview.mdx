@@ -1,0 +1,69 @@
+---
+title: "MCP overview"
+description: "How to connect ElarisLabs Creative Studio to Claude, Cursor, and other MCP clients so your agent can generate images, video, audio, and brand packs with a single prompt."
+icon: "plug"
+---
+
+Connect ElarisLabs Creative Studio to Claude, Cursor, and other MCP clients.
+
+Generate images, video, audio, brand packs, captions, and composer edits from any
+agent that speaks MCP. Credits bill to the brand your API key is bound to.
+
+## What is MCP?
+
+The Model Context Protocol (MCP) is an open standard for connecting AI
+assistants to external tools and data.
+
+Instead of copy-pasting API docs into a chat, the client discovers callable
+tools from a server. The model invokes them when your prompt needs real actions,
+like generating an image, listing projects, or resizing a brand pack.
+
+```
+You (prompt) -> MCP client (Claude, Cursor) -> ElarisLabs MCP (/api/mcp) -> Creative Studio (models + credits)
+```
+
+<CardGroup cols={3}>
+  <Card title="Tools, not chat plugins" icon="wrench">
+    The agent sees structured tools with schemas. It picks the right one and
+    passes arguments. No manual API calls.
+  </Card>
+  <Card title="Remote HTTP" icon="globe">
+    ElarisLabs runs a hosted MCP endpoint. No local install required. Just paste
+    a JSON config and your API key.
+  </Card>
+  <Card title="Brand-scoped billing" icon="credit-card">
+    Every key is bound to one brand. Generation tools deduct credits from that
+    brand's balance. Discovery tools are free.
+  </Card>
+</CardGroup>
+
+## How does the connection work?
+
+1. Create a **brand-bound API key** with an expiry and spend cap
+2. Point your MCP client at `https://studio.elarislabs.ai/api/mcp` with that key
+3. Call discovery tools (free), then generation tools (credits)
+
+| Aspect | Details |
+| --- | --- |
+| Protocol | MCP over Streamable HTTP at `/api/mcp` |
+| Auth | `Authorization: Bearer elx_live_...` header on every request |
+| Session | Stateless. No persistent connection to manage |
+| Timeouts | Video and brand-pack jobs may take 30 to 90 seconds |
+| Errors | Invalid, expired, or revoked keys return auth errors. Insufficient credits return a billing error |
+
+## Where do I go next?
+
+<CardGroup cols={2}>
+  <Card title="Setup guide" icon="rocket" href="/connect/setup">
+    Claude Desktop, Cursor, and other client configs.
+  </Card>
+  <Card title="API keys" icon="key" href="/connect/api-keys">
+    Create, rotate, and revoke brand-bound keys.
+  </Card>
+  <Card title="Tool reference" icon="wrench" href="/connect/tools">
+    Full list of free and paid MCP tools.
+  </Card>
+  <Card title="Slack" icon="hash" href="/connect/slack">
+    Same tools via the Slack worker, without MCP.
+  </Card>
+</CardGroup>

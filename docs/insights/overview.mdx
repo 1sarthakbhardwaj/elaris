@@ -1,0 +1,108 @@
+---
+title: Insights
+description: Understand which ad creatives drive results across Meta, TikTok, and Snapchat — with cross-channel comparison, attribute breakdowns, AI recommendations, and predictive creative scoring.
+---
+
+Insights is Elaris's paid social analytics hub. It helps you figure out **what creatives are working** across your ad accounts so you can spend confidently and create more of what converts.
+
+## Which ad platforms does Insights cover?
+
+Insights connects to your paid ad accounts on **Meta (Facebook & Instagram), TikTok, and Snapchat**. Connect these during brand onboarding or later in **Brand Identity → Info → Ad Accounts**.
+
+## What's in each Insights tab?
+
+<Tabs>
+  <Tab title="Overview">
+    High-level KPIs across all connected ad accounts. Use this as your daily performance dashboard — spend, impressions, reach, clicks, and conversions at a glance.
+
+    <Tip>
+    Set a consistent date range before comparing periods. The Overview respects the global date filter in the top bar.
+    </Tip>
+  </Tab>
+  <Tab title="Creatives">
+    Asset-level performance breakdown. See which individual videos, images, and carousels are driving results — and which are draining budget.
+
+    Each creative row shows:
+    - Spend, impressions, clicks, and CTR
+    - Platform distribution
+    - Creative score (if scored via Elaris)
+  </Tab>
+  <Tab title="Attributes">
+    Dimension breakdowns that explain *why* certain creatives perform. Filter by:
+    - **Placement** — Feed, Stories, Reels, Explore, etc.
+    - **Audience signals** — age, gender, interest buckets
+    - **Ad format** — single image, video, carousel
+
+    Use Attributes to identify which placement or audience combination is pulling the most value.
+  </Tab>
+  <Tab title="Cross-channel">
+    Side-by-side comparison across Meta, TikTok, and Snapchat. Understand where your budget is most efficient and how the same creative performs differently by platform.
+
+    <Note>
+    Cross-channel data is normalized to common metrics (impressions, clicks, spend) since each platform uses different native naming.
+    </Note>
+  </Tab>
+  <Tab title="Recommendations">
+    AI-powered suggested next actions based on your current performance data. Recommendations surface budget reallocation opportunities, underperforming creatives to pause, and high-performing variants to scale.
+  </Tab>
+</Tabs>
+
+## How does predictive creative scoring work?
+
+Score a creative **before you spend on it** to estimate its likely performance. You can score from two places:
+
+<CardGroup cols={2}>
+  <Card title="In-app scoring" icon="star">
+    Open any creative in the Insights → Creatives view or during campaign setup and click **Score**. Results appear in seconds.
+  </Card>
+  <Card title="MCP scoring" icon="code">
+    Call `score_creative` via the Elaris MCP. Pass the asset reference and target platform to get a score you can act on programmatically.
+  </Card>
+</CardGroup>
+
+Use scores to **prioritize variants** — when Studio or Campaigns produces multiple versions, score them all and put budget behind the top performers first.
+
+## How do I connect my ad accounts?
+
+<Steps>
+  <Step title="Go to brand onboarding or settings">
+    During brand setup, you'll be prompted to connect ad accounts. You can also do this any time from **Brand Identity → Info → Ad Accounts**.
+  </Step>
+  <Step title="Select a platform">
+    Choose Meta, TikTok, or Snapchat and authorize via the platform's OAuth flow.
+  </Step>
+  <Step title="Select the ad account">
+    After authorization, pick the specific ad account(s) you want to pull data from.
+  </Step>
+  <Step title="Data starts flowing">
+    Historical data (up to 90 days, platform-dependent) loads automatically. New data refreshes on a regular sync cadence.
+  </Step>
+</Steps>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How is Insights different from Scheduler Analytics?">
+    Scheduler Analytics covers **organic posts** published through Elaris Scheduler. Insights covers **paid ad campaigns** running on Meta, TikTok, and Snapchat. Use both for a complete picture of your paid and organic performance.
+  </Accordion>
+  <Accordion title="How current is the data?">
+    Data sync frequency depends on the platform's API limits. Most platforms refresh multiple times per day. The last sync timestamp is shown in the top right of the Insights dashboard.
+  </Accordion>
+  <Accordion title="Can I export Insights data?">
+    Data export is available on select plans. Check your workspace plan details for export capabilities.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={3}>
+  <Card title="Brand onboarding" icon="building-2" href="/brands/onboarding">
+    Connect ad accounts during brand setup
+  </Card>
+  <Card title="Campaigns" icon="megaphone" href="/campaigns/overview">
+    Create campaigns whose creatives you'll track in Insights
+  </Card>
+  <Card title="Scheduler analytics" icon="chart-bar" href="/scheduler/analytics">
+    View organic post performance
+  </Card>
+</CardGroup>

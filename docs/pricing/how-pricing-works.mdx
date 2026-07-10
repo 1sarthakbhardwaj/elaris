@@ -1,0 +1,82 @@
+---
+title: How pricing works
+description: Elaris billing has two layers — a subscription plan (Free / Basic ~$49 / Pro ~$399 / Enterprise) and usage credits priced at ~$0.008 each for every image, video, audio, and VTON generation.
+---
+
+Elaris billing is two-layered: a **subscription plan** that controls seat access and feature entitlements, plus **usage credits** that meter every AI generation.
+
+## What are the two billing layers?
+
+| Layer | What it covers |
+|-------|----------------|
+| **Subscription plan** | Seat access, plan-included credits, feature entitlements (Free / Basic / Pro / Enterprise) |
+| **Credits** | Per-generation usage across Studio, Campaigns, URL to Video, VTON, and MCP |
+
+You need both: a plan for access, and a credit balance to generate.
+
+## How is the credit amount calculated?
+
+<CodeGroup>
+```text Credit formula
+1 credit ≈ $0.008 model cost
+credits  = ceil(usd / 0.008)   # minimum 1 credit per generation
+```
+</CodeGroup>
+
+This anchor is consistent across all media types. The same formula converts underlying model cost to credits whether you're generating a single image or a 12-second video clip.
+
+## How are different media types priced?
+
+<Tabs>
+  <Tab title="Images">
+    Image costs vary by model family and generation method:
+
+    - **Per-image** — flat cost per output (e.g. Flux 2 Flash = 1 credit, Flux 2 Max = 8 credits)
+    - **Per-megapixel** — cost scales with output resolution
+    - **Token / quality tiers** — used by models like GPT Image (21 credits base; quality tiers may add more)
+
+    Higher resolution outputs (2K, 4K) apply a resolution multiplier on top of the base model cost.
+
+    See [Image models](/models/image) for the full per-model credit table.
+  </Tab>
+  <Tab title="Video">
+    Video is priced primarily **per second of output**, with multipliers for:
+
+    - **Duration** — longer clips cost more proportionally
+    - **Resolution / tier** — premium models carry a higher per-second rate
+    - **Audio** — models with built-in audio (e.g. Veo 3.1) may include an audio multiplier
+
+    Studio shows the estimated credit cost before you confirm. MCP video tools accept `durationSeconds` (commonly 2–12 seconds).
+
+    See [Video models](/models/video) for per-family pricing guidance.
+  </Tab>
+  <Tab title="Audio & VTON">
+    - **Text-to-speech (TTS)** — fixed-ish action cost per generation (varies by model and character count)
+    - **Dialogue** — higher credit cost than single-voice TTS
+    - **Virtual Try-On (VTON)** — metered **per second** of session time
+
+    See [Audio models](/models/audio) for TTS model options and relative costs.
+  </Tab>
+</Tabs>
+
+## How are campaign batches billed?
+
+Large campaign wizard flows use **flow-level deductions** rather than dozens of tiny per-asset charges. You see one predictable deduction per wizard phase, not incremental charges mid-flow.
+
+| Campaign flow | Typical deduction |
+|---------------|------------------|
+| Full AI generation batch | 60 credits |
+| Moodboard generation | 50 credits |
+
+<Tip>
+  Studio always shows a cost estimate before you commit to a generation. For campaigns, the total deduction appears at the wizard confirmation step — review it before proceeding.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Credits" icon="zap" href="/workspaces/credits">
+    Understand workspace vs. brand credit pools and deduction order.
+  </Card>
+  <Card title="Plans & Billing" icon="credit-card" href="/workspaces/plans-and-billing">
+    Compare plan tiers and manage your Stripe subscription.
+  </Card>
+</CardGroup>

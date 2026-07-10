@@ -1,0 +1,72 @@
+---
+title: Calendar & drafts
+description: Use the Scheduler calendar to visualize and reschedule posts, save work-in-progress as drafts, and recover from publish failures without losing your content.
+---
+
+The Calendar and Drafts views give you full control over your content pipeline — from idea to live post and everything in between.
+
+## What can I do in the Calendar?
+
+The Calendar is your visual command center for organic scheduling. Every scheduled and recently published post appears here in chronological order.
+
+<CardGroup cols={3}>
+  <Card title="Reschedule posts" icon="calendar-arrow-right">
+    Drag a post to a new time slot, or click it and edit the publish date directly.
+  </Card>
+  <Card title="Edit before publish" icon="pencil">
+    Open any upcoming post to update the caption, swap media, or change destination accounts.
+  </Card>
+  <Card title="Track publish status" icon="circle-check">
+    See at a glance which posts are scheduled, published, or failed — color-coded per status.
+  </Card>
+</CardGroup>
+
+## How do Drafts work?
+
+Drafts let you save a post without committing to a publish time. Use them when content is still in review, waiting for final creative approval, or simply not ready to go live.
+
+<Steps>
+  <Step title="Create a draft">
+    Start composing a post and choose **Save as draft** instead of scheduling. The post is saved to **Scheduler → Drafts** with no publish time attached.
+  </Step>
+  <Step title="Collaborate and refine">
+    Share the draft link with teammates for review. Editors can update the caption or swap assets directly.
+  </Step>
+  <Step title="Promote to scheduled">
+    When the draft is approved, open it, set a publish time, and click **Schedule**. It moves off the Drafts list and onto the Calendar.
+  </Step>
+</Steps>
+
+<Tip>
+Keep drafts for campaigns that are awaiting final creative approval — it prevents accidental early publishing while keeping work visible in the pipeline.
+</Tip>
+
+## What happens when a post fails to publish?
+
+Failed posts appear in the **Failures** section of your post list, flagged with an error reason.
+
+<AccordionGroup>
+  <Accordion title="Permission error (token expired or revoked)">
+    The most common cause. Go to **Scheduler → Connections**, reconnect the affected account, then return to the failed post and click **Retry**.
+  </Accordion>
+  <Accordion title="Media error (format or size rejected by platform)">
+    Open the post, swap the asset for a platform-compatible version, and reschedule. Refer to the supported formats on the Compose & Schedule page.
+  </Accordion>
+  <Accordion title="Post is stuck in 'Publishing' state">
+    Recovery jobs run automatically to clear stuck publish states. If a post remains stuck after a few minutes, click **Retry** manually or contact support.
+  </Accordion>
+  <Accordion title="Rate limit hit">
+    Some platforms enforce daily or hourly publish limits. Space out your schedule and retry the failed post at the next available window.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Compose & schedule" icon="pencil" href="/scheduler/compose-and-schedule">
+    Create new posts and attach media from Studio
+  </Card>
+  <Card title="Scheduler analytics" icon="chart-bar" href="/scheduler/analytics">
+    Review performance after posts go live
+  </Card>
+</CardGroup>

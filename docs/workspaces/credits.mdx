@@ -1,0 +1,59 @@
+---
+title: Credits
+description: Credits meter every AI generation at ~$0.008 each, split between a workspace pool and per-brand balances — learn how deductions, top-ups, and the credit hierarchy work.
+---
+
+Credits are Elaris's usage currency. Every AI generation — images, video, audio, and Virtual Try-On — deducts credits from your balance.
+
+## How much does one credit cost?
+
+<CodeGroup>
+```text Credit anchor
+1 credit ≈ $0.008 of underlying model (fal) cost
+credits  = ceil(cost_usd / 0.008)   # minimum 1 credit per generation
+```
+</CodeGroup>
+
+The same anchor applies across all media types: images, video, audio, and Virtual Try-On.
+
+## How is the credit hierarchy structured?
+
+Credits can live in two places:
+
+1. **Workspace pool** — shared across all brands in the workspace
+2. **Brand balance** — allocated to a specific brand for dedicated spend
+
+When a generation runs, Elaris deducts from the **brand balance first**, then falls back to the workspace pool (depending on configuration). This lets you ring-fence budgets by brand without losing access to shared capacity.
+
+<Tip>
+  Navigate to **Workspace → Credits** to see current balances for the workspace pool and each individual brand.
+</Tip>
+
+## What do common flows cost?
+
+| Flow | Typical credits |
+|------|-----------------|
+| AI generation (full campaign batch) | 60 |
+| Moodboard generation | 50 |
+| Video generation | Dynamic — model × duration × quality tier |
+| Studio image generation | Per-model (see [Image models](/models/image)) |
+| MCP paid tool call | Deducted against API key's brand spend limit |
+
+Studio generations use **per-model** costs. Video scales with duration and model tier — Studio shows the estimated cost before you confirm a generation.
+
+## What about MCP tool usage?
+
+MCP discovery tools (`list_brands`, `list_models`, `get_credits`, etc.) are **free**. Generation tools deduct credits against the API key's associated brand balance and spend limit (up to 2,000 credits per API key, configurable in **Connect → API Keys**).
+
+<Note>
+  If you see an **insufficient credits** modal, top up the workspace pool or brand balance from **Workspace → Credits**, or wait for your plan's credit renewal at the start of the next billing cycle.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Plans & Billing" icon="credit-card" href="/workspaces/plans-and-billing">
+    See which plan includes how many monthly credits and how to top up.
+  </Card>
+  <Card title="How pricing works" icon="calculator" href="/pricing/how-pricing-works">
+    Understand the full credit math for images, video, and audio.
+  </Card>
+</CardGroup>

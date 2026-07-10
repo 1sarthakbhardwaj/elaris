@@ -1,0 +1,100 @@
+---
+title: Members & sharing
+description: Invite teammates to a brand with the right permission levels, and share brands across organizations or workspaces when collaboration spans multiple teams.
+---
+
+Brands in Elaris support two access mechanisms: **Members** for per-brand team permissions within your workspace, and **Brand Sharing** for cross-workspace or cross-organization collaboration.
+
+## How do I add teammates to a brand?
+
+Go to **Brand Identity → Members** to manage who has access to a specific brand.
+
+<Steps>
+  <Step title="Invite a member">
+    Click **Invite** and enter the teammate's email address or select them from your workspace member list.
+  </Step>
+  <Step title="Assign a role">
+    Choose the permission level appropriate for their responsibilities (see role breakdown below).
+  </Step>
+  <Step title="Confirm">
+    The teammate receives a notification and gains access to the brand immediately.
+  </Step>
+</Steps>
+
+## What do the different member roles allow?
+
+<Tabs>
+  <Tab title="Admin">
+    Full access to all brand settings:
+    - Edit brand identity (logos, colors, fonts, guidelines)
+    - Manage members and roles
+    - Configure brand sharing
+    - Generate content, publish posts, create campaigns
+    - View and manage credits
+  </Tab>
+  <Tab title="Editor">
+    Creative and publishing access:
+    - Generate content in Studio and Campaigns
+    - Compose and publish Scheduler posts
+    - Upload and manage assets
+    - Cannot edit brand identity settings or manage members
+  </Tab>
+  <Tab title="Viewer">
+    Read-only access:
+    - View brand identity, assets, campaigns, and analytics
+    - Cannot generate content or publish posts
+    - Suitable for stakeholders who need visibility without editing rights
+  </Tab>
+</Tabs>
+
+<Note>
+Viewer roles may be restricted from generating content or publishing, depending on your workspace plan's seat configuration.
+</Note>
+
+## How does brand sharing work?
+
+Brand sharing lets you extend access to a brand beyond your own workspace — useful when agency teams, external partners, or separate internal organizations need to collaborate on the same brand.
+
+<Steps>
+  <Step title="Open the sharing screen">
+    Go to **Brand Identity → Members → Sharing** (or via workspace settings) and click **Share brand**.
+  </Step>
+  <Step title="Enter the recipient workspace or organization">
+    Specify the workspace ID or organization handle you want to grant access to.
+  </Step>
+  <Step title="Set access scope">
+    Decide whether the recipient workspace gets full brand access or view-only rights.
+  </Step>
+  <Step title="Send the invite">
+    The recipient workspace owner receives an invite to accept. Access is granted once accepted.
+  </Step>
+</Steps>
+
+<Warning>
+Shared brands still consume credits according to your workspace's credit hierarchy. Any generation or publishing activity performed by the recipient workspace draws from the brand owner's credit allocation. Review usage regularly and revoke access if collaboration ends.
+</Warning>
+
+## How do I revoke access?
+
+<AccordionGroup>
+  <Accordion title="Removing a member">
+    Go to **Brand Identity → Members**, find the member, and click **Remove**. Their access is revoked immediately. Any content they created (posts, campaigns, assets) remains in the brand.
+  </Accordion>
+  <Accordion title="Revoking a shared brand">
+    Go to the sharing screen, find the recipient workspace, and click **Revoke**. The shared workspace loses access immediately. Posts already scheduled by the shared workspace remain in the Scheduler queue and will still publish unless manually cancelled.
+  </Accordion>
+  <Accordion title="Changing a member's role">
+    Click the role badge next to any member's name and select a new role. The change takes effect immediately.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Identity & assets" icon="palette" href="/brands/identity-and-assets">
+    Manage brand identity and the asset library
+  </Card>
+  <Card title="Workspaces & roles" icon="building-2" href="/workspaces/roles">
+    Understand workspace-level permissions and seats
+  </Card>
+</CardGroup>

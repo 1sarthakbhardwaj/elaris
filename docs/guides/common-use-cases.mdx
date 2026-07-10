@@ -1,0 +1,121 @@
+---
+title: Common use cases
+description: Step-by-step workflows for product launch ads, URL-to-video, always-on social, and fully agentic creative production with ElarisLabs Creative Studio.
+---
+
+<CardGroup cols={2}>
+  <Card title="Product launch ad set" icon="rocket" href="#how-do-i-launch-a-product-ad-set">
+    Campaign → Studio edit → brand pack all sizes → schedule.
+  </Card>
+  <Card title="Product video from a URL" icon="link" href="#how-do-i-turn-a-url-into-a-product-video">
+    Paste a URL, confirm media and script, render and download.
+  </Card>
+  <Card title="Always-on social" icon="calendar" href="#how-do-i-maintain-an-always-on-social-presence">
+    Connect accounts, produce stills, fill the calendar two weeks out.
+  </Card>
+  <Card title="Agentic production" icon="bot" href="#how-do-i-run-creative-production-from-an-ai-agent">
+    Drive generation, captions, and scheduling via MCP from Cursor or Claude.
+  </Card>
+</CardGroup>
+
+---
+
+## How do I launch a product ad set?
+
+Start with brand identity, run a Campaign to generate variants, polish winners in Studio, resize for every placement, then schedule and measure.
+
+<Steps>
+  <Step title="Onboard or refresh brand identity">
+    Upload your logo, color palette, and brand fonts under **Brands**. If the brand already exists, confirm assets are current before the campaign run.
+  </Step>
+  <Step title="Run a Campaign">
+    Choose **AI-only** for fully generated variants or **with-assets** to anchor on uploaded product images. Set your brief and let Creative Studio produce the initial set.
+  </Step>
+  <Step title="Edit winners in Studio">
+    Open top-performing variants in Studio. Swap copy, adjust layers, or add motion. Keep the originals as references so you can A/B compare.
+  </Step>
+  <Step title="Brand-pack all sizes">
+    Use **Brand Pack** to resize your hero creative into every placement — Instagram feed, story, 300×250 display, and more — in one go.
+  </Step>
+  <Step title="Schedule organic teasers">
+    Queue teaser posts through Scheduler before launch day. After the campaign goes live, pull Insights data to inform paid boost decisions.
+  </Step>
+</Steps>
+
+---
+
+## How do I turn a URL into a product video?
+
+URL to Video scrapes a product page, builds a script and voiceover, and renders a ready-to-post video in minutes.
+
+<Steps>
+  <Step title="Open URL to Video">
+    Navigate to **URL to Video** in Creative Studio and paste the product page URL.
+  </Step>
+  <Step title="Confirm media, script, and voice">
+    Review the auto-extracted product images, edit the generated script if needed, and pick a voice from the available text-to-speech options.
+  </Step>
+  <Step title="Render and download">
+    Click **Render**. Once complete, download the video or send it directly to Scheduler.
+  </Step>
+  <Step title="Optional: schedule or score">
+    Queue it in **Scheduler**, or run `score_creative` via MCP to get a predictive ad-performance score before boosting spend.
+  </Step>
+</Steps>
+
+---
+
+## How do I maintain an always-on social presence?
+
+Connect social accounts once, produce creatives in Studio or Campaigns, add captions, and keep the Scheduler calendar filled two weeks ahead.
+
+<Steps>
+  <Step title="Connect your social accounts">
+    Go to **Scheduler → Connect accounts** and authenticate each platform (Instagram, TikTok, LinkedIn, etc.).
+  </Step>
+  <Step title="Produce stills in Studio or Campaigns">
+    Use Studio for single, high-polish assets or Campaigns for batch variant generation.
+  </Step>
+  <Step title="Generate captions">
+    For each creative, click **Generate caption** and choose the target platform. Captions are tailored to platform tone and character limits.
+  </Step>
+  <Step title="Fill the calendar two weeks ahead">
+    Drag assets into the Scheduler calendar. Aim for at least two weeks of scheduled posts to maintain consistent cadence without manual daily effort.
+  </Step>
+</Steps>
+
+---
+
+## How do I run creative production from an AI agent?
+
+Use a brand-bound API key and the ElarisLabs MCP server to drive the full creative pipeline — from image generation to caption writing to post scheduling — directly from Cursor, Claude, or any MCP client.
+
+<Steps>
+  <Step title="Create an MCP key for the brand">
+    Open [your profile](https://studio.elarislabs.ai/en/profile) under **API keys / MCP**. Pick the brand, set an expiry and a spend cap, and copy the key.
+  </Step>
+  <Step title="Connect your agent">
+    Add the key to your MCP client config. See the [MCP setup guide](/connect/setup) for Claude Desktop, Cursor, and other clients.
+  </Step>
+  <Step title="Run the production chain">
+    From your agent, prompt the full pipeline in plain language:
+
+    ```text
+    List available image models → generate_image → generate_caption → schedule_post
+    ```
+
+    Or explicitly:
+
+    ```text
+    Call list_models, then generate_image with flux-2-flash for a neon city skyline,
+    then generate_caption for Instagram, then schedule_post for tomorrow at 9 AM.
+    ```
+  </Step>
+  <Step title="Monitor spend">
+    Call `get_credits` at any time to check the brand's remaining balance and per-key spend against the cap you set.
+  </Step>
+</Steps>
+
+<Tip>
+  Give each client (Claude, Cursor, CI pipeline) its own brand-bound API key with a low spend cap. If one key is compromised or overruns, the others are unaffected.
+</Tip>

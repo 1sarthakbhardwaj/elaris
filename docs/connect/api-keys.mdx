@@ -1,0 +1,67 @@
+---
+title: "API keys"
+description: "How to create, rotate, and revoke brand-bound API keys that authenticate your agent or MCP client against ElarisLabs Creative Studio."
+icon: "key"
+---
+
+Every API key is bound to one brand and authenticates all MCP and agent requests made on that brand's behalf. Keys are created in your ElarisLabs profile under **API keys / MCP**.
+
+## How do I create a brand-bound API key?
+
+<Steps>
+  <Step title="Open your profile">
+    Go to [your profile](https://studio.elarislabs.ai/en/profile) and select **API keys / MCP**.
+  </Step>
+  <Step title="Choose a brand">
+    Select the brand this key will act on. All generation spend is billed to that brand's credit balance.
+  </Step>
+  <Step title="Set expiry and spend cap">
+    Set an expiry (max 24 weeks) and a per-key spend cap (max 2000 credits). Both are editable after creation.
+  </Step>
+  <Step title="Copy the key">
+    Copy the key (`elx_live_...`). It is shown only once. Store it in a secrets manager or environment variable immediately.
+  </Step>
+</Steps>
+
+<CardGroup cols={2}>
+  <Card title="Bound to a brand" icon="building">
+    The key acts on one brand. All spend is billed to that brand's credit
+    balance.
+  </Card>
+  <Card title="Expiry and spend cap" icon="timer">
+    Required expiry up to 24 weeks. Per-key spend cap up to 2000 credits,
+    editable anytime.
+  </Card>
+  <Card title="Revoke or rotate" icon="rotate-ccw">
+    Rotate to replace a key, or revoke to disable it instantly. Manage all keys
+    from settings.
+  </Card>
+  <Card title="Scopes" icon="shield-check">
+    Keys ship with `studio:read` and `studio:generate`. That is enough to list
+    projects and run generation tools.
+  </Card>
+</CardGroup>
+
+<Note>
+  **Endpoint:** your MCP URL is `https://studio.elarislabs.ai/api/mcp`.
+  Authenticate with `Authorization: Bearer elx_live_...`. The server uses
+  Streamable HTTP (stateless). It works with Claude Desktop, Cursor, and
+  `mcp-remote` for older clients.
+</Note>
+
+<Warning>
+  **Security:** treat `elx_live_...` like a password. Never commit it to git,
+  paste it in public channels, or share it in screenshots. Prefer separate keys
+  per client (Claude vs Cursor vs CI) with low spend caps when possible.
+</Warning>
+
+## Where to next
+
+<CardGroup cols={2}>
+  <Card title="MCP setup" icon="rocket" href="/connect/setup">
+    Paste the key into Claude, Cursor, or another MCP client.
+  </Card>
+  <Card title="Tool reference" icon="wrench" href="/connect/tools">
+    See which tools are free vs credit-consuming.
+  </Card>
+</CardGroup>

@@ -1,0 +1,84 @@
+---
+title: Captions & localize
+description: Generate platform-aware social captions and adapt creatives for multiple languages and markets using Captions and Localize in Creative Studio.
+---
+
+Creative Studio includes two copy and localization tools that keep your creative assets on-brand as they move across platforms and markets: **Captions** for social-ready post copy and **Localize** for multi-language adaptation.
+
+## Captions — how do you generate platform-aware copy?
+
+The Captions node generates polished post copy tailored to the platform and tone of your campaign. It reads from your creative context — product, brand identity, and brief — to produce copy you can use or refine immediately.
+
+<Tabs>
+  <Tab title="Instagram">
+    Conversational, emoji-friendly, hashtag-rich copy optimized for feed posts and Reels captions. Tone defaults to engaging and aspirational.
+  </Tab>
+  <Tab title="TikTok">
+    Short, punchy, trend-aware captions with hooks in the first line. Works well with on-screen text overlays.
+  </Tab>
+  <Tab title="LinkedIn">
+    Professional, insight-led copy suited for B2B campaigns, brand storytelling, and thought-leadership ads.
+  </Tab>
+  <Tab title="Other platforms">
+    Twitter/X, Facebook, Pinterest, and others. Tune tone and length to match each platform's conventions.
+  </Tab>
+</Tabs>
+
+### Generating captions via MCP
+
+Captions are available programmatically through the `generate_caption` tool in the ElarisLabs MCP integration.
+
+```bash
+generate_caption --platform instagram --tone engaging
+```
+
+## Localize — how do you adapt creatives for multiple markets?
+
+The Localize node adapts your creative copy and assets for additional languages and regional markets, keeping visual identity and brand guidelines intact throughout the process.
+
+### Supported locales
+
+The app UI supports the following locales:
+
+<CardGroup cols={4}>
+  <Card title="English" icon="globe">en</Card>
+  <Card title="Arabic" icon="globe">ar</Card>
+  <Card title="Japanese" icon="globe">ja</Card>
+  <Card title="Spanish" icon="globe">es</Card>
+  <Card title="French" icon="globe">fr</Card>
+  <Card title="German" icon="globe">de</Card>
+  <Card title="Chinese" icon="globe">zh</Card>
+  <Card title="More" icon="plus">Additional locales available</Card>
+</CardGroup>
+
+### How does localization stay on-brand?
+
+<AccordionGroup>
+  <Accordion title="Brand identity guidelines">
+    Pair Localize with your brand's identity guidelines so tone-of-voice, terminology, and visual hierarchy carry through into localized assets. Set up your guidelines under [Brand identity](/brands/identity-and-assets).
+  </Accordion>
+  <Accordion title="RTL layout support">
+    Arabic (ar) and other right-to-left locales automatically adjust text direction and layout alignment in exported assets.
+  </Accordion>
+  <Accordion title="Review before export">
+    Localized copy is always editable before export. Review translations in the Localize panel and make inline corrections without re-running the full generation.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+Run Localize **after** finalizating your master creative and captions in English. This ensures the source content is stable before spawning localized variants.
+</Tip>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Brand identity" icon="palette" href="/brands/identity-and-assets">
+    Configure guidelines that inform localization
+  </Card>
+  <Card title="Brand pack" icon="package" href="/studio/brand-pack">
+    Export localized assets in every required size
+  </Card>
+  <Card title="Scheduler" icon="calendar" href="/scheduler/overview">
+    Publish localized posts to multiple markets
+  </Card>
+</CardGroup>

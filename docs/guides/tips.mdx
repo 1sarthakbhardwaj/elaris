@@ -1,0 +1,58 @@
+---
+title: Tips & tricks
+description: Practical tips for faster generation, lower credit spend, cleaner brand organization, and safer agentic workflows in ElarisLabs Creative Studio.
+---
+
+<CardGroup cols={2}>
+  <Card title="Generation quality" icon="sparkles">
+    Use `auto` for first passes, then lock in the model that worked for that creative style.
+  </Card>
+  <Card title="Brand pack efficiency" icon="layers">
+    Keep a hero master at the highest resolution you need, then resize down — never upscale.
+  </Card>
+  <Card title="Project organization" icon="folder">
+    Separate Studio exploration projects from finals so finished assets stay searchable.
+  </Card>
+  <Card title="Credit management" icon="coins">
+    Start with short video durations to validate motion before paying for long clips.
+  </Card>
+</CardGroup>
+
+## How do I get the best results with the least credit spend?
+
+<AccordionGroup>
+  <Accordion title="Start with model: auto, then lock a winner" icon="wand-sparkles">
+    Pass `model: "auto"` on first image passes. The router picks the best available model for your prompt. Once you find a variant you like, note the model ID from `get_generation_history` and use it explicitly for subsequent runs. This avoids re-exploring the model space on every generation.
+  </Accordion>
+  <Accordion title="Validate video motion with short durations first" icon="film">
+    Video credits scale with duration. Test your motion concept at the shortest available duration (typically 3–5 seconds) before committing to a longer clip. Only extend once the camera move and lighting read correctly.
+  </Accordion>
+  <Accordion title="Use score_creative before boosting paid spend" icon="chart-bar">
+    Run `score_creative` on a new ad variant before increasing paid distribution. The predictive score surfaces likely performers so you allocate budget to variants most likely to convert, not just the ones that look good internally.
+  </Accordion>
+</AccordionGroup>
+
+## How do I keep brand assets organized?
+
+<AccordionGroup>
+  <Accordion title="Keep a hero brand pack master at max resolution" icon="image">
+    Maintain a single master creative at the highest resolution your placements require — typically 4K or 2K. Use **Brand Pack** to resize down into smaller formats. Re-exporting from a low-resolution source degrades output quality.
+  </Accordion>
+  <Accordion title="Separate exploration from finals projects" icon="folder-open">
+    Create two projects per campaign: one for experiments and AI drafts, one for approved finals. This keeps your asset library clean and makes it easy to hand off finished files without sifting through rejected variants.
+  </Accordion>
+  <Accordion title="Check the product map before picking a video surface" icon="map">
+    ElarisLabs offers several video surfaces — URL to Video, Campaign video, Studio video nodes, and hyperlapse. Pick the right one early to avoid rework. See [Product map](/getting-started/product-map) for a decision guide.
+  </Accordion>
+</AccordionGroup>
+
+## How do I keep agentic workflows safe and cost-controlled?
+
+<AccordionGroup>
+  <Accordion title="Give MCP keys per-client spend limits" icon="shield">
+    Create a separate brand-bound API key for each MCP client — one for Claude Desktop, one for Cursor, one for CI pipelines. Set a spend cap on each. If an experiment runs away, only that key's budget is at risk; the others are unaffected.
+  </Accordion>
+  <Accordion title="Use discovery tools before generation tools" icon="search">
+    Free tools like `list_models`, `list_brands`, and `get_credits` let you confirm connectivity and current balances before spending credits. Start every agentic session with a discovery call.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,85 @@
+---
+title: Compose & schedule
+description: Write captions, attach media from Studio or campaigns, and schedule posts to any connected social account — or automate publishing via the Elaris MCP.
+---
+
+You can compose and schedule posts directly from the Elaris UI or programmatically via the MCP API. Both paths converge on the same scheduler queue.
+
+## How do I create and schedule a post?
+
+<Tabs>
+  <Tab title="From the UI">
+    <Steps>
+      <Step title="Start a new post">
+        Go to **Scheduler → Calendar** or **Posts** and click **New Post** (or tap a time slot on the calendar).
+      </Step>
+      <Step title="Attach media">
+        Pull assets from:
+        - **Studio projects** — use finals or exports directly from the editor
+        - **Campaign assets** — any video, image, or audio tied to an active campaign
+        - **Direct uploads** — drag-and-drop from your local device
+      </Step>
+      <Step title="Write or generate a caption">
+        Type your caption or use the **Generate caption** tool to produce platform-optimized copy from your media. Studio and MCP caption tools also produce captions you can paste here.
+      </Step>
+      <Step title="Choose destination accounts">
+        Select one or more connected accounts to publish to. You can target multiple platforms in a single scheduling action.
+      </Step>
+      <Step title="Set the publish time">
+        Pick a specific date and time, or use **Schedule for later** to save it to Drafts first. The scheduler tick processes due posts automatically — no manual trigger needed.
+      </Step>
+      <Step title="Confirm">
+        Click **Schedule**. The post moves to your calendar and the Posts queue.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Via MCP">
+    Use the Elaris MCP tools to schedule posts programmatically from any agent, script, or CI pipeline.
+
+    <Steps>
+      <Step title="List available integrations">
+        Call `list_scheduler_integrations` to retrieve the IDs and metadata for all connected social accounts in the current workspace.
+      </Step>
+      <Step title="Schedule the post">
+        Call `schedule_post` with the target integration ID, media asset reference, caption, and publish timestamp.
+      </Step>
+    </Steps>
+
+    <Tip>
+    Use `generate_caption` via MCP to produce captions before calling `schedule_post` — this keeps the full creation flow inside a single agent run.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## What media formats are supported?
+
+<AccordionGroup>
+  <Accordion title="Images">
+    JPEG and PNG are accepted across all image-supporting platforms. Recommended resolution is at least **1080 × 1080 px** for square, or **1080 × 1920 px** for vertical Stories/Reels.
+  </Accordion>
+  <Accordion title="Videos">
+    MP4 (H.264) is the universal format. Platform-specific limits apply — Instagram Reels cap at 90 seconds, YouTube has no hard cap for channel uploads.
+  </Accordion>
+  <Accordion title="Audio">
+    Audio-only posts are not directly supported for scheduling. Attach audio as part of a video asset via Studio before scheduling.
+  </Accordion>
+</AccordionGroup>
+
+## Can I publish to multiple platforms at once?
+
+Yes. When composing, select all the destination accounts you want to target. Elaris sends the post to each platform independently, so per-platform failures don't block others. Check **Scheduler → Posts** to see the per-platform publish status.
+
+<Note>
+Caption copy and hashtag limits vary by platform. If you're publishing to several at once, review each platform's character limit before scheduling.
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Calendar & drafts" icon="calendar" href="/scheduler/calendar-and-drafts">
+    Reschedule, edit drafts, and recover failures
+  </Card>
+  <Card title="Scheduler analytics" icon="chart-bar" href="/scheduler/analytics">
+    Track post-level performance after publishing
+  </Card>
+</CardGroup>

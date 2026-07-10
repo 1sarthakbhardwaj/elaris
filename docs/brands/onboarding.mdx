@@ -1,0 +1,77 @@
+---
+title: Brand onboarding
+description: Create a brand in Elaris by scraping your website — logos, colors, fonts, and brand guidelines are extracted automatically so every campaign and Studio project starts on-brand.
+---
+
+Brand onboarding gets your brand into Elaris in under two minutes. Paste your website URL and Elaris extracts your visual identity automatically. You can refine everything afterward.
+
+## How do I create a brand?
+
+<Steps>
+  <Step title="Paste your website URL">
+    Enter your primary marketing or brand site (e.g. `https://yourbrand.com`). Elaris's scraper fetches your homepage and key brand pages to extract identity signals.
+  </Step>
+  <Step title="Review the scraped identity">
+    Confirm the extracted results:
+    - **Logos** — primary, secondary, and icon variants
+    - **Colors** — primary palette and neutrals
+    - **Fonts** — heading and body typefaces
+    - **Positioning** — tagline and brand voice captured from copy
+
+    Edit any field that doesn't look right before proceeding.
+  </Step>
+  <Step title="Connect accounts (optional)">
+    Link social accounts for **Scheduler** and ad accounts for **Insights** during setup. You can also skip this and connect accounts later from Brand Identity.
+
+    Supported connections:
+    - Social: Facebook, Instagram, TikTok, YouTube, X, LinkedIn, Snapchat
+    - Ads: Meta, TikTok Ads, Snapchat Ads
+  </Step>
+  <Step title="Save the brand">
+    Click **Save**. Your brand appears in your workspace brand list and becomes available across **Brand Identity**, **Studio**, **Campaigns**, and **Scheduler**.
+  </Step>
+</Steps>
+
+<Note>
+Everything extracted during onboarding can be edited at any time. Go to **Brand Identity → Info** to update logos, colors, fonts, or guidelines.
+</Note>
+
+## What does the scraper extract?
+
+<AccordionGroup>
+  <Accordion title="Logos">
+    The scraper identifies SVG and PNG logos embedded in your site's header, footer, and meta tags. It captures light and dark variants where available.
+  </Accordion>
+  <Accordion title="Colors">
+    Primary brand colors are pulled from CSS custom properties, inline styles, and commonly used hex/RGB values across your pages. Up to 6 palette colors are extracted.
+  </Accordion>
+  <Accordion title="Fonts">
+    Font families loaded via Google Fonts, Adobe Fonts, or `@font-face` declarations are detected and stored. Heading and body font roles are inferred from usage frequency.
+  </Accordion>
+  <Accordion title="Brand positioning">
+    Hero headlines, meta descriptions, and tagline text are captured to seed your brand's voice and messaging guidelines.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+If your website uses a staging URL or is behind auth, provide a publicly accessible version for the best scrape results.
+</Tip>
+
+## What happens after onboarding?
+
+Once your brand is created, it's available everywhere in Elaris:
+
+<CardGroup cols={2}>
+  <Card title="Brand Identity" icon="palette" href="/brands/identity-and-assets">
+    Edit logos, colors, fonts, and access your asset library
+  </Card>
+  <Card title="Studio brand packs" icon="layers" href="/studio/brand-pack">
+    Apply your brand automatically to Studio templates and compositions
+  </Card>
+  <Card title="Campaigns" icon="megaphone" href="/campaigns/overview">
+    Create ad campaigns tied to this brand
+  </Card>
+  <Card title="Insights" icon="chart-line" href="/insights/overview">
+    View paid ad performance for connected ad accounts
+  </Card>
+</CardGroup>

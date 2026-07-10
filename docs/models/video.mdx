@@ -1,0 +1,93 @@
+---
+title: Video models
+description: Six major video generation families — Google Veo, Kling, Sora, LTX, Seedance, and utility models — covering T2V, I2V, lip sync, and upscaling, all priced per second of output.
+---
+
+Video credits scale with **output duration × model rate**, plus resolution and audio multipliers. Studio displays the estimated cost before you confirm every generation.
+
+<Tip>
+  MCP video tools accept `durationSeconds` (typically 2–12 seconds). Studio shows the cost estimate before you run — adjust duration or model tier to control spend.
+</Tip>
+
+## Which video model should I use?
+
+<Tabs>
+  <Tab title="Google Veo">
+    **High-quality text-to-video and image-to-video with built-in audio support.**
+
+    | Model | Notes |
+    |-------|-------|
+    | Veo 3.1 | Flagship; full audio support |
+    | Veo 3.1 Fast | Faster generation at the same quality tier |
+    | Veo 3.1 Lite | Efficient variant; lower per-second cost |
+    | Veo 3 | Previous generation; solid quality |
+
+    Best for: cinematic scenes, complex motion, and productions that need built-in audio synced to video.
+  </Tab>
+
+  <Tab title="Kling">
+    **Versatile motion and general video generation.**
+
+    | Model | Notes |
+    |-------|-------|
+    | Kling O3 | Latest generation; strong motion control |
+    | Kling V3 | General-purpose video |
+
+    Best for: character animation, motion-heavy clips, and mid-tier budget productions.
+  </Tab>
+
+  <Tab title="OpenAI / LTX / ByteDance">
+    Three distinct families covering cinematic, efficient, and social-ready outputs.
+
+    | Model | Provider | Notes |
+    |-------|----------|-------|
+    | Sora 2 | OpenAI | Cinematic quality; strong scene coherence |
+    | LTX 2.3 | Lightricks | Efficient generation; good for fast iteration |
+    | Seedance 2.0 | ByteDance | Social-ready motion; fast turnaround |
+    | Seedance 2.0 Fast | ByteDance | Fastest variant; lower cost per second |
+  </Tab>
+
+  <Tab title="Utilities & Specialized">
+    Specialized models for editing, transformation, and lip sync.
+
+    | Model | Notes |
+    |-------|-------|
+    | Happy Horse | Distinctive motion style |
+    | Gemini Omni Flash | Multimodal video generation tasks |
+    | Fabric | Lip sync — matches audio track to existing talking-head video |
+
+    <Note>
+      Utility transformations (inpaint, background removal, upscale, extend) are available for post-processing existing clips and have fixed-ish action costs rather than per-second pricing.
+    </Note>
+  </Tab>
+</Tabs>
+
+## What capabilities are supported?
+
+<CardGroup cols={2}>
+  <Card title="Generation" icon="video">
+    Text-to-video, image-to-video, reference-to-video, and first / last frame anchoring
+  </Card>
+  <Card title="Motion control" icon="sliders-horizontal">
+    Camera motion, motion intensity controls, and motion reference inputs
+  </Card>
+  <Card title="Lip sync" icon="mic">
+    Sync dialogue audio to an existing talking-head video (Fabric model)
+  </Card>
+  <Card title="Post-processing" icon="wand-sparkles">
+    Inpaint, background removal, upscale, and extend existing clips
+  </Card>
+</CardGroup>
+
+<Tip>
+  Use [HyperFrames](/studio/hyperframes) when you need a multi-stage animated pipeline — compositing multiple clips, adding transitions, and layering effects — rather than a single generated clip.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="How pricing works" icon="calculator" href="/pricing/how-pricing-works">
+    Full breakdown of per-second rates, duration, and resolution multipliers.
+  </Card>
+  <Card title="Image models" icon="image" href="/models/image">
+    Browse the image model catalog with per-generation credit costs.
+  </Card>
+</CardGroup>

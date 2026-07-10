@@ -1,0 +1,48 @@
+---
+title: Data, security & IP
+description: How ElarisLabs handles account security, data isolation, API key safety, and intellectual property for outputs and uploaded brand assets.
+---
+
+<Note>
+  This page is informational and does not constitute legal advice. Your order form and Terms of Service govern the relationship. For formal security questionnaires or Data Processing Agreements (DPAs), contact **support@elarislabs.ai** or your enterprise representative.
+</Note>
+
+## How does ElarisLabs protect account and workspace data?
+
+<AccordionGroup>
+  <Accordion title="Authentication and access control" icon="lock">
+    Account authentication is handled via secure auth — email/password or OAuth. Workspace and brand data are isolated with role-based access controls (RBAC). Users only see brands and projects they have been granted access to within their workspace.
+  </Accordion>
+  <Accordion title="API key security" icon="key">
+    API keys (`elx_live_...`) are secrets. Treat them like passwords:
+
+    - Never commit them to git or paste them in public channels.
+    - Rotate a key immediately if it is exposed.
+    - Each key is scoped to one brand. Compromise of one key does not expose other brands.
+    - Set spend caps to limit blast radius from accidental or unauthorized use.
+  </Accordion>
+  <Accordion title="Social account permissions" icon="share-2">
+    Connect only the social platform permissions you need for Scheduler. ElarisLabs requests scoped publish permissions, not full account access. You can disconnect accounts at any time from the Connect settings.
+  </Accordion>
+</AccordionGroup>
+
+## Who owns the outputs and uploaded assets?
+
+<AccordionGroup>
+  <Accordion title="Your uploaded brand assets" icon="building">
+    Brand assets you upload — logos, fonts, product images — remain your materials. ElarisLabs uses them to fulfill your generation requests and does not use them to train models or share them outside your workspace.
+  </Accordion>
+  <Accordion title="Generated outputs" icon="image">
+    Generated outputs (images, videos, audio) are provided for your marketing use subject to your plan agreement. Review the specific terms in your order form for commercial-use rights and any platform-specific constraints.
+  </Accordion>
+  <Accordion title="Prompt and compliance responsibility" icon="shield-check">
+    You are responsible for the prompts you submit, the assets you upload, and compliance with third-party platform policies (Meta, TikTok, YouTube, etc.). Do not submit prompts or assets that violate platform policies or applicable law.
+  </Accordion>
+  <Accordion title="Model provider terms" icon="file-text">
+    ElarisLabs routes generation requests to underlying model providers (e.g. image, video, audio model vendors). Review each model provider's terms for any commercial-use constraints specific to that model. The `list_models` tool surfaces available models; check provider documentation for usage restrictions on models your campaigns rely on.
+  </Accordion>
+</AccordionGroup>
+
+## Where do I go for formal security or legal requests?
+
+For security questionnaires, DPAs, SOC 2 documentation, or enterprise compliance reviews, contact **support@elarislabs.ai** or reach out to your enterprise representative directly.

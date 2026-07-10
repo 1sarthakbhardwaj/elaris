@@ -32,15 +32,134 @@
   "styling": {
     "codeblocks": "dark"
   },
+  "seo": {
+    "indexing": "all"
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude"]
+  },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Get started",
-        "pages": ["index", "quickstart"]
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "getting-started/welcome",
+              "getting-started/quickstart",
+              "getting-started/concepts",
+              "getting-started/product-map",
+              "getting-started/help"
+            ]
+          },
+          {
+            "group": "Creative Studio",
+            "pages": [
+              "studio/overview",
+              "studio/canvas",
+              "studio/image-nodes",
+              "studio/video-nodes",
+              "studio/hyperframes",
+              "studio/audio-nodes",
+              "studio/brand-pack",
+              "studio/captions-localize",
+              "studio/layer-editor",
+              "studio/templates",
+              "studio/collaboration",
+              "studio/virtual-try-on"
+            ]
+          },
+          {
+            "group": "Campaigns",
+            "pages": [
+              "campaigns/overview",
+              "campaigns/wizard",
+              "campaigns/modes",
+              "campaigns/editing-and-assets"
+            ]
+          },
+          {
+            "group": "More Products",
+            "pages": [
+              "url-to-video/overview",
+              "product-staging/overview",
+              "ad-templates/overview"
+            ]
+          },
+          {
+            "group": "Scheduler",
+            "pages": [
+              "scheduler/overview",
+              "scheduler/connect-accounts",
+              "scheduler/compose-and-schedule",
+              "scheduler/calendar-and-drafts",
+              "scheduler/analytics"
+            ]
+          },
+          {
+            "group": "Insights",
+            "pages": ["insights/overview"]
+          },
+          {
+            "group": "Brands",
+            "pages": [
+              "brands/onboarding",
+              "brands/identity-and-assets",
+              "brands/members-and-sharing"
+            ]
+          },
+          {
+            "group": "Workspaces & Billing",
+            "pages": [
+              "workspaces/overview",
+              "workspaces/roles",
+              "workspaces/plans-and-billing",
+              "workspaces/credits"
+            ]
+          },
+          {
+            "group": "How-to",
+            "pages": ["guides/common-use-cases", "guides/tips"]
+          },
+          {
+            "group": "Legal",
+            "pages": ["legal/data-security-ip"]
+          }
+        ]
       },
       {
-        "group": "Integrations",
-        "pages": ["integrations/mcp"]
+        "tab": "Connect",
+        "groups": [
+          {
+            "group": "MCP & Integrations",
+            "pages": [
+              "connect/mcp-overview",
+              "connect/setup",
+              "connect/api-keys",
+              "connect/tools",
+              "connect/slack"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Reference",
+        "groups": [
+          {
+            "group": "Models",
+            "pages": [
+              "models/overview",
+              "models/image",
+              "models/video",
+              "models/audio"
+            ]
+          },
+          {
+            "group": "Pricing",
+            "pages": ["pricing/how-pricing-works", "pricing/faq"]
+          }
+        ]
       }
     ]
   },
@@ -61,10 +180,43 @@
       "href": "https://studio.elarislabs.ai"
     }
   },
+  "anchors": [
+    {
+      "name": "Help",
+      "icon": "life-buoy",
+      "url": "/getting-started/help"
+    },
+    {
+      "name": "Connect MCP",
+      "icon": "plug",
+      "url": "/connect/mcp-overview"
+    },
+    {
+      "name": "Studio",
+      "icon": "palette",
+      "url": "https://studio.elarislabs.ai"
+    }
+  ],
+
   "footer": {
     "socials": {
       "website": "https://www.elarislabs.ai",
+      "x": "https://x.com/elarislabs",
       "linkedin": "https://www.linkedin.com/company/elarislabs"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/index",
+      "destination": "/getting-started/welcome"
+    },
+    {
+      "source": "/quickstart",
+      "destination": "/getting-started/quickstart"
+    },
+    {
+      "source": "/integrations/mcp",
+      "destination": "/connect/mcp-overview"
+    }
+  ]
 }

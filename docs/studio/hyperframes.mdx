@@ -1,0 +1,80 @@
+---
+title: Hyperframes
+description: Create structured animated videos in Creative Studio — plan, storyboard, script, record voiceover, and render a brand-consistent short film using the Hyperframes pipeline.
+---
+
+**Hyperframes** is the animated video pipeline inside Creative Studio. Instead of a single text-to-video call, Hyperframes moves you through structured creative stages — producing a coherent, brand-consistent short film or motion piece that holds together from first frame to last.
+
+Use Hyperframes when you need **narrative structure and brand-consistent motion** — not a one-shot clip.
+
+## What are the Hyperframes pipeline stages?
+
+<Steps>
+  <Step title="Plan">
+    Define the concept, intended length, tone, and creative direction. This becomes the guiding brief for every downstream stage.
+  </Step>
+  <Step title="Design">
+    Establish the visual system — color palette, character or product look, scene aesthetic. All frames will be generated within this visual language.
+  </Step>
+  <Step title="Storyboard">
+    Break the piece into individual beats or frames. Each frame gets a description and a place in the sequence. Reorder or add frames before committing to generation.
+  </Step>
+  <Step title="Script">
+    Write narration, dialogue, or on-screen copy aligned to the storyboard beats. The script feeds directly into the voiceover stage.
+  </Step>
+  <Step title="Voiceover">
+    Generate speech for the script using an [audio node](/studio/audio-nodes) — ElevenLabs or Gemini voices available. The generated audio is locked to the corresponding frames.
+  </Step>
+  <Step title="Render">
+    Compose all frames, audio, and motion into the final video output. Studio handles timing and transitions based on the storyboard layout.
+  </Step>
+  <Step title="Iterate">
+    Regenerate individual stages without starting over. Change the script and re-render voiceover, or redesign a single storyboard frame and re-render just that segment.
+  </Step>
+</Steps>
+
+## How does Hyperframes compare to a single video node?
+
+| | Single video node | Hyperframes |
+|---|---|---|
+| **Structure** | One prompt → one clip | Multi-stage pipeline |
+| **Narrative control** | Limited | Full storyboard control |
+| **Brand consistency** | Prompt-dependent | Enforced via Design stage |
+| **Voiceover sync** | Manual | Built-in per-frame sync |
+| **Iteration** | Re-run entire generation | Regenerate individual stages |
+| **Best for** | Quick clips, B-roll | Short films, ads, explainers |
+
+## What should you build with Hyperframes?
+
+<CardGroup cols={2}>
+  <Card title="Brand video ads" icon="megaphone">
+    Product launch films, brand story videos, and campaign hero content with consistent visual identity.
+  </Card>
+  <Card title="Explainer videos" icon="presentation">
+    Step-by-step product walkthroughs or educational content with narration synced to visuals.
+  </Card>
+  <Card title="Social reels" icon="play-circle">
+    Short-form vertical content with a clear narrative arc — not just looping clips.
+  </Card>
+  <Card title="Motion pieces" icon="sparkles">
+    Abstract or artistic animations where composition and timing are as important as the visuals.
+  </Card>
+</CardGroup>
+
+<Tip>
+Save a named project version before making large structural changes to your storyboard. Hyperframes tracks stage state, but a named save gives you a clean rollback point.
+</Tip>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Audio nodes" icon="mic" href="/studio/audio-nodes">
+    Configure voiceover and dialogue for your Hyperframes
+  </Card>
+  <Card title="Video nodes" icon="video" href="/studio/video-nodes">
+    Single-clip generation and video utilities
+  </Card>
+  <Card title="Brand pack" icon="package" href="/studio/brand-pack">
+    Export your finished video in multiple sizes
+  </Card>
+</CardGroup>

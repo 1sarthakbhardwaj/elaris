@@ -1,0 +1,68 @@
+---
+title: Brand pack
+description: Resize one finished creative into all required social and display sizes and export a handoff-ready zip using Brand Pack in Creative Studio.
+---
+
+**Brand pack** takes a finished creative — image or video — and generates a complete multi-size export pack for social and display placements. One master asset becomes every size your campaign needs, without manual resizing.
+
+## How do you create a brand pack?
+
+<Steps>
+  <Step title="Finish your master creative">
+    Complete image or video generation on the canvas. The master creative should be at your highest intended quality — brand pack scales down from it.
+  </Step>
+  <Step title="List available sizes">
+    Open the brand pack node and review the available size keys. Common categories include feed, story, display banner, and square. Use the size picker to select only the placements you need.
+  </Step>
+  <Step title="Generate resized variants">
+    Click **Resize**. Brand pack generates a variant for each selected size using intelligent cropping and reframing to preserve the focal point. Credits apply per variant.
+  </Step>
+  <Step title="Export the pack">
+    Download a zip archive containing all variants, named by size key — ready for handoff to your media buyer or upload to the Scheduler.
+  </Step>
+</Steps>
+
+## What sizes are available?
+
+Size keys vary by workspace and are surfaced dynamically. Common categories include:
+
+| Category | Examples |
+|---|---|
+| **Social feed** | 1:1, 4:5, 1.91:1 |
+| **Stories / Reels** | 9:16 vertical |
+| **Display banners** | Leaderboard, MREC, half-page |
+| **Square** | 1:1 universal |
+
+<Tip>
+Call `brand_pack_list_sizes` (free, no credits) before resizing via MCP to see the exact size keys available for your workspace and brand.
+</Tip>
+
+## How do you use brand pack via MCP?
+
+Brand pack is fully available through the ElarisLabs MCP integration using a brand-bound API key.
+
+```bash
+# Step 1: list available sizes (free)
+brand_pack_list_sizes
+
+# Step 2: generate resized variants (credits apply)
+brand_pack_resize --sizes feed,story,display
+```
+
+<Note>
+`brand_pack_list_sizes` is always free. `brand_pack_resize` consumes credits proportional to the number of sizes and the resolution of the master creative.
+</Note>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Scheduler" icon="calendar" href="/scheduler/overview">
+    Publish your brand pack assets across social platforms
+  </Card>
+  <Card title="Layer editor" icon="layers" href="/studio/layer-editor">
+    Compose a master layout before resizing
+  </Card>
+  <Card title="Connect MCP" icon="plug" href="/connect/mcp-overview">
+    Automate brand pack via the MCP integration
+  </Card>
+</CardGroup>

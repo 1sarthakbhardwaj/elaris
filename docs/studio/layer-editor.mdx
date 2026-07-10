@@ -1,0 +1,74 @@
+---
+title: Layer editor
+description: Compose multiple images into a single layered layout in Creative Studio — stack, position, and blend assets for collages, product composites, and template-style layouts.
+---
+
+The **layer editor** lets you stack and position multiple images into a single composition without leaving Creative Studio. Think of it as an in-canvas compositor: bring in generated images, uploaded assets, or outputs from other nodes, arrange them spatially, and flatten into one master creative.
+
+## What can you build with the layer editor?
+
+<CardGroup cols={2}>
+  <Card title="Product + lifestyle composites" icon="image">
+    Layer a product shot over a lifestyle background to create polished ad imagery without a full photoshoot.
+  </Card>
+  <Card title="Collages" icon="layout-grid">
+    Combine multiple generated images into a grid or freeform layout for mood boards, lookbooks, or multi-product ads.
+  </Card>
+  <Card title="Template-style layouts" icon="copy">
+    Position brand elements — logos, text overlays, color blocks — over generated backgrounds to replicate template structures on the fly.
+  </Card>
+  <Card title="Brand pack master" icon="package">
+    Build a layered master composition, then send it to brand pack to resize into every required placement size.
+  </Card>
+</CardGroup>
+
+## How do you build a layered composition?
+
+<Steps>
+  <Step title="Open the layer editor node">
+    Add a Layer editor node from the toolbar. It opens an in-canvas panel with an empty stage.
+  </Step>
+  <Step title="Add images">
+    Connect outputs from upstream image nodes or use the upload button to bring in existing assets. Each image becomes a layer in the stack.
+  </Step>
+  <Step title="Arrange layers">
+    Drag layers to reorder the stack (front to back). Move, scale, and position each layer on the stage canvas to achieve the desired composition.
+  </Step>
+  <Step title="Adjust blend and opacity">
+    Set opacity or blend mode per layer for creative effects — overlay a texture, knock out a background, or soften a shadow layer.
+  </Step>
+  <Step title="Flatten and export">
+    Flatten the composition into a single image output. Connect this output to an export node, a brand pack node, or any downstream image operation.
+  </Step>
+</Steps>
+
+<Tip>
+Run **Remove background** on product shots before adding them to the layer editor — this gives you a clean cut-out to place over any backdrop without edge artifacts.
+</Tip>
+
+## How does layer editor fit into a broader pipeline?
+
+```
+[Text to image] ──► [Remove background] ──► [Layer editor] ──► [Brand pack]
+[Image upload]  ──► [Layer editor]
+```
+
+The layer editor sits naturally between generation/editing nodes and export or sizing nodes. Its output is a standard image that any downstream node can consume.
+
+<Note>
+The layer editor is distinct from [Ad Templates](/ad-templates/overview), which provide structured Magic Layers with predefined zones and constraints. Use the layer editor for freeform compositions and ad templates for structured, repeatable formats.
+</Note>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Image nodes" icon="image" href="/studio/image-nodes">
+    Generate assets to bring into the layer editor
+  </Card>
+  <Card title="Brand pack" icon="package" href="/studio/brand-pack">
+    Resize your master composition for every placement
+  </Card>
+  <Card title="Ad templates" icon="layout-template" href="/ad-templates/overview">
+    Structured Magic Layers for repeatable ad formats
+  </Card>
+</CardGroup>

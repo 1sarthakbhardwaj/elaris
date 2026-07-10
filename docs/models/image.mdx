@@ -1,0 +1,89 @@
+---
+title: Image models
+description: Compare 20+ image models across Flux, Nano Banana, Seedream, GPT Image, and other families — costs range from 1 credit (Flux 2 Flash) to 21 credits (GPT Image) per generation at default settings.
+---
+
+All costs below are **indicative base credits** at default settings (1K resolution). Resolution multipliers and quality tiers apply on top of the base cost.
+
+<Tip>
+  Use **`auto`** in Studio or the MCP `generate_image` tool to let Elaris route automatically to a strong default model.
+</Tip>
+
+<Tabs>
+  <Tab title="Flux">
+    **Black Forest Labs** — fast, versatile, and cost-effective across all quality tiers.
+
+    | Model | Credits | Notes |
+    |-------|---------|-------|
+    | Flux 2 Flash | 1 | Ultra-fast; lowest cost |
+    | Flux 2 Turbo | 1 | Fast with improved quality |
+    | Flux 2 | 2 | Balanced quality and speed |
+    | Flux 2 Flex | 5 | Multi-reference input support |
+    | Flux 1 Kontext Pro | 5 | Precise in-context editing |
+    | Flux 2 Pro | 7 | Professional-grade output |
+    | Flux 2 Max | 8 | Maximum quality |
+  </Tab>
+
+  <Tab title="Nano Banana">
+    **Google** — strong character consistency across generations; Nano Banana 2 is an auto-router candidate.
+
+    | Model | Credits | Notes |
+    |-------|---------|-------|
+    | Nano Banana | 5 | Affordable baseline |
+    | Nano Banana Lite | 7 | Fast edits |
+    | Nano Banana 2 | 10 | Character consistency; auto-router candidate |
+    | Nano Banana Pro | 19 | Premium quality |
+  </Tab>
+
+  <Tab title="Seedream">
+    **ByteDance** — competitive quality at mid-range credit costs.
+
+    | Model | Credits | Notes |
+    |-------|---------|-------|
+    | Seedream 4 | 4 | Efficient baseline |
+    | Seedream 4.5 | 5 | Improved detail |
+    | Seedream v5 Lite | 5 | Latest efficient variant |
+  </Tab>
+
+  <Tab title="GPT Image">
+    **OpenAI** — best-in-class text rendering within images; supports quality tier selection.
+
+    | Model | Credits | Notes |
+    |-------|---------|-------|
+    | GPT Image 1 | 21 | Strong text-in-image rendering |
+    | GPT Image 1.5 | 21 | Production-ready quality |
+    | GPT Image 2 | 21 | Fine-grained edits; quality tiers |
+
+    <Note>
+      GPT Image models support quality tier selection in Studio. Higher quality tiers may increase the credit cost above the base 21.
+    </Note>
+  </Tab>
+
+  <Tab title="Other families">
+    Additional model families for specialized generation and editing workflows.
+
+    | Family | Models | Best for |
+    |--------|--------|----------|
+    | **Kling** (Kuaishou) | Kling O1 Image | Multi-reference editing |
+    | **Wan** (Alibaba) | Wan 2.5, 2.7, 2.7 Pro | General and premium generation |
+    | **Runway** | Gen-4 Image, Gen-4 Turbo | Cinematic, film-style output |
+    | **Ideogram** | Replace BG, Reframe, Edit, Remove BG | Utility edits and cleanup |
+    | **Phota** | Phota, Phota Edit, Phota Enhance | Photorealistic portraiture |
+    | **xAI** | Grok Imagine | Creative / experimental |
+    | **Tencent** | Hunyuan v3 | Strong text rendering |
+    | **QuiverAI** | Arrow 1.0, 1.1, 1.1 Max | SVG vector generation |
+  </Tab>
+</Tabs>
+
+<Note>
+  The model catalog is updated regularly. Call the MCP tool `list_models` with `kind: "image"` to fetch the live list with current credit costs.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="How pricing works" icon="calculator" href="/pricing/how-pricing-works">
+    Understand resolution multipliers and the full credit formula.
+  </Card>
+  <Card title="Video models" icon="video" href="/models/video">
+    Browse video generation families and per-second pricing.
+  </Card>
+</CardGroup>

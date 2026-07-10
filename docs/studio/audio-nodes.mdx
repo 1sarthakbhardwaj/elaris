@@ -1,0 +1,85 @@
+---
+title: Audio nodes
+description: Generate and enhance speech in Creative Studio — text-to-speech with ElevenLabs or Gemini voices, dialogue generation, voice cloning, and audio enhancement.
+---
+
+Audio nodes produce speech and audio assets for ads, Hyperframes voiceovers, URL-to-video handoffs, and standalone Studio video pipelines. Add an audio node to any canvas, choose a mode, and connect the output to downstream video or export nodes.
+
+## What audio modes are available?
+
+<Tabs>
+  <Tab title="TTS (text-to-speech)">
+    Convert a script to natural-sounding speech. Paste or type your text, choose a voice, and generate.
+
+    **Default engine:** ElevenLabs V3. Gemini TTS is also available as an alternative.
+
+    **Best for:** voiceovers, ad narration, product explainers, Hyperframes scripts.
+  </Tab>
+  <Tab title="Dialogue">
+    Generate multi-turn or conversational speech — two or more distinct speakers in sequence, useful for interview-style or call-and-response content.
+
+    **Best for:** podcast-style ads, scripted conversations, multi-character scenes.
+  </Tab>
+  <Tab title="Voice selector">
+    Browse and preview available voices before committing to a full generation run. Sample any voice with a short test phrase.
+
+    **Best for:** finding the right voice tone and accent for your brand or campaign.
+  </Tab>
+  <Tab title="Voice clone">
+    Upload a reference audio sample to create a custom voice that sounds like a specific person or persona. Credits apply for clone creation.
+
+    **Best for:** consistent brand voice, spokesperson content, localized campaigns with a familiar voice.
+  </Tab>
+  <Tab title="Enhance">
+    Clean up existing audio — reduce noise, normalize levels, and improve clarity. Feed any uploaded audio file or upstream audio node output.
+
+    **Best for:** improving recorded VO, cleaning location audio, prepping assets for lip sync.
+  </Tab>
+</Tabs>
+
+## Which voice providers are supported?
+
+| Provider | Modes | Notes |
+|---|---|---|
+| **ElevenLabs V3** | TTS, dialogue, voice clone | Default TTS engine; highest naturalness |
+| **Gemini TTS** | TTS | Available as an alternative; fast and cost-efficient |
+
+See [Audio models](/models/audio) for a full list of available voices, languages, and credit costs per mode.
+
+## How do you use audio in a video pipeline?
+
+<Steps>
+  <Step title="Add an audio node">
+    Open the toolbar and add an Audio node. Choose TTS or Dialogue mode.
+  </Step>
+  <Step title="Write your script">
+    Type or paste the script into the text field. For Dialogue mode, label each speaker turn.
+  </Step>
+  <Step title="Select a voice">
+    Use the Voice selector mode to preview options, then switch back to TTS and apply your chosen voice.
+  </Step>
+  <Step title="Generate">
+    Click **Run**. The audio renders as a waveform output on the node.
+  </Step>
+  <Step title="Connect to video or export">
+    Drag the audio output to a lip sync node, a Hyperframes voiceover slot, or an export/merge node.
+  </Step>
+</Steps>
+
+<Tip>
+For Hyperframes, generate voiceover at the **Voiceover** stage rather than attaching a separate audio node — Hyperframes handles timing alignment automatically when you use the built-in voiceover step.
+</Tip>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Hyperframes" icon="film" href="/studio/hyperframes">
+    Use voiceover in structured animated video
+  </Card>
+  <Card title="Video nodes" icon="video" href="/studio/video-nodes">
+    Lip sync audio to a face video
+  </Card>
+  <Card title="Audio models" icon="cpu" href="/models/audio">
+    Full voice and model reference
+  </Card>
+</CardGroup>

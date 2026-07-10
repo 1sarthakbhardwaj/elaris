@@ -1,0 +1,93 @@
+---
+title: Virtual Try-On
+description: Visualize garments on a subject in real time using Virtual Try-On (Lucy) in Creative Studio — billed per second, ideal for fashion and apparel creatives before final production.
+---
+
+**Virtual Try-On** runs a realtime session called **Lucy** that lets you visualize how a garment looks on a subject — without booking a photoshoot or commissioning a full image generation run. Dress a model in your product, evaluate fit and styling, and feed the results into your image or campaign pipeline.
+
+<Note>
+Virtual Try-On is a specialized Creative Studio tool designed for garment visualization — not a substitute for general image generation. Use it specifically for fashion and apparel creative workflows.
+</Note>
+
+## How does Virtual Try-On work?
+
+<Steps>
+  <Step title="Open a VTON session">
+    Add a Virtual Try-On node from the Studio toolbar to start a Lucy session. The session initializes and opens the realtime preview panel.
+  </Step>
+  <Step title="Upload your garment">
+    Provide the garment asset — a product photo, flat lay, or packshot. Lucy segments the garment and prepares it for try-on.
+  </Step>
+  <Step title="Select or upload a subject">
+    Choose a subject from the model library or upload your own model photo. The subject's pose and proportions are preserved during try-on.
+  </Step>
+  <Step title="Visualize in realtime">
+    Lucy composites the garment onto the subject in real time. Adjust garment position, scale, and styling as needed. The preview updates with each change.
+  </Step>
+  <Step title="Capture and export">
+    Capture the try-on frame you want as a high-quality still. The output feeds directly into image nodes or campaign assets for further processing.
+  </Step>
+</Steps>
+
+## How is Virtual Try-On billed?
+
+Virtual Try-On is billed by **session time** — credits are metered **per second** for the duration of an active Lucy session.
+
+| Billing detail | Value |
+|---|---|
+| **Meter** | Per-second credit consumption |
+| **When it starts** | When the session initializes |
+| **When it stops** | When you close or pause the session |
+| **Idle time** | Still billed — close the session when not actively using it |
+
+<Warning>
+Credits continue to accrue while a Lucy session is open, even if you are not actively making changes. Close the session when you are done to stop metering.
+</Warning>
+
+## What can you do with VTON outputs?
+
+<CardGroup cols={2}>
+  <Card title="Feed into image nodes" icon="image" href="/studio/image-nodes">
+    Use a VTON still as a reference image for further generation — upscale it, reframe it, or condition a text-to-image run on it.
+  </Card>
+  <Card title="Build campaign assets" icon="megaphone" href="/campaigns/overview">
+    Feed VTON outputs into campaigns as product photography without a physical shoot.
+  </Card>
+  <Card title="Resize for placements" icon="package" href="/studio/brand-pack">
+    Send VTON stills to brand pack to produce every required social and display size.
+  </Card>
+  <Card title="Iterate before final shoot" icon="refresh-cw">
+    Use VTON to evaluate styling, garment fit, and model-product combinations before committing to production photography.
+  </Card>
+</CardGroup>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I use my own model photos as subjects?">
+    Yes. Upload a model photo directly into the subject slot. The subject's pose, skin tone, and proportions are preserved during the try-on composite.
+  </Accordion>
+  <Accordion title="What garment types are supported?">
+    Virtual Try-On works best with tops, bottoms, outerwear, and full outfits on a flat lay or mannequin. Accessories and footwear have limited support.
+  </Accordion>
+  <Accordion title="How do I minimize credit usage?">
+    Plan your session before opening it: have garment assets and subject photos ready, know which combinations you want to test, and close the session immediately when finished.
+  </Accordion>
+  <Accordion title="Can VTON outputs be used in campaigns directly?">
+    Yes. Capture the try-on still and connect it to any downstream image node or campaign asset slot. VTON outputs are standard images compatible with the full Studio pipeline.
+  </Accordion>
+</AccordionGroup>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Image nodes" icon="image" href="/studio/image-nodes">
+    Refine VTON stills with generation and editing modes
+  </Card>
+  <Card title="Campaigns" icon="megaphone" href="/campaigns/overview">
+    Build a full campaign from your VTON assets
+  </Card>
+  <Card title="Credits & billing" icon="credit-card" href="/workspaces/credits">
+    Understand per-second credit metering
+  </Card>
+</CardGroup>

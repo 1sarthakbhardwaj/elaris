@@ -1,0 +1,77 @@
+---
+title: Collaboration & sharing
+description: Share Creative Studio projects with stakeholders and teammates — public view links, team share tokens, and live multi-editor collaboration with presence and sync.
+---
+
+Creative Studio supports multiple sharing modes so you can get feedback from stakeholders, collaborate with teammates, and control who can view or edit a canvas project.
+
+## What sharing options are available?
+
+<Tabs>
+  <Tab title="Public view link">
+    Share a **read-only** view of your canvas with anyone — no ElarisLabs account required.
+
+    **URL format:** `/studio/view/[slug]`
+
+    Stakeholders can inspect the canvas, zoom into nodes, and see generated outputs, but cannot edit parameters or trigger new generations. Ideal for client reviews and approvals.
+
+    **How to generate:** open the project menu and select **Share → Public view link**. Copy the link and send it.
+  </Tab>
+  <Tab title="Team share token">
+    Share with collaborators inside your organization using a team share token. Recipients must be logged in to your workspace.
+
+    **URL format:** `/studio/shared/[token]`
+
+    Use team share tokens when you want to restrict access to org members only, or when you need to revoke access later (tokens can be invalidated from the project settings).
+  </Tab>
+  <Tab title="Live collaboration">
+    When enabled, multiple editors can work on the same canvas simultaneously with real-time presence indicators and state sync.
+
+    Best for pair-production sessions, review-and-edit workflows, and live creative sessions with a director and a designer in the same project.
+  </Tab>
+</Tabs>
+
+## How does live collaboration work?
+
+Live collaboration shows each active editor's cursor position and currently selected node with a color-coded presence indicator.
+
+<AccordionGroup>
+  <Accordion title="Who can edit in a live session?">
+    Any workspace member with edit access to the brand can join a live session. View-only share links and public view links always remain read-only regardless of live collaboration status.
+  </Accordion>
+  <Accordion title="How is conflict handled?">
+    The last-write-wins model applies to individual node parameters. If two editors modify the same node field simultaneously, the most recent change is preserved. Generation runs are isolated — one editor running a node does not block another.
+  </Accordion>
+  <Accordion title="Should I save before large changes?">
+    Yes. Before restructuring the node graph (adding/removing/rewiring many nodes at once), save a named project version first. This gives you a clean rollback point if you want to discard the structural change.
+  </Accordion>
+  <Accordion title="How do I enable live collaboration?">
+    Live collaboration is enabled per-project. Open the project menu, go to **Settings**, and toggle **Live collaboration on**. All editors with access will see the session the next time they open the project.
+  </Accordion>
+</AccordionGroup>
+
+<Warning>
+Save named project versions before large structural changes when live collaboration is active. Presence and sync recover gracefully from network interruptions, but major node-graph restructuring is easier to review with a known checkpoint.
+</Warning>
+
+## What are the sharing permission levels?
+
+| Share type | Account required | Can edit | Can generate | Who sees it |
+|---|---|---|---|---|
+| **Public view link** | No | No | No | Anyone with the link |
+| **Team share token** | Yes (workspace) | No | No | Workspace members |
+| **Live collaboration** | Yes (workspace) | Yes | Yes | Invited editors |
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Workspace roles" icon="shield" href="/workspaces/roles">
+    Control who has edit access across your workspace
+  </Card>
+  <Card title="Brand members" icon="users" href="/brands/members-and-sharing">
+    Manage brand-level access and sharing
+  </Card>
+  <Card title="Templates" icon="copy" href="/studio/templates">
+    Publish workflows for your whole team to clone
+  </Card>
+</CardGroup>

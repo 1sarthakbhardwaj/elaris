@@ -1,0 +1,66 @@
+---
+title: Audio models
+description: ElevenLabs V3, Turbo v2.5, Multilingual v2, and Gemini 3.1 Flash TTS — covering high-quality speech, fast iteration TTS, multilingual coverage, and voice cloning for Studio and MCP workflows.
+---
+
+Elaris supports text-to-speech (TTS), dialogue generation, and voice cloning through ElevenLabs and Google models. Credits are deducted per generation action.
+
+<Tabs>
+  <Tab title="ElevenLabs">
+    **Industry-leading TTS with direct and fal routing paths.**
+
+    | Model | Notes |
+    |-------|-------|
+    | ElevenLabs V3 | Default high-quality TTS; natural prosody |
+    | Turbo v2.5 | Faster generation; lower latency |
+    | Multilingual v2 | Broader language support for global campaigns |
+
+    ElevenLabs models support **voice clone** inputs — upload a reference audio clip and the model matches the voice timbre and style. Voice cloning carries a higher credit cost than standard TTS.
+
+    <Tip>
+      For Studio narration, **ElevenLabs V3** is the recommended default. Use **Turbo v2.5** when iterating quickly on script drafts where speed matters more than fine prosody.
+    </Tip>
+  </Tab>
+
+  <Tab title="Google">
+    **High-quality TTS from Google's Gemini family.**
+
+    | Model | Notes |
+    |-------|-------|
+    | Gemini 3.1 Flash TTS | Fast and high-quality alternative TTS |
+
+    Gemini TTS is a strong alternative when you need tight integration with other Gemini-based generation steps in a pipeline, or when ElevenLabs voice availability is a constraint.
+  </Tab>
+</Tabs>
+
+## What audio generation modes are available?
+
+| Mode | Description | Relative cost |
+|------|-------------|---------------|
+| **TTS (single voice)** | Convert a script to speech with one voice | Base cost |
+| **Dialogue** | Multi-speaker conversation generation | Higher than TTS |
+| **Voice clone** | Match a target voice from a reference clip | Higher than TTS |
+
+## How do I use audio in MCP?
+
+The `generate_audio` MCP tool accepts the following parameters:
+
+```json
+{
+  "model": "elevenlabs-v3",
+  "voice": "your_voice_id",
+  "language": "en",
+  "stability": 0.75
+}
+```
+
+Discovery tools (`list_models` with `kind: "audio"`) are **free**. Each `generate_audio` call deducts credits based on model and output length.
+
+<CardGroup cols={2}>
+  <Card title="How pricing works" icon="calculator" href="/pricing/how-pricing-works">
+    Understand credit deductions for TTS, dialogue, and voice clone modes.
+  </Card>
+  <Card title="Models overview" icon="layers" href="/models/overview">
+    Browse the full catalog including image and video models.
+  </Card>
+</CardGroup>

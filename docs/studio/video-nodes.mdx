@@ -1,0 +1,112 @@
+---
+title: Video nodes
+description: Generate and transform video clips in Creative Studio — text-to-video, image-to-video, lip sync, motion control, and utilities like upscale and join.
+---
+
+Video nodes generate and transform clips directly on the Creative Studio canvas. Chain them with image nodes, audio nodes, and utilities to build complete video production pipelines.
+
+<Warning>
+This page covers **Studio video nodes**. For product-URL pipelines use [URL to Video](/url-to-video/overview). For wizard-driven campaign video use [Campaign modes](/campaigns/modes).
+</Warning>
+
+## What generation modes are available?
+
+<Tabs>
+  <Tab title="Text to video">
+    Generate a video clip from a text prompt. No source media required — describe the scene, motion, and style.
+
+    **Best for:** backgrounds, B-roll, concept visualizations, abstract motion.
+  </Tab>
+  <Tab title="Image to video">
+    Animate a still image using a prompt that describes the desired motion. The image anchors the scene; the prompt drives movement.
+
+    **Best for:** product animations, character motion, bringing photography to life.
+  </Tab>
+  <Tab title="Reference to video">
+    Provide one or more reference images to guide style, subject identity, or scene composition during generation.
+
+    **Best for:** brand-consistent clips, character consistency across scenes.
+  </Tab>
+  <Tab title="First / last frame">
+    Define the exact starting and ending frames as keyframe images. The model interpolates the motion between them.
+
+    **Best for:** controlled transitions, reveal animations, precise narrative beats.
+  </Tab>
+  <Tab title="Motion control">
+    Apply camera or subject motion guidance — pans, zooms, orbits, or custom trajectories — on top of a generated or provided clip.
+
+    **Best for:** cinematic camera moves, dynamic product spins, directional storytelling.
+  </Tab>
+  <Tab title="Lip sync">
+    Align mouth movements in a face video to an audio track. Feed an audio node output directly into the lip sync node.
+
+    **Best for:** AI spokesperson content, dubbed dialogue, voiceover synchronization.
+  </Tab>
+</Tabs>
+
+## What utility modes are available?
+
+<CardGroup cols={2}>
+  <Card title="Remove objects / background" icon="eraser">
+    Clean up a clip by removing unwanted objects or replacing the background scene.
+  </Card>
+  <Card title="Upscale" icon="zoom-in">
+    Increase video resolution and enhance detail for final delivery or display at larger sizes.
+  </Card>
+  <Card title="Join videos" icon="git-merge">
+    Concatenate multiple clips into a single output — useful for assembling a sequence from separate generation runs.
+  </Card>
+  <Card title="Hyperframes (animated video)" icon="film" href="/studio/hyperframes">
+    Structured multi-stage pipeline: plan, storyboard, script, voiceover, and render a cohesive short film.
+  </Card>
+</CardGroup>
+
+## Which models are available for video nodes?
+
+| Model | Notable capabilities |
+|---|---|
+| **Veo** | High-quality cinematic generation, strong motion |
+| **Kling** | Long clips, strong subject consistency |
+| **Sora** | Creative and stylized outputs, good at scene variety |
+| **LTX** | Fast, efficient, good for iteration |
+| **Seedance** | Portrait and character-focused video |
+
+Capability matrices — including max duration, audio support, and resolution — vary by model. See [Video models](/models/video) for the full comparison.
+
+<Note>
+Video generation is among the most credit-intensive operations. Check the credit estimate in the node panel before running, especially for longer clips or higher resolutions.
+</Note>
+
+## How do you build a video pipeline?
+
+<Steps>
+  <Step title="Generate or upload source media">
+    Start with a text-to-image node (or upload an image) to create your anchor visual.
+  </Step>
+  <Step title="Add a video node">
+    Choose a generation mode — image-to-video is a common first step when you have a strong hero image.
+  </Step>
+  <Step title="Add audio (optional)">
+    Connect an [audio node](/studio/audio-nodes) output to a lip sync node or as a reference track for the Hyperframes renderer.
+  </Step>
+  <Step title="Apply utilities">
+    Chain upscale, remove-background, or join nodes as needed.
+  </Step>
+  <Step title="Export or schedule">
+    Send the final clip to export or connect to the [Scheduler](/scheduler/overview) for publishing.
+  </Step>
+</Steps>
+
+## What's next?
+
+<CardGroup cols={3}>
+  <Card title="Hyperframes" icon="film" href="/studio/hyperframes">
+    Full animated video pipeline with storyboarding
+  </Card>
+  <Card title="Audio nodes" icon="mic" href="/studio/audio-nodes">
+    Add voiceover and dialogue to your clips
+  </Card>
+  <Card title="Video models reference" icon="cpu" href="/models/video">
+    Full model capability matrix
+  </Card>
+</CardGroup>

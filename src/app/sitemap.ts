@@ -56,16 +56,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${SITE_URL}/docs/quickstart`,
+      url: `${SITE_URL}/docs/getting-started/welcome`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
-      url: `${SITE_URL}/docs/integrations/mcp`,
+      url: `${SITE_URL}/docs/getting-started/quickstart`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/docs/connect/mcp-overview`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/docs/connect/setup`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/docs/studio/overview`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.65,
     },
     {
       url: `${SITE_URL}/terms`,

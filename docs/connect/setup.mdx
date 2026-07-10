@@ -1,56 +1,58 @@
 ---
-title: "MCP setup & integration guide"
-description: "Connect ElarisLabs Creative Studio to Claude, Cursor, and other MCP clients. Generate images, video, audio, brand packs, and composer edits from any agent that speaks MCP."
-icon: "plug"
+title: "MCP setup"
+description: "Configure Claude Desktop, Cursor, Windsurf, VS Code, and other MCP clients to use ElarisLabs Creative Studio tools in three steps."
+icon: "rocket"
 ---
 
-Connect ElarisLabs Creative Studio to Claude, Cursor, and other MCP clients.
+Connect Creative Studio to your agent in three steps.
 
-Generate images, video, audio, brand packs, and composer edits from any agent
-that speaks MCP. Credits bill to the brand your API key is bound to.
-
-## What is MCP?
-
-The Model Context Protocol (MCP) is an open standard for connecting AI
-assistants to external tools and data.
-
-Instead of copy-pasting API docs into a chat, the client discovers callable
-tools from a server. The model invokes them when your prompt needs real actions,
-like generating an image, listing projects, or resizing a brand pack.
-
-```
-You (prompt) -> MCP client (Claude, Cursor) -> ElarisLabs MCP (/api/mcp) -> Creative Studio (models + credits)
-```
-
-<CardGroup cols={3}>
-  <Card title="Tools, not chat plugins" icon="wrench">
-    The agent sees structured tools with schemas. It picks the right one and
-    passes arguments. No manual API calls.
-  </Card>
-  <Card title="Remote HTTP" icon="globe">
-    ElarisLabs runs a hosted MCP endpoint. No local install required. Just paste
-    a JSON config and your API key.
-  </Card>
-  <Card title="Brand-scoped billing" icon="credit-card">
-    Every key is bound to one brand. Generation tools deduct credits from that
-    brand's balance. Discovery tools are free.
-  </Card>
-</CardGroup>
-
-## Quick start
+Every API key is bound to one brand. Discovery tools are free. Generation tools
+deduct credits from that brand's balance.
 
 <Steps>
   <Step title="Create an API key">
-    Go to [your profile](https://studio.elarislabs.ai/en/profile) and open
-    **API keys / MCP**. Pick a brand, set an expiry and spend cap, then copy the
-    key (`elx_live_...`). It is shown once.
+    Open [your profile](https://studio.elarislabs.ai/en/profile) and go to
+    **API keys / MCP**.
+
+    - Pick a brand.
+    - Set an expiry and a spend cap.
+    - Copy the key (`elx_live_...`). It is shown only once.
   </Step>
-  <Step title="Add the server">
-    Add it to your MCP client config. See the Claude and Cursor examples below.
-    Use your key in the `Authorization: Bearer` header.
+  <Step title="Add the server to your client">
+    Paste the config below into your MCP client. Use your key in the
+    `Authorization: Bearer` header.
+
+    <CodeGroup>
+    ```json Claude Desktop
+    {
+      "mcpServers": {
+        "elarislabs": {
+          "url": "https://studio.elarislabs.ai/api/mcp",
+          "headers": {
+            "Authorization": "Bearer elx_live_YOUR_KEY_HERE"
+          }
+        }
+      }
+    }
+    ```
+
+    ```json Cursor
+    {
+      "mcpServers": {
+        "elarislabs": {
+          "url": "https://studio.elarislabs.ai/api/mcp",
+          "headers": {
+            "Authorization": "Bearer elx_live_YOUR_KEY_HERE"
+          }
+        }
+      }
+    }
+    ```
+    </CodeGroup>
   </Step>
-  <Step title="Restart the client">
-    Enable the server in settings, then ask in plain language:
+  <Step title="Restart and prompt">
+    Restart the client and enable the server in settings. Then ask in plain
+    language:
 
     > "List available image models, then generate a product shot with flux-2-flash."
   </Step>
@@ -61,64 +63,7 @@ You (prompt) -> MCP client (Claude, Cursor) -> ElarisLabs MCP (/api/mcp) -> Crea
   connection before running paid generation.
 </Tip>
 
-## Create and manage an API key
-
-Keys are created in your ElarisLabs profile under **API keys / MCP**.
-
-Open [your profile](https://studio.elarislabs.ai/en/profile), choose a brand,
-set an expiry (max 24 weeks) and a spend cap (max 2000 credits), then copy the
-key. It is shown only once.
-
-<CardGroup cols={2}>
-  <Card title="Bound to a brand" icon="building">
-    The key acts on one brand. All spend is billed to that brand's credit
-    balance.
-  </Card>
-  <Card title="Expiry and spend cap" icon="timer">
-    Required expiry up to 24 weeks. Per-key spend cap up to 2000 credits,
-    editable anytime.
-  </Card>
-  <Card title="Revoke or rotate" icon="rotate-ccw">
-    Rotate to replace a key, or revoke to disable it instantly. Manage all keys
-    from settings.
-  </Card>
-  <Card title="Scopes" icon="shield-check">
-    Keys ship with `studio:read` and `studio:generate`. That is enough to list
-    projects and run generation tools.
-  </Card>
-</CardGroup>
-
-<Note>
-  **Endpoint:** your MCP URL is `https://studio.elarislabs.ai/api/mcp`.
-  Authenticate with `Authorization: Bearer elx_live_...`. The server uses
-  Streamable HTTP (stateless). It works with Claude Desktop, Cursor, and
-  `mcp-remote` for older clients.
-</Note>
-
-<Warning>
-  **Security:** treat `elx_live_...` like a password. Never commit it to git,
-  paste it in public channels, or share it in screenshots. Use per-developer
-  keys with low spend caps when possible.
-</Warning>
-
-## How the server works
-
-When an MCP client connects, it calls `tools/list` to discover available tools.
-It then calls `tools/call` when the model decides to act.
-
-ElarisLabs validates your bearer token, resolves the bound brand, and runs the
-tool. That is either a free read, like listing projects, or a billed generation,
-like an image, video, or brand pack.
-
-| Aspect | Details |
-| --- | --- |
-| Protocol | MCP over Streamable HTTP at `/api/mcp` |
-| Auth | `Authorization: Bearer elx_live_...` header on every request |
-| Session | Stateless. No persistent connection to manage |
-| Timeouts | Video and brand-pack jobs may take 30 to 90 seconds. Clients should allow long tool calls |
-| Errors | Invalid, expired, or revoked keys return auth errors. Insufficient credits return a billing error |
-
-## Claude Desktop
+## How do I set up Claude Desktop?
 
 Works with Claude Desktop on macOS and Windows. It requires a recent version
 with remote MCP (URL) support.
@@ -184,7 +129,7 @@ If your Claude version does not support remote `url` servers, use the
   talk to the remote server.
 </Note>
 
-## Cursor
+## How do I set up Cursor?
 
 Cursor has first-class MCP support. Use Agent mode so the model can call tools on
 its own.
@@ -247,7 +192,7 @@ its own.
   ```
 </Accordion>
 
-## Other MCP clients
+## What about other MCP clients?
 
 Any client that supports remote MCP (URL plus headers) can use the same config
 block. The JSON shape is always `mcpServers` then `{ name: { url, headers } }`.
@@ -277,7 +222,7 @@ block. The JSON shape is always `mcpServers` then `{ name: { url, headers } }`.
   </Accordion>
 </AccordionGroup>
 
-## Using multiple MCP servers
+## Can I use ElarisLabs alongside other MCP servers?
 
 MCP clients can connect to many servers at once.
 
@@ -358,69 +303,6 @@ Once connected, talk in plain language. The agent maps your intent to tools.
     at 24fps, then generate a voiceover saying 'Built for the city.'"
   </Accordion>
 </AccordionGroup>
-
-## Slack (autonomous worker)
-
-Slack is not an MCP client. Instead, the ElarisLabs Slack app runs the same tools
-in the background and delivers finished creative back to the thread. It can ask a
-clarifying question and resume when you reply.
-
-<Steps>
-  <Step title="Install the app">
-    Have an admin install the ElarisLabs Slack app to your workspace. Then invite
-    the bot to a channel, or DM it.
-  </Step>
-  <Step title="Link your identity">
-    Link your Slack identity to your ElarisLabs brand the first time. Mention the
-    bot and it replies with a one-time link. Complete linking in the browser.
-    Until linked, the bot cannot spend credits.
-  </Step>
-  <Step title="Task it in plain language">
-    ```text Slack
-    @ElarisLabs make a square product shot of our new sneaker on a marble pedestal,
-    then build a brand pack for Instagram feed and story sizes.
-    ```
-  </Step>
-  <Step title="Get results in-thread">
-    The worker runs in the background. If it needs a detail, like which sizes, it
-    asks in-thread and waits for your reply. Then it delivers the assets and a
-    short summary.
-  </Step>
-</Steps>
-
-<Note>
-  **Self-hosting the Slack app:** use the manifest at
-  `docs/slack-app-manifest.yaml` in the ElarisLabs repo. Then set
-  `SLACK_BOT_TOKEN` and `SLACK_SIGNING_SECRET`, and point the event subscription
-  URL at `/api/webhooks/slack/events`.
-</Note>
-
-## Available tools
-
-Discovery tools are free. Generation and editing tools consume credits from the
-key's brand.
-
-| Tool | What it does | Key parameters | Billing |
-| --- | --- | --- | --- |
-| `list_brands` | Brand this key is bound to | none | Free |
-| `list_workspaces` | Workspace for this key | none | Free |
-| `list_projects` | Creative Studio projects | none | Free |
-| `get_project` | Single project plus flow graph | `projectId` | Free |
-| `list_models` | Image, video, audio models | `kind` (optional filter) | Free |
-| `list_templates` | Published Studio templates | none | Free |
-| `generate_image` | Text-to-image or edit with references | `prompt`, `model`, `referenceImages`, `resolution` | Credits |
-| `generate_audio` | Text-to-speech (ElevenLabs, Gemini) | `text`, `model`, `voice`, `language` | Credits |
-| `generate_video` | Text-to-video or image-to-video | `prompt`, `imageUrl`, `durationSeconds` | Credits |
-| `regenerate_video` | Re-run video with optional variation | `prompt`, `variationHint` | Credits |
-| `create_hyperlapse` | Stitch images into a timelapse (ffmpeg) | `images[]`, `fps`, `width`, `height` | Credits |
-| `composer_edit` | add_text, inpaint, erase, remove_background | `operation`, `imageUrl` | Credits |
-| `brand_pack_list_sizes` | Available output sizes | none | Free |
-| `brand_pack_resize` | Resize into sizes, returns a zip | `sourceImage`, `sizeKeys` | Credits |
-
-<Tip>
-  **Model tip:** pass `model: "auto"` (the default) to let the router pick. Or
-  pass a specific id from `list_models`, such as `"flux-2-flash"` for fast images.
-</Tip>
 
 ## Troubleshooting
 
