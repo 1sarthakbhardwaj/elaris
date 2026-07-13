@@ -1085,6 +1085,7 @@ function StudioMiniCanvasInner() {
         minZoom={0.2}
         maxZoom={1.2}
         panOnDrag
+        preventScrolling={false}
         zoomOnScroll={false}
         zoomOnPinch
         nodesDraggable

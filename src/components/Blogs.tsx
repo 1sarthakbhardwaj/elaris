@@ -1,17 +1,21 @@
 "use client";
 
-import Link from "next/link";
 import { BLOG_POSTS } from "@/lib/blogs";
 import BlogPostCard from "./BlogPostCard";
 import { useReveal } from "./useReveal";
 
 export default function Blogs() {
-  const [headRef, headShown] = useReveal<HTMLDivElement>(0.2);
+  const [ref, shown] = useReveal<HTMLDivElement>(0.2);
+  const featuredPost = BLOG_POSTS.find(
+    (post) => post.slug === "mcdonalds-qatar-live-dooh",
+  );
+
+  if (!featuredPost) return null;
 
   return (
     <section
       id="blogs"
-      className="scroll-mt-24 relative py-20 md:py-28 px-6 md:px-10 border-t border-white/[0.06] overflow-hidden"
+      className="relative scroll-mt-24 overflow-hidden border-t border-white/[0.06] px-6 py-20 md:px-10 md:py-28"
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -21,40 +25,18 @@ export default function Blogs() {
         }}
       />
 
-      <div className="relative max-w-[1100px] mx-auto">
-        <div
-          ref={headRef}
-          className={`mb-10 md:mb-12 ${headShown ? "anim-fade-up" : "opacity-0"}`}
+      <div ref={ref} className="relative mx-auto max-w-[1100px]">
+        <p
+          className={`mb-6 text-xs text-mono uppercase tracking-[0.25em] text-halo ${
+            shown ? "anim-fade-up" : "opacity-0"
+          }`}
         >
-          <p className="text-xs text-mono text-halo uppercase tracking-[0.25em] mb-4">
-            ◉ From the team
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2
-              className="text-display text-bone leading-[1.08] tracking-tight"
-              style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)" }}
-            >
-              Blogs & <span className="italic shine-plasma">deep dives.</span>
-            </h2>
-            <Link
-              href="/blogs"
-              className="text-chrome text-sm text-mono hover:text-halo transition-colors sm:text-right"
-            >
-              View all posts →
-            </Link>
-          </div>
-        </div>
-
-        <div className="grid gap-5">
-          {BLOG_POSTS.map((post, i) => (
-            <BlogPostCard
-              key={post.slug}
-              post={post}
-              className={headShown ? "anim-fade-up" : "opacity-0"}
-              style={{ animationDelay: `${0.08 + i * 0.08}s` }}
-            />
-          ))}
-        </div>
+          ◉ Featured blog
+        </p>
+        <BlogPostCard
+          post={featuredPost}
+          className={shown ? "anim-fade-up" : "opacity-0"}
+        />
       </div>
     </section>
   );
