@@ -144,8 +144,6 @@ html, body {
 .anim-pulse-plasma { animation: pulse-plasma 2.5s ease-in-out infinite; }
 .anim-tilt { animation: tilt 6s ease-in-out infinite; }
 .marquee-track { animation: marquee 40s linear infinite; }
-.marquee-clients { animation-duration: 48s; }
-.marquee-clients:hover { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }

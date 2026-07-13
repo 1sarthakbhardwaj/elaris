@@ -148,6 +148,7 @@ export default function Footer() {
               <h4 className="text-xs text-mono uppercase tracking-[0.2em] text-chrome mb-4">Resources</h4>
               <ul className="space-y-3 text-sm">
                 {[
+                  { label: "MCP Server", href: "/mcp" },
                   { label: "Docs", href: "/docs" },
                   { label: "Blogs", href: "/blogs" },
                   { label: "Pricing", href: "/pricing" },

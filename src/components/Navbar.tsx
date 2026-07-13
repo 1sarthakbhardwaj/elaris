@@ -54,6 +54,12 @@ export default function Navbar() {
             Blogs
           </a>
           <a
+            href="/mcp"
+            className="px-4 py-1.5 rounded-full text-chrome hover:text-bone hover:bg-white/5 transition-all"
+          >
+            MCP
+          </a>
+          <a
             href="/docs"
             className="px-4 py-1.5 rounded-full text-chrome hover:text-bone hover:bg-white/5 transition-all"
           >
