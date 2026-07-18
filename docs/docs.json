@@ -58,6 +58,7 @@
             "pages": [
               "studio/overview",
               "studio/canvas",
+              "studio/text-nodes",
               "studio/image-nodes",
               "studio/video-nodes",
               "studio/hyperframes",
