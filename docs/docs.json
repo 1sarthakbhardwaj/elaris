@@ -5,7 +5,7 @@
   "colors": {
     "primary": "#6DA6D9",
     "light": "#A8CDEF",
-    "dark": "#6DA6D9"
+    "dark": "#2D4A6B"
   },
   "favicon": "/favicon.svg",
   "logo": {
@@ -18,7 +18,12 @@
     "strict": true
   },
   "fonts": {
-    "family": "Inter"
+    "heading": {
+      "family": "Bricolage Grotesque"
+    },
+    "body": {
+      "family": "Geist"
+    }
   },
   "icons": {
     "library": "lucide"
@@ -30,7 +35,8 @@
     }
   },
   "styling": {
-    "codeblocks": "dark"
+    "codeblocks": "dark",
+    "eyebrows": "breadcrumbs"
   },
   "seo": {
     "indexing": "all"

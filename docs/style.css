@@ -1,0 +1,25 @@
+/* ElarisLabs docs polish — media + content rhythm */
+
+mdx-content video,
+mdx-content iframe {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0c0d10;
+}
+
+frame {
+  border-radius: 0.875rem;
+  overflow: hidden;
+}
+
+#page-title {
+  letter-spacing: -0.02em;
+}
+
+mdx-content p {
+  line-height: 1.7;
+}
+
+card {
+  border-color: rgba(255, 255, 255, 0.06);
+}
