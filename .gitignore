@@ -44,3 +44,7 @@ next-env.d.ts
 # Misc
 *.log
 
+# Raw source media (converted to MP4 in docs/images/ before use)
+gifs/
+*.gif
+
