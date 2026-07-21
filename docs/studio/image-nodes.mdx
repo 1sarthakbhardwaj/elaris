@@ -1,61 +1,101 @@
 ---
 title: Image nodes
-description: Generate and edit images in Creative Studio — text-to-image, image-to-image, upscale, inpaint, background removal, reframe, and SVG vectorization using top AI models.
+description: Generate and edit images in Creative Studio — text-to-image, image-to-image, upscale, inpaint, background removal, reframe, and SVG vectorization with Auto Router and SOTA models.
 ---
 
-Image nodes are the foundation of Creative Studio's visual pipeline. Each node runs one image operation. Pick a **mode**, choose a **model** (or use `auto`), set your parameters, and generate. Chain nodes together to build multi-step editing flows.
+Image nodes are the foundation of Creative Studio's visual pipeline. Each node runs one image operation: pick a **mode**, choose a **model** (or leave it on **Auto**), set parameters, and generate. Chain nodes to build multi-step editing flows.
 
 <CardGroup cols={2}>
   <Card title="Generate" icon="wand-sparkles">
-    Create new images from text prompts or reference images.
+    Text to image, image to image, and SVG creation from prompts or references.
   </Card>
   <Card title="Edit" icon="pen-nib">
-    Upscale, reframe, inpaint, erase, and swap backgrounds on existing assets.
+    Upscale, reframe, inpaint, erase, and background tools on existing assets.
   </Card>
 </CardGroup>
 
+## Auto Router & the model picker
+
+Every image node has a model selector. Leave it on **Auto** to let the router choose the best model for your prompt and mode, or open the picker to choose one yourself — each option shows its speed and credit cost.
+
+<Steps>
+  <Step title="Auto routes for you" icon="sparkles">
+    Auto reads your prompt, mode, and constraints, then routes to the model that best balances quality, speed, and cost for that request.
+
+    <Frame>
+      <img
+        className="rounded-xl"
+        style={{ maxWidth: "420px", width: "100%" }}
+        src="/images/studio/auto-router.png"
+        alt="Image node set to Auto with a detailed generation prompt"
+      />
+    </Frame>
+  </Step>
+  <Step title="Or pick a model yourself" icon="layers">
+    Open the picker to search compatible models, jump into featured options like **Flux** or **GPT Image**, or browse providers — Google, Black Forest Labs, ByteDance, OpenAI, Kling, Runway, and more.
+
+    <Frame>
+      <img
+        className="rounded-xl"
+        style={{ maxWidth: "420px", width: "100%" }}
+        src="/images/studio/model-picker.jpg"
+        alt="Model picker showing featured models and providers with credit costs"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+Creative Studio ships **state-of-the-art models across domains and price points** — photorealism, fine-grained edits, fast drafts, typography, and SVG. Full capability matrix: [Image models](/models/image).
+
+<Tip>
+Resolution and quality change credit cost. Higher resolutions (2K / 4K) and premium models cost more per run — check the estimate in the node panel before generating.
+</Tip>
+
 ## What generation modes are available?
 
-<Tabs>
-  <Tab title="Text to image">
-    Generate a new image from a text prompt. Set aspect ratio, resolution, and optional style references. Works with all major models.
+Create new images from text or from existing references.
 
-    **Best for:** hero shots, concept art, product visuals, ad backgrounds.
+### Text to image
 
-    <Frame>
-      <video
-        className="w-full aspect-video rounded-xl"
-        autoPlay
-        loop
-        muted
-        playsInline
-        src="/images/studio/text-to-image.mp4"
-      ></video>
-    </Frame>
-  </Tab>
-  <Tab title="Image to image">
-    Condition generation on one or more reference images. Control how closely the output follows the reference via a strength/influence slider.
+Generate a new image from a text prompt. Set aspect ratio, resolution, and optional style references. Works with Auto Router and all major models.
 
-    **Best for:** style transfer, iterating on existing shots, brand-consistent generation.
+**Best for:** hero shots, concept art, product visuals, ad backgrounds.
 
-    <Frame>
-      <video
-        className="w-full aspect-video rounded-xl"
-        autoPlay
-        loop
-        muted
-        playsInline
-        src="/images/studio/image-to-image.mp4"
-      ></video>
-    </Frame>
-  </Tab>
-</Tabs>
+<Frame>
+  <video
+    className="w-full aspect-video rounded-xl"
+    autoPlay
+    loop
+    muted
+    playsInline
+    src="/images/studio/text-to-image.mp4"
+  ></video>
+</Frame>
+
+### Image to image
+
+Condition generation on one or more reference images. Control how closely the output follows the reference via a strength / influence slider.
+
+**Best for:** style transfer, iterating on existing shots, brand-consistent generation.
+
+<Frame>
+  <video
+    className="w-full aspect-video rounded-xl"
+    autoPlay
+    loop
+    muted
+    playsInline
+    src="/images/studio/image-to-image.mp4"
+  ></video>
+</Frame>
 
 ## What editing modes are available?
 
+Transform an existing image without starting from scratch.
+
 <Tabs>
   <Tab title="Upscale">
-    Increase resolution and add fine detail to an existing image. Useful as a final step before export or handoff.
+    Increase resolution and add fine detail. Useful as a final step before export or handoff.
 
     **Input:** any image node output or uploaded asset.
 
@@ -71,7 +111,7 @@ Image nodes are the foundation of Creative Studio's visual pipeline. Each node r
     </Frame>
   </Tab>
   <Tab title="Reframe">
-    Outpaint an image to a new aspect ratio — expand the canvas on any edge. Ideal for adapting a portrait crop to landscape without re-generating.
+    Outpaint an image to a new aspect ratio — expand the canvas on any edge. Ideal for adapting a portrait crop to landscape without regenerating.
 
     **Input:** any image.
 
@@ -86,7 +126,7 @@ Image nodes are the foundation of Creative Studio's visual pipeline. Each node r
       ></video>
     </Frame>
 
-    Once an image is reframed, hand it to **[Brand Pack](/studio/brand-pack)** to resize across every placement — Stories, feed, landscape DOOH — in a single pass.
+    Once reframed, hand the image to **[Brand Pack](/studio/brand-pack)** to resize across every placement — Stories, feed, landscape DOOH — in one pass.
 
     <Frame>
       <video
@@ -132,7 +172,7 @@ Image nodes are the foundation of Creative Studio's visual pipeline. Each node r
     </Frame>
   </Tab>
   <Tab title="Replace background">
-    Automatically segment the subject and swap the background scene with a new one described by prompt.
+    Automatically segment the subject and swap the background with a new scene described by prompt.
 
     **Input:** source image + prompt for the new background.
 
@@ -148,7 +188,7 @@ Image nodes are the foundation of Creative Studio's visual pipeline. Each node r
     </Frame>
   </Tab>
   <Tab title="Remove background">
-    Cut out the subject and export with a transparent background (PNG alpha). Commonly used before the layer editor or brand pack.
+    Cut out the subject and export with a transparent background (PNG alpha). Common before the layer editor or brand pack.
 
     **Input:** any image.
 
@@ -165,7 +205,7 @@ Image nodes are the foundation of Creative Studio's visual pipeline. Each node r
   </Tab>
 </Tabs>
 
-## What SVG modes are available?
+## What SVG / vector modes are available?
 
 Generate or vectorize artwork as clean SVG paths — useful for logos, icons, and print-ready assets.
 
@@ -185,13 +225,13 @@ Generate or vectorize artwork as clean SVG paths — useful for logos, icons, an
     Generate scalable vector artwork directly from a text description using Quiver Arrow.
   </Card>
   <Card title="Image to SVG" icon="scan-line">
-    Vectorize any raster image into clean SVG paths — useful for logos, icons, and print-ready artwork.
+    Vectorize any raster image into clean SVG paths for logos, icons, and print.
   </Card>
 </CardGroup>
 
-## Which models are available for image nodes?
+## Which models are available?
 
-Creative Studio includes models from the following providers. Select from the model dropdown on any image node, or use `auto` to let the router choose.
+Open the model picker on any image node for featured options and full provider lists. Common families include:
 
 | Model / Family | Strengths |
 |---|---|
@@ -208,11 +248,7 @@ Creative Studio includes models from the following providers. Select from the mo
 | **Hunyuan** | Asian aesthetic, high detail |
 | **Quiver Arrow** | SVG vector generation |
 
-See [Image models](/models/image) for a full capability matrix including resolution support and credit costs.
-
-<Note>
-Resolution and quality settings directly affect credit cost. Higher resolutions (2K / 4K) and premium models cost more per generation. Check the credit estimate in the node panel before running.
-</Note>
+Full matrix: [Image models](/models/image).
 
 ## What's next?
 

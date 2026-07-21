@@ -54,27 +54,41 @@
             "pages": [
               "getting-started/welcome",
               "getting-started/quickstart",
-              "getting-started/concepts",
-              "getting-started/product-map",
               "getting-started/help"
             ]
           },
           {
             "group": "Creative Studio",
             "pages": [
-              "studio/overview",
-              "studio/canvas",
-              "studio/text-nodes",
-              "studio/image-nodes",
-              "studio/video-nodes",
-              "studio/hyperframes",
-              "studio/audio-nodes",
-              "studio/brand-pack",
-              "studio/captions-localize",
-              "studio/layer-editor",
-              "studio/templates",
-              "studio/collaboration",
-              "studio/virtual-try-on"
+              {
+                "group": "Nodes",
+                "icon": "workflow",
+                "pages": [
+                  "studio/text-nodes",
+                  "studio/image-nodes",
+                  "studio/video-nodes",
+                  "studio/audio-nodes",
+                  "studio/hyperframes"
+                ]
+              },
+              {
+                "group": "Brand & layout",
+                "icon": "palette",
+                "pages": [
+                  "studio/brand-pack",
+                  "studio/layer-editor",
+                  "studio/captions-localize",
+                  "studio/virtual-try-on"
+                ]
+              },
+              {
+                "group": "Reuse & collaborate",
+                "icon": "users",
+                "pages": [
+                  "studio/templates",
+                  "studio/collaboration"
+                ]
+              }
             ]
           },
           {
@@ -224,6 +238,22 @@
     {
       "source": "/integrations/mcp",
       "destination": "/connect/mcp-overview"
+    },
+    {
+      "source": "/studio/overview",
+      "destination": "/studio/image-nodes"
+    },
+    {
+      "source": "/studio/canvas",
+      "destination": "/studio/image-nodes"
+    },
+    {
+      "source": "/getting-started/concepts",
+      "destination": "/getting-started/quickstart"
+    },
+    {
+      "source": "/getting-started/product-map",
+      "destination": "/getting-started/welcome"
     }
   ]
 }
