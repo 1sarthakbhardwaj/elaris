@@ -11,6 +11,18 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "seedance-2-5-vs-minimax-h3",
+    title: "Seedance 2.5 vs MiniMax H3: One Shared Prompt",
+    excerpt:
+      "Two frontier video models launched the same day. We read both spec sheets, compared features, vendors and pricing, then ran one stress-test prompt through both — graded on eight axes.",
+    category: "Model Testing",
+    readTime: "11 min read",
+    href: "/blogs/seedance-2-5-vs-minimax-h3",
+    image: "/blogs/seedance-2-5-vs-minimax-h3/cover.jpg",
+    imageAlt:
+      "Seedance 2.5 vs MiniMax H3: one prompt run through two frontier AI video models, side by side",
+  },
+  {
     slug: "mcdonalds-qatar-live-dooh",
     title: "The Billboard That Knew How Hot It Was",
     excerpt:

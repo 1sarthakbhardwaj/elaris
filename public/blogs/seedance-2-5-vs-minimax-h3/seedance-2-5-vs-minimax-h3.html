@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seedance 2.5 vs MiniMax H3: Features, Pricing and One Shared Prompt | ElarisLabs</title>
+<meta name="description" content="Seedance 2.5 and MiniMax H3 compared: every published feature, who builds them, where to access them, what they cost — and one prompt run through both, graded on eight axes.">
+<link rel="canonical" href="https://www.elarislabs.ai/blogs/seedance-2-5-vs-minimax-h3">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="ElarisLabs">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ElarisLabs">
+<meta property="og:title" content="Seedance 2.5 vs MiniMax H3: Features, Pricing and One Shared Prompt">
+<meta property="og:description" content="Every published feature, both vendors, all the access routes — and one prompt run through both models side by side.">
+<meta property="og:url" content="https://www.elarislabs.ai/blogs/seedance-2-5-vs-minimax-h3">
+<meta property="og:image" content="https://www.elarislabs.ai/blogs/seedance-2-5-vs-minimax-h3/cover.jpg">
+<meta property="article:published_time" content="2026-08-11">
+<meta property="article:section" content="AI Video">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Seedance 2.5 vs MiniMax H3: Features, Pricing and One Shared Prompt">
+<meta name="twitter:description" content="Two frontier video models, one prompt, eight axes. Scrub both clips together.">
+<meta name="twitter:image" content="https://www.elarislabs.ai/blogs/seedance-2-5-vs-minimax-h3/cover.jpg">
+
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"TechArticle",
+  "headline":"Seedance 2.5 vs MiniMax H3: Features, Pricing and One Shared Prompt",
+  "description":"A full feature, vendor and access comparison of Seedance 2.5 and MiniMax H3, plus a controlled head-to-head on a single prompt.",
+  "datePublished":"2026-08-11",
+  "dateModified":"2026-08-11",
+  "author":{"@type":"Organization","name":"ElarisLabs","url":"https://www.elarislabs.ai"},
+  "publisher":{"@type":"Organization","name":"ElarisLabs","url":"https://www.elarislabs.ai","logo":{"@type":"ImageObject","url":"https://www.elarislabs.ai/logo.svg"}},
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.elarislabs.ai/blogs/seedance-2-5-vs-minimax-h3"},
+  "about":[
+    {"@type":"SoftwareApplication","name":"Seedance 2.5","applicationCategory":"AI video generation","author":{"@type":"Organization","name":"ByteDance Seed","url":"https://seed.bytedance.com/en/seedance2_5"}},
+    {"@type":"SoftwareApplication","name":"MiniMax H3","alternateName":"Hailuo 3.0","applicationCategory":"AI video generation","author":{"@type":"Organization","name":"MiniMax","url":"https://hailuoai.video/tools/minimax-h3"}}
+  ],
+  "keywords":"Seedance 2.5, MiniMax H3, Hailuo 3, ByteDance Seed, MiniMax, AI video comparison, text to video, AI video pricing"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Who makes Seedance 2.5 and MiniMax H3?","acceptedAnswer":{"@type":"Answer","text":"Seedance 2.5 is built by ByteDance Seed, ByteDance's research division, and launched on 31 July 2026 after a preview at the Volcano Engine FORCE conference in late June. MiniMax H3, also called Hailuo 3.0, is built by MiniMax and launched the same day."}},
+    {"@type":"Question","name":"How long can Seedance 2.5 and MiniMax H3 generate?","acceptedAnswer":{"@type":"Answer","text":"Seedance 2.5 generates up to 30 seconds in a single pass with multi-round extension beyond that. MiniMax H3 generates 4 to 15 seconds at 24fps with native stereo audio. Both do far more than a short clip, so a fair head-to-head has to run inside the range they share."}},
+    {"@type":"Question","name":"Can you compare Seedance 2.5 and MiniMax H3 pricing directly?","acceptedAnswer":{"@type":"Answer","text":"No. MiniMax publishes a per-generated-second rate for H3, around $0.13 per second at 2K and $0.09 at 768p. Seedance 2.5 bills through token-based provider rates on BytePlus ModelArk and Volcano Engine that vary by whether video input is present. The two units are not divisible into each other. Compare cost per approved shot instead."}},
+    {"@type":"Question","name":"Where can I access Seedance 2.5 and MiniMax H3?","acceptedAnswer":{"@type":"Answer","text":"Seedance 2.5 reaches creators through Dreamina, Jimeng AI, Doubao Pro and CapCut, and developers through BytePlus ModelArk internationally and Volcano Engine in China, with aggregator routes added through August 2026. MiniMax H3 is available through the Hailuo AI app, the MiniMax Hub desktop app and the MiniMax Open Platform V2 API, plus hosted routes on fal, Krea and OpenArt, and as open weights on Hugging Face."}},
+    {"@type":"Question","name":"Are MiniMax H3 weights open?","acceptedAnswer":{"@type":"Answer","text":"Yes. MiniMax announced H3 as open-weight before any weights shipped, then published a 33B dense model on Hugging Face under the MiniMax H3 Community License in early August 2026. Comparison articles written in that gap state that no weights exist and are now out of date. Seedance 2.5 remains closed and platform-based."}}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --paper:#FFFFFF;
+  --paper-2:#F6F7FA;
+  --paper-3:#EFF1F6;
+  --line:#E1E5EC;
+  --line-2:#CFD5E0;
+
+  --ink:#101623;
+  --ink-2:#3D4759;
+  --muted:#6E7889;
+  --muted-2:#98A1B2;
+
+  --seed:#CE1B2B;
+  --seed-wash:#FDF1F2;
+  --seed-line:#F0C3C7;
+  --mini:#1B54D6;
+  --mini-wash:#F0F4FE;
+  --mini-line:#C4D3F6;
+
+  --brand:#9333EA;
+  --brand-deep:#6D1FB0;
+
+  --display:'Archivo','Helvetica Neue',sans-serif;
+  --body:'Newsreader',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+
+  --wrap:1150px;
+  --col:730px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.72;font-weight:400;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--mini);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+.col{max-width:var(--col);margin:0 auto}
+
+.masthead{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-mark{width:26px;height:26px;border-radius:6px;flex:none;display:block}
+.brand .word{display:flex;align-items:baseline;gap:6px}
+.brand .word b{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.brand .word .ai{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(180deg,#6DA6D9 0%,#A8CDEF 50%,#2D4A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mast-meta{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+
+.hero{padding:74px 0 0}
+.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;margin:0 0 24px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--brand)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.5rem,6.2vw,4.4rem);line-height:1.03;letter-spacing:-.035em;margin:0 0 24px;text-wrap:balance}
+h1 em{font-style:italic;font-weight:700;color:var(--brand)}
+.standfirst{font-size:clamp(1.05rem,2vw,1.3rem);color:var(--ink-2);max-width:64ch;margin:0 0 28px}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:16px 0 0;border-top:1px solid var(--line)}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:100px;padding:5px 12px}
+.tag.seed{color:var(--seed);border-color:var(--seed-line);background:var(--seed-wash)}
+.tag.mini{color:var(--mini);border-color:var(--mini-line);background:var(--mini-wash)}
+
+.rig{margin:52px 0 0}
+.rig-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:16px}
+.rig-title{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0}
+.rig-controls{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--paper);color:var(--ink);border:1px solid var(--line-2);padding:9px 15px;border-radius:4px;cursor:pointer;transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--muted);background:var(--paper-2)}
+.btn-primary{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.btn-primary:hover{background:#000;border-color:#000}
+
+.decks{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.deck{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper-2);margin:0}
+.deck-seed{border-top:3px solid var(--seed)}
+.deck-mini{border-top:3px solid var(--mini)}
+.deck-label{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;background:var(--paper)}
+.deck-seed .deck-name{color:var(--seed)}
+.deck-mini .deck-name{color:var(--mini)}
+.deck-name{font-weight:700}
+.deck-spec{color:var(--muted-2);font-size:10px}
+.frame{position:relative;aspect-ratio:16/9;background:#0C1017}
+.frame video{width:100%;height:100%;display:block;object-fit:cover;background:#0C1017}
+
+.ruler{margin-top:14px;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);padding:16px 16px 13px}
+.ruler-top{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:11px}
+.ruler-track{position:relative;height:32px}
+.ruler-line{position:absolute;left:0;right:0;top:15px;height:1px;background:var(--line-2)}
+.ruler .mark{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;padding:0 6px;cursor:pointer;color:var(--muted)}
+.ruler .mark i{display:block;width:1px;height:13px;background:var(--line-2);transition:background .15s,height .15s}
+.ruler .mark b{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.04em;white-space:nowrap;transition:color .15s}
+.ruler .mark:hover i,.ruler .mark[aria-current="true"] i{background:var(--brand);height:17px}
+.ruler .mark:hover b,.ruler .mark[aria-current="true"] b{color:var(--brand)}
+.ruler-note{margin:11px 0 0;font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.65}
+
+section{padding:74px 0}
+.sec-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2);margin:0 0 14px}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,3.8vw,2.75rem);line-height:1.11;letter-spacing:-.028em;margin:0 0 22px;text-wrap:balance}
+h2 em{font-style:italic;color:var(--brand)}
+h3{font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:-.012em;margin:36px 0 12px}
+p{margin:0 0 22px}
+p.lede{font-size:1.13rem;color:var(--ink-2)}
+strong{font-weight:500;color:var(--ink)}
+em.q{font-style:italic;color:var(--ink-2)}
+.divider{height:1px;background:var(--line);border:0;margin:0}
+.inline{border-bottom:1px solid var(--line-2);text-decoration:none;transition:border-color .15s,color .15s}
+.inline:hover{color:var(--brand);border-bottom-color:var(--brand)}
+
+.vendor{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 18px;background:var(--paper)}
+.vendor-top{padding:24px 26px 20px;border-bottom:1px solid var(--line)}
+.vendor.seed .vendor-top{background:var(--seed-wash)}
+.vendor.mini .vendor-top{background:var(--mini-wash)}
+.vendor-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 8px}
+.vendor.seed .vendor-kicker{color:var(--seed)}
+.vendor.mini .vendor-kicker{color:var(--mini)}
+.vendor h3{font-family:var(--display);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin:0 0 8px}
+.vendor-alt{font-weight:500;color:var(--muted)}
+.vendor-sub{margin:0;font-size:1rem;color:var(--ink-2)}
+.vendor-body{padding:24px 26px}
+.featlist{margin:0;padding:0;list-style:none}
+.featlist li{padding:11px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:168px 1fr;gap:18px;font-size:.98rem;color:var(--ink-2)}
+.featlist li:last-child{border-bottom:0}
+.featlist b{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:3px}
+.routes{margin:20px 0 0;padding:18px 0 0;border-top:1px solid var(--line)}
+.routes .routes-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-2);margin:0 0 10px}
+.routes ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.routes a{font-family:var(--mono);font-size:11px;text-decoration:none;border:1px solid var(--line-2);border-radius:4px;padding:6px 11px;color:var(--ink-2);transition:border-color .15s,color .15s;display:inline-block}
+.routes a:hover{border-color:var(--ink);color:var(--ink)}
+
+.tablewrap{overflow-x:auto;margin:30px 0;border:1px solid var(--line);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px;min-width:560px}
+caption{caption-side:top;text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
+th,td{padding:13px 18px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--paper-2)}
+thead th.c-seed{color:var(--seed)}
+thead th.c-mini{color:var(--mini)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+tbody th{font-weight:500;color:var(--ink);font-size:12.5px}
+td{color:var(--ink-2)}
+.pending{color:var(--muted-2)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:6px;margin:30px 0;overflow:hidden}
+.stat{padding:22px 20px;border-right:1px solid var(--line);background:var(--paper-2)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--display);font-size:2rem;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:8px}
+.stat span{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5;display:block}
+
+.spine{margin:32px 0 0;border-left:1px solid var(--line-2)}
+.beat{position:relative;padding:26px 0 26px 34px;border-bottom:1px solid var(--line)}
+.beat:last-child{border-bottom:0}
+.beat::before{content:"";position:absolute;left:-4.5px;top:34px;width:8px;height:8px;border-radius:50%;background:var(--line-2);border:2px solid var(--paper)}
+.beat.key::before{background:var(--brand)}
+.beat-tc{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--muted);margin-bottom:6px}
+.beat.key .beat-tc{color:var(--brand)}
+.beat h3{margin:0 0 8px;font-size:1.08rem}
+.beat p{margin:0;font-size:1rem;color:var(--ink-2)}
+.beat .watch{margin-top:12px;font-family:var(--mono);font-size:11.5px;line-height:1.65;color:var(--muted);border-left:2px solid var(--line-2);padding-left:13px}
+.beat.key .watch{border-left-color:var(--brand);color:var(--ink-2)}
+
+.note{border:1px solid var(--line);border-left:3px solid var(--ink);background:var(--paper-2);border-radius:0 6px 6px 0;padding:22px 26px;margin:32px 0}
+.note p{margin:0;font-size:1.01rem;color:var(--ink-2)}
+.note p+p{margin-top:14px}
+.note .note-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+
+.formula{font-family:var(--mono);font-size:13px;line-height:2;color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:22px 26px;margin:26px 0;overflow-x:auto;white-space:pre}
+.formula .op{color:var(--muted-2)}
+.formula .hl{color:var(--brand);font-weight:700}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:32px 0}
+.card{border:1px solid var(--line);border-radius:6px;padding:24px;background:var(--paper-2)}
+.card.seed{border-top:3px solid var(--seed)}
+.card.mini{border-top:3px solid var(--mini)}
+.card h3{margin:0 0 12px;font-size:1.05rem}
+.card.seed h3{color:var(--seed)}
+.card.mini h3{color:var(--mini)}
+.card ul{margin:0;padding-left:18px;font-size:.98rem;color:var(--ink-2)}
+.card li{margin-bottom:9px}
+.card li:last-child{margin-bottom:0}
+
+.promptbox{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:30px 0;background:var(--paper-2)}
+.promptbar{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:var(--paper)}
+.promptbox pre{margin:0;padding:24px;overflow-x:auto;max-height:540px;font-family:var(--mono);font-size:12px;line-height:1.85;color:var(--ink-2);white-space:pre-wrap}
+.promptbox pre strong{color:var(--brand);font-weight:700}
+
+.sources{margin:24px 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:12px;line-height:1.9}
+.sources li{padding:9px 0;border-bottom:1px solid var(--line)}
+.sources li:last-child{border-bottom:0}
+.sources a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line-2)}
+.sources a:hover{color:var(--brand);border-bottom-color:var(--brand)}
+.sources span{color:var(--muted-2)}
+
+.closer{border-top:1px solid var(--line);padding:74px 0 0}
+.closer h2{max-width:20ch}
+.chain{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);margin:32px 0 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.chain b{color:var(--ink);font-weight:500}
+.chain .arrow{color:var(--brand)}
+footer{border-top:1px solid var(--line);margin-top:74px;padding:32px 0 58px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+footer p{margin:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line-2)}
+footer a:hover{color:var(--ink)}
+
+@media (max-width:860px){
+  body{font-size:17.5px}
+  .decks,.pair{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-right:0;border-bottom:1px solid var(--line)}
+  .featlist li{grid-template-columns:1fr;gap:4px}
+  section{padding:54px 0}
+  .hero{padding:48px 0 0}
+  .wrap{padding:0 20px}
+  .mast-meta{display:none}
+  .ruler .mark b{font-size:8.5px}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="https://www.elarislabs.ai" aria-label="ElarisLabs AI home">
+      <img class="brand-mark" src="/logo.svg" alt="" aria-hidden="true" width="26" height="26">
+      <span class="word">
+        <b>ElarisLabs</b>
+        <span class="ai">AI</span>
+      </span>
+    </a>
+    <div class="mast-meta">Model Testing &middot; 11 Aug 2026</div>
+  </div>
+</header>
+
+<main>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Inside ElarisLabs &middot; Model Testing</p>
+    <h1>Two frontier video models, <em>one</em> shared prompt.</h1>
+    <p class="standfirst">Seedance 2.5 and MiniMax H3 launched on the same day at the end of July. Both generate audio in the same pass as picture, both take large reference packages, and both arrived with a wall of demo reels that prove very little. So we did the boring thing: read both spec sheets properly, listed everything each one actually ships, then wrote a prompt designed to break things and ran it through both.</p>
+
+    <div class="tagrow">
+      <span class="tag seed">Seedance 2.5</span>
+      <span class="tag mini">MiniMax H3</span>
+      <span class="tag">Feature comparison</span>
+      <span class="tag">Pricing</span>
+      <span class="tag">Head-to-head</span>
+      <span class="tag">~11 min read</span>
+    </div>
+
+    <section class="rig" aria-label="Side-by-side model comparison player">
+      <div class="rig-head">
+        <p class="rig-title">The rig &mdash; same prompt, same references, one take each</p>
+        <div class="rig-controls">
+          <button class="btn btn-primary" id="playBoth" type="button">Play both</button>
+          <button class="btn" id="pauseBoth" type="button">Pause</button>
+          <button class="btn" id="restartBoth" type="button">Restart</button>
+        </div>
+      </div>
+
+      <div class="decks">
+        <figure class="deck deck-seed">
+          <figcaption class="deck-label">
+            <span class="deck-name">Seedance 2.5</span>
+            <span class="deck-spec">ByteDance Seed</span>
+          </figcaption>
+          <div class="frame">
+            <video id="vSeed" playsinline controls preload="metadata" poster="/blogs/seedance-2-5-vs-minimax-h3/assets/poster-seedance.jpg"
+                   aria-label="Seedance 2.5 output of the ElarisLabs stress test prompt">
+              <source src="/blogs/seedance-2-5-vs-minimax-h3/assets/seedance-2-5.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+
+        <figure class="deck deck-mini">
+          <figcaption class="deck-label">
+            <span class="deck-name">MiniMax H3</span>
+            <span class="deck-spec">MiniMax &middot; Hailuo 3</span>
+          </figcaption>
+          <div class="frame">
+            <video id="vMini" playsinline controls preload="metadata" poster="/blogs/seedance-2-5-vs-minimax-h3/assets/poster-minimax.jpg"
+                   aria-label="MiniMax H3 output of the ElarisLabs stress test prompt">
+              <source src="/blogs/seedance-2-5-vs-minimax-h3/assets/minimax-h3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </figure>
+      </div>
+
+      <div class="ruler">
+        <div class="ruler-top">
+          <span>Shared timecode &mdash; jump both clips to a beat</span>
+          <span id="tcReadout">00:00 / 00:15</span>
+        </div>
+        <div class="ruler-track">
+          <div class="ruler-line"></div>
+          <button class="mark" type="button" data-t="0" style="left:0%"><i></i><b>00:00</b></button>
+          <button class="mark" type="button" data-t="3" style="left:20%"><i></i><b>03 &middot; mask</b></button>
+          <button class="mark" type="button" data-t="5" style="left:33.3%"><i></i><b>05 &middot; hand</b></button>
+          <button class="mark" type="button" data-t="6.5" style="left:43.3%"><i></i><b>06.5 &middot; web</b></button>
+          <button class="mark" type="button" data-t="8" style="left:53.3%"><i></i><b>08 &middot; swing</b></button>
+          <button class="mark" type="button" data-t="11" style="left:73.3%"><i></i><b>11 &middot; street</b></button>
+          <button class="mark" type="button" data-t="13.5" style="left:90%"><i></i><b>13.5 &middot; unmask</b></button>
+        </div>
+        <p class="ruler-note">Each marker is a graded beat. The two hardest are 05&ndash;08, a held hand pose in macro followed by twin web strands with real line tension, and 13.5, where the same face has to come back after eleven seconds under a helmet.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section id="vendors">
+  <div class="wrap">
+    <div class="col">
+      <p class="sec-label">The two models</p>
+      <h2>Same launch day. Different <em>companies</em>, different bets.</h2>
+      <p class="lede">Before any judgment about quality: what each one is, who builds it, when it shipped, everything it publicly claims to do, and where you can actually get at it.</p>
+    </div>
+
+    <div class="col">
+      <article class="vendor seed">
+        <div class="vendor-top">
+          <p class="vendor-kicker">ByteDance Seed &middot; launched 31 July 2026</p>
+          <h3>Seedance 2.5</h3>
+          <p class="vendor-sub">Built by <a class="inline" href="https://seed.bytedance.com/en/seedance2_5" rel="noopener">ByteDance Seed</a>, ByteDance's research division. Previewed at the Volcano Engine FORCE conference in late June and shipped at the end of July. ByteDance skipped 2.1 through 2.4 entirely, framing this as a generational jump rather than a point release. The pitch is long-form: a whole scene, with its own internal shot changes, out of one generation.</p>
+        </div>
+        <div class="vendor-body">
+          <ul class="featlist">
+            <li><b>Duration</b><span>Up to 30 seconds in a single pass, with multi-round extension beyond that. No stitching and no extension pass needed to reach half a minute.</span></li>
+            <li><b>Multi-shot</b><span>Organises several logically connected shots inside one generation, with improved transitions and scene changes, so a story unfolds without a cut you have to assemble.</span></li>
+            <li><b>References</b><span>Up to 30 images, 10 video clips and 10 audio clips in a single pass &mdash; 50 reference inputs total.</span></li>
+            <li><b>Reference types</b><span>Character, motion, clay-render and creative references, plus R2V support with green-screen and white-model references for blocking.</span></li>
+            <li><b>Editing</b><span>Timestamp-level control for targeted edits to audio and video without regenerating the whole shot.</span></li>
+            <li><b>Audio</b><span>Native joint audio-video generation, inherited from the Seedance 2.0 architecture.</span></li>
+            <li><b>Camera</b><span>Professional camera movement and performance blocking, including 3D camera blockout controls.</span></li>
+            <li><b>Weights</b><span>Closed. Platform and API access only.</span></li>
+            <li><b>Resolution</b><span>Announced with native 4K. Verify inside your own workspace before planning around it &mdash; see the note below.</span></li>
+          </ul>
+          <div class="routes">
+            <p class="routes-label">Where to use it</p>
+            <ul>
+              <li><a href="https://seed.bytedance.com/en/seedance2_5" rel="noopener">ByteDance Seed</a></li>
+              <li><a href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5" rel="noopener">Launch post</a></li>
+              <li><a href="https://dreamina.capcut.com/seedance/seedance-2-5" rel="noopener">Dreamina</a></li>
+              <li><a href="https://www.cined.com/bytedance-seedance-2-5-api-goes-live-30-second-single-shot-clips-50-reference-inputs-and-3d-camera-blockouts/" rel="noopener">API coverage</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="vendor mini">
+        <div class="vendor-top">
+          <p class="vendor-kicker">MiniMax &middot; launched 31 July 2026</p>
+          <h3>MiniMax H3 <span class="vendor-alt">(Hailuo 3.0)</span></h3>
+          <p class="vendor-sub">Built by <a class="inline" href="https://hailuoai.video/tools/minimax-h3" rel="noopener">MiniMax</a>, the lab behind Hailuo 02 and Hailuo 2.3. Officially named MiniMax H3; Hailuo 3, Hailuo 3.0 and Hailuo 03 all point at the same model. The pitch is that it stops behaving like a video model &mdash; one transformer reading text, images, video and audio as a single context.</p>
+        </div>
+        <div class="vendor-body">
+          <ul class="featlist">
+            <li><b>Duration</b><span>4 to 15 seconds per generation at 24fps, with platform tooling to extend further.</span></li>
+            <li><b>Resolution</b><span>768p and 2K, native &mdash; not a separate upscale pass. The 1440p tier circulating in the community is not an official option.</span></li>
+            <li><b>Audio</b><span>32 kHz native stereo generated in the same pass as picture: dialogue, effects and room tone, timed to on-screen action. No separate audio stage.</span></li>
+            <li><b>References</b><span>Up to 9 images, 3 video clips and 3 audio clips &mdash; 12 files total &mdash; usable for identity, motion, framing, atmosphere or voice without forcing them as keyframes.</span></li>
+            <li><b>Modes</b><span>Text-to-video, first- and last-frame image-to-video, and reference-to-video with mixed inputs.</span></li>
+            <li><b>Editing</b><span>Instruction-based: request a change in a sentence instead of re-rolling the shot. Also does video-to-video motion transfer and voice transfer.</span></li>
+            <li><b>Prompt limit</b><span>7,000 characters.</span></li>
+            <li><b>Weights</b><span>Open. A 33B dense single-stream Omni-Transformer, published on Hugging Face in early August 2026 under the MiniMax H3 Community License.</span></li>
+            <li><b>Benchmarks</b><span>Ranked #1 in Video Editing, #2 in Text-to-Video and #3 in Image-to-Video on the Artificial Analysis leaderboard at launch.</span></li>
+          </ul>
+          <div class="routes">
+            <p class="routes-label">Where to use it</p>
+            <ul>
+              <li><a href="https://hailuoai.video/tools/minimax-h3" rel="noopener">Hailuo AI</a></li>
+              <li><a href="https://www.krea.ai/models/minimax-h3" rel="noopener">Krea</a></li>
+              <li><a href="https://openart.ai/ai-model/minimax-h3/" rel="noopener">OpenArt</a></li>
+              <li><a href="https://fal.ai/learn/devs/minimax-h3-vs-seedance-2-0" rel="noopener">fal</a></li>
+              <li><a href="https://huggingface.co/blog/ResterChed/minimax-h3-hailuo-3-0" rel="noopener">Open weights</a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="col">
+      <div class="note">
+        <p class="note-label">Read both spec sheets with a hand on the brake</p>
+        <p>Both launches are recent enough that the public record still contradicts itself. Seedance 2.5's announced native 4K has been reported as not making it into the shipped model, with some routes topping out well below it. MiniMax marketed H3 as open-weight before any weights existed, so comparison pieces published in that window state flatly that neither model is open &mdash; those sections are now stale.</p>
+        <p>Access is layered too. On Seedance, "available" means one thing inside <a class="inline" href="https://dreamina.capcut.com/seedance/seedance-2-5" rel="noopener">Dreamina</a> or Jimeng and something else on BytePlus ModelArk and Volcano Engine, where the developer contract landed after the consumer product. Verify the model label inside your own signed-in workspace before you plan a pipeline around a number you read in a blog post. Including this one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="specs">
+  <div class="wrap">
+    <div class="col">
+      <p class="sec-label">Side by side</p>
+      <h2>The scene model and the <em>shot</em> model.</h2>
+      <p class="lede">Read down this table and the strategic difference is obvious. Seedance is betting the unit of work is a scene. MiniMax is betting it is a shot. That decides where each one sits in a pipeline more than any quality score will.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Published specifications &mdash; August 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col">Capability</th>
+            <th scope="col" class="c-seed">Seedance 2.5</th>
+            <th scope="col" class="c-mini">MiniMax H3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Company</th><td>ByteDance Seed</td><td>MiniMax</td></tr>
+          <tr><th scope="row">Launched</th><td>31 July 2026</td><td>31 July 2026</td></tr>
+          <tr><th scope="row">Predecessor</th><td>Seedance 2.0</td><td>Hailuo 2.3</td></tr>
+          <tr><th scope="row">Max single generation</th><td>30 seconds</td><td>15 seconds</td></tr>
+          <tr><th scope="row">Extension</th><td>Multi-round extension</td><td>Platform extend tooling</td></tr>
+          <tr><th scope="row">Frame rate</th><td>Not officially published</td><td>24 fps</td></tr>
+          <tr><th scope="row">Native audio</th><td>Yes</td><td>Yes &mdash; 32 kHz stereo</td></tr>
+          <tr><th scope="row">Image references</th><td>Up to 30</td><td>Up to 9</td></tr>
+          <tr><th scope="row">Video references</th><td>Up to 10</td><td>Up to 3</td></tr>
+          <tr><th scope="row">Audio references</th><td>Up to 10</td><td>Up to 3</td></tr>
+          <tr><th scope="row">Multi-shot in one take</th><td>Yes, with scene changes</td><td>Yes, within 15s</td></tr>
+          <tr><th scope="row">Editing model</th><td>Timestamp-level</td><td>Instruction-based</td></tr>
+          <tr><th scope="row">Prompt limit</th><td>Not published</td><td>7,000 characters</td></tr>
+          <tr><th scope="row">Weights</th><td>Closed</td><td>Open &mdash; 33B, community license</td></tr>
+          <tr><th scope="row">Billing unit</th><td>Tokens, via provider</td><td>Per generated second</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>50</b><span>Seedance reference inputs, max</span></div>
+      <div class="stat"><b>12</b><span>H3 reference files, max</span></div>
+      <div class="stat"><b>33B</b><span>H3 open-weight parameters</span></div>
+      <div class="stat"><b>0</b><span>Days between the two launches</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="col">
+      <p class="sec-label">Cost</p>
+      <h2>You cannot divide one of these prices by the <em>other</em>.</h2>
+      <p class="lede">This is the part most comparisons get wrong. The two models do not bill in the same unit, so any figure produced by comparing them directly is meaningless.</p>
+      <p>MiniMax publishes a straightforward per-generated-second rate for H3 &mdash; roughly <strong>$0.13 per second at 2K</strong> and <strong>$0.09 per second at 768p</strong>, with extra charges for excess image references and for input video duration. A 15-second reference clip is billed as fifteen seconds of input on top of your output.</p>
+      <p>Seedance 2.5 bills through token-based provider rates that change depending on whether video input is present, and the numbers differ across Volcano Engine, BytePlus ModelArk and aggregators. Video-input duration feeds into token consumption. There is no single published per-second figure to hold against H3's.</p>
+      <p>The metric that actually decides anything:</p>
+      <div class="formula"><span class="hl">cost per approved shot</span>
+  <span class="op">=</span> generation charges
+  <span class="op">+</span> failed attempts
+  <span class="op">+</span> reference prep
+  <span class="op">+</span> stitching <span class="op">&amp;</span> continuity fixes
+  <span class="op">+</span> audio repair
+  <span class="op">+</span> reviewer time</div>
+      <p>Under that framing the answer flips depending on the work. A short, bounded 2K shot is cheap to review and cheap to throw away, so H3 wins on iteration economics. One accepted 30-second scene can remove four generations, three stitch points and a continuity pass, so Seedance wins when the retry rate is low and the scene is long.</p>
+      <p><em class="q">If you are testing prompts, H3 is cheaper to fail at. If you are delivering scenes, Seedance is cheaper to succeed at.</em></p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="test">
+  <div class="wrap">
+    <div class="col">
+      <p class="sec-label">Method</p>
+      <h2>We tested at fifteen seconds. Neither model <em>stops</em> there.</h2>
+      <p class="lede">Seedance 2.5 will run to thirty seconds in one pass. H3 will run to fifteen. Testing at fifteen is not a statement about what either model can do &mdash; it is the only window where the two are doing the same job, and therefore the only window where a result means anything.</p>
+      <p>Running Seedance at thirty and declaring it the winner measures a spec sheet, not a model. Long-form generation, multi-shot continuity across half a minute, and Seedance's timestamp-level editing all deserve their own test, and they will get one. This one is about what happens inside the overlap.</p>
+      <p>Everything else is held constant: 16:9, the same two reference images attached to both runs, one generation each, no rerolls. Both outputs at each platform's highest available native resolution, downscaled to a shared 1080p canvas only at the comparison stage, with both original files retained.</p>
+
+      <h3>Why this prompt</h3>
+      <p>Detail alone stopped discriminating between frontier models a while ago &mdash; both of these will render a beautiful static portrait. To learn anything you have to attack the parts that still break, and you have to be able to see the break while scrolling, not in a lab. Every beat below is independently gradeable. Use the ruler at the top of this page to jump both clips to it.</p>
+    </div>
+
+    <div class="col">
+      <div class="spine">
+        <article class="beat">
+          <p class="beat-tc">00:00 &ndash; 00:03</p>
+          <h3>Bare face on the ledge</h3>
+          <p>Close on his unmasked face, rain on the skin, breath visible, neon across one cheek. The camera eases back to reveal the helmet held in both gloved hands, weight pulling the wrists down.</p>
+          <p class="watch">Watch for: whether the face matches the portrait reference at all, and whether the helmet has believable mass in the hands or floats like a decal.</p>
+        </article>
+        <article class="beat key">
+          <p class="beat-tc">00:03 &ndash; 00:05 &nbsp;&middot;&nbsp; key</p>
+          <h3>The helmet goes on</h3>
+          <p>He raises it, turns it once so the visor throws the skyline back in curved miniature, then lowers it over his head &mdash; rim past the ears, hair pressing flat, shell seating at the collar, a roll of the neck to settle it.</p>
+          <p class="watch">Watch for: hands manipulating a rigid object with occlusion. Fingers should grip a hard shell, not squash it. No clipping through the skull, no skin visible once seated.</p>
+        </article>
+        <article class="beat key">
+          <p class="beat-tc">00:05 &ndash; 00:06.5 &nbsp;&middot;&nbsp; key</p>
+          <h3>The hand sign, in macro</h3>
+          <p>Camera drops to the right hand. Index and little fingers snap straight up and spread; middle, ring and thumb fold flat to the palm. Glove leather creases where the knuckles fold. The wrist cocks back and holds.</p>
+          <p class="watch">Watch for: a specific held finger configuration at close range. The hardest thing in the shot. Count the digits, check the joint bends, check whether the pose survives the beat or quietly morphs.</p>
+        </article>
+        <article class="beat key">
+          <p class="beat-tc">00:06.5 &ndash; 00:08 &nbsp;&middot;&nbsp; key</p>
+          <h3>Twin strands, braiding</h3>
+          <p>Macro on the two raised fingertips, rain beading on the glove. The wrist snaps and two separate web strands fire in parallel, braiding into one taut line a short distance out. Recoil travels back through fingers, wrist, forearm.</p>
+          <p class="watch">Watch for: two strands actually converging. Models cheat two ways &mdash; collapsing to one strand immediately, or letting the pair drift and never merge. The line should have thickness and sag, not glow.</p>
+        </article>
+        <article class="beat">
+          <p class="beat-tc">00:08 &ndash; 00:11</p>
+          <h3>Swing, car roof, wall run</h3>
+          <p>Wide on a brownstone street with a neon <strong>MARA'S DELI</strong> sign. He swings low, boots skimming a parked car roof with real compression, redirects off it, then lands feet-first on a wall and runs four steps along it before pushing off and firing again.</p>
+          <p class="watch">Watch for: the sign staying spelled correctly, and whether the car roof and the brick push back. Floating contact is the most common failure at this speed.</p>
+        </article>
+        <article class="beat">
+          <p class="beat-tc">00:11 &ndash; 00:13.5</p>
+          <h3>Street, taxi, launch</h3>
+          <p>Low over a street of yellow taxis, headlights smearing on wet asphalt. The web releases, boots hit pavement for two hard strides, a horn sounds, he plants a boot on a taxi and pushes off the roof to rocket up. Then a one-second hold at the apex.</p>
+          <p class="watch">Watch for: reflections on wet asphalt moving coherently with the camera rather than sitting painted in place. Also whether the splash lands on the same frame as the footfall.</p>
+        </article>
+        <article class="beat key">
+          <p class="beat-tc">00:13.5 &ndash; 00:15 &nbsp;&middot;&nbsp; key</p>
+          <h3>Landing, unmask, the smile</h3>
+          <p>He lands in a low crouch, one gloved hand on wet concrete, knees absorbing. He rises, grips the helmet with both hands and lifts it clear. Hair pushes free, damp. He looks out over the city and breaks into a real smile.</p>
+          <p class="watch">Watch for: the same face. Produced at second one, hidden for eleven seconds under a rigid shell, reproduced at second fourteen. Also the landing &mdash; models float the touchdown instead of absorbing it.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="verdict">
+  <div class="wrap">
+    <div class="col">
+      <p class="sec-label">Which to use</p>
+      <h2>They are not competing for the <em>same</em> job.</h2>
+      <p class="lede">Neither model has been independently benchmarked long enough for a verdict to survive the next release cycle. What follows is a fit decision, not a ranking.</p>
+    </div>
+
+    <div class="pair">
+      <div class="card mini">
+        <h3>Reach for MiniMax H3</h3>
+        <ul>
+          <li>The deliverable fits inside fifteen seconds</li>
+          <li>You want 2K without an upscale pass</li>
+          <li>On-screen type is part of the brief</li>
+          <li>You are iterating heavily and need cheap failures</li>
+          <li>You want instruction-based edits instead of re-rolls</li>
+          <li>Compliance needs weights outside a vendor API</li>
+        </ul>
+      </div>
+      <div class="card seed">
+        <h3>Reach for Seedance 2.5</h3>
+        <ul>
+          <li>The scene needs more than fifteen seconds to breathe</li>
+          <li>You want multiple shots inside one generation</li>
+          <li>You are stacking large reference packages for character consistency</li>
+          <li>Motion, clay-render or white-model references matter to your blocking</li>
+          <li>Timestamp-level editing removes a real revision bottleneck</li>
+          <li>You already work inside the Dreamina, Jimeng or CapCut stack</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col">
+      <p>And the answer most production teams will actually land on is <strong>both</strong>. Seedance for the establishing scene, H3 for the inserts and coverage. They are not competitors in a pipeline. They are different tools that happened to launch on the same day.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="prompt">
+  <div class="wrap">
+    <div class="col">
+      <p class="sec-label">Appendix</p>
+      <h2>The full prompt, <em>verbatim</em>.</h2>
+      <p class="lede">Copy it into both models with the same two reference images attached. If your results differ from ours, send them &mdash; we will add them to this page with credit.</p>
+    </div>
+
+    <div class="promptbox">
+      <div class="promptbar">
+        <span>elaris-stress-test-01.txt &middot; 6,988 characters</span>
+        <button class="btn" id="copyPrompt" type="button">Copy</button>
+      </div>
+<pre id="promptText">ELARIS STRESS TEST 01 — "THWIP"
+
+<strong>CHARACTER REFERENCE — MANDATORY:</strong> Two images: a pose sheet (proportions, suit construction, helmet design) and a portrait (face, hair, beard, skin tone). Face, suit, helmet and gloves match them EXACTLY — no restyling, no color changes, no added or removed panels. The references are the sole source of truth for appearance; everything below governs motion, camera, light and sound only.
+
+<strong>ANATOMY — NON-NEGOTIABLE:</strong> South Asian man, late twenties, black wavy hair, full dark beard, lean and broad-shouldered, approx. 178cm / 75kg. NEVER ragdoll, limp or floppy. Core engaged, every movement has muscle intention. Moves like a trained traceur — precise, casual, effortless. Minimal spinning. The bare face at 0–3s and at 13.5–15s is the SAME face: same bone structure, beard and hairline. No drift.
+
+<strong>THE SUIT — NON-NEGOTIABLE:</strong> Fitted armored bodysuit. Deep navy base, crimson armored panels across chest, shoulders, forearms and outer thighs. Segmented plating, visible seams, matte-satin sheen — real material, not spandex. Angular dark-blue emblem on the chest. Wide black belt, armored gloves, dark boots. Panel layout, emblem and color split stay IDENTICAL every frame — no morphing, no color shift.
+
+<strong>THE HELMET — NON-NEGOTIABLE:</strong> Full-face rigid helmet, glossy crimson shell, dark smoked faceplate, fully enclosing. Hard shell, NOT fabric — no stretching or clinging. ON at 5s, OFF at 13.5s; in between it never slips and NO face, skin or hair is visible. Shell shape, visor outline and panel lines identical frame to frame.
+
+<strong>HANDS — NON-NEGOTIABLE:</strong> Correct five-finger anatomy every frame — gripping the rigid helmet on and off, and in macro on the web-sign. WEB-SIGN, right hand, gloved: INDEX and LITTLE fingers extend straight up and spread apart; middle finger, ring finger AND thumb fold in and press flat to the palm. Exactly this, clean and readable. No merging fingers, no extra digits, no warping, no helmet clipping through the hands.
+
+<strong>THE WEB — NON-NEGOTIABLE:</strong> Fires from the FINGERTIPS of the extended index and little fingers — TWO separate strands launching in parallel, braiding into one taut line a short distance out. Not the palm, not the wrist, not thin air. Real thickness and tension: sags at rest, snaps straight under load, anchors to a real surface. Never a glowing beam.
+
+<strong>PHYSICAL CONTACT — NON-NEGOTIABLE:</strong> He does NOT float. He interacts with the city physically — feet push off walls, hands grab ledges, knees absorb impact, surfaces react.
+
+<strong>ON-SCREEN TEXT — NON-NEGOTIABLE:</strong> A neon bodega sign reading "MARA'S DELI" in clean block lettering — sharp, correctly spelled, legible in every frame it appears. No warping or garbled letters.
+
+<strong>CAMERA — NON-NEGOTIABLE:</strong> ONE continuous take. ZERO cuts. ZERO teleporting. It moves physically between close and wide — pushing, whipping, banking, rolling.
+
+<strong>REALISM — NON-NEGOTIABLE:</strong> Real Hollywood film. RED Monstro 8K, anamorphic. Real motion blur, real armor physics, wet-street reflections, night haze.
+
+15-second continuous single-take shot. Night. Rain-wet city, neon reflections in every puddle. Starts from black.
+
+<strong>0–3s:</strong> Black. Then CLOSE — his bare face on a rooftop ledge, exact match to the portrait reference. Rain on his skin, neon across one cheek, breath visible. He looks out over the city, eyes moving, weighing it. Jaw sets. Camera eases back to reveal the helmet held in both gloved hands at chest height, real weight pulling his wrists down.
+
+<strong>3–5s:</strong> He raises the helmet until it is level with his face and turns it once — the dark visor catches the skyline and throws it back in curved miniature. Then he lowers it over his head in one committed motion: fingers guiding the rim past his ears, hair pressing flat, the shell seating at the collar with a solid mechanical click. He rolls his neck to settle it. Rain runs down the gloss. Head lifts. Camera holds tight on the finished helmet one full beat.
+
+<strong>5–6.5s:</strong> Camera drops and pushes in on his right hand — CLOSE. The gloved fingers set into the web-sign: index and little fingers snapping straight up and spreading wide, middle, ring and thumb folding in and pressing flat to the palm. Glove leather creases hard where the knuckles fold. The wrist cocks back. Held one clean beat, perfectly readable.
+
+<strong>6.5–8s:</strong> MACRO — the two raised fingertips fill the frame, rain beading on the glove. The wrist snaps forward. TWIN web strands fire from the fingertips, launching in parallel and braiding into one taut line a short distance out. The recoil travels visibly back through fingers, wrist and forearm. The line goes tight. Camera whips out with it as he steps off the ledge and drops.
+
+<strong>8–11s:</strong> WIDE — residential street below. Brownstones, fire escapes, the "MARA'S DELI" neon sign above a bodega door. He swings LOW, three meters up — arms extended gripping the web, legs together trailing, core tight, back straight. At the bottom of the arc his boots skim a parked car roof: real contact, real compression, feet bounce off and he redirects. He releases at the peak, lands feet-first on a brownstone wall and RUNS along it — boots striking brick in a real running gait, body angled 45°, arms pumping, four quick steps — then pushes off hard with both feet, knees fully extending, and fires a new web mid-air. Camera banks 40°, then rolls 60°.
+
+<strong>11–12.5s:</strong> He comes in LOW over a narrow street of yellow taxis, headlights smearing on wet asphalt. The web releases. Boots hit wet pavement for two hard strides, real splash on each. A taxi honks. He laughs inside the helmet, plants a boot on a taxi, pushes off the roof in one explosive step, fires a web upward and rockets HIGH. "WOOOO!"
+
+<strong>12.5–13.5s:</strong> WIDE — rooftop level. He hangs at the peak one breathless moment, arms slightly open, body arched, a small figure dead center against the burning skyline. Then he drops.
+
+<strong>13.5–15s:</strong> He lands on a rooftop in a low crouch, one gloved hand on the wet concrete, knees absorbing the impact. He rises. Both hands grip the helmet and lift it clear — hair pushing free, damp, real. The SAME face. He looks out over the glowing city, chest still rising, and breaks into a wide genuine smile. City lights behind him.
+[END]
+
+<strong>EMOTION — NON-NEGOTIABLE:</strong> Fully alive in every frame, never blank. Opening: quiet, focused, a decision being made. Once masked the BODY carries it — shoulders, chin, spine, hands. Car skim: instinctive flinch, then recovery. The horn: helmet tips back, audible laugh. Final smile: unguarded, warm, genuine — NOT a posed grin.
+
+<strong>AUDIO — SFX ONLY, NO MUSIC:</strong> Rain on concrete. One breath before the helmet. The solid click of it seating. Glove leather creaking as the fingers set. The sharp snap of the web firing, line twang under load. Wind rushing. Boots on car metal, then wet pavement. Taxi horn. His laugh, muffled by the helmet. "WOOOO!" between buildings. Boots on the rooftop, the helmet lifting free, one long breath out.
+
+NO cuts. NO slow motion. NO spinning. NO floating. NO ragdoll. Photorealistic.</pre>
+    </div>
+
+    <div class="col">
+      <h3>Sources and further reading</h3>
+      <ul class="sources">
+        <li><a href="https://seed.bytedance.com/en/seedance2_5" rel="noopener">ByteDance Seed &mdash; Seedance 2.5 model page</a> <span>&mdash; official capability list</span></li>
+        <li><a href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5" rel="noopener">ByteDance Seed &mdash; Seedance 2.5 launch post</a> <span>&mdash; duration, references, editing</span></li>
+        <li><a href="https://dreamina.capcut.com/seedance/seedance-2-5" rel="noopener">Dreamina &mdash; Seedance 2.5</a> <span>&mdash; consumer access</span></li>
+        <li><a href="https://www.cined.com/bytedance-seedance-2-5-api-goes-live-30-second-single-shot-clips-50-reference-inputs-and-3d-camera-blockouts/" rel="noopener">CineD &mdash; Seedance 2.5 API goes live</a> <span>&mdash; access routes, 3D camera blockouts</span></li>
+        <li><a href="https://hailuoai.video/tools/minimax-h3" rel="noopener">Hailuo AI &mdash; MiniMax H3</a> <span>&mdash; official multimodal feature set</span></li>
+        <li><a href="https://www.krea.ai/models/minimax-h3" rel="noopener">Krea &mdash; MiniMax H3</a> <span>&mdash; hosted access and model notes</span></li>
+        <li><a href="https://openart.ai/ai-model/minimax-h3/" rel="noopener">OpenArt &mdash; MiniMax H3</a> <span>&mdash; resolution, fps, reference limits</span></li>
+        <li><a href="https://huggingface.co/blog/ResterChed/minimax-h3-hailuo-3-0" rel="noopener">Hugging Face &mdash; MiniMax H3 explained</a> <span>&mdash; architecture and open-weights status</span></li>
+        <li><a href="https://fal.ai/learn/devs/minimax-h3-vs-seedance-2-0" rel="noopener">fal &mdash; MiniMax H3 vs Seedance</a> <span>&mdash; reference-heavy cost comparison</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="closer">
+  <div class="wrap">
+    <div class="col">
+      <h2>Run it yourself. Tell us we're <em>wrong</em>.</h2>
+      <p class="lede">ElarisLabs is the AI-native creative operating system for brands. We publish the tests we run internally &mdash; including the ones where the model we expected to win didn't &mdash; because a comparison you can reproduce is worth more than a reel you can only admire.</p>
+      <p class="chain">
+        <b>One prompt</b> <span class="arrow">&rarr;</span> <b>two models</b> <span class="arrow">&rarr;</span> <b>eight axes</b> <span class="arrow">&rarr;</span> <b>published either way</b>
+      </p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 ElarisLabs &middot; Model Testing</p>
+    <p><a href="https://www.elarislabs.ai">elarislabs.ai</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var vSeed = document.getElementById('vSeed');
+  var vMini = document.getElementById('vMini');
+  var decks = [vSeed, vMini];
+  var readout = document.getElementById('tcReadout');
+  var marks = Array.prototype.slice.call(document.querySelectorAll('.mark'));
+
+  function ready(v) { return v && v.readyState > 0; }
+  function pad(n) { return (n < 10 ? '0' : '') + Math.floor(n); }
+  function fmt(t) { return '00:' + pad(t || 0); }
+
+  function playBoth() {
+    decks.forEach(function (v) { if (ready(v)) { var p = v.play(); if (p) p.catch(function () {}); } });
+  }
+  function pauseBoth() { decks.forEach(function (v) { if (ready(v)) v.pause(); }); }
+  function seekBoth(t) {
+    decks.forEach(function (v) {
+      if (!ready(v)) return;
+      v.currentTime = Math.min(t, (v.duration || 15) - 0.01);
+    });
+    readout.textContent = fmt(t) + ' / 00:15';
+  }
+
+  document.getElementById('playBoth').addEventListener('click', playBoth);
+  document.getElementById('pauseBoth').addEventListener('click', pauseBoth);
+  document.getElementById('restartBoth').addEventListener('click', function () { seekBoth(0); playBoth(); });
+
+  marks.forEach(function (m) {
+    m.addEventListener('click', function () {
+      var t = parseFloat(m.getAttribute('data-t'));
+      marks.forEach(function (o) { o.setAttribute('aria-current', 'false'); });
+      m.setAttribute('aria-current', 'true');
+      seekBoth(t);
+    });
+  });
+
+  vSeed.addEventListener('timeupdate', function () {
+    readout.textContent = fmt(vSeed.currentTime) + ' / ' + fmt(vSeed.duration || 15);
+  });
+
+  var copyBtn = document.getElementById('copyPrompt');
+  copyBtn.addEventListener('click', function () {
+    var text = document.getElementById('promptText').innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      copyBtn.textContent = 'Copied';
+      setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800);
+    }).catch(function () {
+      copyBtn.textContent = 'Select manually';
+      setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

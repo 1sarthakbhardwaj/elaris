@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${SITE_URL}/blogs/seedance-2-5-vs-minimax-h3`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.69,
+    },
+    {
       url: `${SITE_URL}/blogs/mcdonalds-qatar-live-dooh`,
       lastModified,
       changeFrequency: "monthly",
