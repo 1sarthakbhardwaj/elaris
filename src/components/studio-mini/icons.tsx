@@ -195,6 +195,42 @@ export function IconSettings(props: IconProps) {
   );
 }
 
+export function IconCoin(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7.5v9M14.6 9.4a2.6 2.6 0 0 0-2.6-1.1c-1.6 0-2.6.8-2.6 1.9 0 1.3 1.2 1.7 2.6 2 1.4.3 2.6.7 2.6 2 0 1.1-1 1.9-2.6 1.9a2.6 2.6 0 0 1-2.6-1.1" />
+    </svg>
+  );
+}
+
+export function IconBox(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M21 8.2v7.6a1.6 1.6 0 0 1-.83 1.4l-7.4 4.06a1.6 1.6 0 0 1-1.54 0l-7.4-4.06A1.6 1.6 0 0 1 3 15.8V8.2a1.6 1.6 0 0 1 .83-1.4l7.4-4.06a1.6 1.6 0 0 1 1.54 0l7.4 4.06A1.6 1.6 0 0 1 21 8.2Z" />
+      <path d="m3.3 7.3 8.7 4.8 8.7-4.8M12 21.4V12.1" />
+    </svg>
+  );
+}
+
+export function IconOrbit(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <circle cx="12" cy="12" r="3" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.4" transform="rotate(-28 12 12)" />
+    </svg>
+  );
+}
+
+export function IconWireframe(props: IconProps) {
+  return (
+    <svg {...baseProps(props)}>
+      <path d="M4 4h16v16H4z" />
+      <path d="M4 4l16 16M20 4L4 20M12 4v16M4 12h16" />
+    </svg>
+  );
+}
+
 export function IconChevronDown(props: IconProps) {
   return (
     <svg {...baseProps(props)}>

@@ -25,14 +25,15 @@ import MiniVideoNode from "./studio-mini/MiniVideoNode";
 import MiniOutputNode from "./studio-mini/MiniOutputNode";
 import MiniChatNode from "./studio-mini/MiniChatNode";
 import MiniBrandPackNode from "./studio-mini/MiniBrandPackNode";
-import { IconCursor } from "./studio-mini/icons";
+import Mini3DNode from "./studio-mini/Mini3DNode";
+import { IconCoin, IconCursor } from "./studio-mini/icons";
 
 /* ==========================================================================
  * Scene authoring — linear story with a Y-split at the editedImage
  * ==========================================================================
  *
  *                                         ┌─→ video ─────────┐
- *   prompt ─→ image ─→ editPrompt ─→ editedImage             ├─→ save ─→ chat ─→ push
+ *   prompt ─→ image ─→ editPrompt ─→ editedImage ─→ model3d ──┼─→ save ─→ chat ─→ push
  *                                         └─→ brandPack ─────┘
  *
  * Beat summary:
@@ -45,8 +46,10 @@ import { IconCursor } from "./studio-mini/icons";
  *   5) Click the `+` on the edited image a second time → `brandPack`
  *      branches downward and resizes the master image into 9 placements
  *      (IG Feed / Story / LinkedIn / MREC / Leaderboard / Billboard / …).
- *   6) Both branches converge at `save`, where the studio snapshot is
- *      written (video + every programmatic size sharing one session).
+ *   5b) Click it a third time → `model3d` runs `meshy-v7` image-to-3D and
+ *      returns a textured, PBR mesh you can orbit right inside the node.
+ *   6) All three branches converge at `save`, where the studio snapshot is
+ *      written (video + mesh + every programmatic size sharing one session).
  *   7) Teammates drop in over chat and approve.
  *   8) Push the approved creative straight to the campaign.
  *
@@ -55,7 +58,14 @@ import { IconCursor } from "./studio-mini/icons";
  * as the storyboard expands.
  */
 
-type NodeType = "prompt" | "image" | "video" | "output" | "chat" | "brandPack";
+type NodeType =
+  | "prompt"
+  | "image"
+  | "video"
+  | "output"
+  | "chat"
+  | "brandPack"
+  | "model3d";
 
 interface SceneNode {
   id: string;
@@ -81,15 +91,18 @@ interface Scene {
 /* ——— Shared positions & edges ————————————————————————————— */
 
 // Logical RF px; fitView({ padding }) handles visible scaling. Nodes sit on
-// the x=0 axis in a left-to-right timeline, except `video` and `brandPack`
-// which branch ± on the y-axis from `editedImage` and reconverge at `save`.
+// the x=0 axis in a left-to-right timeline, except `video`, `model3d` and
+// `brandPack`, which fan out on the y-axis from `editedImage` and reconverge
+// at `save`. The fan spacing is bounded by the 16:7 preview frame: width still
+// drives fitView at ±300, so widening the fan costs no zoom.
 const POS = {
   prompt: { x: 0, y: 0 },
   image: { x: 300, y: 0 },
   editPrompt: { x: 600, y: 0 },
   editedImage: { x: 900, y: 0 },
-  video: { x: 1200, y: -140 }, // top branch (motion)
-  brandPack: { x: 1200, y: 140 }, // bottom branch (sizes)
+  video: { x: 1200, y: -300 }, // top branch (motion)
+  model3d: { x: 1200, y: 0 }, // middle branch (mesh)
+  brandPack: { x: 1200, y: 300 }, // bottom branch (sizes)
   save: { x: 1500, y: 0 }, // merge point
   chat: { x: 1800, y: 0 },
   push: { x: 2100, y: 0 },
@@ -127,6 +140,17 @@ const EDGES = {
   brandToSave: {
     id: "e-brandPack-save",
     source: "brandPack",
+    target: "save",
+  },
+  // Middle branch: image → textured mesh
+  editedTo3d: {
+    id: "e-editedImage-model3d",
+    source: "editedImage",
+    target: "model3d",
+  },
+  modelToSave: {
+    id: "e-model3d-save",
+    source: "model3d",
     target: "save",
   },
   // Tail: save → chat → push to campaigns
@@ -199,6 +223,8 @@ function imageNode(
       progress: opts?.progress ?? 40,
       modelTag: "Generating",
       filename: "hero-01.png",
+      credits: 10,
+      costNote: "~6s",
       fading: opts?.fading,
       plusPulse: opts?.plusPulse,
     });
@@ -208,6 +234,8 @@ function imageNode(
     variant: state === "amber" ? "sunset" : "warm",
     modelTag: "Generated",
     filename: "hero-01.png",
+    credits: 10,
+    costNote: "~6s",
     fading: opts?.fading,
     plusPulse: opts?.plusPulse,
   });
@@ -228,6 +256,8 @@ function editedImageNode(
       progress: opts?.progress ?? 45,
       modelTag: "Re-rendering",
       filename: "hero-02.edited.png",
+      credits: 10,
+      costNote: "~6s",
       fading: opts?.fading,
       plusPulse: opts?.plusPulse,
     });
@@ -237,6 +267,8 @@ function editedImageNode(
     variant: "sunset",
     modelTag: "Edited",
     filename: "hero-02.edited.png",
+    credits: 10,
+    costNote: "~6s",
     editedFlash: opts?.editedFlash,
     fading: opts?.fading,
     plusPulse: opts?.plusPulse,
@@ -251,6 +283,8 @@ function videoNode(state: VideoState, opts?: { progress?: number; fading?: boole
       phase: "generating",
       category: "Image to Video",
       model: "seedance-2.0",
+      credits: 250,
+      costNote: "8s · 1080p",
       progress: opts?.progress ?? 45,
       fading: opts?.fading,
     });
@@ -259,8 +293,40 @@ function videoNode(state: VideoState, opts?: { progress?: number; fading?: boole
     phase: "done",
     category: "Image to Video",
     model: "seedance-2.0",
+    credits: 250,
+    costNote: "8s · 1080p",
     duration: "00:08",
     filename: "hero.mp4",
+    fading: opts?.fading,
+  });
+}
+
+function model3dNode(
+  state: "generating" | "done",
+  opts?: { progress?: number; fading?: boolean },
+): SceneNode {
+  if (state === "generating") {
+    return n("model3d", "model3d", {
+      phase: "generating",
+      category: "Image to 3D",
+      model: "meshy-v7",
+      credits: 120,
+      costNote: "~2m",
+      progress: opts?.progress ?? 40,
+      fading: opts?.fading,
+    });
+  }
+  return n("model3d", "model3d", {
+    phase: "done",
+    category: "Image to 3D",
+    model: "meshy-v7",
+    credits: 120,
+    costNote: "~2m",
+    polycount: "30k tris",
+    topology: "quad",
+    formats: ["GLB", "FBX", "OBJ", "USDZ"],
+    pbr: true,
+    filename: "hero.glb",
     fading: opts?.fading,
   });
 }
@@ -276,6 +342,8 @@ function brandPackNode(
     phase,
     filledCount,
     filename: "brand.pack",
+    credits: 45,
+    costNote: "9 × 5 cr",
     fading: opts?.fading,
   });
 }
@@ -608,7 +676,51 @@ const SCENES: Scene[] = [
     ),
   },
 
-  // 21 — Both branches converge at Save (highlighting). Cursor approaches.
+  // 21 — Cursor returns to editedImage's "+" for a third branch
+  {
+    duration: 500,
+    nodes: [
+      promptNode("done", PROMPT_TEXT.length),
+      imageNode("warm"),
+      editPromptNode("done", EDIT_TEXT.length),
+      editedImageNode("done", { plusPulse: "right" }),
+      videoNode("done"),
+      brandPackNode("done", 9),
+    ],
+    edges: edgesAnim(
+      "promptToImage",
+      "imageToEdit",
+      "editToEdited",
+      "editedToVideo",
+      "editedToBrand",
+    ),
+    cursor: { x: 0.78, y: 0.5 },
+  },
+
+  // 22 — Click → model3d branches straight through; meshy-v7 starts building
+  {
+    duration: 650,
+    nodes: [
+      promptNode("done", PROMPT_TEXT.length),
+      imageNode("warm"),
+      editPromptNode("done", EDIT_TEXT.length),
+      editedImageNode("done", { plusPulse: "right" }),
+      videoNode("done"),
+      brandPackNode("done", 9),
+      model3dNode("generating", { progress: 25 }),
+    ],
+    edges: edgesAnim(
+      "promptToImage",
+      "imageToEdit",
+      "editToEdited",
+      "editedToVideo",
+      "editedToBrand",
+      "editedTo3d",
+    ),
+    cursor: { x: 0.8, y: 0.5, click: true },
+  },
+
+  // 23 — Mesh fills in (wireframe reveal tracks progress)
   {
     duration: 600,
     nodes: [
@@ -618,6 +730,51 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("generating", { progress: 72 }),
+    ],
+    edges: edgesAnim(
+      "promptToImage",
+      "imageToEdit",
+      "editToEdited",
+      "editedToVideo",
+      "editedToBrand",
+      "editedTo3d",
+    ),
+  },
+
+  // 24 — Mesh done: textured, PBR, orbitable in-node
+  {
+    duration: 1100,
+    nodes: [
+      promptNode("done", PROMPT_TEXT.length),
+      imageNode("warm"),
+      editPromptNode("done", EDIT_TEXT.length),
+      editedImageNode("done"),
+      videoNode("done"),
+      brandPackNode("done", 9),
+      model3dNode("done"),
+    ],
+    edges: edgesAnim(
+      "promptToImage",
+      "imageToEdit",
+      "editToEdited",
+      "editedToVideo",
+      "editedToBrand",
+      "editedTo3d",
+    ),
+  },
+
+  // 25 — All three branches converge at Save (highlighting). Cursor approaches.
+  {
+    duration: 600,
+    nodes: [
+      promptNode("done", PROMPT_TEXT.length),
+      imageNode("warm"),
+      editPromptNode("done", EDIT_TEXT.length),
+      editedImageNode("done"),
+      videoNode("done"),
+      brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("highlighting"),
     ],
     edges: edgesAnim(
@@ -626,13 +783,15 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
     ),
     cursor: { x: 0.82, y: 0.5 },
   },
 
-  // 22 — Save → saving (click)
+  // 26 — Save → saving (click)
   {
     duration: 600,
     nodes: [
@@ -642,6 +801,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("saving"),
     ],
     edges: edgesAnim(
@@ -650,13 +810,15 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
     ),
     cursor: { x: 0.85, y: 0.5, click: true },
   },
 
-  // 23 — Save → done
+  // 27 — Save → done
   {
     duration: 800,
     nodes: [
@@ -666,6 +828,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
     ],
     edges: edgesAnim(
@@ -674,12 +837,14 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
     ),
   },
 
-  // 24 — Chat spawns (0 msgs, typing indicator)
+  // 28 — Chat spawns (0 msgs, typing indicator)
   {
     duration: 600,
     nodes: [
@@ -689,6 +854,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("spawn", 0, false),
     ],
@@ -698,13 +864,15 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
     ),
   },
 
-  // 25 — Maya replies
+  // 29 — Maya replies
   {
     duration: 700,
     nodes: [
@@ -714,6 +882,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("typing", 1, false),
     ],
@@ -723,13 +892,15 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
     ),
   },
 
-  // 26 — Jordan approves
+  // 30 — Jordan approves
   {
     duration: 700,
     nodes: [
@@ -739,6 +910,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("typing", 2, false),
     ],
@@ -748,13 +920,15 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
     ),
   },
 
-  // 27 — Priya ships it + approved stamp
+  // 31 — Priya ships it + approved stamp
   {
     duration: 900,
     nodes: [
@@ -764,6 +938,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("approved", 3, true),
     ],
@@ -773,13 +948,15 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
     ),
   },
 
-  // 28 — Push spawns highlighting; cursor moves
+  // 32 — Push spawns highlighting; cursor moves
   {
     duration: 550,
     nodes: [
@@ -789,6 +966,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("approved", 3, true),
       pushNode("highlighting"),
@@ -799,15 +977,17 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
       "chatToPush",
     ),
     cursor: { x: 0.9, y: 0.5 },
   },
 
-  // 29 — Push → publishing (click)
+  // 33 — Push → publishing (click)
   {
     duration: 600,
     nodes: [
@@ -817,6 +997,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("approved", 3, true),
       pushNode("saving"),
@@ -827,15 +1008,17 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
       "chatToPush",
     ),
     cursor: { x: 0.92, y: 0.5, click: true },
   },
 
-  // 30 — Push → done ("Published — 4 placements live")
+  // 34 — Push → done ("Published — 4 placements live")
   {
     duration: 1100,
     nodes: [
@@ -845,6 +1028,7 @@ const SCENES: Scene[] = [
       editedImageNode("done"),
       videoNode("done"),
       brandPackNode("done", 9),
+      model3dNode("done"),
       saveNode("done"),
       chatNode("approved", 3, true),
       pushNode("done"),
@@ -855,14 +1039,16 @@ const SCENES: Scene[] = [
       "editToEdited",
       "editedToVideo",
       "editedToBrand",
+      "editedTo3d",
       "videoToSave",
       "brandToSave",
+      "modelToSave",
       "saveToChat",
       "chatToPush",
     ),
   },
 
-  // 31 — Fade everything, prep to loop
+  // 35 — Fade everything, prep to loop
   {
     duration: 650,
     nodes: [
@@ -872,6 +1058,7 @@ const SCENES: Scene[] = [
       editedImageNode("done", { fading: true }),
       videoNode("done", { fading: true }),
       brandPackNode("done", 9, { fading: true }),
+      model3dNode("done", { fading: true }),
       saveNode("done", { fading: true }),
       chatNode("approved", 3, true, { fading: true }),
       pushNode("done", { fading: true }),
@@ -882,8 +1069,10 @@ const SCENES: Scene[] = [
       { ...EDGES.editToEdited, animated: false },
       { ...EDGES.editedToVideo, animated: false },
       { ...EDGES.editedToBrand, animated: false },
+      { ...EDGES.editedTo3d, animated: false },
       { ...EDGES.videoToSave, animated: false },
       { ...EDGES.brandToSave, animated: false },
+      { ...EDGES.modelToSave, animated: false },
       { ...EDGES.saveToChat, animated: false },
       { ...EDGES.chatToPush, animated: false },
     ],
@@ -914,6 +1103,17 @@ function StudioMiniCanvasInner() {
   const [inView, setInView] = useState(false);
   const [hovered, setHovered] = useState(false);
 
+  // Sums the credit cost of every node on the canvas, so the chrome bar reads
+  // as a live spend meter as the storyboard fans out.
+  const spend = useMemo(
+    () =>
+      nodes.reduce((sum, nd) => {
+        const c = (nd.data as { credits?: unknown } | undefined)?.credits;
+        return sum + (typeof c === "number" ? c : 0);
+      }, 0),
+    [nodes],
+  );
+
   const nodeTypes = useMemo(
     () => ({
       prompt: MiniPromptNode,
@@ -922,6 +1122,7 @@ function StudioMiniCanvasInner() {
       output: MiniOutputNode,
       chat: MiniChatNode,
       brandPack: MiniBrandPackNode,
+      model3d: Mini3DNode,
     }),
     [],
   );
@@ -1053,8 +1254,20 @@ function StudioMiniCanvasInner() {
         >
           studio · hero.flow
         </span>
+        {/* Running spend for everything currently on the canvas. */}
         <span
-          className="ml-auto flex items-center gap-1 text-[8px]"
+          className="ml-auto flex items-center gap-1 text-[8px] tabular-nums"
+          style={{
+            color:
+              spend > 0 ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.25)",
+            fontFamily: "var(--font-mono)",
+          }}
+        >
+          <IconCoin size={8} />
+          {spend.toLocaleString("en-US")} credits
+        </span>
+        <span
+          className="ml-3 flex items-center gap-1 text-[8px]"
           style={{
             color: "rgba(34,197,94,0.85)",
             fontFamily: "var(--font-mono)",

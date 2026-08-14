@@ -3,6 +3,7 @@
 import { memo } from "react";
 import type { NodeProps } from "@xyflow/react";
 import MiniNodeShell, {
+  MiniCostRow,
   MiniNodeHeader,
   MiniChip,
   PillButton,
@@ -25,6 +26,9 @@ export interface MiniVideoNodeData {
   category?: string;
   model?: string;
   duration?: string;
+  /** Credit cost for this generation; hides the cost row when omitted. */
+  credits?: number;
+  costNote?: string;
   filename?: string;
   progress?: number;
   fading?: boolean;
@@ -185,6 +189,15 @@ function MiniVideoNodeComponent({ data }: NodeProps) {
           )}
         </div>
       </div>
+
+      {!isEmpty && d.credits !== undefined && (
+        <MiniCostRow
+          accent={accent}
+          credits={d.credits}
+          note={d.costNote}
+          pending={isGenerating}
+        />
+      )}
     </MiniNodeShell>
   );
 }

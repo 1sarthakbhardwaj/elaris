@@ -3,6 +3,7 @@
 import { memo } from "react";
 import type { NodeProps } from "@xyflow/react";
 import MiniNodeShell, {
+  MiniCostRow,
   MiniNodeHeader,
   MiniChip,
 } from "./MiniNodeShell";
@@ -14,6 +15,9 @@ export interface MiniBrandPackNodeData {
   phase?: BrandPackPhase;
   /** How many of the 9 slots are filled (0–9). */
   filledCount?: number;
+  /** Credit cost for this generation; hides the cost row when omitted. */
+  credits?: number;
+  costNote?: string;
   filename?: string;
   fading?: boolean;
 }
@@ -200,6 +204,15 @@ function MiniBrandPackNodeComponent({ data }: NodeProps) {
           )}
         </div>
       </div>
+
+      {d.credits !== undefined && (
+        <MiniCostRow
+          accent="var(--studio-brand-accent)"
+          credits={d.credits}
+          note={d.costNote}
+          pending={!isDone}
+        />
+      )}
     </MiniNodeShell>
   );
 }

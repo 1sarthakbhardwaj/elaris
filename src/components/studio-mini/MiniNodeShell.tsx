@@ -3,7 +3,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Handle, Position } from "@xyflow/react";
 import GeneratingBorderTrace from "./GeneratingBorderTrace";
-import { IconPlus } from "./icons";
+import { IconCoin, IconPlus } from "./icons";
 
 export interface MiniNodeShellProps {
   /** Accent color used for the top-left indicator square and header tint. */
@@ -284,6 +284,61 @@ export function MiniNodeHeader({
       </span>
       {chips && <div className="flex items-center gap-1 flex-wrap min-w-0">{chips}</div>}
       {right && <div className="ml-auto flex items-center">{right}</div>}
+    </div>
+  );
+}
+
+/**
+ * Credit meter footer — every node that spends credits carries one, so the
+ * canvas doubles as a running cost read-out. Rates match the /pricing
+ * breakdown: 10 credits per image, 250 per video, 1 per text generation.
+ */
+export function MiniCostRow({
+  accent,
+  credits,
+  note,
+  /** Dims the row and reads the number as an estimate while work is in flight. */
+  pending,
+}: {
+  accent?: string;
+  credits: number;
+  note?: string;
+  pending?: boolean;
+}) {
+  return (
+    <div
+      className="flex items-center gap-1.5 px-3 py-[7px]"
+      style={{ borderTop: "1px solid var(--studio-node-border)" }}
+    >
+      <span
+        className="flex-shrink-0"
+        style={{
+          color: pending ? "var(--studio-text-tertiary)" : (accent ?? "var(--studio-text-secondary)"),
+        }}
+      >
+        <IconCoin size={10} />
+      </span>
+      <span
+        className="text-[9px] leading-none tracking-tight"
+        style={{
+          fontFamily: "var(--font-mono)",
+          color: pending ? "var(--studio-text-tertiary)" : "var(--studio-text-secondary)",
+        }}
+      >
+        {pending ? "est. " : ""}
+        {credits.toLocaleString("en-US")} credits
+      </span>
+      {note && (
+        <span
+          className="ml-auto text-[8.5px] leading-none tracking-tight"
+          style={{
+            fontFamily: "var(--font-mono)",
+            color: "var(--studio-text-tertiary)",
+          }}
+        >
+          {note}
+        </span>
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import { memo } from "react";
 import type { NodeProps } from "@xyflow/react";
 import MiniNodeShell, {
+  MiniCostRow,
   MiniNodeHeader,
   MiniChip,
   PillButton,
@@ -25,6 +26,9 @@ export interface MiniImageNodeData {
   variant?: ImageVariant;
   filename?: string;
   modelTag?: string;
+  /** Credit cost for this generation; hides the cost row when omitted. */
+  credits?: number;
+  costNote?: string;
   progress?: number;
   /** When true, the Wand button in the hover pill pulses. */
   wandHighlight?: boolean;
@@ -160,6 +164,14 @@ function MiniImageNodeComponent({ data }: NodeProps) {
           )}
         </div>
       </div>
+
+      {!isEmpty && d.credits !== undefined && (
+        <MiniCostRow
+          credits={d.credits}
+          note={d.costNote}
+          pending={isGenerating}
+        />
+      )}
     </MiniNodeShell>
   );
 }
