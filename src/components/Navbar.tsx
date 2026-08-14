@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
-import Logo from "./Logo";
+import Lockup from "./Lockup";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,16 +19,12 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1480px] mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-2.5 group">
-          <Logo size={26} className="transition-transform group-hover:rotate-90 duration-700" />
-          <div className="flex items-baseline gap-1.5">
-            <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] text-bone uppercase">
-              ElarisLabs
-            </span>
-            <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] shine-plasma uppercase">
-              AI
-            </span>
-          </div>
+        <a
+          href="/"
+          aria-label="ElarisLabs AI — home"
+          className="flex items-center transition-opacity hover:opacity-80"
+        >
+          <Lockup height={26} />
         </a>
 
         <nav

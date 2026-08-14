@@ -27,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -85,9 +85,9 @@
   --brand:#9333EA;
   --brand-deep:#6D1FB0;
 
-  --display:'Archivo','Helvetica Neue',sans-serif;
-  --body:'Newsreader',Georgia,serif;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --display:'Bricolage Grotesque',sans-serif;
+  --body:'Geist',system-ui,-apple-system,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 
   --wrap:1150px;
   --col:730px;
@@ -96,7 +96,7 @@
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
 
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.72;font-weight:400;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--mini);outline-offset:3px;border-radius:2px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
@@ -104,11 +104,9 @@ a{color:inherit}
 
 .masthead{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand-mark{width:26px;height:26px;border-radius:6px;flex:none;display:block}
-.brand .word{display:flex;align-items:baseline;gap:6px}
-.brand .word b{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
-.brand .word .ai{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(180deg,#6DA6D9 0%,#A8CDEF 50%,#2D4A6B 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand{display:flex;align-items:center;text-decoration:none;transition:opacity .15s}
+.brand:hover{opacity:.8}
+.brand-lockup{height:26px;width:auto;display:block}
 .mast-meta{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
 
 .hero{padding:74px 0 0}
@@ -262,7 +260,7 @@ footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--l
 footer a:hover{color:var(--ink)}
 
 @media (max-width:860px){
-  body{font-size:17.5px}
+  body{font-size:16px}
   .decks,.pair{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr 1fr}
   .stat{border-right:0;border-bottom:1px solid var(--line)}
@@ -279,12 +277,14 @@ footer a:hover{color:var(--ink)}
 
 <header class="masthead">
   <div class="wrap">
-    <a class="brand" href="https://www.elarislabs.ai" aria-label="ElarisLabs AI home">
-      <img class="brand-mark" src="/logo.svg" alt="" aria-hidden="true" width="26" height="26">
-      <span class="word">
-        <b>ElarisLabs</b>
-        <span class="ai">AI</span>
-      </span>
+    <a class="brand" href="https://www.elarislabs.ai" aria-label="ElarisLabs AI — home">
+      <img
+        class="brand-lockup"
+        src="/brand/lockup-horizontal-light-bg.svg"
+        alt="ElarisLabs AI"
+        width="138"
+        height="26"
+      >
     </a>
     <div class="mast-meta">Model Testing &middot; 11 Aug 2026</div>
   </div>

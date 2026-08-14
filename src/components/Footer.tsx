@@ -1,7 +1,7 @@
 "use client";
 
 import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
-import Logo from "./Logo";
+import Lockup from "./Lockup";
 import { useReveal } from "./useReveal";
 
 const STATS: { num: string; label: string }[] = [
@@ -100,16 +100,12 @@ export default function Footer() {
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
             <div className="col-span-2 lg:col-span-2">
-              <a href="/" className="flex items-center gap-2.5 mb-5">
-                <Logo size={26} />
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] text-bone uppercase">
-                    ElarisLabs
-                  </span>
-                  <span className="text-display text-lg sm:text-xl font-semibold tracking-[0.14em] shine-plasma uppercase">
-                    AI
-                  </span>
-                </div>
+              <a
+                href="/"
+                aria-label="ElarisLabs AI — home"
+                className="inline-flex items-center mb-5 transition-opacity hover:opacity-80"
+              >
+                <Lockup height={26} />
               </a>
               <p className="text-chrome text-sm max-w-xs leading-relaxed mb-5">
                 Unified AI creative OS for global enterprises. Generate, composite, scale.
@@ -151,6 +147,7 @@ export default function Footer() {
                   { label: "MCP Server", href: "/mcp" },
                   { label: "Docs", href: "/docs" },
                   { label: "Blogs", href: "/blogs" },
+                  { label: "Brand kit", href: "/brand" },
                   { label: "Pricing", href: "/pricing" },
                 ].map((l) => (
                   <li key={l.label}>

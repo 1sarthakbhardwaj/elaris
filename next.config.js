@@ -36,6 +36,14 @@ module.exports = {
           destination: "/use-cases/index.html",
         },
         {
+          source: "/brand",
+          destination: "/brand/index.html",
+        },
+        {
+          source: "/brand/",
+          destination: "/brand/index.html",
+        },
+        {
           source: "/blogs/seedance-2-5-vs-minimax-h3",
           destination:
             "/blogs/seedance-2-5-vs-minimax-h3/seedance-2-5-vs-minimax-h3.html",

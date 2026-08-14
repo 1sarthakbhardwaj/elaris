@@ -11,7 +11,7 @@ export default function Logo({ size = 26, className = "" }: LogoProps) {
       width={size}
       height={size}
       aria-hidden
-      className={`shrink-0 rounded-[6px] ${className}`}
+      className={`shrink-0 ${className}`}
     />
   );
 }
