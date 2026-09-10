@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { ORGANIZATION_SAME_AS, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const GTM_ID = "GTM-MP9WQ3PX";
 const GA_ID = "G-1825JCX1MY";
 
-const SITE_URL = "https://elarislabs.ai";
 const SITE_TITLE = "ElarisLabs | The Agentic AI Creative OS for Enterprise";
 const SITE_DESCRIPTION =
   "Scale omnichannel asset production from weeks to minutes. ElarisLabs is the node-based AI creative OS guaranteeing 100% brand compliance at infinite scale.";
@@ -26,9 +26,6 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: SITE_KEYWORDS,
   applicationName: "ElarisLabs",
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -68,40 +65,41 @@ export const viewport: Viewport = {
  * knowledge-panel and rich-result formats. Validate changes at
  * https://search.google.com/test/rich-results.
  */
-const STRUCTURED_DATA = [
-  {
-    "@context": "https://schema.org",
+const ORGANIZATION = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ElarisLabs",
+  legalName: "Elaris Labs AI",
+  url: SITE_URL,
+  logo: `${SITE_URL}/brand/lockup-horizontal-dark-bg.svg`,
+  description: SITE_DESCRIPTION,
+  sameAs: [...ORGANIZATION_SAME_AS],
+};
+
+const SOFTWARE_APPLICATION = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "ElarisLabs",
+  alternateName: "ElarisLabs AI",
+  applicationCategory: "DesignApplication",
+  url: SITE_URL,
+  description:
+    "Node-based agentic AI creative platform for ad teams, with deterministic brand memory and native Arabic and RTL layout support.",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    url: `${SITE_URL}/pricing`,
+  },
+  publisher: {
     "@type": "Organization",
     name: "ElarisLabs",
-    legalName: "Elaris Labs AI",
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.svg`,
-    description: SITE_DESCRIPTION,
-    sameAs: [
-      "https://www.linkedin.com/company/elarislabs",
-      "https://x.com/elarislabs",
-    ],
+    logo: `${SITE_URL}/brand/lockup-horizontal-dark-bg.svg`,
+    sameAs: [...ORGANIZATION_SAME_AS],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "ElarisLabs",
-    applicationCategory: "DesignApplication",
-    operatingSystem: "Web",
-    description: SITE_DESCRIPTION,
-    url: SITE_URL,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "ElarisLabs",
-      url: SITE_URL,
-    },
-  },
-];
+};
+
+const STRUCTURED_DATA = [ORGANIZATION, SOFTWARE_APPLICATION];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

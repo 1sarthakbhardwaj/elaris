@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 import McpClient from "./McpClient";
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://elarislabs.ai/mcp",
+    url: `${SITE_URL}/mcp`,
     title: "MCP Server | ElarisLabs",
     description:
       "Run your brand's creative engine from any chat. Generate on-brand ads and pull approved assets from Claude, Cursor, and any MCP agent.",

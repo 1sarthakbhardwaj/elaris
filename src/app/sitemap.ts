@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = "https://elarislabs.ai";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Dynamic sitemap — served at /sitemap.xml.

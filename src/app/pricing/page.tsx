@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 import PricingClient from "./PricingClient";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://elarislabs.ai/pricing",
+    url: `${SITE_URL}/pricing`,
     title: "Pricing | ElarisLabs",
     description:
       "Free, Growth, Scale, and Enterprise plans. Pay only for what you generate — unlimited seats and brand memory on every tier.",

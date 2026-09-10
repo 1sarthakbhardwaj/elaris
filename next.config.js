@@ -8,6 +8,8 @@ module.exports = {
       // Proxy Mintlify docs before local file/route matching.
       // Prefer rewrites over Edge middleware fetch — local Edge sandbox
       // often fails DNS/TLS for external hosts (TypeError: fetch failed).
+      // /llms.txt is served from public/llms.txt (company card). Docs dump
+      // stays at /llms-full.txt and /docs/llms.txt via Mintlify.
       beforeFiles: [
         {
           source: "/docs",
@@ -20,10 +22,6 @@ module.exports = {
         {
           source: "/.well-known/vercel/:path*",
           destination: `${MINTLIFY_ORIGIN}/.well-known/vercel/:path*`,
-        },
-        {
-          source: "/llms.txt",
-          destination: `${MINTLIFY_ORIGIN}/docs/llms.txt`,
         },
         {
           source: "/llms-full.txt",

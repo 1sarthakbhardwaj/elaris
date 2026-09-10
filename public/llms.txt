@@ -1,0 +1,31 @@
+# ElarisLabs
+
+> ElarisLabs is a node-based agentic AI creative platform for ad and
+> marketing teams. It generates, composites and scales omnichannel ad
+> creative from one workspace, with deterministic brand memory and
+> native Arabic and right-to-left layout support. Built for enterprise
+> brands and agencies in the GCC and APAC.
+
+Not affiliated with Elaris by Solsten, or Elaris FlexCo.
+
+## Products
+- [Creative Studio](https://www.elarislabs.ai/): node-based canvas for custom creative pipelines
+- [AI Video Studio](https://www.elarislabs.ai/): brief to final cut, 11 frontier video models
+- [Launch & Track](https://www.elarislabs.ai/): schedule to every ad surface, ROAS and CPA in one view
+- [URL-to-Video](https://www.elarislabs.ai/): product URL to a 30-second ad
+- [Product Staging](https://www.elarislabs.ai/): photorealistic product shots without a shoot
+
+## What is unique
+- Brand pack: one master recomposed into 11 ad sizes, not cropped
+- Localise: Arabic and RTL layouts mirrored and retypeset, 20+ languages
+- Predictive scoring: creative scored before media spend
+- Scheduler: approved sets booked to channel from the same canvas
+
+## Proof
+- [McDonald's Qatar live DOOH case study](https://www.elarislabs.ai/blogs/mcdonalds-qatar-live-dooh): 10.4M impressions, 9 live screens
+- Featured in Campaign Middle East, July 2026
+
+## Docs
+- [Docs](https://www.elarislabs.ai/docs)
+- [MCP Server](https://www.elarislabs.ai/mcp)
+- [Pricing](https://www.elarislabs.ai/pricing)

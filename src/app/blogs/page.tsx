@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   title: "Blogs | ElarisLabs",
   description:
     "Deep dives on brand onboarding, agentic creative workflows, and the infrastructure behind ElarisLabs.",
+  alternates: {
+    canonical: "/blogs",
+  },
+  openGraph: {
+    url: "/blogs",
+  },
 };
 
 export default function BlogsPage() {
