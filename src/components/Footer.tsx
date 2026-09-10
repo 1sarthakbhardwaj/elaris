@@ -147,6 +147,7 @@ export default function Footer() {
                   { label: "MCP Server", href: "/mcp" },
                   { label: "Docs", href: "/docs" },
                   { label: "Blogs", href: "/blogs" },
+                  { label: "Arabic & RTL creative", href: "/arabic-rtl-ad-creative" },
                   { label: "Brand kit", href: "/brand" },
                   { label: "Pricing", href: "/pricing" },
                 ].map((l) => (
