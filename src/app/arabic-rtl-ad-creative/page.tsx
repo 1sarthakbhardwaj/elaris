@@ -5,7 +5,7 @@ import { CALENDLY_BOOKING_URL, SITE_URL, STUDIO_APP_URL } from "@/lib/site";
 import MirrorDemo from "./MirrorDemo";
 
 const PAGE_PATH = "/arabic-rtl-ad-creative";
-const OG_IMAGE = `${SITE_URL}/arabic-rtl/mcd-arabic-master.png`;
+const OG_IMAGE = `${SITE_URL}/og/live-boards.jpg`;
 
 const TITLE = "Arabic and RTL Ad Creative at Scale | ElarisLabs";
 const DESCRIPTION =
@@ -49,6 +49,34 @@ const FACTS: { value: string; label: string }[] = [
   { value: "11", label: "sizes from one master" },
   { value: "10.4M", label: "impressions live in Doha" },
   { value: "1", label: "brand kit, every market" },
+];
+
+/** Qatar Development Bank portfolio brands, live on Doha screen networks. */
+const QATAR_BOARDS: { src: string; brand: string; sector: string; alt: string }[] = [
+  {
+    src: "/work/qdb/crystal.jpg",
+    brand: "Crystal Food Oil",
+    sector: "FMCG",
+    alt: "A roadside digital billboard in Qatar carrying the Crystal Food Oil Factory board, with the bilingual Latin and Arabic lockup over a sunflower field.",
+  },
+  {
+    src: "/work/qdb/elite.jpg",
+    brand: "Elite Food Industry",
+    sector: "FMCG",
+    alt: "A vertical digital screen on a Doha building showing the Elite Food Industry board with its bilingual lockup and flour packaging.",
+  },
+  {
+    src: "/work/qdb/fresh-meat-factory.jpg",
+    brand: "Fresh Meat Factory",
+    sector: "Food production",
+    alt: "A tall roadside screen in Qatar showing the Fresh Meat Factory board over packaged lamb, with the fmf.qa address.",
+  },
+  {
+    src: "/work/qdb/qlife-pharma.jpg",
+    brand: "QLife Pharma",
+    sector: "Pharma",
+    alt: "A digital screen at a Doha junction carrying the QLife Pharma board, Quality Life strapline and qlifepharma.com address, on an ELAN Media structure.",
+  },
 ];
 
 const REQUIREMENTS: { title: string; body: string; sample?: string }[] = [
@@ -481,10 +509,36 @@ export default function ArabicRtlAdCreativePage() {
           </figure>
 
           {/* The 9:16 pieces — each at its true aspect ratio, nothing cropped */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <figure className="relative glass-plasma rounded-2xl overflow-hidden">
+              <span className="absolute top-3.5 start-3.5 z-10 text-[10px] text-mono uppercase tracking-[0.1em] font-semibold text-coal bg-halo rounded-full px-2.5 py-1">
+                Arabic · live
+              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/arabic-rtl/mcd-doha-45-arabic.jpg"
+                width={680}
+                height={1208}
+                loading="lazy"
+                alt="The Arabic McDonald's board live on a Doha tower reading درجة الحرارة ٤٥°, with the logo mirrored to the top right and the numerals set in Eastern Arabic."
+                className="w-full h-auto"
+              />
+              <figcaption className="p-4 border-t border-white/[0.06]">
+                <div className="text-display text-[15px] font-semibold tracking-tight text-bone">
+                  Arabic, on the street
+                </div>
+                <div
+                  dir="rtl"
+                  className="text-arabic text-[13px] text-halo mt-1.5"
+                >
+                  درجة الحرارة ٤٥°
+                </div>
+              </figcaption>
+            </figure>
+
             <figure className="relative glass rounded-2xl overflow-hidden">
               <span className="absolute top-3.5 start-3.5 z-10 text-[10px] text-mono uppercase tracking-[0.1em] font-semibold text-coal bg-halo rounded-full px-2.5 py-1">
-                Live DOOH · Doha
+                English · live
               </span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -507,7 +561,7 @@ export default function ArabicRtlAdCreativePage() {
 
             <figure className="relative glass rounded-2xl overflow-hidden">
               <span className="absolute top-3.5 start-3.5 z-10 text-[10px] text-mono uppercase tracking-[0.1em] font-semibold text-coal bg-halo rounded-full px-2.5 py-1">
-                Live DOOH · Doha
+                Product frame
               </span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -565,6 +619,68 @@ export default function ArabicRtlAdCreativePage() {
             </a>
             .
           </p>
+
+          {/* Qatar DOOH breadth — QDB portfolio brands */}
+          <div className="mt-16 pt-12 border-t border-white/[0.06]">
+            <div className="max-w-[760px] mb-8">
+              <h3 className="text-display text-xl md:text-2xl font-semibold tracking-tight text-bone mb-3">
+                More live boards in Qatar.
+              </h3>
+              <p className="text-sm md:text-base text-bone/70 leading-relaxed">
+                Four Qatar Development Bank portfolio brands, composed from their own kits and
+                booked to roadside and mall screens around Doha. Bilingual lockups, Latin and
+                Arabic, on the same pipeline.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {QATAR_BOARDS.map((b) => (
+                <figure key={b.src} className="relative glass rounded-2xl overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={b.src}
+                    width={560}
+                    height={315}
+                    loading="lazy"
+                    alt={b.alt}
+                    className="w-full h-auto"
+                  />
+                  <figcaption className="p-4 border-t border-white/[0.06] flex items-baseline gap-3">
+                    <span className="text-display text-[15px] font-semibold tracking-tight text-bone">
+                      {b.brand}
+                    </span>
+                    <span className="text-[10.5px] text-mono text-chrome uppercase tracking-[0.1em]">
+                      {b.sector}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-5 mt-7 flex-wrap">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/work/logos/qatar-development-bank.png"
+                width={640}
+                height={338}
+                loading="lazy"
+                alt="Qatar Development Bank"
+                className="h-9 w-auto opacity-80"
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/work/logos/elan-media.png"
+                width={382}
+                height={420}
+                loading="lazy"
+                alt="ELAN Media"
+                className="h-9 w-auto opacity-80"
+              />
+              <span className="text-[11px] text-mono text-chrome uppercase tracking-[0.14em]">
+                Screen networks we ship to
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -776,6 +892,34 @@ export default function ArabicRtlAdCreativePage() {
               >
                 {l}
               </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Cluster links */}
+      <section className="relative py-20 md:py-24 px-6 md:px-10 border-t border-white/[0.06]">
+        <div className="max-w-[1000px] mx-auto">
+          <p className="text-xs text-mono text-halo uppercase tracking-[0.3em] mb-5">◉ Go deeper</p>
+          <h2 className="text-display text-[clamp(1.9rem,3.6vw,2.9rem)] font-semibold leading-[1.06] tracking-tight text-bone mb-10">
+            The rest of the picture.
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { kind: "Learn", label: "RTL ad localisation, step by step", href: "/learn/rtl-ad-localisation" },
+              { kind: "Learn", label: "Creative automation, defined", href: "/learn/creative-automation" },
+              { kind: "Learn", label: "Deterministic brand memory", href: "/learn/brand-memory" },
+              { kind: "Learn", label: "Predictive creative scoring", href: "/learn/predictive-creative-scoring" },
+              { kind: "Comparison", label: "Best AI ad tools for Arabic and RTL, 2026", href: "/blogs/best-ai-ad-tools-arabic-rtl-2026" },
+              { kind: "Case study", label: "McDonald's Qatar, live in Doha", href: "/blogs/mcdonalds-qatar-live-dooh" },
+              { kind: "Case study", label: "530 finished ads from one concept", href: "/blogs/homesrus-530-variants" },
+            ].map((l) => (
+              <a key={l.href} href={l.href} className="glass rounded-xl px-5 py-4 hover-lift block">
+                <span className="block text-[11px] text-mono text-chrome uppercase tracking-[0.16em] mb-1.5">
+                  {l.kind}
+                </span>
+                <span className="text-[15px] text-bone">{l.label}</span>
+              </a>
             ))}
           </div>
         </div>

@@ -11,6 +11,30 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "best-ai-ad-tools-arabic-rtl-2026",
+    title: "Best AI Ad Creative Tools for Arabic and RTL, 2026",
+    excerpt:
+      "Ten tools compared on the one thing the category rarely tests: what happens to the layout when the campaign moves right to left. 2026 pricing, best-for guidance, and an honest note on where each one beats us.",
+    category: "Comparison",
+    readTime: "12 min read",
+    href: "/blogs/best-ai-ad-tools-arabic-rtl-2026",
+    image: "/arabic-rtl/mcd-arabic-master.png",
+    imageAlt:
+      "Comparison of AI ad creative tools on Arabic and right-to-left layout support, 2026",
+  },
+  {
+    slug: "homesrus-530-variants",
+    title: "530 Finished Ads From One Approved Concept",
+    excerpt:
+      "HomesRus had no shortage of ideas. They had a reformatting problem. How one approved master became 530+ finished ads across 9:16 social and 6:5 programmatic in under four weeks, brand-locked throughout.",
+    category: "Case Study",
+    readTime: "6 min read",
+    href: "/blogs/homesrus-530-variants",
+    image: "/landing/images/homes.webp",
+    imageAlt:
+      "HomesRus retail campaign: one approved master fanned into 530 finished ad variants on ElarisLabs",
+  },
+  {
     slug: "seedance-2-5-vs-minimax-h3",
     title: "Seedance 2.5 vs MiniMax H3: One Shared Prompt",
     excerpt:

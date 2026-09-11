@@ -148,6 +148,7 @@ export default function Footer() {
                   { label: "Docs", href: "/docs" },
                   { label: "Blogs", href: "/blogs" },
                   { label: "Arabic & RTL creative", href: "/arabic-rtl-ad-creative" },
+                  { label: "Learn", href: "/learn" },
                   { label: "Brand kit", href: "/brand" },
                   { label: "Pricing", href: "/pricing" },
                 ].map((l) => (

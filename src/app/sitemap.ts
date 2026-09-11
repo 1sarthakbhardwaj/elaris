@@ -37,6 +37,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${SITE_URL}/learn/rtl-ad-localisation`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
+      url: `${SITE_URL}/learn`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/learn/creative-automation`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
+      url: `${SITE_URL}/learn/brand-memory`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.68,
+    },
+    {
+      url: `${SITE_URL}/learn/predictive-creative-scoring`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.62,
+    },
+    {
+      url: `${SITE_URL}/blogs/best-ai-ad-tools-arabic-rtl-2026`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.72,
+    },
+    {
+      url: `${SITE_URL}/blogs/homesrus-530-variants`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.68,
+    },
+    {
       url: `${SITE_URL}/brand`,
       lastModified,
       changeFrequency: "monthly",

@@ -23,7 +23,17 @@ Not affiliated with Elaris by Solsten, or Elaris FlexCo.
 
 ## Proof
 - [McDonald's Qatar live DOOH case study](https://www.elarislabs.ai/blogs/mcdonalds-qatar-live-dooh): 10.4M impressions, 9 live screens
+- [HomesRus retail case study](https://www.elarislabs.ai/blogs/homesrus-530-variants): 530+ finished ads from one approved concept in under four weeks
 - Featured in Campaign Middle East, July 2026
+
+## Learn (definitions)
+- [RTL ad localisation](https://www.elarislabs.ai/learn/rtl-ad-localisation): mirroring a layout for right-to-left languages, not translating it
+- [Creative automation](https://www.elarislabs.ai/learn/creative-automation): every size and language from one approved master, recomposed not cropped
+- [Deterministic brand memory](https://www.elarislabs.ai/learn/brand-memory): brand applied as a constraint at composition time, not as a prompt
+- [Predictive creative scoring](https://www.elarislabs.ai/learn/predictive-creative-scoring): ranking creative before media spend
+
+## Comparisons
+- [Best AI ad creative tools for Arabic and RTL, 2026](https://www.elarislabs.ai/blogs/best-ai-ad-tools-arabic-rtl-2026): ten tools judged on RTL layout mirroring, with pricing
 
 ## Docs
 - [Docs](https://www.elarislabs.ai/docs)

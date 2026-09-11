@@ -66,6 +66,24 @@ module.exports = {
             "/blogs/elarislabs-marketing-journey/elarislabs-marketing-journey.html",
         },
         {
+          source: "/blogs/best-ai-ad-tools-arabic-rtl-2026",
+          destination:
+            "/blogs/best-ai-ad-tools-arabic-rtl-2026/best-ai-ad-tools-arabic-rtl-2026.html",
+        },
+        {
+          source: "/blogs/best-ai-ad-tools-arabic-rtl-2026/",
+          destination:
+            "/blogs/best-ai-ad-tools-arabic-rtl-2026/best-ai-ad-tools-arabic-rtl-2026.html",
+        },
+        {
+          source: "/blogs/homesrus-530-variants",
+          destination: "/blogs/homesrus-530-variants/homesrus-530-variants.html",
+        },
+        {
+          source: "/blogs/homesrus-530-variants/",
+          destination: "/blogs/homesrus-530-variants/homesrus-530-variants.html",
+        },
+        {
           source: "/blogs/mcdonalds-qatar-live-dooh",
           destination:
             "/blogs/mcdonalds-qatar-live-dooh/mcdonalds-qatar-live-dooh.html",
