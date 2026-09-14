@@ -13,6 +13,9 @@ const PATHS = {
   globe: "M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18",
   layers: "M12 3l9 5-9 5-9-5 9-5zM3 16l9 5 9-5M3 12l9 5 9-5",
   sparkle: "M12 4l1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-1.8L12 4z",
+  chevronDown: "M6 9l6 6 6-6",
+  menu: "M4 7h16M4 12h16M4 17h16",
+  close: "M6 6l12 12M18 6L6 18",
 } as const;
 
 export type IconName = keyof typeof PATHS;

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import WorkShowcase from "@/components/WorkShowcase";
 import ParallaxDivider from "@/components/ParallaxDivider";
 import CreativesMarquee from "@/components/CreativesMarquee";
 import VideoResources from "@/components/VideoResources";
@@ -23,8 +22,7 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <Hero />
-      {/* WorkShowcase drives its own pin, so it is not wrapped here. */}
-      <WorkShowcase />
+      <CreativesMarquee />
       <ParallaxDivider
         video="1280x720_bw-geometry"
         poster="/video/1280x720_bw-geometry.webp"
@@ -33,7 +31,6 @@ export default function Home() {
         lead="Brief in."
         tail="Campaign out."
       />
-      <CreativesMarquee />
       {/* Each wrapped section pins and recedes as the next scrolls over it. */}
       <SectionRecede>
         <VideoResources />

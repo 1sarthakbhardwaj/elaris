@@ -76,18 +76,54 @@ export const CREATIVES_ROW_B: Creative[] = [
   },
 ];
 
-/**
- * Raw model output, scrolling left under the two work bands. Curated toward the
- * monochrome and high-contrast frames, which sit on the obsidian palette far
- * better than the saturated ones in the same set.
- */
+/** Third band — more delivered work, so the reel stays a studio, not a texture pack. */
 export const CREATIVES_ROW_C: Creative[] = [
-  { src: "/creatives/generated/mar_16.webp", width: 800, height: 1200, tag: "Editorial", badge: "generated" },
-  { src: "/creatives/generated/mar_14.webp", width: 737, height: 1200, tag: "Motion", badge: "generated" },
-  { src: "/creatives/generated/mar_01.webp", width: 1200, height: 1200, tag: "Beauty", badge: "generated" },
-  { src: "/creatives/generated/mar_05.webp", width: 800, height: 1200, tag: "Fashion", badge: "generated" },
-  { src: "/creatives/generated/mar_10.webp", width: 1200, height: 873, tag: "Film", badge: "generated" },
-  { src: "/creatives/generated/mar_08.webp", width: 737, height: 1200, tag: "3D", badge: "generated" },
-  { src: "/creatives/generated/mar_02.webp", width: 1200, height: 685, tag: "Concept art", badge: "generated" },
-  { src: "/creatives/generated/mar_11.webp", width: 1200, height: 1200, tag: "Product", badge: "generated" },
+  {
+    src: "/arabic-rtl/mcd-doha-feels-like-0c.jpeg",
+    width: 900,
+    height: 1600,
+    tag: "Live DOOH",
+  },
+  {
+    src: "/blogs/homesrus-530-variants/v2.jpg",
+    width: 240,
+    height: 427,
+    tag: "Retail",
+  },
+  {
+    src: "/arabic-rtl/mcd-doha-mixperience.jpeg",
+    width: 680,
+    height: 1208,
+    tag: "Out of home",
+  },
+  {
+    src: "/blogs/homesrus-530-variants/v3.jpg",
+    width: 240,
+    height: 427,
+    tag: "Catalogue",
+  },
+  {
+    src: "/arabic-rtl/mcd-doha-45-arabic.jpg",
+    width: 680,
+    height: 1208,
+    tag: "Localisation",
+  },
+  {
+    src: "/blogs/homesrus-530-variants/v5.jpg",
+    width: 240,
+    height: 427,
+    tag: "Furniture",
+  },
+  {
+    src: "/blogs/mcdonalds-qatar-live-dooh/cover.jpg",
+    width: 680,
+    height: 1208,
+    tag: "Paid media",
+  },
+  {
+    src: "/blogs/homesrus-530-variants/v8.jpg",
+    width: 240,
+    height: 427,
+    tag: "Seasonal",
+  },
 ];
