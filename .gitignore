@@ -49,3 +49,6 @@ gifs/
 *.gif
 
 .screenshots/
+
+# Design wireframes unzipped for reference (the .zip files are the source)
+.wireframes/

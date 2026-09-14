@@ -77,16 +77,14 @@ export default function Navbar() {
         <button
           type="button"
           aria-label="Close menu"
-          className="fixed inset-0 z-40 hidden bg-coal/50 lg:block"
+          className="fixed inset-0 z-40 hidden bg-coal/70 lg:block"
           onClick={() => setMenu(null)}
         />
       )}
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-          raised
-            ? "border-b border-white/[0.06] bg-coal/80 backdrop-blur-xl"
-            : "border-b border-transparent bg-transparent"
+        className={`fixed inset-x-0 top-0 z-50 border-b border-soot backdrop-blur-xl transition-colors duration-300 ${
+          raised ? "bg-coal/95" : "bg-ink/90"
         }`}
         onMouseEnter={cancelClose}
         onMouseLeave={scheduleClose}
@@ -211,19 +209,19 @@ function MegaPanel({ menu, pathname }: { menu: MegaMenu; pathname: string }) {
   const colB = main.links.slice(mid);
 
   return (
-    <div className="rounded-[28px] bg-lume p-8 text-ink shadow-[0_28px_80px_-28px_rgba(0,0,0,0.65)] lg:p-10">
+    <div className="rounded-2xl border border-soot bg-ink p-8 text-bone shadow-[0_28px_80px_-28px_rgba(0,0,0,0.85)] lg:p-10">
       <div className="mb-8 max-w-xl">
-        <h2 className="text-display text-[1.65rem] leading-tight tracking-tight text-ink md:text-[1.85rem]">
+        <h2 className="text-display text-[1.65rem] leading-tight tracking-tight text-bone md:text-[1.85rem]">
           {menu.title}
         </h2>
-        <p className="mt-2 text-[15px] leading-relaxed text-steel">
+        <p className="mt-2 text-[15px] leading-relaxed text-chrome">
           {menu.description}
         </p>
       </div>
 
       <div className="grid gap-10 lg:grid-cols-[14rem_minmax(0,1fr)]">
         <div>
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-chrome">
+          <p className="type-caption mb-3 uppercase tracking-[0.16em] text-steel">
             {sidebar.heading}
           </p>
           <ul className="flex flex-col">
@@ -236,7 +234,7 @@ function MegaPanel({ menu, pathname }: { menu: MegaMenu; pathname: string }) {
         </div>
 
         <div>
-          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.16em] text-chrome">
+          <p className="type-caption mb-3 uppercase tracking-[0.16em] text-steel">
             {main.heading}
           </p>
           <div className="grid gap-x-12 sm:grid-cols-2">
@@ -260,9 +258,9 @@ function MegaPanel({ menu, pathname }: { menu: MegaMenu; pathname: string }) {
 
       <Link
         href={menu.banner.href}
-        className="mt-8 flex items-center gap-3 rounded-2xl bg-black/[0.04] px-4 py-3.5 text-sm text-steel transition-colors hover:bg-black/[0.07] hover:text-ink"
+        className="mt-8 flex items-center gap-3 rounded-xl border border-deep bg-[#0E1620] px-4 py-3.5 text-sm text-chrome transition-colors hover:border-plasma hover:text-bone"
       >
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink text-lume">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-deep text-halo">
           <Icon name="play" size={11} />
         </span>
         {menu.banner.label}
@@ -273,22 +271,22 @@ function MegaPanel({ menu, pathname }: { menu: MegaMenu; pathname: string }) {
 
 function MegaItem({ link, pathname }: { link: NavLink; pathname: string }) {
   const active = linkIsActive(link.href, pathname);
-  const className = `group flex items-start justify-between gap-3 rounded-xl px-3 py-2.5 transition-colors ${
-    active ? "bg-black/[0.06]" : "hover:bg-black/[0.04]"
+  const className = `group flex items-start justify-between gap-3 rounded-lg px-3 py-2.5 transition-colors ${
+    active ? "bg-white/[0.06]" : "hover:bg-white/[0.04]"
   }`;
 
   const inner = (
     <>
       <span>
         <span className="flex items-center gap-2">
-          <span className="text-[15px] font-medium text-ink">{link.label}</span>
+          <span className="text-[15px] font-medium text-bone">{link.label}</span>
           {link.badge && (
-            <span className="rounded-full bg-ink px-1.5 py-px text-[9px] font-medium uppercase tracking-[0.12em] text-lume">
+            <span className="rounded-full border border-deep bg-[#0E1620] px-1.5 py-px text-[9px] font-medium uppercase tracking-[0.12em] text-halo">
               {link.badge}
             </span>
           )}
         </span>
-        <span className="mt-0.5 block text-[13px] leading-snug text-steel">
+        <span className="mt-0.5 block text-[13px] leading-snug text-chrome">
           {link.description}
         </span>
       </span>
