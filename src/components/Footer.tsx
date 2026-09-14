@@ -1,6 +1,7 @@
 "use client";
 
 import { CALENDLY_BOOKING_URL, STUDIO_APP_URL } from "@/lib/site";
+import Icon from "./Icon";
 import Lockup from "./Lockup";
 import { useReveal } from "./useReveal";
 
@@ -76,9 +77,11 @@ export default function Footer() {
               className="group bg-gradient-to-br from-lume to-halo text-coal text-base font-semibold px-8 py-4 rounded-full flex items-center gap-2 shadow-[0_0_40px_-8px_rgba(168,205,239,0.6)] hover:shadow-[0_0_60px_-8px_rgba(168,205,239,0.9)] hover:brightness-110 transition-all"
             >
               Book a demo
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform group-hover:translate-x-0.5">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
+              <Icon
+                name="arrowRight"
+                size={15}
+                className="transition-transform group-hover:translate-x-0.5"
+              />
             </a>
             <a
               href={STUDIO_APP_URL}

@@ -1,7 +1,21 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { JetBrains_Mono, Manrope } from "next/font/google";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 import { ORGANIZATION_SAME_AS, SITE_URL } from "@/lib/site";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 const GTM_ID = "GTM-MP9WQ3PX";
 const GA_ID = "G-1825JCX1MY";
@@ -103,7 +117,11 @@ const STRUCTURED_DATA = [ORGANIZATION, SOFTWARE_APPLICATION];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${manrope.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
@@ -139,7 +157,7 @@ gtag('config', '${GA_ID}');`}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

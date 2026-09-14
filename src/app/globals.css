@@ -2,15 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap");
+/* Latin faces load via next/font in app/layout.tsx (--font-manrope,
+   --font-jetbrains-mono). Only the Arabic face is fetched here, since it is
+   used on a handful of RTL surfaces rather than site-wide. */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap");
 @import "@xyflow/react/dist/style.css";
 @import "../components/studio-mini/tokens.css";
 
 :root {
-  --font-display: "Bricolage Grotesque", sans-serif;
-  --font-sans: "Geist", system-ui, sans-serif;
-  --font-mono: "Geist Mono", monospace;
-  --font-arabic: "IBM Plex Sans Arabic", "Geist", sans-serif;
+  --font-display: var(--font-manrope), system-ui, sans-serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-arabic: "IBM Plex Sans Arabic", var(--font-manrope), sans-serif;
   --coal: #07070A;
   --ink: #0C0D10;
   --ember: #14161B;
@@ -34,21 +37,58 @@ html, body {
   color: var(--bone);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* `clip` rather than `hidden`: both stop sideways overflow, but `hidden`
+     turns the element into a scroll container, which silently breaks every
+     `position: sticky` descendant on the page. */
+  overflow-x: clip;
 }
 
 ::selection { background: var(--plasma); color: var(--coal); }
 
+/* Manrope is a grotesque rather than a display face, so it needs more weight
+   and tighter tracking than Bricolage did to hold up at headline sizes. */
 .text-display {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  line-height: 0.92;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
   font-optical-sizing: auto;
 }
 
 .text-mono {
   font-family: var(--font-mono);
+  font-feature-settings: "zero" 1;
+}
+
+/* ——— Type scale ———
+   One ramp for every section heading, so sizes stop being re-invented as
+   one-off clamp() values at each call site. */
+.type-h2 {
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+.type-h3 {
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+.type-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.type-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+.type-caption {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 /* Arabic script — joined glyphs and correct ligatures for RTL copy. */
@@ -141,6 +181,13 @@ html, body {
 @keyframes lipsync {
   0%, 100% { transform: scaleY(0.3); }
   50% { transform: scaleY(1); }
+}
+
+/* Mask wrapper emitted by SplitText in RevealHeading — the words slide up from
+   behind it. The padding keeps descenders from being clipped by the overflow. */
+.reveal-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
 }
 
 .anim-fade-up { animation: fade-up 0.9s cubic-bezier(0.2, 0.9, 0.3, 1) forwards; opacity: 0; }

@@ -22,6 +22,7 @@ Not affiliated with Elaris by Solsten, or Elaris FlexCo.
 - Scheduler: approved sets booked to channel from the same canvas
 
 ## Proof
+- [What ElarisLabs actually is](https://www.elarislabs.ai/blogs/what-elarislabs-is): the node-based creative OS, not a model wrapper
 - [McDonald's Qatar live DOOH case study](https://www.elarislabs.ai/blogs/mcdonalds-qatar-live-dooh): 10.4M impressions, 9 live screens
 - [HomesRus retail case study](https://www.elarislabs.ai/blogs/homesrus-530-variants): 530+ finished ads from one approved concept in under four weeks
 - Featured in Campaign Middle East, July 2026

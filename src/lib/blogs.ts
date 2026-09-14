@@ -11,6 +11,18 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "what-elarislabs-is",
+    title: "Not Model Access: What ElarisLabs Actually Is",
+    excerpt:
+      "ElarisLabs is a node-based creative operating system for advertising. Frontier models sit behind a marketing harness, one locked master fans out into thousands of variants, and every creative is scored, reviewed, published, measured and refreshed on one canvas.",
+    category: "Inside ElarisLabs",
+    readTime: "9 min read",
+    href: "/blogs/what-elarislabs-is",
+    image: "/blogs/what-elarislabs-is/assets/hr-v1.jpg",
+    imageAlt:
+      "HomesRus 9:16 social ad produced through the ElarisLabs marketing harness: locked Flat 30% Off offer block with campaign dates and payment badges",
+  },
+  {
     slug: "best-ai-ad-tools-arabic-rtl-2026",
     title: "Best AI Ad Creative Tools for Arabic and RTL, 2026",
     excerpt:

@@ -67,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.62,
     },
     {
+      url: `${SITE_URL}/blogs/what-elarislabs-is`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.78,
+    },
+    {
       url: `${SITE_URL}/blogs/best-ai-ad-tools-arabic-rtl-2026`,
       lastModified,
       changeFrequency: "monthly",

@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Not Model Access: What ElarisLabs Actually Is</title>
+<meta name="description" content="ElarisLabs is a node-based creative operating system for advertising. Frontier models sit behind a marketing harness, one locked master fans out into thousands of variants, and every creative is scored, reviewed, published, measured and refreshed on one canvas." />
+<meta name="theme-color" content="#FBFBFC" />
+<link rel="canonical" href="https://www.elarislabs.ai/blogs/what-elarislabs-is" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Not Model Access: What ElarisLabs Actually Is" />
+<meta property="og:description" content="ElarisLabs is a node-based creative operating system for advertising. Frontier models sit behind a marketing harness, one locked master fans out into thousands of variants, and every creative is scored, reviewed, published, measured and refreshed on one canvas." />
+<meta property="og:url" content="https://www.elarislabs.ai/blogs/what-elarislabs-is" />
+<meta property="og:image" content="https://www.elarislabs.ai/blogs/what-elarislabs-is/assets/hr-v1.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.elarislabs.ai/blogs/what-elarislabs-is/assets/hr-v1.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { display: block; max-width: 100%; }
+
+  :root {
+    --paper:#FBFBFC;
+    --card:#FFFFFF;
+    --wash:#F4F6F8;
+    --line:rgba(12,13,16,0.085);
+    --line-soft:rgba(12,13,16,0.055);
+    --shadow:0 1px 2px rgba(12,13,16,0.04), 0 10px 28px -16px rgba(12,13,16,0.16);
+
+    --ink:#0C0D10;
+    --body:#4C515B;
+    --mute:#8A8F9C;
+    --faint:#B3B7C0;
+
+    --deep:#2D4A6B;
+    --plasma:#6DA6D9;
+    --brass:#C9B087;
+    --mark:#9333EA;
+
+    --n-prompt:#8B3FD4; --n-image:#0C0D10; --n-brand:#D98A0B;
+    --n-output:#16A34A; --n-localize:#6366F1; --n-composer:#0D9488; --n-score:#2D6FA8; --n-video:#E11D48;
+
+    --display:'Bricolage Grotesque','Geist',system-ui,sans-serif;
+    --sans:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+    --gut:30px;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: var(--deep); text-decoration: none; border-bottom: 1px solid rgba(45,74,107,0.25); }
+  a:hover { border-bottom-color: var(--deep); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--plasma); outline-offset: 3px; border-radius: 3px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--gut); }
+  .narrow { max-width: 680px; }
+
+  /* masthead */
+  .masthead {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(251,251,252,0.85);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .masthead .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  a.logo { display: flex; align-items: center; border-bottom: none; }
+  a.logo:hover { border-bottom: none; }
+  a.logo img { height: 26px; width: auto; }
+  .rmeta { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase; }
+  .crumbs { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); margin: 0 0 22px; }
+  .crumbs a { color: var(--mute); border-bottom-color: transparent; }
+  .crumbs a:hover { color: var(--deep); border-bottom-color: var(--deep); }
+
+  /* rhythm */
+  section { padding: 104px 0; border-top: 1px solid var(--line-soft); }
+  section:first-of-type { border-top: none; }
+  .hero { padding: 88px 0 96px; }
+
+  .kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--plasma); margin: 0 0 16px; }
+  h1 { font-family: var(--display); font-weight: 600; letter-spacing: -0.04em; line-height: 1.01; font-size: clamp(40px, 7.4vw, 78px); margin: 0; color: var(--ink); text-wrap: balance; }
+  h2 { font-family: var(--display); font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(28px, 4.2vw, 42px); margin: 0 0 18px; color: var(--ink); text-wrap: balance; }
+  h3 { font-family: var(--display); font-weight: 600; font-size: 16.5px; letter-spacing: -0.015em; margin: 0 0 6px; color: var(--ink); }
+  .accent { color: var(--deep); }
+  .ital { font-style: italic; font-weight: 400; }
+  .lede { font-size: clamp(17px, 1.75vw, 20px); line-height: 1.6; color: var(--ink); max-width: 66ch; margin: 26px 0 0; }
+  p { max-width: 70ch; font-size: 16px; margin: 18px 0 0; }
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* panels */
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+  .p-hd { display: flex; align-items: center; gap: 9px; padding: 13px 16px; border-bottom: 1px solid var(--line-soft);
+          font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .p-bd { padding: 20px 18px 22px; }
+
+  /* hero split */
+  .split { display: grid; grid-template-columns: minmax(0, 240px) 36px minmax(0, 240px); gap: 12px; align-items: start; justify-content: start; margin-top: 52px; max-width: 540px; }
+  .arrowcol { display: flex; align-items: center; justify-content: center; color: var(--faint); min-height: 120px; }
+  .shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--line-soft); }
+  .shot img { width: 100%; height: auto; display: block; }
+
+  .frame-raw { border-radius: 10px; aspect-ratio: 240/427; width: 100%; position: relative; overflow: hidden;
+               background: radial-gradient(130% 90% at 32% 22%, #E7DCCB, #F1EEE8 72%); }
+  .raw-blob { position: absolute; inset: 20% 15% 26% 16%; border-radius: 52% 42% 48% 56%; background: rgba(176,146,102,0.3); filter: blur(3px); }
+  .raw-txt { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; color: rgba(12,13,16,0.42); letter-spacing: .05em; }
+
+  .chiplist { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .chiplist li { font-family: var(--mono); font-size: 10px; padding: 4px 8px; border-radius: 5px;
+                 border: 1px solid rgba(225,29,72,0.22); background: rgba(225,29,72,0.05); color: #A8163A; }
+  .chiplist.good li { border-color: rgba(22,163,74,0.22); background: rgba(22,163,74,0.05); color: #12703A; }
+
+  /* model rack */
+  .rack { margin-top: 40px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); padding: 24px; box-shadow: var(--shadow); }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip { font-family: var(--mono); font-size: 10.5px; color: var(--body); border: 1px solid var(--line); background: var(--wash); border-radius: 7px; padding: 7px 11px; }
+  .harness { margin: 18px 0 14px; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(45,74,107,0.2); background: rgba(109,166,217,0.08); }
+  .harness .t { font-family: var(--display); font-weight: 600; font-size: 16.5px; letter-spacing: -0.02em; color: var(--deep); display: block; }
+  .harness .s { font-size: 13.5px; color: var(--body); }
+  .rack p { margin: 0; font-size: 13.5px; color: var(--mute); max-width: none; }
+
+  /* node canvas */
+  .canvas-shell { margin-top: 44px; border: 1px solid var(--line); border-radius: 18px; background: var(--wash);
+                  background-image: radial-gradient(rgba(12,13,16,0.07) 1px, transparent 1px); background-size: 22px 22px;
+                  overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+  .canvas { position: relative; width: 1000px; height: 430px; margin: 0 auto; }
+  .canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .node { position: absolute; width: 174px; background: var(--card); border: 1px solid var(--line); border-radius: 11px; overflow: hidden;
+          box-shadow: 0 1px 2px rgba(12,13,16,0.05), 0 8px 20px -14px rgba(12,13,16,0.22); }
+  .node .bar { height: 2px; display: block; }
+  .node .nh { display: flex; align-items: center; gap: 7px; padding: 9px 11px; border-bottom: 1px solid var(--line-soft); }
+  .node .nt { font-size: 11.5px; font-weight: 600; color: var(--ink); }
+  .node .nb { padding: 9px 11px 11px; font-family: var(--mono); font-size: 10px; line-height: 1.45; color: var(--faint); }
+  .port { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #fff; border: 1.5px solid var(--faint); top: 50%; }
+  .port.in { left: -4px; } .port.out { right: -4px; }
+  .canvas-cap { padding: 13px 18px 15px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase;
+                color: var(--mute); border-top: 1px solid var(--line-soft); background: var(--card); }
+  .scrollhint { display: none; }
+
+  /* bulk generate */
+  .bulk { display: grid; grid-template-columns: 268px 1fr; gap: 30px; margin-top: 46px; align-items: start; }
+  .master { position: relative; }
+  .master .shot { box-shadow: var(--shadow); border-color: var(--line); }
+  .master .tag { position: absolute; top: -11px; left: 14px; z-index: 2; font-family: var(--mono); font-size: 9.5px;
+                 letter-spacing: 0.13em; text-transform: uppercase; background: var(--ink); color: #fff; padding: 4px 9px; border-radius: 999px; }
+  .lockhd { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); margin: 0 0 16px; }
+  .lockrow { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--line-soft); }
+  .lockrow:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .ic { width: 24px; height: 24px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; font-weight: 600; }
+  .ic.lk { background: rgba(22,163,74,0.1); color: #12703A; }
+  .ic.vr { background: rgba(109,166,217,0.16); color: var(--deep); }
+  .lb { font-size: 14.5px; color: var(--ink); font-weight: 600; }
+  .ds { font-size: 13.5px; color: var(--mute); }
+
+  .fanout { margin-top: 40px; }
+  .fanhd { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  .fanhd .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+  .fanhd .r { font-size: 13px; color: var(--mute); }
+  .fan { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
+  .cellimg { border-radius: 9px; overflow: hidden; border: 1px solid var(--line-soft); background: var(--card); box-shadow: 0 1px 2px rgba(12,13,16,0.04); }
+  .cellimg img { width: 100%; height: auto; }
+  .more { border-radius: 9px; border: 1px dashed rgba(12,13,16,0.16); background: var(--wash); aspect-ratio: 240/427;
+          display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-align: center; padding: 8px; }
+  .more .n { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: -0.03em; color: var(--ink); line-height: 1; }
+  .more .t { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; margin-top: 40px; background: var(--line-soft);
+           border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .stat { background: var(--card); padding: 22px 20px; }
+  .stat .v { font-family: var(--display); font-weight: 600; font-size: 31px; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+  .stat .k { font-size: 12.5px; color: var(--mute); margin-top: 10px; }
+
+  /* cards */
+  .grid { display: grid; gap: 14px; margin-top: 38px; }
+  .g2 { grid-template-columns: repeat(2,1fr); }
+  .g4 { grid-template-columns: repeat(4,1fr); }
+  .card { border: 1px solid var(--line); border-radius: 14px; background: var(--card); padding: 19px 18px 20px; }
+  .card p { font-size: 13.5px; color: var(--mute); margin: 0; max-width: none; }
+  .tagdot { width: 8px; height: 8px; border-radius: 3px; margin-bottom: 13px; }
+
+  /* score */
+  .scorewrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 38px; align-items: start; }
+  .sc-hd { padding: 15px 18px; border-bottom: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; }
+  .sc-hd .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+  .sc-hd .big { font-family: var(--display); font-weight: 600; font-size: 28px; letter-spacing: -0.035em; color: var(--n-output); line-height: 1; }
+  .sc-bd { padding: 17px 18px 20px; display: grid; gap: 14px; }
+  .bl { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--ink); margin-bottom: 7px; }
+  .bl span:last-child { font-family: var(--mono); color: var(--mute); font-size: 11.5px; }
+  .track { height: 5px; border-radius: 999px; background: rgba(12,13,16,0.07); overflow: hidden; }
+  .fill { height: 100%; border-radius: 999px; background: var(--plasma); }
+  .fill.warn { background: var(--brass); }
+
+  /* review */
+  .avatars { display: flex; }
+  .av { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--card); margin-left: -7px;
+        font-size: 10px; font-weight: 700; color: #fff; display: flex; align-items: center; justify-content: center; }
+  .av:first-child { margin-left: 0; }
+  .thread { display: grid; gap: 10px; }
+  .cmt { border: 1px solid var(--line); border-radius: 12px; background: var(--card); padding: 13px 15px; display: flex; gap: 11px; }
+  .cmt .who { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .cmt .when { font-family: var(--mono); font-size: 10px; color: var(--faint); margin-left: 8px; }
+  .cmt .txt { font-size: 13.5px; color: var(--body); margin-top: 3px; }
+  .pin { font-family: var(--mono); font-size: 9.5px; color: var(--n-localize); border: 1px solid rgba(99,102,241,0.25);
+         background: rgba(99,102,241,0.07); border-radius: 5px; padding: 3px 7px; display: inline-block; margin-top: 9px; }
+
+  /* calendar */
+  .cal { margin-top: 38px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); overflow: hidden; box-shadow: var(--shadow); }
+  .cal-hd, .cal-bd { display: grid; grid-template-columns: repeat(7,1fr); }
+  .cal-hd { border-bottom: 1px solid var(--line-soft); background: var(--wash); }
+  .cal-hd div { padding: 11px 0; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+  .cell { min-height: 92px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 8px 8px 10px; }
+  .cell:nth-child(7n) { border-right: none; }
+  .cell .d { font-family: var(--mono); font-size: 10px; color: var(--faint); }
+  .slot { margin-top: 5px; border-radius: 5px; padding: 4px 6px; font-family: var(--mono); font-size: 9.5px; line-height: 1.3; }
+  .slot.meta { background: rgba(109,166,217,0.16); color: #1F4E77; }
+  .slot.tt { background: rgba(225,29,72,0.11); color: #A8163A; }
+  .slot.ig { background: rgba(147,51,234,0.11); color: #6B21A8; }
+  .slot.ln { background: rgba(22,163,74,0.11); color: #12703A; }
+  .cell.best { background: rgba(109,166,217,0.05); }
+
+  /* decay */
+  .decay { margin-top: 38px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); padding: 24px 22px 18px; box-shadow: var(--shadow); }
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
+  .legend span { font-size: 12.5px; color: var(--mute); display: flex; align-items: center; gap: 8px; }
+  .legend i { width: 16px; height: 2px; border-radius: 2px; display: block; }
+
+  /* visibility */
+  .vis { margin-top: 38px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--card); }
+  .vrow { display: grid; grid-template-columns: 148px 1fr 82px; align-items: center; gap: 14px; padding: 15px 18px; border-bottom: 1px solid var(--line-soft); }
+  .vrow:last-child { border-bottom: none; }
+  .vrow .eng { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .vrow .q { font-family: var(--mono); font-size: 11px; color: var(--mute); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .badge { font-family: var(--mono); font-size: 10px; border-radius: 999px; padding: 4px 9px; text-align: center; }
+  .badge.yes { background: rgba(22,163,74,0.09); color: #12703A; border: 1px solid rgba(22,163,74,0.25); }
+  .badge.no { background: rgba(225,29,72,0.07); color: #A8163A; border: 1px solid rgba(225,29,72,0.22); }
+
+  /* loop */
+  .loop { margin-top: 44px; border: 1px solid var(--line); border-radius: 18px; background: var(--card); padding: 10px; overflow-x: auto; box-shadow: var(--shadow); }
+  .loop svg { width: 820px; max-width: none; height: auto; margin: 0 auto; }
+
+  /* table */
+  .tablewrap { margin-top: 36px; overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; min-width: 660px; font-size: 14px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line-soft); }
+  th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); font-weight: 400; background: var(--wash); }
+  td { color: var(--body); }
+  td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+
+  /* faq */
+  details { border-bottom: 1px solid var(--line-soft); }
+  details:first-of-type { border-top: 1px solid var(--line-soft); }
+  summary { cursor: pointer; padding: 20px 4px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+            font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: -0.018em; color: var(--ink); }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-family: var(--mono); color: var(--faint); font-size: 18px; flex: none; }
+  details[open] summary::after { content: '\2013'; }
+  details .ans { padding: 0 4px 22px; }
+  details .ans p { font-size: 15px; margin: 0; }
+
+  /* closer */
+  .flowline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 34px;
+              font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 0.05em; }
+  .flowline b { color: var(--deep); font-weight: 400; }
+  footer { padding: 44px 0 72px; border-top: 1px solid var(--line-soft); }
+  footer p { font-size: 13px; color: var(--faint); margin: 0; }
+
+  /* live on the street */
+  .zone { margin-top: 40px; }
+  .zone + .zone { margin-top: 44px; }
+  .zonehd { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  .zonehd .l { font-family: var(--display); font-weight: 600; font-size: 17.5px; letter-spacing: -0.02em; color: var(--ink); }
+  .zonehd .r { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+  .boards { display: grid; gap: 12px; }
+  .b3 { grid-template-columns: repeat(3,1fr); }
+  .b4 { grid-template-columns: repeat(4,1fr); }
+  .board { border: 1px solid var(--line); border-radius: 13px; overflow: hidden; background: var(--card); box-shadow: var(--shadow); }
+  .board img { width: 100%; height: auto; }
+  .board .cap { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 13px; border-top: 1px solid var(--line-soft); }
+  .board .cap .t { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .board .cap .lang { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.09em; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--mute); flex: none; }
+  .board .cap .lang.ar { border-color: rgba(99,102,241,0.32); background: rgba(99,102,241,0.07); color: var(--n-localize); }
+  .pairnote { margin-top: 16px; padding: 16px 18px; border-radius: 12px; border: 1px solid rgba(99,102,241,0.22); background: rgba(99,102,241,0.045); }
+  .pairnote p { margin: 0; font-size: 14px; color: var(--body); }
+  .pairnote .h { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: -0.015em; color: var(--ink); display: block; margin-bottom: 5px; }
+
+  /* channel strip */
+  .chanstrip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 34px; }
+  .chan { width: 46px; height: 46px; border-radius: 12px; border: 1px solid var(--line); background: var(--card);
+          display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px rgba(12,13,16,0.04); flex: none; }
+  .chan img { width: 26px; height: 26px; border-radius: 6px; object-fit: contain; }
+  .chanmore { font-family: var(--mono); font-size: 11px; color: var(--mute); margin-left: 4px; }
+
+  @media (max-width: 960px) {
+    .b4 { grid-template-columns: repeat(2,1fr); }
+    .g4 { grid-template-columns: repeat(2,1fr); }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .scorewrap { grid-template-columns: 1fr; }
+    .bulk { grid-template-columns: 1fr; gap: 34px; }
+    .master { max-width: 256px; }
+  }
+  @media (max-width: 700px) {
+    :root { --gut: 20px; }
+    section { padding: 72px 0; }
+    .hero { padding: 56px 0 68px; }
+    .split { grid-template-columns: minmax(0, 240px); justify-content: start; max-width: 240px; }
+    .arrowcol { transform: rotate(90deg); padding: 2px 0; min-height: 0; }
+    .g2 { grid-template-columns: 1fr; }
+    .cal-hd div:nth-child(n+6), .cell:nth-child(7n), .cell:nth-child(7n-1) { display: none; }
+    .cal-hd, .cal-bd { grid-template-columns: repeat(5,1fr); }
+    .cell:nth-child(5n) { border-right: none; }
+    .vrow { grid-template-columns: 1fr 76px; }
+    .vrow .q { display: none; }
+    .scrollhint { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-top: 12px; }
+    .fan { grid-template-columns: repeat(auto-fill, minmax(88px,1fr)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="ElarisLabs AI — home"><img src="/brand/lockup-horizontal-light-bg.svg" alt="ElarisLabs AI" width="138" height="26" /></a>
+    <span class="rmeta">Inside ElarisLabs &nbsp;·&nbsp; 9 min read</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <nav class="crumbs"><a href="/">ElarisLabs</a> / <a href="/blogs">Blogs</a> / What ElarisLabs is</nav>
+    <p class="kicker">What ElarisLabs is</p>
+    <h1>Everyone asks which model.<br /><span class="accent ital">Wrong question.</span></h1>
+    <p class="lede">
+      ElarisLabs is a node-based creative operating system for advertising. Frontier image, video and audio
+      models sit behind a marketing harness, so what comes out reads as an ad rather than a generation. Every
+      creative is then scored, reviewed, published, measured and refreshed on the same canvas, with brand
+      memory underneath all of it.
+    </p>
+    <p>
+      Model access is not the product. Anyone can hand you a prompt box wired to a frontier endpoint, and a
+      dozen companies already do. What that gets you is a beautiful image no brand team will sign off on, no
+      media buyer can traffic, and nobody can tell you whether it will work.
+    </p>
+    <p>We built the layer between a model and a live campaign. That layer is the whole company.</p>
+
+    <div class="split">
+      <div class="panel">
+        <div class="p-hd"><span class="dot" style="background:var(--n-video)"></span>Raw model output</div>
+        <div class="p-bd">
+          <div class="frame-raw">
+            <span class="raw-blob"></span>
+            <span class="raw-txt">prompt &rarr; pixels</span>
+          </div>
+          <ul class="chiplist">
+            <li>logo redrawn</li><li>off-brand hex</li><li>no safe zone</li>
+            <li>offer block missing</li><li>one ratio only</li><li>unsigned-off</li>
+          </ul>
+        </div>
+      </div>
+      <div class="arrowcol" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+      </div>
+      <div class="panel">
+        <div class="p-hd"><span class="dot" style="background:var(--n-output)"></span>Through the harness</div>
+        <div class="p-bd">
+          <div class="shot"><img src="/blogs/what-elarislabs-is/assets/hr-v1.jpg" alt="HomesRus 9:16 social ad: bedroom set above a locked Flat 30% Off offer block with campaign dates and payment badges" /></div>
+          <ul class="chiplist good">
+            <li>logo placed, not drawn</li><li>brand hex locked</li><li>safe zones held</li>
+            <li>offer block intact</li><li>11 ratios</li><li>scored 84</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMODITY LAYER -->
+<section>
+  <div class="wrap">
+    <p class="kicker">The commodity layer</p>
+    <h2>Models are the <span class="ital">cheapest</span> part of the stack.</h2>
+    <p>
+      We run eleven frontier video models plus the current state of the art in image and audio, and we swap
+      them the week something better ships. That is deliberately unremarkable. Model quality is a moving
+      target every vendor buys at the same price, and a creative team does not want a model. They want an ad
+      that clears legal, matches the guideline deck, works in Arabic and fits nine placements.
+    </p>
+
+    <div class="rack">
+      <div class="chips">
+        <span class="chip">image · SOTA set</span>
+        <span class="chip">video · 11 frontier models</span>
+        <span class="chip">audio · TTS + music</span>
+        <span class="chip">upscale</span>
+        <span class="chip">inpaint</span>
+        <span class="chip">segment</span>
+        <span class="chip">vectorise</span>
+        <span class="chip">lipsync</span>
+      </div>
+      <div class="harness">
+        <span class="t">The marketing harness</span>
+        <span class="s">brand lock · layout grammar · type discipline · safe zones · format rules · legibility checks</span>
+      </div>
+      <p>Same models everyone has, constrained by rules a creative agency would recognise. The harness is why output looks briefed rather than prompted.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CANVAS -->
+<section>
+  <div class="wrap">
+    <p class="kicker">The core product</p>
+    <h2>A canvas of nodes, each shaped like a <span class="ital">real</span> agency task.</h2>
+    <p>
+      Creative Studio is node-based. You wire a graph, and each node does one job somebody in a creative
+      department already does by hand. We did not invent these steps. We sat with creative agencies and
+      shipped the steps they were already running across spreadsheets, Slack threads and eight open tabs.
+    </p>
+    <p>
+      Brand Pack takes one approved master and returns every ratio without re-cropping the logo. Localise
+      mirrors a layout into Arabic and retypesets it rather than flipping the canvas. Composer handles
+      compositing in layers you can still edit. Nothing here is a generic prompt box with a label on it.
+    </p>
+
+    <div class="canvas-shell">
+      <div class="canvas">
+        <svg viewBox="0 0 1000 430" preserveAspectRatio="none" aria-hidden="true">
+          <g stroke="rgba(12,13,16,0.16)" stroke-width="1.4" fill="none">
+            <path d="M198 96 C 248 96, 248 150, 298 150" />
+            <path d="M198 250 C 248 250, 248 196, 298 196" />
+            <path d="M198 250 C 248 250, 248 300, 298 300" />
+            <path d="M472 150 C 522 150, 522 196, 572 196" />
+            <path d="M472 300 C 522 300, 522 250, 572 250" />
+            <path d="M746 220 C 784 220, 794 220, 822 220" />
+          </g>
+          <g stroke="#16A34A" stroke-width="1.4" fill="none" opacity="0.55">
+            <path d="M746 260 C 776 300, 706 374, 566 374 C 386 374, 206 342, 136 302" stroke-dasharray="5 5" />
+          </g>
+        </svg>
+
+        <div class="node" style="left:24px; top:58px;">
+          <span class="bar" style="background:var(--n-brand)"></span>
+          <div class="nh"><span class="dot" style="background:var(--n-brand)"></span><span class="nt">Brand</span></div>
+          <div class="nb">locked hex, type, logo, voice</div>
+          <span class="port out"></span>
+        </div>
+        <div class="node" style="left:24px; top:212px;">
+          <span class="bar" style="background:var(--n-prompt)"></span>
+          <div class="nh"><span class="dot" style="background:var(--n-prompt)"></span><span class="nt">Brief</span></div>
+          <div class="nb">campaign line, offer, market</div>
+          <span class="port out"></span>
+        </div>
+        <div class="node" style="left:298px; top:112px;">
+          <span class="bar" style="background:var(--n-image)"></span>
+          <div class="nh"><span class="dot" style="background:var(--n-image)"></span><span class="nt">Brand Pack</span></div>
+          <div class="nb">1 master &rarr; 11 ratios</div>
+          <span class="port in"></span><span class="port out"></span>
+        </div>
+        <div class="node" style="left:298px; top:262px;">
+          <span class="bar" style="background:var(--n-localize)"></span>
+          <div class="nh"><span class="dot" style="background:var(--n-localize)"></span><span class="nt">Localise</span></div>
+          <div class="nb">EN &rarr; AR, mirrored + retypeset</div>
+          <span class="port in"></span><span class="port out"></span>
+        </div>
+        <div class="node" style="left:572px; top:158px;">
+          <span class="bar" style="background:var(--n-composer)"></span>
+          <div class="nh"><span class="dot" style="background:var(--n-composer)"></span><span class="nt">Composer</span></div>
+          <div class="nb">editable layers, not a flat png</div>
+          <span class="port in"></span><span class="port out"></span>
+        </div>
+        <div class="node" style="left:822px; top:182px;">
+          <span class="bar" style="background:var(--n-score)"></span>
+          <div class="nh"><span class="dot" style="background:var(--n-score)"></span><span class="nt">Score</span></div>
+          <div class="nb">predicted performance, pre-spend</div>
+          <span class="port in"></span>
+        </div>
+      </div>
+      <div class="canvas-cap">Creative Studio &nbsp;·&nbsp; the dashed green path is where live results re-enter the graph</div>
+    </div>
+    <p class="scrollhint">Scroll the canvas sideways</p>
+
+    <div class="grid g4">
+      <div class="card"><span class="tagdot" style="background:var(--n-brand)"></span><h3>Brand</h3><p>Every downstream node inherits the lock. Drift is not a setting you remember to switch on.</p></div>
+      <div class="card"><span class="tagdot" style="background:var(--n-image)"></span><h3>Brand Pack</h3><p>One approved concept, every placement ratio, logo placed rather than regenerated each time.</p></div>
+      <div class="card"><span class="tagdot" style="background:var(--n-localize)"></span><h3>Localise</h3><p>Arabic and other right-to-left markets get mirrored layouts and correct typesetting, not a flip.</p></div>
+      <div class="card"><span class="tagdot" style="background:var(--n-composer)"></span><h3>Composer</h3><p>Layers stay separable after generation, so the last 10% is an edit and not a re-roll.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BULK GENERATE -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Bulk generate</p>
+    <h2>One locked master. <span class="ital">Thousands</span> of variants.</h2>
+    <p>
+      This is the part agencies actually pay for. The bottleneck was never making the ad. It was making the
+      approved ad again, four hundred times, once per SKU and once per placement, without one of them
+      drifting.
+    </p>
+    <p>
+      So Bulk Generate takes a single layered master, the same PSD a designer already signed off, and treats
+      it as a contract. The offer block, the campaign dates, the payment badges, the helpline, the safe
+      zones: frozen. Only the slots you mark as variable move. Point it at a catalogue and it returns the
+      whole set.
+    </p>
+
+    <div class="bulk">
+      <div class="master">
+        <span class="tag">The master</span>
+        <div class="shot"><img src="/blogs/what-elarislabs-is/assets/hr-v1.jpg" alt="The approved HomesRus master: bedroom product scene above a locked Flat 30% Off offer block with campaign dates, payment badges and a delivery guarantee" /></div>
+      </div>
+      <div>
+        <p class="lockhd">What the contract holds</p>
+        <div class="lockrow">
+          <span class="ic lk">L</span>
+          <span><span class="lb">Offer block</span><br /><span class="ds">Sale lockup, the 30% figure, foil treatment and drop shadow. Pixel identical across the set.</span></span>
+        </div>
+        <div class="lockrow">
+          <span class="ic lk">L</span>
+          <span><span class="lb">Campaign dates</span><br /><span class="ds">24/06/2026 to 30/06/2026, written once. Change it once and all 530 update.</span></span>
+        </div>
+        <div class="lockrow">
+          <span class="ic lk">L</span>
+          <span><span class="lb">Trust furniture</span><br /><span class="ds">Shop with Confidence badge, helpline, Buy Now and PayLater marks, 24 hour delivery stamp.</span></span>
+        </div>
+        <div class="lockrow">
+          <span class="ic vr">V</span>
+          <span><span class="lb">Product scene</span><br /><span class="ds">The only region that moves. Bedroom, sofa, wardrobe, recliner, dining, one per SKU.</span></span>
+        </div>
+        <div class="lockrow">
+          <span class="ic vr">V</span>
+          <span><span class="lb">Ratio and crop</span><br /><span class="ds">9:16 for social, 6:5 for programmatic, and the rest. Recomposed rather than cropped.</span></span>
+        </div>
+        <div class="lockrow">
+          <span class="ic vr">V</span>
+          <span><span class="lb">Language</span><br /><span class="ds">The same contract re-typeset for Arabic, with the layout mirrored.</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fanout">
+      <div class="fanhd">
+        <span class="l">What comes back</span>
+        <span class="r">HomesRus · one approved concept, catalogue-wide</span>
+      </div>
+      <div class="fan">
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v1.jpg" alt="Bedroom set variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v2.jpg" alt="Sofa and coffee table variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v3.jpg" alt="Wardrobe variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v4.jpg" alt="Bedroom with nightstand variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v5.jpg" alt="Recliner variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v6.jpg" alt="Round dining set variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v7.jpg" alt="Dining table variant" loading="lazy" /></div>
+        <div class="cellimg"><img src="/blogs/what-elarislabs-is/assets/hr-v8.jpg" alt="Open plan dining variant" loading="lazy" /></div>
+        <div class="more"><span class="n">+522</span><span class="t">in the same run</span></div>
+      </div>
+      <p style="font-size:13.5px; color:var(--mute); margin-top:18px;">
+        Look at any two of these. The red block, the foil numerals, the date band and the badges do not move
+        by a pixel. That consistency is not discipline from whoever was on shift. It is the contract holding.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">1</div><div class="k">Layered master signed off by the client</div></div>
+      <div class="stat"><div class="v">530+</div><div class="k">Finished ads out of it, in under four weeks</div></div>
+      <div class="stat"><div class="v">9:16 · 6:5</div><div class="k">Social and programmatic from the same contract</div></div>
+      <div class="stat"><div class="v">Weeks &rarr; min</div><div class="k">Production time per placement set</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE ON THE STREET -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Live on the street</p>
+    <h2>Not mockups. <span class="ital">Paid</span> media, in Doha.</h2>
+    <p>
+      The harness is easy to claim and hard to fake, because out-of-home has no forgiving crop. A board is
+      four storeys up in daylight, at a fixed ratio, with a client's legal team already through it. This is
+      campaign creative produced on ElarisLabs and bought as paid digital OOH in Qatar.
+    </p>
+
+    <div class="zone">
+      <div class="zonehd">
+        <span class="l">McDonald's</span>
+        <span class="r">Doha · digital OOH · bilingual</span>
+      </div>
+      <div class="boards b3">
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/mcd-0c.jpg" alt="McDonald's digital OOH board in Doha reading Feels Like 0 degrees C, blue artwork with a Sprite passionfruit drink" loading="lazy" />
+          <div class="cap"><span class="t">Feels like 0&deg;C</span><span class="lang">EN</span></div>
+        </div>
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/mcd-mix.jpg" alt="McDonald's digital OOH board in Doha reading Taste The Mixperience, two Sprite mix drinks" loading="lazy" />
+          <div class="cap"><span class="t">The Mixperience</span><span class="lang">EN</span></div>
+        </div>
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/mcd-42ar.jpg" alt="McDonald's digital OOH board in Doha in Arabic reading 42 degrees, orange artwork, layout mirrored right to left" loading="lazy" />
+          <div class="cap"><span class="t">42&deg;</span><span class="lang ar">AR</span></div>
+        </div>
+      </div>
+
+      <div class="pairnote">
+        <p>
+          <span class="h">Look at the first and the third.</span>
+          Same campaign, same shoot, same talent. One board carries an English headline over a cold-weather
+          palette. The other carries the Arabic line with the layout mirrored, the numerals retypeset and the
+          logo moved to the correct corner, keyed to a 42&deg; day. That is the Localise node doing the thing
+          a canvas flip cannot do.
+        </p>
+      </div>
+    </div>
+
+    <div class="zone">
+      <div class="zonehd">
+        <span class="l">Qatar Development Bank</span>
+        <span class="r">SME programme · with ELAN Media</span>
+      </div>
+      <div class="boards b4">
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/qdb-elite.jpg" alt="Elite Food Industry digital OOH board in Qatar" loading="lazy" />
+          <div class="cap"><span class="t">Elite Food Industry</span><span class="lang">OOH</span></div>
+        </div>
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/qdb-fmf.jpg" alt="Fresh Meat Factory digital OOH board in Qatar" loading="lazy" />
+          <div class="cap"><span class="t">Fresh Meat Factory</span><span class="lang">OOH</span></div>
+        </div>
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/qdb-qlife.jpg" alt="QLife Pharma digital OOH board in Qatar" loading="lazy" />
+          <div class="cap"><span class="t">QLife Pharma</span><span class="lang">OOH</span></div>
+        </div>
+        <div class="board">
+          <img src="/blogs/what-elarislabs-is/assets/qdb-crystal.jpg" alt="Crystal Food Oil Factory digital OOH board in Qatar" loading="lazy" />
+          <div class="cap"><span class="t">Crystal Food Oil</span><span class="lang">OOH</span></div>
+        </div>
+      </div>
+      <p style="font-size:13.5px; color:var(--mute); margin-top:16px;">
+        Four SME brands under the QDB programme, each with its own lockup and its own product, all produced
+        through the same graph. One workflow, four brand contracts.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v">10.4M</div><div class="k">Impressions on the live McDonald's Qatar OOH run</div></div>
+      <div class="stat"><div class="v">9</div><div class="k">Live screens carrying the campaign</div></div>
+      <div class="stat"><div class="v">EN / AR</div><div class="k">Bilingual sets from one approved concept</div></div>
+      <div class="stat"><div class="v">Paid</div><div class="k">Bought media, not a portfolio render</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORING -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Scored on generation</p>
+    <h2>A number <span class="ital">before</span> the media spend, not after.</h2>
+    <p>
+      Every creative the canvas produces comes back with a predicted performance score against the brand it
+      was made for. Not a generic aesthetic rating. Scored on the things that decide whether an ad works:
+      whether the message survives a thumb-scroll, whether the CTA is findable, whether the brand is
+      identifiable in the first half second.
+    </p>
+    <p>
+      The point is triage. When a run returns 530 finished ads, somebody has to decide which eight go live.
+      That decision used to be a meeting.
+    </p>
+
+    <div class="scorewrap">
+      <div class="panel">
+        <div class="sc-hd"><span class="lbl">Predicted score</span><span class="big">84</span></div>
+        <div class="sc-bd">
+          <div><div class="bl"><span>Brand recall in 0.5s</span><span>91</span></div><div class="track"><div class="fill" style="width:91%"></div></div></div>
+          <div><div class="bl"><span>Message clarity</span><span>88</span></div><div class="track"><div class="fill" style="width:88%"></div></div></div>
+          <div><div class="bl"><span>CTA prominence</span><span>76</span></div><div class="track"><div class="fill warn" style="width:76%"></div></div></div>
+          <div><div class="bl"><span>Scroll-stop likelihood</span><span>81</span></div><div class="track"><div class="fill" style="width:81%"></div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px;">
+          <h3>It ranks the set</h3>
+          <p>530 variants sorted by predicted performance, so the shortlist is built before the review call rather than during it.</p>
+        </div>
+        <div class="card">
+          <h3>It closes the loop</h3>
+          <p>Once the campaign runs, real results come back and get compared against what was predicted. The score gets better because your own campaigns taught it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section>
+  <div class="wrap">
+    <p class="kicker">The review layer</p>
+    <h2>Pull your team onto the <span class="ital">node</span>, not into a thread.</h2>
+    <p>
+      Creative review is where most production time actually goes, and it almost never happens where the work
+      lives. Feedback arrives as a screenshot in a group chat, and somebody translates it back into a change.
+      So we put review inside the canvas.
+    </p>
+    <p>
+      Call anyone on your team onto a graph. They comment on a specific node, a specific layer, a specific
+      variant. Everyone sees the change as it happens. The comment is attached to the thing it is about,
+      which means nobody has to ask which version.
+    </p>
+
+    <div class="grid g2">
+      <div class="node" style="position:relative; width:auto; box-shadow:var(--shadow);">
+        <span class="bar" style="background:var(--n-composer)"></span>
+        <div class="nh" style="justify-content:space-between;">
+          <span style="display:flex;align-items:center;gap:7px;">
+            <span class="dot" style="background:var(--n-composer)"></span>
+            <span class="nt">Composer &nbsp;·&nbsp; Ramadan master</span>
+          </span>
+          <span class="avatars">
+            <span class="av" style="background:var(--deep)">S</span>
+            <span class="av" style="background:var(--brass)">Y</span>
+            <span class="av" style="background:#16A34A">R</span>
+          </span>
+        </div>
+        <div class="nb" style="padding:15px 13px 17px;">
+          3 people on this node · live
+          <span class="pin">comment pinned to layer: headline_ar</span>
+        </div>
+      </div>
+
+      <div class="thread">
+        <div class="cmt">
+          <span class="av" style="background:var(--brass); margin:0;">Y</span>
+          <div><div><span class="who">Yuvraj</span><span class="when">now</span></div>
+          <div class="txt">Arabic headline is sitting too close to the safe zone on the 6:5. Everything else is approved.</div></div>
+        </div>
+        <div class="cmt">
+          <span class="av" style="background:#16A34A; margin:0;">R</span>
+          <div><div><span class="who">Rakesh</span><span class="when">2m</span></div>
+          <div class="txt">Client wants the offer badge on all nine, not just the square.</div></div>
+        </div>
+        <div class="cmt" style="border-color:rgba(22,163,74,0.28); background:rgba(22,163,74,0.035);">
+          <span class="av" style="background:var(--deep); margin:0;">S</span>
+          <div><div><span class="who">Sarthak</span><span class="when">1m</span></div>
+          <div class="txt">Re-ran the node with the badge on. Both fixed, whole set refreshed.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOWS -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Reusable workflows</p>
+    <h2>The graph you built <span class="ital">is</span> the template.</h2>
+    <p>
+      The interesting thing about a node graph is that it is a record of how the work was done. So once a
+      multi-step ad is built and approved, save the whole graph. Next month the same campaign shape runs
+      against a new brief, a new catalogue or a new market, and the process does not get rebuilt from memory.
+    </p>
+    <p>
+      This is the difference between a tool that makes one asset fast and a tool that makes a team's process
+      repeatable. The HomesRus run above is not eight clever images. It is one saved workflow that can be
+      pointed at next season's catalogue tomorrow.
+    </p>
+  </div>
+</section>
+
+<!-- PUBLISH -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Out the door</p>
+    <h2>From the same node, <span class="ital">live</span>.</h2>
+    <p>
+      Approved creative pushes straight to your ad accounts, or onto the social scheduler. The calendar
+      optimises placement timing per channel and writes the captions in the brand's voice, so the handoff
+      from creative to distribution is not a download folder and a separate login.
+    </p>
+
+    <div class="chanstrip">
+      <span class="chan"><img src="/blogs/what-elarislabs-is/assets/meta.jpg" alt="Meta" loading="lazy" /></span>
+      <span class="chan"><img src="/blogs/what-elarislabs-is/assets/tiktok.png" alt="TikTok" loading="lazy" /></span>
+      <span class="chan"><img src="/blogs/what-elarislabs-is/assets/snapchat.png" alt="Snapchat" loading="lazy" /></span>
+      <span class="chan"><img src="/blogs/what-elarislabs-is/assets/linkedin.webp" alt="LinkedIn" loading="lazy" /></span>
+      <span class="chanmore">plus your connected ad accounts</span>
+    </div>
+
+    <div class="cal">
+      <div class="cal-hd"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div>
+      <div class="cal-bd">
+        <div class="cell"><span class="d">08</span><div class="slot meta">Meta · 19:30 · offer_ar</div></div>
+        <div class="cell best"><span class="d">09</span><div class="slot ig">IG · 20:00 · carousel</div><div class="slot tt">TikTok · 21:15</div></div>
+        <div class="cell"><span class="d">10</span><div class="slot ln">LinkedIn · 09:00</div></div>
+        <div class="cell best"><span class="d">11</span><div class="slot meta">Meta · 19:45 · 6:5</div><div class="slot ig">IG · 20:30</div></div>
+        <div class="cell"><span class="d">12</span><div class="slot tt">TikTok · 21:00 · 9:16</div></div>
+        <div class="cell"><span class="d">13</span></div>
+        <div class="cell best"><span class="d">14</span><div class="slot meta">Meta · 18:00 · weekend</div></div>
+      </div>
+    </div>
+    <p style="font-size:13.5px; color:var(--mute); margin-top:16px;">
+      Tinted days are where the scheduler expects the best return for this brand and market. Captions are
+      generated per channel, not copy-pasted across all of them.
+    </p>
+  </div>
+</section>
+
+<!-- MEASURE + DECAY -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Results and decay</p>
+    <h2>Published is the <span class="ital">middle</span> of the job.</h2>
+    <p>
+      Once it is live, results come back into the platform and get analysed against the creative that produced
+      them. What worked, what did not, and which of the 530 variants actually earned their placement.
+    </p>
+    <p>
+      Then the part nobody builds for. Creative fatigues. Performance on a winning ad decays on a curve that
+      is predictable if you are watching for it and invisible if you are not. We flag decay on live campaigns
+      and point back at the node that made the asset, so the refresh is a re-run rather than a new brief.
+    </p>
+
+    <div class="decay">
+      <svg viewBox="0 0 760 220" role="img" aria-label="Creative performance decaying over six weeks, with a flagged refresh point that restores performance">
+        <g stroke="rgba(12,13,16,0.08)" stroke-width="1">
+          <line x1="48" y1="20" x2="48" y2="176" />
+          <line x1="48" y1="176" x2="732" y2="176" />
+        </g>
+        <g stroke="rgba(12,13,16,0.06)" stroke-width="1" stroke-dasharray="3 6">
+          <line x1="48" y1="60" x2="732" y2="60" />
+          <line x1="48" y1="118" x2="732" y2="118" />
+        </g>
+        <text x="14" y="34" fill="#8A8F9C" font-family="Geist Mono, monospace" font-size="10">CTR</text>
+        <text x="52" y="196" fill="#B3B7C0" font-family="Geist Mono, monospace" font-size="10">wk 1</text>
+        <text x="330" y="196" fill="#B3B7C0" font-family="Geist Mono, monospace" font-size="10">wk 3</text>
+        <text x="670" y="196" fill="#B3B7C0" font-family="Geist Mono, monospace" font-size="10">wk 6</text>
+
+        <path d="M56 46 C 140 50, 210 74, 300 112 C 370 142, 420 156, 452 162" fill="none" stroke="#E11D48" stroke-width="2.4" stroke-linecap="round" />
+        <path d="M452 162 C 520 170, 620 174, 726 176" fill="none" stroke="#E11D48" stroke-width="2" stroke-dasharray="5 5" opacity="0.42" />
+        <path d="M452 162 C 476 108, 500 62, 540 52 C 620 40, 680 58, 726 74" fill="none" stroke="#16A34A" stroke-width="2.4" stroke-linecap="round" />
+
+        <line x1="452" y1="30" x2="452" y2="168" stroke="#2D4A6B" stroke-width="1" stroke-dasharray="4 4" opacity="0.5" />
+        <circle cx="452" cy="162" r="4.5" fill="#2D4A6B" />
+        <text x="462" y="34" fill="#2D4A6B" font-family="Geist Mono, monospace" font-size="10.5">decay flagged</text>
+        <text x="462" y="49" fill="#8A8F9C" font-family="Geist Mono, monospace" font-size="10">re-run the node</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#E11D48"></i> Live creative, fatiguing</span>
+        <span><i style="background:#E11D48;opacity:.42"></i> If nobody intervenes</span>
+        <span><i style="background:#16A34A"></i> Refreshed from the same graph</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI VISIBILITY -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Brand AI visibility</p>
+    <h2>Your brand now has an audience of <span class="ital">machines</span>.</h2>
+    <p>
+      A growing share of buying decisions starts inside an answer engine rather than a search results page.
+      If a model does not know your brand, or confuses it with someone else, that is a distribution problem
+      with no ad slot to buy.
+    </p>
+    <p>
+      So the platform checks it. We run your brand and category questions across the major answer engines and
+      report whether you get cited, who gets cited instead, and which sources the engines are actually
+      pulling from. It sits alongside the campaign reporting because it is the same question in a new
+      channel: did anyone see us.
+    </p>
+
+    <div class="vis">
+      <div class="vrow"><span class="eng">ChatGPT</span><span class="q">best ai ad creative tool for arabic markets</span><span class="badge yes">cited</span></div>
+      <div class="vrow"><span class="eng">Perplexity</span><span class="q">creative automation platform gcc</span><span class="badge yes">cited</span></div>
+      <div class="vrow"><span class="eng">Claude</span><span class="q">how to localise ad creative for rtl</span><span class="badge yes">cited</span></div>
+      <div class="vrow"><span class="eng">Gemini</span><span class="q">tools that resize ads without cropping the logo</span><span class="badge no">absent</span></div>
+      <div class="vrow"><span class="eng">AI Overviews</span><span class="q">predictive creative scoring</span><span class="badge no">absent</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND MEMORY -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Brand memory</p>
+    <h2>Everything that happens is <span class="ital">recorded</span> against the brand.</h2>
+    <p>
+      Every generation, every approved asset, every comment, every score, every published result, every decay
+      flag. It all writes back to one brand record. That record is what makes the next campaign cheaper than
+      the last one.
+    </p>
+    <p>
+      This is why the whole lifecycle has to live in one place. A scoring model that never sees real results
+      stays generic. A localisation step that does not know which Arabic headline got approved last time
+      relearns it every time. Split the lifecycle across five tools and the memory is the thing you lose.
+    </p>
+
+    <div class="loop">
+      <svg viewBox="0 0 820 300" role="img" aria-label="The ElarisLabs lifecycle loop: brand memory feeds create, score, review, publish, measure and refresh, all writing back to brand memory">
+        <ellipse cx="410" cy="150" rx="320" ry="108" fill="none" stroke="rgba(12,13,16,0.1)" stroke-width="1.4" stroke-dasharray="6 7" />
+        <g stroke="rgba(12,13,16,0.13)" stroke-width="1" stroke-dasharray="3 5">
+          <line x1="170" y1="86" x2="323" y2="138" />
+          <line x1="364" y1="50" x2="384" y2="126" />
+          <line x1="600" y1="86" x2="497" y2="138" />
+          <line x1="640" y1="216" x2="497" y2="166" />
+          <line x1="410" y1="250" x2="410" y2="174" />
+          <line x1="180" y1="216" x2="323" y2="166" />
+        </g>
+
+        <rect x="323" y="126" width="174" height="48" rx="12" fill="#FFFFFF" stroke="rgba(217,138,11,0.45)" />
+        <circle cx="347" cy="150" r="4" fill="#D98A0B" />
+        <text x="360" y="147" fill="#0C0D10" font-family="Bricolage Grotesque, sans-serif" font-weight="600" font-size="14">Brand memory</text>
+        <text x="360" y="163" fill="#8A8F9C" font-family="Geist Mono, monospace" font-size="9.5">every run, written back</text>
+
+        <g font-family="Geist, sans-serif" font-size="12.5" font-weight="600">
+          <g><rect x="42" y="60" width="128" height="40" rx="10" fill="#FFFFFF" stroke="rgba(12,13,16,0.1)" /><circle cx="62" cy="80" r="3.5" fill="#8B3FD4" /><text x="74" y="84" fill="#0C0D10">Create</text></g>
+          <g><rect x="300" y="10" width="128" height="40" rx="10" fill="#FFFFFF" stroke="rgba(12,13,16,0.1)" /><circle cx="320" cy="30" r="3.5" fill="#2D6FA8" /><text x="332" y="34" fill="#0C0D10">Score</text></g>
+          <g><rect x="600" y="60" width="128" height="40" rx="10" fill="#FFFFFF" stroke="rgba(12,13,16,0.1)" /><circle cx="620" cy="80" r="3.5" fill="#0D9488" /><text x="632" y="84" fill="#0C0D10">Review</text></g>
+          <g><rect x="640" y="200" width="128" height="40" rx="10" fill="#FFFFFF" stroke="rgba(12,13,16,0.1)" /><circle cx="660" cy="220" r="3.5" fill="#16A34A" /><text x="672" y="224" fill="#0C0D10">Publish</text></g>
+          <g><rect x="346" y="250" width="128" height="40" rx="10" fill="#FFFFFF" stroke="rgba(12,13,16,0.1)" /><circle cx="366" cy="270" r="3.5" fill="#2D4A6B" /><text x="378" y="274" fill="#0C0D10">Measure</text></g>
+          <g><rect x="52" y="200" width="128" height="40" rx="10" fill="#FFFFFF" stroke="rgba(12,13,16,0.1)" /><circle cx="72" cy="220" r="3.5" fill="#E11D48" /><text x="84" y="224" fill="#0C0D10">Refresh</text></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SIDE BY SIDE -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Side by side</p>
+    <h2>What model access gives you, and what a <span class="ital">platform</span> does.</h2>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Job</th><th>A model wrapper</th><th>ElarisLabs</th></tr></thead>
+        <tbody>
+          <tr><td>Generate</td><td>A prompt box on a frontier endpoint</td><td>Task-shaped nodes built with creative agencies</td></tr>
+          <tr><td>Stay on brand</td><td>You paste the hex into the prompt and hope</td><td>Brand lock inherited by every downstream node</td></tr>
+          <tr><td>Scale a catalogue</td><td>Re-prompt per SKU, the offer block drifts</td><td>One locked master, offer block frozen by contract</td></tr>
+          <tr><td>Every placement</td><td>Re-prompt per ratio, logo redrawn each time</td><td>One master, every ratio, logo placed not generated</td></tr>
+          <tr><td>Arabic and RTL</td><td>Flip the canvas, break the typesetting</td><td>Mirrored layouts, retypeset, safe zones held</td></tr>
+          <tr><td>Decide what ships</td><td>A review meeting</td><td>Predicted score on every variant, pre-spend</td></tr>
+          <tr><td>Review</td><td>Screenshots in a group chat</td><td>Comments pinned to the node, live for the team</td></tr>
+          <tr><td>Repeat the process</td><td>Rebuild it from memory</td><td>Save the graph, re-run against a new brief</td></tr>
+          <tr><td>Distribute</td><td>Download folder, separate login</td><td>Push to ad accounts, scheduler, optimised calendar</td></tr>
+          <tr><td>Learn from results</td><td>Nothing comes back</td><td>Results analysed against the creative that made them</td></tr>
+          <tr><td>Keep it working</td><td>Notice the drop next quarter</td><td>Decay flagged on live campaigns, refresh from the graph</td></tr>
+          <tr><td>Get found by AI</td><td>Not a feature</td><td>Brand AI visibility tracked across answer engines</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap narrow">
+    <p class="kicker">Questions we get</p>
+    <h2>The short answers.</h2>
+
+    <details open>
+      <summary>What is ElarisLabs?</summary>
+      <div class="ans"><p>ElarisLabs is a node-based creative operating system for advertising. It generates ad creative with frontier image, video and audio models behind a marketing harness, scores each creative for predicted performance, runs review inside the canvas, publishes to ad accounts and social channels, then measures results and flags creative decay. Everything writes back to a single brand memory.</p></div>
+    </details>
+
+    <details>
+      <summary>Is ElarisLabs just an AI model provider?</summary>
+      <div class="ans"><p>No. We use the current state of the art in image, video and audio, and we swap models whenever something better ships. Model access is the commodity layer. The product is everything wrapped around it: the harness that makes output look like an ad, the brand lock, bulk generation from a locked master, the review layer, the scoring, the distribution and the measurement loop.</p></div>
+    </details>
+
+    <details>
+      <summary>What does bulk generate mean?</summary>
+      <div class="ans"><p>Bulk generate takes one approved layered master and produces thousands of finished ad variants from it. Elements marked as locked, such as the offer block, campaign dates and payment badges, stay pixel identical across the whole set, while the product scene, ratio and language vary. HomesRus used it to produce over 530 finished ads from a single signed-off concept in under four weeks.</p></div>
+    </details>
+
+    <details>
+      <summary>What does node-based mean here?</summary>
+      <div class="ans"><p>You build creative as a graph rather than a single prompt. Each node performs one specific advertising task, such as Brand Pack for multi-ratio resizing or Localise for right-to-left markets. Because the graph is a record of the process, you can save it and re-run it against a new brief or catalogue.</p></div>
+    </details>
+
+    <details>
+      <summary>What is predictive creative scoring?</summary>
+      <div class="ans"><p>A predicted performance score attached to each creative at the moment it is generated, before any media spend. It rates the things that determine whether an ad works, including brand recall speed, message clarity and CTA prominence, and it improves as real campaign results come back into the platform.</p></div>
+    </details>
+
+    <details>
+      <summary>How does ElarisLabs handle Arabic and right-to-left creative?</summary>
+      <div class="ans"><p>The Localise node mirrors the layout and retypesets the text rather than flipping the canvas. Logo lockups, CTA direction, numerals and safe zones are handled as part of the mirror, so an approved English master ships as a correct Arabic ad. Bilingual sets built this way are running as paid digital out-of-home in Doha.</p></div>
+    </details>
+
+    <details>
+      <summary>What is creative decay?</summary>
+      <div class="ans"><p>The predictable fall in performance of a creative as an audience becomes familiar with it. ElarisLabs monitors live campaigns for decay and points back at the node that produced the asset, so the refresh is a re-run of an approved graph rather than a new brief.</p></div>
+    </details>
+
+    <details>
+      <summary>What is a brand AI visibility check?</summary>
+      <div class="ans"><p>A recurring check of whether answer engines such as ChatGPT, Perplexity, Claude, Gemini and Google AI Overviews cite your brand for the questions your buyers ask. It reports whether you appear, who appears instead, and which sources the engines pull from.</p></div>
+    </details>
+  </div>
+</section>
+
+<!-- CLOSER -->
+<section>
+  <div class="wrap">
+    <h2>One canvas for everything an ad <span class="ital">needs</span>.</h2>
+    <p>
+      A brand profile, the generation, the harness that makes it look briefed, the locked master that fans out
+      into a catalogue, the score that says what to ship, the team that signs it off, the schedule that puts
+      it live, the results that come back, the decay flag that says refresh, and the memory that keeps all of
+      it. In one tool, because the loop only compounds when nothing leaves the building.
+    </p>
+    <p>That is what we are. Not the model. The rest of it.</p>
+
+    <div class="flowline">
+      <b>Brand</b> &rarr; <b>Create</b> &rarr; <b>Score</b> &rarr; <b>Review</b> &rarr; <b>Publish</b> &rarr; <b>Measure</b> &rarr; <b>Refresh</b> &rarr; <b>Brand memory</b>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><p>ElarisLabs &nbsp;·&nbsp; the AI-native creative operating system for brands.</p></div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Not Model Access: What ElarisLabs Actually Is",
+  "description": "ElarisLabs is a node-based creative operating system for advertising. Frontier models sit behind a marketing harness, one locked master fans out into thousands of variants, and every creative is scored, reviewed, published, measured and refreshed on one canvas.",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.elarislabs.ai/blogs/what-elarislabs-is" },
+  "publisher": { "@type": "Organization", "name": "ElarisLabs", "url": "https://www.elarislabs.ai" },
+  "about": [
+    { "@type": "Thing", "name": "creative automation" },
+    { "@type": "Thing", "name": "bulk ad variant generation" },
+    { "@type": "Thing", "name": "RTL ad localisation" },
+    { "@type": "Thing", "name": "predictive creative scoring" },
+    { "@type": "Thing", "name": "creative decay" }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is ElarisLabs?", "acceptedAnswer": { "@type": "Answer", "text": "ElarisLabs is a node-based creative operating system for advertising. It generates ad creative with frontier image, video and audio models behind a marketing harness, scores each creative for predicted performance, runs review inside the canvas, publishes to ad accounts and social channels, then measures results and flags creative decay. Everything writes back to a single brand memory." } },
+    { "@type": "Question", "name": "Is ElarisLabs just an AI model provider?", "acceptedAnswer": { "@type": "Answer", "text": "No. ElarisLabs uses the current state of the art in image, video and audio models and swaps them whenever something better ships. Model access is the commodity layer. The product is the harness that makes output look like an ad, plus brand lock, bulk generation from a locked master, a review layer, predictive scoring, distribution and the measurement loop." } },
+    { "@type": "Question", "name": "What does bulk generate mean in ElarisLabs?", "acceptedAnswer": { "@type": "Answer", "text": "Bulk generate takes one approved layered master and produces thousands of finished ad variants from it. Locked elements such as the offer block, campaign dates and payment badges stay pixel identical across the set, while the product scene, ratio and language vary. HomesRus produced over 530 finished ads from a single signed-off concept in under four weeks." } },
+    { "@type": "Question", "name": "What does node-based mean in ElarisLabs Creative Studio?", "acceptedAnswer": { "@type": "Answer", "text": "Creative is built as a graph rather than a single prompt. Each node performs one specific advertising task, such as Brand Pack for multi-ratio resizing or Localise for right-to-left markets. Because the graph records the process, it can be saved and re-run against a new brief or catalogue." } },
+    { "@type": "Question", "name": "What is predictive creative scoring?", "acceptedAnswer": { "@type": "Answer", "text": "A predicted performance score attached to each creative at the moment it is generated, before any media spend. It rates brand recall speed, message clarity, CTA prominence and scroll-stop likelihood, and improves as real campaign results return to the platform." } },
+    { "@type": "Question", "name": "How does ElarisLabs handle Arabic and right-to-left ad creative?", "acceptedAnswer": { "@type": "Answer", "text": "The Localise node mirrors the layout and retypesets the text rather than flipping the canvas. Logo lockups, CTA direction, numerals and safe zones are handled as part of the mirror, so an approved English master ships as a correct Arabic ad." } },
+    { "@type": "Question", "name": "What is creative decay?", "acceptedAnswer": { "@type": "Answer", "text": "Creative decay is the predictable fall in performance of an ad as its audience becomes familiar with it. ElarisLabs monitors live campaigns for decay and points back at the node that produced the asset, so refreshing it is a re-run of an approved graph." } },
+    { "@type": "Question", "name": "What is a brand AI visibility check?", "acceptedAnswer": { "@type": "Answer", "text": "A recurring check of whether answer engines such as ChatGPT, Perplexity, Claude, Gemini and Google AI Overviews cite a brand for the questions its buyers ask. It reports whether the brand appears, who appears instead, and which sources the engines pull from." } }
+  ]
+}
+</script>
+
+</body>
+</html>

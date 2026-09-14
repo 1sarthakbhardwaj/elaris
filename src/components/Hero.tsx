@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { STUDIO_APP_URL } from "@/lib/site";
+import Icon from "./Icon";
 import PlatformLogos from "./PlatformLogos";
 
 /** Rotating tail — types in, pauses, erases, then advances. */
@@ -381,9 +382,11 @@ export default function Hero() {
                 className="group bg-gradient-to-br from-lume to-halo text-coal text-sm font-semibold px-5 py-2.5 rounded-lg flex items-center gap-1.5 shrink-0 shadow-[0_0_30px_-5px_rgba(168,205,239,0.6)] hover:shadow-[0_0_50px_-5px_rgba(168,205,239,0.85)] hover:brightness-110 transition-all"
               >
                 Generate
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform group-hover:translate-x-0.5">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
+                <Icon
+                  name="arrowRight"
+                  size={13}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
               </button>
             </div>
           </div>

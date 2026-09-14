@@ -42,6 +42,14 @@ module.exports = {
           destination: "/brand/index.html",
         },
         {
+          source: "/blogs/what-elarislabs-is",
+          destination: "/blogs/what-elarislabs-is/what-elarislabs-is.html",
+        },
+        {
+          source: "/blogs/what-elarislabs-is/",
+          destination: "/blogs/what-elarislabs-is/what-elarislabs-is.html",
+        },
+        {
           source: "/blogs/seedance-2-5-vs-minimax-h3",
           destination:
             "/blogs/seedance-2-5-vs-minimax-h3/seedance-2-5-vs-minimax-h3.html",

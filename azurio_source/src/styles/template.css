@@ -1,0 +1,589 @@
+/* Template styles — same order as the original HTML link tags. */
+/* Paths are relative to this file; assets in url() inside those CSS files resolve from public/css/. */
+@import "../public/css/loader.css";
+@import "../public/css/plugins.css";
+@import "../public/css/main.css";
+@import "./menu-open.css";
+.image-auto {
+  /* width: auto !important; */
+  height: auto !important;
+}
+
+/* Services stack: main.css .line { translateY(100%) } applies vendor-prefixed transforms; GSAP’s
+   y uses unprefixed transform — boxes and painted text desync. Neutralize so only inline GSAP owns y. */
+.mxd-stack-services .services-card__title .line,
+.mxd-stack-services .services-card__descr .line {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+/* Preview / landing demo stack — same global .line + SplitText as services stack */
+.mxd-demo-stack .demo-card__title .line,
+.mxd-demo-stack .demo-card__descr .line {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+/* Overlay menu: active section — theme accent on label / index / arrow (no background) */
+.mxd-menu .main-menu__item.main-menu__item--current .main-menu__number {
+  color: var(--accent);
+}
+.mxd-menu .main-menu__item.main-menu__item--current .main-menu__caption {
+  color: var(--accent);
+}
+.mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle svg {
+  fill: var(--accent);
+}
+.mxd-menu .main-menu__item.main-menu__item--current.open .main-menu__caption {
+  color: var(--accent);
+}
+.no-touch .mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle:hover .main-menu__caption {
+  color: var(--accent);
+}
+.no-touch .mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle:hover svg {
+  fill: var(--accent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Article extras
+   Blocks main.css does not ship: data table, code panel, stat row, media
+   figure, split layout, synced video compare. Everything below is built on
+   the theme's own tokens, so the light/dark toggle keeps working.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Meta/caption line. main.css exposes --t-medium as a variable but ships no
+   caption class, so article captions need one. */
+.article-meta {
+  font: normal 600 1.3rem/1.6 var(--_font-accent);
+  color: var(--t-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.article-lead {
+  font: normal 700 2rem/1.4 var(--_font-default);
+  color: var(--t-bright);
+  letter-spacing: -0.04rem;
+}
+
+/* Press outlet logo: a dark-on-transparent wordmark, so it needs a light
+   plate to stay legible when the dark scheme is active. */
+.press-feature__logo {
+  width: auto;
+  height: 4rem;
+  max-width: 22rem;
+  object-fit: contain;
+  margin-bottom: 1.6rem;
+  padding: 0.8rem 1.4rem;
+  background-color: var(--nl-white);
+}
+
+/* .mxd-stats-lines wraps two-up, so the CTA row needs clearance from the
+   last stat caption. */
+.press-feature__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.6rem 2.8rem;
+  margin-top: 6rem;
+}
+
+/* main.css collapses list gap when there is no nested list; step lists read
+   better with the rhythm kept. */
+.mxd-article__content ol.article-steps,
+.mxd-article__content ul.article-bullets {
+  gap: 1.2rem;
+}
+
+/* Data table */
+.article-table {
+  width: 100%;
+  overflow-x: auto;
+}
+.article-table table {
+  width: 100%;
+  min-width: 52rem;
+  border-collapse: collapse;
+}
+.article-table th,
+.article-table td {
+  padding: 1.6rem 2.4rem 1.6rem 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--st-muted);
+}
+.article-table th {
+  font: normal 600 1.3rem/1.6 var(--_font-accent);
+  color: var(--t-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  border-bottom-color: var(--st-medium);
+  white-space: nowrap;
+}
+.article-table td {
+  font: normal 500 1.6rem/1.5 var(--_font-default);
+  color: var(--t-medium);
+}
+.article-table tbody td:first-child {
+  color: var(--t-bright);
+  font-weight: 700;
+}
+.article-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Code panel */
+.article-code {
+  width: 100%;
+  border: 1px solid var(--st-medium);
+  background-color: var(--base-tint);
+}
+.article-code__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.4rem 2rem;
+  border-bottom: 1px solid var(--st-medium);
+}
+.article-code__name {
+  font: normal 600 1.3rem/1.4 var(--_font-accent);
+  color: var(--t-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.article-code__copy {
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: normal 600 1.3rem/1.4 var(--_font-accent);
+  color: var(--t-bright);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  transition: color var(--_animspeed-medium);
+}
+.no-touch .article-code__copy:hover {
+  color: var(--accent);
+}
+.article-code__body {
+  margin: 0;
+  padding: 2.4rem 2rem;
+  max-height: 40rem;
+  overflow: auto;
+}
+.article-code__body code {
+  font: normal 500 1.4rem/1.7 var(--_font-accent);
+  color: var(--t-bright);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.article-code--prose .article-code__body code {
+  color: var(--t-medium);
+}
+
+/* Stat row */
+.article-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  width: 100%;
+  background-color: var(--st-muted);
+  border: 1px solid var(--st-muted);
+}
+.article-stats__item {
+  padding: 2.8rem 2.4rem;
+  background-color: var(--base);
+}
+.article-stats__value {
+  font: normal 700 3.4rem/1 var(--_font-default);
+  color: var(--t-bright);
+  letter-spacing: -0.1rem;
+}
+.article-stats__label {
+  margin-top: 1rem;
+  font: normal 600 1.3rem/1.5 var(--_font-accent);
+  color: var(--t-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+@media only screen and (min-width: 768px) {
+  .article-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Media figure: video + iframe embeds */
+.article-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+}
+.article-figure video,
+.article-figure iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  background-color: var(--base-tint);
+}
+.article-figure iframe {
+  aspect-ratio: 16 / 9;
+}
+.article-figure--portrait video {
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+
+/* Two-up split that does not inherit .block-image row behaviour.
+   minmax(0, 1fr): media has an intrinsic min-content width, so plain 1fr
+   tracks refuse to shrink and the row overflows the article column. */
+.article-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .article-split {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.article-split > * {
+  min-width: 0;
+}
+
+/* Synced video compare */
+.article-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 100%;
+}
+.article-compare__pane {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-width: 0;
+}
+/* Both takes are 16:9; normalise so the two panes line up frame for frame. */
+.article-compare__pane video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: var(--base-tint);
+}
+.article-compare__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid var(--st-muted);
+}
+.article-compare__time {
+  margin-left: auto;
+  font: normal 600 1.6rem/1 var(--_font-accent);
+  color: var(--t-bright);
+}
+.article-beats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.article-beat {
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--st-medium);
+  background: none;
+  cursor: pointer;
+  font: normal 600 1.2rem/1.2 var(--_font-accent);
+  color: var(--t-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  transition:
+    color var(--_animspeed-medium),
+    border-color var(--_animspeed-medium);
+}
+.no-touch .article-beat:hover {
+  color: var(--t-bright);
+  border-color: var(--t-bright);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Hero — falling creatives (Matter.js)
+   A decorative layer inside the hero: finished work drops in, tumbles and
+   settles at the bottom of the first screen. Everything here is built so the
+   layer never steals a click from the hero's own controls.
+   ───────────────────────────────────────────────────────────────────────── */
+.hero-creatives-layer {
+  position: absolute;
+  inset: 0;
+  /* z-index:0 (not auto) so the layer forms its own stacking context and
+     traps `.object { z-index: 2 }` from main.css inside it. Without that the
+     cards would paint over the hero's 3D image track and headline. At 0 the
+     layer still sits above the video and its multiply cover, and below every
+     later sibling. */
+  z-index: 0;
+  /* The hero's links, scroll cue and 3D image track must stay clickable.
+     .object re-enables pointer events on the cards themselves (main.css),
+     and their events still bubble to the Matter mouse listener. */
+  pointer-events: none;
+}
+.hero-creatives-layer > section {
+  width: 100%;
+  height: 100%;
+}
+
+/* main.css paints .mxd-gravity-section with --base-opp, which would cover the
+   hero video. Here the layer has to stay transparent. */
+.hero-creatives {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+}
+
+.hero-creatives__object {
+  width: 8rem;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  opacity: 0.62;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.45);
+  transition: opacity var(--_animspeed-medium);
+}
+/* main.css forces img { height: 100% } on .object-image, which collapses a
+   card whose height comes from its own aspect ratio. */
+.hero-creatives__object img {
+  height: auto;
+  object-fit: cover;
+}
+.hero-creatives__object--1 {
+  width: 6.4rem;
+}
+.hero-creatives__object--2 {
+  width: 9.6rem;
+}
+.no-touch .hero-creatives__object:hover {
+  opacity: 0.95;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-creatives__object {
+    width: 12rem;
+  }
+  .hero-creatives__object--1 {
+    width: 9.5rem;
+  }
+  .hero-creatives__object--2 {
+    width: 14.5rem;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .hero-creatives__object {
+    width: 14rem;
+  }
+  .hero-creatives__object--1 {
+    width: 11rem;
+  }
+  .hero-creatives__object--2 {
+    width: 17rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-creatives-layer {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Offerings showcase — replaces the five-product list
+   Five discipline cards, each led by a delivered creative.
+   ───────────────────────────────────────────────────────────────────────── */
+.mxd-offerings__intro {
+  margin-bottom: 2.4rem;
+  font: normal 500 1.6rem/1.6 var(--_font-default);
+  color: var(--t-medium);
+  max-width: 42rem;
+}
+
+.mxd-offerings {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media only screen and (min-width: 576px) {
+  .mxd-offerings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media only screen and (min-width: 992px) {
+  .mxd-offerings {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .mxd-offerings {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.mxd-offerings__item {
+  min-width: 0;
+}
+
+.mxd-offerings__card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  border: 1px solid var(--st-muted);
+  border-radius: 0.8rem;
+  background-color: var(--base-tint);
+  overflow: hidden;
+  transition:
+    border-color var(--_animspeed-medium),
+    transform var(--_animspeed-medium);
+}
+.no-touch .mxd-offerings__item:hover .mxd-offerings__card {
+  border-color: var(--st-medium);
+  transform: translateY(-0.4rem);
+}
+
+.mxd-offerings__media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.4rem 2.4rem 0;
+  /* The five source creatives have different native ratios, so the media box
+     is fixed and the art is contained inside it — cropping a 9:16 vertical to
+     a shared ratio would cut the headline out of the localisation pieces. */
+  min-height: 24rem;
+}
+.mxd-offerings__media--landscape {
+  min-height: 18rem;
+}
+
+.mxd-offerings__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 26rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.28);
+}
+.mxd-offerings__media--landscape .mxd-offerings__image {
+  width: 100%;
+  max-height: none;
+}
+
+.mxd-offerings__format {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.3rem;
+  background-color: rgba(var(--base-rgb), 0.82);
+  font: normal 600 1.1rem/1 var(--_font-accent);
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: var(--t-medium);
+}
+
+.mxd-offerings__body {
+  padding: 2rem 2.4rem 2.4rem;
+  margin-top: auto;
+}
+.mxd-offerings__title {
+  margin: 0 0 0.6rem;
+  font: normal 700 2rem/1.2 var(--_font-default);
+  letter-spacing: -0.04rem;
+  color: var(--t-bright);
+}
+.mxd-offerings__caption {
+  margin: 0 0 1.2rem;
+  font: normal 500 1.5rem/1.5 var(--_font-default);
+  color: var(--t-medium);
+}
+.mxd-offerings__client {
+  margin: 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--st-muted);
+  font: normal 600 1.15rem/1.4 var(--_font-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06rem;
+  color: var(--t-medium);
+  opacity: 0.75;
+}
+
+.mxd-offerings__note {
+  margin: 2.8rem 0 0;
+  font: normal 500 1.2rem/1.6 var(--_font-accent);
+  color: var(--t-medium);
+  opacity: 0.6;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Global polish
+   Rhythm and legibility corrections applied across the page rather than to a
+   single section. All of it rides on the theme's own tokens so the light and
+   dark schemes keep working.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* 1. Section titles: the theme lets the eyebrow tag sit tight against the
+   headline at large sizes, which reads as a single clump. */
+.mxd-section-title__title .meta-tag {
+  margin-bottom: 1.6rem;
+}
+@media only screen and (min-width: 1200px) {
+  .mxd-section-title__title .meta-tag {
+    margin-bottom: 2.4rem;
+  }
+}
+
+/* 2. Headline tracking: the display face is set for large sizes, so the
+   default tracking opens up too much below ~4rem. */
+.mxd-section-title__title h2,
+.mxd-section-title__title h3 {
+  letter-spacing: -0.06rem;
+}
+
+/* 3. Long measures hurt scanning; cap body copy inside section headers. */
+.mxd-section-title__data p {
+  max-width: 46rem;
+}
+
+/* 4. Consistent focus ring. The theme relies on the UA default, which is
+   invisible against the dark scheme. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 0.2rem;
+}
+
+/* 5. Images should never overflow their grid track on narrow viewports. */
+img {
+  max-width: 100%;
+}
+
+/* 6. Vertical rhythm between stacked sections was inconsistent between the
+   pinned and non-pinned blocks. */
+@media only screen and (min-width: 1200px) {
+  .mxd-section.padding-bottom-default {
+    padding-bottom: 12rem;
+  }
+}
