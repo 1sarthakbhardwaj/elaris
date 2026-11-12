@@ -15,6 +15,12 @@ Open http://localhost:3000
 
 Connect this folder to a [Mintlify](https://mintlify.com) project (GitHub app) and push to your default branch.
 
+## Hosting
+
+- The Mintlify project `elarislabs-87` builds this folder from `main` and hosts it.
+- Live docs: https://elarislabs-87.mintlify.app/docs. Use this link wherever you point to the docs.
+- `www.elarislabs.ai` now runs on Framer. The `/docs` rewrites in `../next.config.js` only worked on the old Next.js deployment, so `www.elarislabs.ai/docs` returns 404.
+
 ## Structure
 
 - `docs.json` — navigation, theme, branding
