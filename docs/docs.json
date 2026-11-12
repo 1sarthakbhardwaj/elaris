@@ -150,6 +150,69 @@
         ]
       },
       {
+        "tab": "AI Visibility",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": [
+              "visibility/overview",
+              "visibility/how-it-works",
+              "visibility/metrics",
+              "visibility/using-the-app",
+              "visibility/workspace",
+              "visibility/credits",
+              "visibility/assistants"
+            ]
+          },
+          {
+            "group": "AI traffic",
+            "pages": [
+              "visibility/ai-traffic",
+              "visibility/readability",
+              "visibility/vercel",
+              "visibility/cloudflare"
+            ]
+          },
+          {
+            "group": "Search and analytics",
+            "pages": ["visibility/google"]
+          },
+          {
+            "group": "Help",
+            "pages": ["visibility/support"]
+          }
+        ]
+      },
+      {
+        "tab": "One View Dashboard",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": ["one-view/overview", "one-view/sign-in-and-roles"]
+          },
+          {
+            "group": "Set up",
+            "pages": ["one-view/connect-data", "one-view/dashboards"]
+          },
+          {
+            "group": "Reporting",
+            "pages": [
+              "one-view/metrics",
+              "one-view/explore-and-export",
+              "one-view/numa"
+            ]
+          },
+          {
+            "group": "Share",
+            "pages": ["one-view/sharing"]
+          },
+          {
+            "group": "Help",
+            "pages": ["one-view/faq"]
+          }
+        ]
+      },
+      {
         "tab": "Connect",
         "groups": [
           {

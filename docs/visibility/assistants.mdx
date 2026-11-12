@@ -1,0 +1,66 @@
+---
+title: "Elaris Visibility in Claude and ChatGPT"
+sidebarTitle: "Claude and ChatGPT"
+description: "Connect Elaris Visibility to Claude, ChatGPT or another assistant, and ask about your numbers in plain words. The connection is read-only and reads only the workspaces you choose."
+---
+
+## What you can ask
+
+- “Which topics are we losing to competitors in Qatar this month?”
+- “What does ChatGPT say about us when people ask for sofa shops?”
+- “Who is asking for a recommendation on Reddit this week, and which ones are worth a reply?”
+- “What should we fix first, and why?”
+
+The assistant looks up the same numbers you see in the app, with how many answers each rests on, and links to the page that shows more.
+
+## Connect Claude
+
+1. In Claude, open **Settings → Connectors** and choose **Add custom connector**.
+2. Name it Elaris Visibility and paste `https://visibility.elarislabs.ai/mcp`.
+3. Press **Connect**. Sign in to Elaris Visibility if asked, choose the workspaces Claude can read, and press **Allow read-only access**.
+
+<Note>
+Custom connectors are available on Claude's paid plans. On a Team or Enterprise plan, an owner may need to add the connector for the organisation first.
+</Note>
+
+## Connect ChatGPT
+
+1. In ChatGPT's settings, under **Connectors**, turn on developer mode (in the advanced settings).
+2. Create a connector with the address `https://visibility.elarislabs.ai/mcp` and OAuth sign-in.
+3. Sign in to Elaris Visibility, choose the workspaces and press Allow.
+
+<Note>
+Which ChatGPT plans can add custom connectors is up to OpenAI and changes from time to time.
+</Note>
+
+## Claude Code, Cursor and other tools
+
+Claude Code signs in the same way: run `claude mcp add --transport http elaris-visibility https://visibility.elarislabs.ai/mcp`, then type `/mcp` in Claude Code and sign in.
+
+For tools that send a header instead of signing in, create a personal token in **Settings → Integrations → AI assistants** and send it as `Authorization: Bearer <token>` to the same address. The token is shown once; keep it private, as anyone who has it can read what you can.
+
+## What it can read
+
+| Tools | What they return |
+| --- | --- |
+| `list_workspaces` | The workspaces it can read, with each region's country, languages and engines |
+| `visibility_overview` | Visibility, share of voice, citation rate, sentiment and brand injection, with their change and by engine |
+| `brand_ranking` | Every brand AI names, ranked, with position and sentiment |
+| `topics, topic_detail` | Topics with their demand and visibility, and one topic's gaps and prompts |
+| `search_prompts, read_answers` | Find prompts, and read what each engine actually answered |
+| `citations, compare_competitor` | The sites and pages AI cites, and how you compare with one competitor |
+| `sentiment, accuracy` | How AI describes you, and the claims it gets wrong or out of date |
+| `social_listening, social_leads` | What people post about you and your competitors, and the leads in it |
+| `suggestions` | Action Center suggestions, most likely to pay off first |
+| `setup, bot_readability, ai_traffic` | How the region is set up, whether AI can read your site, and AI visits to it |
+
+## How access works
+
+- **Read-only.** An assistant can't change settings, run collection, mark anything or use credits.
+- **As you, in the workspaces you choose.** It sees only what you can see in the app, and only the workspaces you ticked when you connected it (or every workspace you can open, for a personal token unless you limit it).
+- **Yours to remove.** Every connection and token is listed in **Settings → Integrations → AI assistants**; Remove ends it at once. Connected apps get a token that lasts an hour and renews itself while you keep using it.
+- **Paused with the workspace.** When a workspace's trial ends or its plan stops, assistants can't read it until it's restarted.
+
+## Technical details
+
+The connector is an MCP server (Streamable HTTP) at `https://visibility.elarislabs.ai/mcp`. Assistants sign people in with OAuth 2.1: dynamic client registration, the authorization code flow with PKCE, and refresh tokens; discovery starts at `/.well-known/oauth-protected-resource`. Personal tokens are sent as a bearer header. Questions? See [FAQ and support](/visibility/support).

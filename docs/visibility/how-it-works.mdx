@@ -1,0 +1,82 @@
+---
+title: "How Elaris Visibility works"
+sidebarTitle: "How it works"
+description: "From the questions your customers ask to the numbers on your dashboard: what Elaris collects, how often, and how it reads each answer."
+---
+
+## Workspaces and markets
+
+A **workspace** is one company or brand, with its own team and data. Inside it, a **market** is what you track in one region: your brand, your competitors, your topics and the languages you care about, all measured from one country.
+
+Location matters because AI answers are local. Asked from Doha, “best furniture store” gets different brands than the same question asked from Dubai or London. Every question in a market is asked from that market's country. To track another country, add a region: it copies your brands, topics and prompts and gets its own dashboard, so you can compare countries side by side.
+
+<Frame caption="A region's settings: its name, the country it's asked from, its languages and the AI platforms it checks.">
+  <img src="/images/visibility/region-settings.jpg" width="1536" height="910" alt="A region's settings: its name, country, languages and the AI platforms it checks" />
+</Frame>
+
+## Topics and keywords
+
+A **topic** is an area of your business you want to be found for, such as “Sofas & seating” or “Bedrooms & mattresses”. Each topic carries real Google search keywords with their monthly search volumes, so you can see how much demand sits behind it. The topic's busiest keyword sets its demand band:
+
+| Demand | Monthly searches of the top keyword |
+| --- | --- |
+| Low | Under 100 |
+| Medium | 100 to 999 |
+| High | 1,000 or more |
+
+Demand is used to rank your gaps: losing a high-demand topic matters more than losing a niche one.
+
+<Frame caption="Topics with their search demand, how many prompts each has, and how often your brand is named.">
+  <img src="/images/visibility/topics.jpg" width="1536" height="698" alt="Topics with their search demand, prompt counts and how often your brand is named" />
+</Frame>
+
+## Prompts
+
+A **prompt** is one question asked to AI. Elaris writes prompts from your topics' real searches, phrased the way a person would ask an assistant, and you can add, edit, tag or archive them at any time.
+
+- **Non-branded prompts** don't name your brand (“best sofa shop in Doha”). They show whether AI recommends you when someone is choosing, so they drive the headline numbers.
+- **Branded prompts** name your brand (“What do customers say about Lunebrook?”). They show how AI describes you when asked directly.
+- **Every language:** a market can track any languages. Each question is asked in every one, written natively rather than translated word for word, and each language is reported separately.
+
+<Frame caption="One topic: the real searches behind it, its visibility over time, and the prompts written from them.">
+  <img src="/images/visibility/topic.jpg" width="1536" height="708" alt="A topic: the searches behind it, its visibility over time and its prompts" />
+</Frame>
+
+## Engines
+
+Elaris can ask ChatGPT, Gemini, Google AI Overviews, Google AI Mode, Perplexity, Microsoft Copilot and Claude. Which engines run for a market is set in its settings. Where possible, answers are collected as people see them in the app or on Google's results page, including the searches the AI ran, the sources it shows, shopping cards and sponsored placements.
+
+When Google shows no AI Overview for a search, that counts as “not visible” for everyone, because that is what a person sees.
+
+## Runs and schedule
+
+AI answers vary: ask the same question twice and you may get different brands. So each prompt is asked **three times on each engine**, every two days by default. Both numbers can be changed per market. More runs give tighter ranges (see [95% ranges](/visibility/metrics#95%25-ranges)); a shorter cadence shows changes sooner.
+
+<Note>
+A market with 40 prompts, 4 engines and 3 runs collects 480 answers per run. Over a month that is several thousand answers, which is what makes the numbers dependable.
+</Note>
+
+## How each answer is read
+
+Every answer is read for:
+
+- **Brands named**, and how: *recommended* (offered as an option), *mentioned* (named but not recommended) or *context* (named as a platform or example, such as “sold on Amazon”). Context mentions don't count towards visibility.
+- **Position:** the order brands appear in. Being named first matters, because people rarely read to the end.
+- **Description:** whether each mention is positive, neutral or negative, and the themes behind it (strengths, weaknesses, positioning).
+- **Claims:** factual statements about your brand, checked against your fact sheet.
+- **Citations:** the web pages the answer links to or relied on.
+- **Fan-outs:** the searches the AI ran before answering, which show how it interpreted the question and whether it added your brand name on its own.
+
+<Frame caption="One prompt's answer on ChatGPT, with the brands it named and the pages it cited.">
+  <img src="/images/visibility/answer.jpg" width="1536" height="960" alt="One prompt's answer on ChatGPT, with the brands it named and the pages it cited" />
+</Frame>
+
+Brands are matched by name, aliases and local spellings (Arabic, Cyrillic, Chinese…), ignoring spaces and punctuation. If a brand is being missed, add an alias for it in the market's settings.
+
+## From answers to decisions
+
+The readings roll up into the numbers in [Metrics](/visibility/metrics), and into lists you can act on: topics a competitor wins, prompts where you're missing, the pages AI cites for each topic and whether they name you, and claims AI gets wrong. [Using the app](/visibility/using-the-app) shows where each one lives.
+
+<Frame caption="Top gaps on the dashboard: the topics where a competitor is named far more often than you.">
+  <img src="/images/visibility/top-gaps.jpg" width="1536" height="858" alt="Top gaps: topics where a competitor is named far more often than you" />
+</Frame>

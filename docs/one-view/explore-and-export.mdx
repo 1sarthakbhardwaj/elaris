@@ -1,0 +1,45 @@
+---
+title: "Data Explorer and exports"
+sidebarTitle: "Explore and export"
+description: "Cut any dimension against any metric in the Data Explorer, download any chart or table, and send data to Google Sheets, Cloud Storage or a BI tool on a schedule."
+---
+
+## Data Explorer
+
+**Data → Data Explorer** puts any dimension against any metric, across every data source. The toolbar reads left to right:
+
+1. **Dimensions** and **Metrics**: for example, spend and conversions by campaign.
+2. **The date range**.
+3. **Add filter**: rules on any dimension (such as **Campaign contains** "Ramadan"), rules on metrics (such as **Spend is greater than** 100) and a row limit of up to 5,000 rows. Press **Apply** to use them.
+4. **Currency**: the currency to show money in.
+
+**Export**, at the top right, downloads the result as CSV, TSV or Excel, or sends it to a new Google Sheet in your own Drive.
+
+## Download a chart or table
+
+Every chart and table, on dashboards and share links, has a **⋯** menu with **Download CSV** and **Download Excel**.
+
+## Scheduled exports
+
+Send data out on a schedule, so a spreadsheet or BI report stays up to date without anyone pulling it.
+
+<Steps>
+  <Step title="Create the export">
+    Open **Export** in the left rail and press **Create export**.
+  </Step>
+  <Step title="Pick a destination">
+    Choose **Google Sheets**, **Google Cloud Storage**, or a **private CSV link** that Excel, Power BI, Looker Studio or Tableau can read. Connect Google or Google Cloud when asked.
+  </Step>
+  <Step title="Pick the data">
+    Choose the metrics and dimensions, the date range and any filters, then press **Preview**.
+  </Step>
+  <Step title="Name and schedule it">
+    Name it, choose **Daily**, **Mondays** or **Manual**, and press **Save and run**.
+  </Step>
+</Steps>
+
+Scheduled exports run every morning after the nightly import, so they carry the freshest numbers.
+
+<Note>
+Treat a private CSV link like a password: anyone who has it can read that export.
+</Note>

@@ -1,0 +1,58 @@
+---
+title: "One View FAQ and troubleshooting"
+sidebarTitle: "FAQ and troubleshooting"
+description: "Answers to common questions about One View Dashboard, fixes for the problems people run into, and how to get help."
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="What is the One View Dashboard?">
+    One View Dashboard is Elaris Analytics, the ElarisLabs reporting hub that puts every client's ad results in one place. Each brand gets its own dashboard built from every ad platform it runs on, and the client can open it as their own portal.
+  </Accordion>
+  <Accordion title="Which platforms does it connect to?">
+    Meta, Google Ads, TikTok, Display & Video 360, Snapchat, LinkedIn, X and Pinterest, plus Google Analytics 4 and Google Sheets. You connect each account once and the data keeps flowing. See [Connect your ad accounts](/one-view/connect-data).
+  </Accordion>
+  <Accordion title="How often does the data update?">
+    Every night. Elaris imports every connected account again and re-fetches the last 30 days, so each morning starts with fresh numbers up to yesterday. You can also refresh an account, a brand or everything at any time.
+  </Accordion>
+  <Accordion title="Does it replace our reporting spreadsheets?">
+    That's the point. Every platform is mapped to one set of metrics in one currency, so Meta, Google and TikTok numbers sit side by side in the same columns. If a spreadsheet still has to exist, a [scheduled export](/one-view/explore-and-export#scheduled-exports) keeps it filled.
+  </Accordion>
+  <Accordion title="Can I see which creatives perform best?">
+    Yes. The **Creative** tab on every dashboard ranks each ad by spend, with its impressions, CTR, conversions and cost per conversion, so you can see which ads carry the campaign and which are wearing out.
+  </Accordion>
+  <Accordion title="What is Numa?">
+    Numa is the AI analyst inside One View Dashboard. Ask it about any brand's results in plain words, and it answers from your actual data. See [Numa, the AI analyst](/one-view/numa).
+  </Accordion>
+  <Accordion title="Can I share dashboards with my clients?">
+    Yes. Give a client their own sign-in to see the dashboards you choose, or send a share link that opens without signing in. See [Share with clients](/one-view/sharing).
+  </Accordion>
+  <Accordion title="Does Elaris change our campaigns?">
+    No. Elaris reads reporting data only. It never creates, edits or pauses campaigns. See [What Elaris can access](/one-view/connect-data#what-elaris-can-access).
+  </Accordion>
+  <Accordion title="Who can see our data?">
+    Only the people you invite. Each client sees only their own dashboards, never another client's. How we handle data is covered in our [Privacy Policy](https://www.elarislabs.ai/legal/privacy-policy).
+  </Accordion>
+  <Accordion title="How do I get access?">
+    One View Dashboard is invite-only for now. Ask your ElarisLabs contact for an invitation, or [book a demo](https://www.elarislabs.ai/smart-ad-analytics).
+  </Accordion>
+  <Accordion title="How much does it cost?">
+    See [Smart Ad Analytics](https://www.elarislabs.ai/smart-ad-analytics) on our website for current plans, or talk to your ElarisLabs contact.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+| You see | What to do |
+| --- | --- |
+| A notice that an account stopped syncing, or it's under **Needs attention** on Data health | Sign in again: **Data sources → Connectors → Edit credentials**. Meta sign-ins last about 60 days, so Meta is the most common one |
+| Today's numbers are missing | Data runs up to yesterday. The nightly import adds each new day |
+| Last week's conversions changed | Platforms keep updating conversions for days after a click, and Elaris re-fetches the last 30 days every night to pick that up |
+| An ad account isn't in the list when you connect | The person who signed in can't see it. Ask someone with access to that account to sign in. For DV360 and Snapchat, their sign-in is added alongside yours |
+| Totals look different from the ad platform | Check the currency notice (spend is converted at each day's rate), remember that reach is never added up, and that each platform counts conversions its own way. See [Metrics](/one-view/metrics#how-platforms-are-lined-up) |
+| A share link no longer opens | Links expire after 180 days, or stop working when revoked. In the dashboard's **Settings → Share links**, restore a revoked link or create a new one |
+
+## Getting help
+
+Ask your ElarisLabs contact, or email [support@elarislabs.ai](mailto:support@elarislabs.ai) with the dashboard's name and what you expected to see.

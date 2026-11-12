@@ -32,3 +32,9 @@ Connect this folder to a [Mintlify](https://mintlify.com) project (GitHub app) a
 - `connect/` — MCP, API keys, Slack
 - `models/`, `pricing/` — reference
 - `guides/`, `legal/`
+- `visibility/` — Elaris Visibility (the "AI Visibility" tab); screenshots in `images/visibility/`
+- `one-view/` — One View Dashboard, also called Elaris Analytics (the "One View Dashboard" tab)
+
+## Keeping the Visibility pages in sync
+
+The pages in `visibility/` were converted on 2026-11-12 from the Visibility app's own public docs at https://visibility.elarislabs.ai/docs. Every page there has a Markdown copy: `/docs.md` for the overview and `/docs/<page>.md` for the rest. The app's docs are the source. When they change, update the matching `.mdx` page here.
