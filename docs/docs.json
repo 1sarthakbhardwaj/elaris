@@ -188,7 +188,7 @@
     "links": [
       {
         "label": "Blog",
-        "href": "https://www.elarislabs.ai/blogs"
+        "href": "https://www.elarislabs.ai/blog"
       },
       {
         "label": "Pricing",
@@ -227,6 +227,14 @@
     }
   },
   "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/getting-started/welcome"
+    },
+    {
+      "source": "/docs/:slug*",
+      "destination": "/:slug*"
+    },
     {
       "source": "/index",
       "destination": "/getting-started/welcome"
