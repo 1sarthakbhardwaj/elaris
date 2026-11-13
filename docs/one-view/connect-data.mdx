@@ -1,0 +1,79 @@
+---
+title: "Connect your ad accounts"
+sidebarTitle: "Connect data"
+description: "Link Meta, Google Ads, TikTok, DV360, Snapchat, LinkedIn, X, Pinterest, Google Analytics 4 and Google Sheets, choose how much history to import, and keep every connection healthy."
+---
+
+## Supported platforms
+
+| Platform | How you connect |
+| --- | --- |
+| Google Analytics 4 | Google sign-in, or a service account |
+| Google Ads | Google sign-in |
+| Meta Ads | Meta sign-in (lasts about 60 days, then sign in again) |
+| TikTok Ads | TikTok sign-in |
+| Display & Video 360 | Google sign-in, then pick a report: Standard, Reach & frequency or YouTube |
+| Snapchat Ads | Snapchat sign-in |
+| LinkedIn Ads | LinkedIn sign-in |
+| X Ads | Paste your X API keys |
+| Pinterest Ads | Pinterest sign-in |
+| Google Sheets | Google sign-in, or a service account. Use it for numbers you keep in a sheet |
+
+Google Analytics 4 brings sessions and key events but no spend, so it never counts towards money metrics such as spend or ROAS.
+
+## Connect an account
+
+<Steps>
+  <Step title="Start">
+    Open **Data → Data sources** and press **Connect data source**, or use **Connect a data source** from a dashboard's data sources menu to add it to that dashboard straight away.
+  </Step>
+  <Step title="Pick the platform">
+    Choose the platform from the list.
+  </Step>
+  <Step title="Authenticate">
+    If the platform is already set up, press **Continue**. Otherwise press **Continue with** Google, Meta, TikTok, Snapchat, LinkedIn or Pinterest and sign in. For X, choose **Enter keys instead**, paste the keys, press **Test connection**, then **Save and continue**.
+  </Step>
+  <Step title="Pick the account">
+    Choose the account from the list or paste its ID. You can rename the data source to anything you like.
+  </Step>
+  <Step title="Choose how much history">
+    Import the last **30 days**, **3 months**, **6 months** or **12 months**. You can pull more history later from the data source's page.
+  </Step>
+  <Step title="Connect">
+    Press **Connect data source**. Its page opens while the data imports. If you started from a dashboard, it's already on that dashboard; otherwise add it to any dashboard in **Edit dashboard → Fields & filters**.
+  </Step>
+</Steps>
+
+<Tip>
+For Display & Video 360, connect the same advertiser once for each report you need. **Standard** brings spend, revenue, impressions, clicks and conversions. **Reach & frequency** brings unique reach each day and for the month so far, with no spend. **YouTube** repeats the spend, impressions and clicks of YouTube line items that Standard already counts, so don't add both into one total.
+</Tip>
+
+If an account you expect is missing from the list, the person who signed in can't see it. For DV360 and Snapchat, every person's sign-in is kept, so ask someone who can see the account to sign in too, and its accounts are added.
+
+## What Elaris can access
+
+Elaris reads your reporting data and never changes your campaigns.
+
+- Google Analytics 4, Google Sheets, Meta, LinkedIn, Pinterest and TikTok are connected with read-only reporting access.
+- Google Ads and DV360 ask for Google's standard advertising permission, because Google doesn't offer a read-only option for them. Elaris only reads reports with it.
+- Sign-ins and keys are stored encrypted and are never shown again after you save them.
+
+## How often data refreshes
+
+Every night, around 02:00 UTC, Elaris imports every connected account again. It re-fetches the **last 30 days** each time, because ad platforms keep updating conversions for days after a click. Recent numbers can therefore move a little from one morning to the next.
+
+Data always runs up to **yesterday**. To refresh sooner:
+
+- **Run sync now** on Data health re-fetches every account.
+- **Sync this client** on a dashboard re-fetches that brand's accounts.
+- **Re-import now**, in a data source's **⋯** menu, re-fetches one account.
+
+## Keeping connections healthy
+
+**Data → Data health** shows the accounts that are syncing, freshness alerts, access still pending, recent imports and each connector's state. Accounts that need you are listed under **Needs attention**. An account counts as stale when it hasn't imported for 36 hours.
+
+To sign in again or rotate a key, open **Data sources → Connectors**, press **Edit credentials** (or **Connect**) on the platform's row, sign in or paste the new credentials, press **Test connection**, then **Save and continue**.
+
+## Rename a data source
+
+On **Data sources**, hover the row and press the pencil beside its name, or choose **Rename** in the row's **⋯** menu. Type any name and press **Save name**. The platform's account ID doesn't change.

@@ -1,0 +1,47 @@
+---
+title: "Bot readability"
+description: "A weekly audit of your own site, read the way AI crawlers read it, scored out of 100, with a verdict for each assistant and the fixes that matter."
+---
+
+## Why it matters
+
+An assistant can only recommend what its crawler could read. A firewall that turns bots away, a page that only appears after JavaScript runs, or a stray noindex keeps you out of answers however good the page is. The audit finds those before they cost you.
+
+## What it reads
+
+Up to 25 pages of your site, four at a time: the home page, the pages AI crawlers visit most (when [AI traffic](/visibility/ai-traffic) is connected), your pages that answers cite, your blog posts, and a spread across your sitemap. It also fetches the home page and one deeper page as a browser and as six answer-engine crawlers, to see whether your bot protection treats them differently. That's about 45 requests a week, all to your own site.
+
+## The checks
+
+| Group | Points | What is checked |
+| --- | --- | --- |
+| Access | 40 | robots.txt lets the answer-engine crawlers in; your firewall doesn't turn them away; llms.txt lists your key pages; real crawler visits succeed (from your logs, when connected) |
+| Rendering | 25 | Each page carries its text in the HTML as served, without running JavaScript; no page arrives as an empty app shell |
+| Indexing | 15 | No noindex, nosnippet or noai where you want to be quoted; pages answer 200 in at most two redirects; a sitemap listed in robots.txt; canonical URLs; response time |
+| Structure | 20 | Titles and descriptions; one H1 per page; Organization markup with your profiles on the home page; valid structured data on pages; a declared language |
+
+The score is the share of points earned among the checks that apply. A check that can't apply (no AI traffic connected yet, for example) is left out rather than counted against you.
+
+<Frame caption="The checks, grouped into access, rendering, indexing and structure, with the pages behind each finding.">
+  <img src="/images/visibility/readability-checks.jpg" width="1184" height="1180" alt="Bot readability checks: access, rendering, indexing and structure" />
+</Frame>
+
+## Each assistant's verdict
+
+OpenAI, Anthropic, Perplexity, Google and Microsoft each get **Can read**, **Partly** or **Can't read**, with the reasons: robots.txt rules for their answer crawlers, what our fetch as their crawler got, what their real crawlers got from your logs, and whether most pages need JavaScript. Google and Microsoft render JavaScript; the AI crawlers read the HTML as it arrives.
+
+<Frame caption="Each assistant's verdict at the top of the Bot readability tab.">
+  <img src="/images/visibility/readability-verdict.jpg" width="1536" height="274" alt="Bot readability: whether each AI assistant can read the site" />
+</Frame>
+
+<Note>
+Some firewalls let a crawler in only when its address checks out. Our fetch uses the crawler's name from our own servers, so such a firewall may turn it away even though the real crawler gets in. When your AI traffic is connected, what real crawlers got takes precedence over our test.
+</Note>
+
+## Training crawlers
+
+Blocking GPTBot, ClaudeBot, Google-Extended or CCBot is a choice about model training. It doesn't keep you out of answers, so the audit reports it without scoring it.
+
+## Plans
+
+Every plan, the trial included, gets the score and each assistant's verdict. Growth and above get the full checklist and the pages behind each finding. With the Action Center, whatever fails also becomes a suggestion with steps to fix it, on any plan. See [plans and credits](/visibility/credits).

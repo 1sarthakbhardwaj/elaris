@@ -1,0 +1,54 @@
+---
+title: "One View metrics"
+sidebarTitle: "Metrics"
+description: "What every number in One View Dashboard means, how it's worked out, and how platforms that count differently are lined up side by side."
+---
+
+Every metric has an **ⓘ** beside it in the app that names the platform field it comes from and any caveats.
+
+## Core metrics
+
+| Metric | What it counts |
+| --- | --- |
+| Spend | Amount spent, in the dashboard's currency |
+| Impressions | Times your ads were shown |
+| Reach | People who saw your ads (see the notes below; reach is never added up) |
+| Link clicks | Clicks that lead to your site or app. Snapchat has no click, so its swipe-ups count here |
+| All clicks | Every click on an ad: on its link, profile, image or video, reactions and the rest |
+| Conversions | Conversions as each platform defines them |
+| Conv. value | The value of those conversions |
+| Sessions | Visits recorded by Google Analytics 4 |
+
+Also available where the platform reports them: online and offline purchases and their value, revenue (Display & Video 360), video views, plays, 2-second and 6-second views and completions, post engagements, follows and profile visits.
+
+## Rates
+
+Rates are always worked out from the totals for the period and channels you're looking at, never averaged from daily or per-platform rates.
+
+| Metric | Formula |
+| --- | --- |
+| CTR | Link clicks ÷ impressions |
+| CPC | Spend ÷ link clicks |
+| CPM | Spend ÷ impressions × 1,000 |
+| Cost per conversion (CPA) | Spend ÷ conversions |
+| ROAS | Conv. value ÷ spend |
+
+## How platforms are lined up
+
+Each ad platform names and counts things its own way. To keep the columns comparable:
+
+- **Clicks** means link clicks on every platform, so CTR and CPC compare like with like.
+- **Currency:** spend in another currency is converted to the dashboard's currency at each day's rate, then added up. Rates are the European Central Bank's daily reference rates. The UAE dirham, Qatari riyal, Saudi riyal, Bahraini dinar and Omani rial use their fixed US dollar pegs. You can also set fixed rates under **Data → Currencies**.
+- **Google Analytics 4** is never counted in money metrics such as spend, CPA or ROAS, because it has no spend.
+- **Reach is never added up**, because the same person can be reached on several days and platforms. Meta and Display & Video 360 report month-to-date reach; for TikTok and Snapchat, Elaris shows their largest single day.
+- **Conversions** keep each platform's own definition, so check what each platform counts before comparing conversion numbers between them.
+
+## Custom metrics and dimensions
+
+When the built-in metrics aren't enough, open **Data → Metrics** and press **Create metric**:
+
+- **Formula:** combine existing metrics, for example `purchases / clicks * 100`, using the operator buttons and the searchable list of metrics.
+- **Rules:** take a metric only from some data sources, campaigns or sheet columns, or read a number from a dimension.
+- **Platform field:** import a field a platform reports that Elaris doesn't show yet. Pick it for each connector that reports it and say whether daily values add up or take the highest.
+
+To group data your own way, open **Data → Dimensions** and press **Create dimension**. Build it from **Rules** (when a condition matches, set a value) or from **Part of a name** (for example, the market code in your campaign naming convention). Custom metrics and dimensions appear in every picker: dashboards, the Data Explorer, filters and exports.
