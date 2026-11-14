@@ -38,3 +38,9 @@ Connect this folder to a [Mintlify](https://mintlify.com) project (GitHub app) a
 ## Keeping the Visibility pages in sync
 
 The pages in `visibility/` were converted on 2026-11-12 from the Visibility app's own public docs at https://visibility.elarislabs.ai/docs. Every page there has a Markdown copy: `/docs.md` for the overview and `/docs/<page>.md` for the rest. The app's docs are the source. When they change, update the matching `.mdx` page here.
+
+The videos on those pages play straight from the Visibility help centre's public storage, using the file names in the Visibility repo's `lib/help/videos.json`. Those names change whenever a video is re-recorded, and old files are kept, so the embeds keep working but can fall behind. After a re-recording, copy the new `video` and `poster` URLs into the pages.
+
+## One View screenshots
+
+The screenshots in `images/one-view/` come from a local copy of the Analytics app on a throwaway database, filled by its `scripts/seed.ts` with made-up brands (Lamsa Tea, Northlight Studios, Verda Wellness) and demo data. Never take docs screenshots from the live app: it shows real clients' spend.

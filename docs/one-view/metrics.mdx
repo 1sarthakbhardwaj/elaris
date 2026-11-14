@@ -43,6 +43,10 @@ Each ad platform names and counts things its own way. To keep the columns compar
 - **Reach is never added up**, because the same person can be reached on several days and platforms. Meta and Display & Video 360 report month-to-date reach; for TikTok and Snapchat, Elaris shows their largest single day.
 - **Conversions** keep each platform's own definition, so check what each platform counts before comparing conversion numbers between them.
 
+<Frame caption="A dashboard's Cross-channel tab: every metric worked out the same way for each channel. GA4 shows n/a where it has no data, such as spend, and stays out of the paid total.">
+  <img src="/images/one-view/cross-channel.jpg" width="1600" height="1000" alt="The Cross-channel comparison table with spend, impressions, link clicks, CTR, CPC, CPM, conversions, cost per conversion, conversion value, ROAS and sessions by channel" />
+</Frame>
+
 ## Custom metrics and dimensions
 
 When the built-in metrics aren't enough, open **Data → Metrics** and press **Create metric**:
@@ -50,5 +54,9 @@ When the built-in metrics aren't enough, open **Data → Metrics** and press **C
 - **Formula:** combine existing metrics, for example `purchases / clicks * 100`, using the operator buttons and the searchable list of metrics.
 - **Rules:** take a metric only from some data sources, campaigns or sheet columns, or read a number from a dimension.
 - **Platform field:** import a field a platform reports that Elaris doesn't show yet. Pick it for each connector that reports it and say whether daily values add up or take the highest.
+
+<Frame caption="Create metric: name and describe it, then build it from a formula, rules or a platform field. The preview shows its value by channel.">
+  <img src="/images/one-view/create-metric.jpg" width="1600" height="1000" alt="The new custom metric form with Formula, Rules and Platform field options" />
+</Frame>
 
 To group data your own way, open **Data → Dimensions** and press **Create dimension**. Build it from **Rules** (when a condition matches, set a value) or from **Part of a name** (for example, the market code in your campaign naming convention). Custom metrics and dimensions appear in every picker: dashboards, the Data Explorer, filters and exports.
